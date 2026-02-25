@@ -95,35 +95,33 @@ export default function HeroSection() {
     <section
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #04060d 0%, #070c18 50%, #06091a 100%)" }}
+      style={{ background: "var(--joe-bg-hero)" }}
     >
-      {/* Grid background */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0"
         style={{
+          opacity: "var(--joe-glow-opacity)",
           backgroundImage:
-            "linear-gradient(rgba(0,200,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.06) 1px, transparent 1px)",
+            `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
 
-      {/* Glowing orbs */}
       <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)" }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }}
       />
       <div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-8 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)" }}
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }}
       />
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-4 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.5)" }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Hero Content */}
           <div className="flex flex-col gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -144,7 +142,7 @@ export default function HeroSection() {
               className="flex flex-col gap-3"
             >
               <h1
-                className="font-heading font-bold leading-tight text-white"
+                className="font-heading font-bold leading-tight text-joe-text"
                 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
               >
                 Engineering
@@ -163,7 +161,7 @@ export default function HeroSection() {
                 <br />
                 Systems
               </h1>
-              <p className="text-white/50 text-sm font-mono tracking-widest uppercase">
+              <p className="text-joe-text/50 text-sm font-mono tracking-widest uppercase">
                 that think. that scale. that deliver.
               </p>
             </motion.div>
@@ -172,7 +170,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-white/65 text-lg leading-relaxed max-w-xl"
+              className="text-joe-text/65 text-lg leading-relaxed max-w-xl"
             >
               JOE Technologies designs and deploys production-grade AI systems for ambitious
               companies. Founded by{" "}
@@ -201,7 +199,7 @@ export default function HeroSection() {
                 onClick={() => handleNavClick("#portfolio")}
                 size="lg"
                 variant="outline"
-                className="border-white/20 text-white/80 bg-white/5 font-semibold tracking-wide gap-2"
+                className="border-joe-text/20 text-joe-text/80 bg-joe-text/5 font-semibold tracking-wide gap-2"
                 data-testid="button-hero-cta-secondary"
               >
                 <Code2 className="w-4 h-4" />
@@ -209,13 +207,13 @@ export default function HeroSection() {
               </Button>
             </motion.div>
 
-            {/* Animated stats */}
             <motion.div
               ref={statsRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4"
+              style={{ borderTop: "1px solid var(--joe-card-border)" }}
             >
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-1" data-testid={`stat-${i}`}>
@@ -226,7 +224,7 @@ export default function HeroSection() {
                       isInView={statsInView}
                     />
                   </span>
-                  <span className="text-white/40 text-xs uppercase tracking-wide">
+                  <span className="text-joe-text/40 text-xs uppercase tracking-wide">
                     {stat.label}
                   </span>
                 </div>
@@ -234,7 +232,6 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: Code Terminal */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -242,7 +239,6 @@ export default function HeroSection() {
             className="hidden lg:block"
           >
             <div className="relative">
-              {/* Terminal glow */}
               <div
                 className="absolute -inset-1 rounded-xl opacity-30 blur-xl"
                 style={{
@@ -252,9 +248,8 @@ export default function HeroSection() {
 
               <div
                 className="relative rounded-xl border border-[#00c8ff]/20 overflow-hidden"
-                style={{ background: "rgba(7, 12, 28, 0.95)" }}
+                style={{ background: "var(--joe-terminal-bg)" }}
               >
-                {/* Terminal header */}
                 <div
                   className="flex items-center gap-2 px-4 py-3 border-b border-white/10"
                   style={{ background: "rgba(255,255,255,0.03)" }}
@@ -269,7 +264,6 @@ export default function HeroSection() {
                   </div>
                 </div>
 
-                {/* Code content */}
                 <div className="p-6 font-mono text-sm leading-relaxed min-h-64">
                   {codeLines.slice(0, visibleLines).map((line, i) => (
                     <div
@@ -284,7 +278,6 @@ export default function HeroSection() {
                   )}
                 </div>
 
-                {/* Bottom status bar */}
                 <div
                   className="px-4 py-2 border-t border-white/10 flex items-center gap-4"
                   style={{ background: "rgba(0,200,255,0.05)" }}
@@ -303,7 +296,6 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Floating badges */}
               <motion.div
                 animate={{ y: [-4, 4, -4] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -323,13 +315,12 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
         onClick={() => handleNavClick("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 hover:text-white/60 transition-colors flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-joe-text/30 hover:text-joe-text/60 transition-colors flex flex-col items-center gap-2"
         data-testid="button-scroll-indicator"
         aria-label="Scroll to about section"
       >

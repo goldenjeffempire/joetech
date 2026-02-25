@@ -13,10 +13,11 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import CookieConsent from "@/components/CookieConsent";
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ background: "#04060d" }}>
+    <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
       <ScrollProgressBar />
       <Navigation />
       <main>
@@ -34,6 +35,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <CookieConsent />
     </div>
   );
 }

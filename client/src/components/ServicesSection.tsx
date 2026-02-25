@@ -65,10 +65,9 @@ export default function ServicesSection() {
 
   return (
     <section id="services" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #060a15 0%, #07091a 100%)" }}>
-      {/* Background accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-8 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #0066ff 0%, transparent 70%)" }} />
+      style={{ background: "var(--joe-bg-2)" }}>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -79,7 +78,7 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">What We Do</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Services That{" "}
             <span style={{
               background: "linear-gradient(135deg, #00c8ff, #0066ff)",
@@ -90,7 +89,7 @@ export default function ServicesSection() {
               Move the Needle
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
             Every engagement is built around delivering measurable business outcomes —
             not just impressive demos.
           </p>
@@ -105,8 +104,11 @@ export default function ServicesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="group flex flex-col gap-5 p-7 rounded-xl border border-white/8 hover-elevate cursor-default transition-all duration-300"
-                style={{ background: "rgba(255,255,255,0.03)" }}
+                className="group flex flex-col gap-5 p-7 rounded-xl border hover-elevate cursor-default transition-all duration-300"
+                style={{
+                  background: "var(--joe-card)",
+                  borderColor: "var(--joe-card-border)",
+                }}
                 data-testid={`service-card-${i}`}
               >
                 <div
@@ -120,8 +122,8 @@ export default function ServicesSection() {
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="font-heading font-bold text-white text-lg mb-2">{service.title}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{service.description}</p>
+                  <h3 className="font-heading font-bold text-joe-text text-lg mb-2">{service.title}</h3>
+                  <p className="text-joe-text/55 text-sm leading-relaxed">{service.description}</p>
                 </div>
 
                 <div className="flex flex-wrap gap-2">

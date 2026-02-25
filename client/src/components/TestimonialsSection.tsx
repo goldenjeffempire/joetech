@@ -44,10 +44,11 @@ export default function TestimonialsSection() {
 
   return (
     <section id="testimonials" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #060a15 0%, #07091a 100%)" }}>
-      <div className="absolute inset-0 opacity-10"
+      style={{ background: "var(--joe-bg-2)" }}>
+      <div className="absolute inset-0"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px)",
+          opacity: "var(--joe-glow-opacity)",
+          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }} />
 
@@ -60,7 +61,7 @@ export default function TestimonialsSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Social Proof</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             What Clients
             <br />
             <span style={{
@@ -72,7 +73,7 @@ export default function TestimonialsSection() {
               Say About Us
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-xl mx-auto">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-xl mx-auto">
             Don't take our word for it — hear from the leaders who've built AI systems with us.
           </p>
         </motion.div>
@@ -84,27 +85,26 @@ export default function TestimonialsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 + i * 0.12 }}
-              className="flex flex-col gap-6 p-7 rounded-xl border border-white/8 hover-elevate"
-              style={{ background: "rgba(255,255,255,0.025)" }}
+              className="flex flex-col gap-6 p-7 rounded-xl border hover-elevate"
+              style={{
+                background: "var(--joe-card)",
+                borderColor: "var(--joe-card-border)",
+              }}
               data-testid={`testimonial-card-${i}`}
             >
-              {/* Stars */}
               <div className="flex items-center gap-1">
                 {Array.from({ length: t.stars }).map((_, si) => (
                   <Star key={si} className="w-4 h-4 fill-[#ffd700] text-[#ffd700]" />
                 ))}
               </div>
 
-              {/* Quote icon */}
               <Quote className="w-8 h-8 opacity-20" style={{ color: t.accentColor }} />
 
-              {/* Quote text */}
-              <p className="text-white/65 text-sm leading-relaxed flex-1 italic">
+              <p className="text-joe-text/65 text-sm leading-relaxed flex-1 italic">
                 "{t.quote}"
               </p>
 
-              {/* Author */}
-              <div className="flex items-center gap-4 pt-4 border-t border-white/8">
+              <div className="flex items-center gap-4 pt-4" style={{ borderTop: "1px solid var(--joe-card-border)" }}>
                 <div
                   className="w-11 h-11 rounded-full flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0"
                   style={{ background: `linear-gradient(135deg, ${t.accentColor}80, ${t.accentColor}40)`, border: `1px solid ${t.accentColor}30` }}
@@ -112,8 +112,8 @@ export default function TestimonialsSection() {
                   {t.initials}
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm">{t.author}</p>
-                  <p className="text-white/40 text-xs mt-0.5">{t.role}</p>
+                  <p className="text-joe-text font-semibold text-sm">{t.author}</p>
+                  <p className="text-joe-text/40 text-xs mt-0.5">{t.role}</p>
                   <p className="text-xs font-mono mt-0.5" style={{ color: t.accentColor }}>{t.company}</p>
                 </div>
               </div>
@@ -121,7 +121,6 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Trust indicators */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -134,7 +133,7 @@ export default function TestimonialsSection() {
             "Long-Term Partnerships",
             "100% Reference Available",
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2 text-white/35 text-sm">
+            <div key={i} className="flex items-center gap-2 text-joe-text/35 text-sm">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]/50" />
               <span>{item}</span>
             </div>

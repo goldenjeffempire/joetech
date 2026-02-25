@@ -4,6 +4,24 @@
 
 /* LIGHT MODE */
 :root {
+  --joe-text: 15 23 42;
+  --joe-bg-hero: linear-gradient(135deg, #f0f4ff 0%, #e8edf8 50%, #eef2ff 100%);
+  --joe-bg-1: linear-gradient(180deg, #f8faff 0%, #f0f4ff 100%);
+  --joe-bg-2: linear-gradient(180deg, #f0f4ff 0%, #eef2fc 100%);
+  --joe-bg-3: linear-gradient(180deg, #eef2fc 0%, #f8faff 100%);
+  --joe-bg-solid: #f8faff;
+  --joe-card: rgba(0, 0, 0, 0.035);
+  --joe-card-border: rgba(0, 0, 0, 0.08);
+  --joe-card-border-subtle: rgba(0, 0, 0, 0.05);
+  --joe-overlay: rgba(0, 0, 0, 0.03);
+  --joe-grid-color: rgba(0, 80, 200, 0.06);
+  --joe-glow-opacity: 0.06;
+  --joe-nav-bg: rgba(248, 250, 255, 0.92);
+  --joe-nav-border: rgba(0, 200, 255, 0.15);
+  --joe-fade: #f8faff;
+  --joe-terminal-bg: rgba(15, 23, 42, 0.97);
+  --joe-trusted-bg: rgba(0, 100, 255, 0.03);
+  --joe-divide: rgba(0, 0, 0, 0.06);
   --button-outline: rgba(0,0,0, .10);
   --badge-outline: rgba(0,0,0, .05);
   --opaque-button-border-intensity: -8;
@@ -88,6 +106,24 @@
 }
 
 .dark {
+  --joe-text: 255 255 255;
+  --joe-bg-hero: linear-gradient(135deg, #04060d 0%, #070c18 50%, #06091a 100%);
+  --joe-bg-1: linear-gradient(180deg, #04060d 0%, #060a15 100%);
+  --joe-bg-2: linear-gradient(180deg, #060a15 0%, #07091a 100%);
+  --joe-bg-3: linear-gradient(180deg, #07091a 0%, #060a15 100%);
+  --joe-bg-solid: #04060d;
+  --joe-card: rgba(255, 255, 255, 0.025);
+  --joe-card-border: rgba(255, 255, 255, 0.08);
+  --joe-card-border-subtle: rgba(255, 255, 255, 0.06);
+  --joe-overlay: rgba(255, 255, 255, 0.03);
+  --joe-grid-color: rgba(0, 200, 255, 0.06);
+  --joe-glow-opacity: 0.1;
+  --joe-nav-bg: rgba(7, 11, 20, 0.9);
+  --joe-nav-border: rgba(0, 200, 255, 0.1);
+  --joe-fade: #04060d;
+  --joe-terminal-bg: rgba(7, 12, 28, 0.95);
+  --joe-trusted-bg: rgba(0, 200, 255, 0.02);
+  --joe-divide: rgba(255, 255, 255, 0.06);
   --button-outline: rgba(255,255,255, .10);
   --badge-outline: rgba(255,255,255, .05);
   --opaque-button-border-intensity: 9;

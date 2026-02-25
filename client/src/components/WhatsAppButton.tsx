@@ -22,19 +22,23 @@ export default function WhatsAppButton() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="bg-[#111827] border border-white/15 rounded-xl p-4 shadow-xl shadow-black/40 max-w-[220px] text-right"
+            className="rounded-xl p-4 shadow-xl max-w-[220px] text-right border"
+            style={{
+              background: "var(--joe-nav-bg)",
+              borderColor: "var(--joe-card-border)",
+            }}
           >
             <div className="flex items-start justify-between gap-2 mb-2">
-              <p className="text-white font-semibold text-sm">Chat with Jeffery</p>
+              <p className="text-joe-text font-semibold text-sm">Chat with Jeffery</p>
               <button
                 onClick={() => setShowTooltip(false)}
-                className="text-white/40 hover:text-white/70 transition-colors flex-shrink-0"
+                className="text-joe-text/40 hover:text-joe-text/70 transition-colors flex-shrink-0"
                 aria-label="Close tooltip"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
-            <p className="text-white/55 text-xs leading-relaxed">
+            <p className="text-joe-text/55 text-xs leading-relaxed">
               Get a quick response on WhatsApp about your project.
             </p>
             <button
@@ -59,8 +63,6 @@ export default function WhatsAppButton() {
         data-testid="button-whatsapp-floating"
       >
         <MessageCircle className="w-7 h-7 text-white" />
-
-        {/* Pulse ring */}
         <span className="absolute w-14 h-14 rounded-full animate-ping opacity-30 bg-[#25d366]" />
       </motion.button>
     </div>

@@ -34,6 +34,7 @@ const formSchema = z.object({
   phone: z.string().optional(),
   service: z.string().optional(),
   message: z.string().min(20, "Please provide a bit more detail (min 20 chars)"),
+  website: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -91,6 +92,7 @@ export default function ContactSection() {
       phone: "",
       service: "",
       message: "",
+      website: "",
     },
   });
 
@@ -124,11 +126,13 @@ export default function ContactSection() {
     );
   };
 
+  const messageValue = form.watch("message") || "";
+
   return (
     <section id="contact" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #07091a 0%, #04060d 100%)" }}>
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] opacity-6 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #00c8ff 0%, transparent 70%)" }} />
+      style={{ background: "var(--joe-bg-3)" }}>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #00c8ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -139,7 +143,7 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Let's Connect</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Start Your AI
             <br />
             <span style={{
@@ -151,14 +155,13 @@ export default function ContactSection() {
               Transformation
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             Tell us about your project and we'll get back to you within 24 hours.
             Every engagement starts with a free strategy call.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-10">
-          {/* Left: Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -170,8 +173,11 @@ export default function ContactSection() {
               const content = (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-5 rounded-xl border border-white/8 hover-elevate"
-                  style={{ background: "rgba(255,255,255,0.025)" }}
+                  className="flex items-start gap-4 p-5 rounded-xl border hover-elevate"
+                  style={{
+                    background: "var(--joe-card)",
+                    borderColor: "var(--joe-card-border)",
+                  }}
                   data-testid={`contact-info-${i}`}
                 >
                   <div
@@ -184,8 +190,8 @@ export default function ContactSection() {
                     <Icon className="w-5 h-5" style={{ color: info.accent }} />
                   </div>
                   <div>
-                    <p className="text-white/40 text-xs font-mono uppercase tracking-wide mb-0.5">{info.label}</p>
-                    <p className="text-white font-medium text-sm">{info.value}</p>
+                    <p className="text-joe-text/40 text-xs font-mono uppercase tracking-wide mb-0.5">{info.label}</p>
+                    <p className="text-joe-text font-medium text-sm">{info.value}</p>
                   </div>
                 </div>
               );
@@ -199,7 +205,6 @@ export default function ContactSection() {
               );
             })}
 
-            {/* WhatsApp CTA */}
             <div
               className="p-6 rounded-xl border border-[#00ff88]/20"
               style={{ background: "rgba(0, 255, 136, 0.05)" }}
@@ -208,7 +213,7 @@ export default function ContactSection() {
                 <MessageCircle className="w-5 h-5 text-[#00ff88]" />
                 <span className="text-[#00ff88] font-semibold text-sm">Chat on WhatsApp</span>
               </div>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
+              <p className="text-joe-text/50 text-sm leading-relaxed mb-4">
                 Prefer a quick chat? Reach Jeffery directly on WhatsApp for fast responses.
               </p>
               <Button
@@ -222,18 +227,19 @@ export default function ContactSection() {
               </Button>
             </div>
 
-            {/* Availability */}
-            <div className="flex items-center gap-3 p-4 rounded-xl border border-white/8"
-              style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div className="flex items-center gap-3 p-4 rounded-xl border"
+              style={{
+                background: "var(--joe-overlay)",
+                borderColor: "var(--joe-card-border)",
+              }}>
               <div className="w-2.5 h-2.5 rounded-full bg-[#00ff88] animate-pulse flex-shrink-0" />
               <div>
-                <p className="text-white/70 text-sm font-medium">Currently accepting new clients</p>
-                <p className="text-white/35 text-xs mt-0.5">Limited spots available for Q2 2026</p>
+                <p className="text-joe-text/70 text-sm font-medium">Currently accepting new clients</p>
+                <p className="text-joe-text/35 text-xs mt-0.5">Limited spots available for Q2 2026</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Right: Contact form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -241,8 +247,11 @@ export default function ContactSection() {
             className="lg:col-span-3"
           >
             <div
-              className="p-8 rounded-xl border border-white/10"
-              style={{ background: "rgba(255,255,255,0.03)" }}
+              className="p-8 rounded-xl border"
+              style={{
+                background: "var(--joe-card)",
+                borderColor: "var(--joe-card-border)",
+              }}
             >
               {mutation.isSuccess ? (
                 <div className="flex flex-col items-center justify-center gap-5 py-12 text-center">
@@ -250,15 +259,15 @@ export default function ContactSection() {
                     <CheckCircle2 className="w-8 h-8 text-[#00c8ff]" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-white text-xl mb-2">Message Sent!</h3>
-                    <p className="text-white/55 text-sm leading-relaxed max-w-sm">
+                    <h3 className="font-heading font-bold text-joe-text text-xl mb-2">Message Sent!</h3>
+                    <p className="text-joe-text/55 text-sm leading-relaxed max-w-sm">
                       Thank you for reaching out. Jeffery will review your message and respond within 24 hours.
                     </p>
                   </div>
                   <Button
                     onClick={() => mutation.reset()}
                     variant="outline"
-                    className="border-white/20 text-white/70"
+                    className="border-joe-text/20 text-joe-text/70"
                     data-testid="button-send-another"
                   >
                     Send Another Message
@@ -267,17 +276,20 @@ export default function ContactSection() {
               ) : (
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
+                    <input type="text" name="website" className="hidden" aria-hidden="true" tabIndex={-1}
+                      {...form.register("website")} />
+
                     <div className="grid sm:grid-cols-2 gap-5">
                       <FormField
                         control={form.control}
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white/70 text-sm">Full Name *</FormLabel>
+                            <FormLabel className="text-joe-text/70 text-sm">Full Name *</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Jeffery Smith"
-                                className="bg-white/5 border-white/15 text-white placeholder:text-white/25 focus:border-[#00c8ff]/50"
+                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
                                 data-testid="input-name"
                                 {...field}
                               />
@@ -291,12 +303,12 @@ export default function ContactSection() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white/70 text-sm">Email Address *</FormLabel>
+                            <FormLabel className="text-joe-text/70 text-sm">Email Address *</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="you@company.com"
                                 type="email"
-                                className="bg-white/5 border-white/15 text-white placeholder:text-white/25 focus:border-[#00c8ff]/50"
+                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
                                 data-testid="input-email"
                                 {...field}
                               />
@@ -313,11 +325,11 @@ export default function ContactSection() {
                         name="company"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white/70 text-sm">Company</FormLabel>
+                            <FormLabel className="text-joe-text/70 text-sm">Company</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Acme Corp"
-                                className="bg-white/5 border-white/15 text-white placeholder:text-white/25 focus:border-[#00c8ff]/50"
+                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
                                 data-testid="input-company"
                                 {...field}
                               />
@@ -331,12 +343,12 @@ export default function ContactSection() {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white/70 text-sm">Phone / WhatsApp</FormLabel>
+                            <FormLabel className="text-joe-text/70 text-sm">Phone / WhatsApp</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="+1 555 000 0000"
                                 type="tel"
-                                className="bg-white/5 border-white/15 text-white placeholder:text-white/25 focus:border-[#00c8ff]/50"
+                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
                                 data-testid="input-phone"
                                 {...field}
                               />
@@ -352,19 +364,19 @@ export default function ContactSection() {
                       name="service"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white/70 text-sm">Service of Interest</FormLabel>
+                          <FormLabel className="text-joe-text/70 text-sm">Service of Interest</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger
-                                className="bg-white/5 border-white/15 text-white/70 focus:border-[#00c8ff]/50"
+                                className="bg-joe-text/5 border-joe-text/15 text-joe-text/70 focus:border-[#00c8ff]/50"
                                 data-testid="select-service"
                               >
                                 <SelectValue placeholder="Select a service..." />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-[#0d1528] border-white/15">
+                            <SelectContent style={{ background: "var(--joe-nav-bg)", borderColor: "var(--joe-card-border)" }}>
                               {services.map((s) => (
-                                <SelectItem key={s} value={s} className="text-white/80 focus:bg-white/10 focus:text-white">
+                                <SelectItem key={s} value={s} className="text-joe-text/80 focus:bg-joe-text/10 focus:text-joe-text">
                                   {s}
                                 </SelectItem>
                               ))}
@@ -380,12 +392,17 @@ export default function ContactSection() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white/70 text-sm">Your Message *</FormLabel>
+                          <div className="flex items-center justify-between">
+                            <FormLabel className="text-joe-text/70 text-sm">Your Message *</FormLabel>
+                            <span className={`text-xs ${messageValue.length >= 20 ? "text-joe-text/30" : "text-joe-text/50"}`}>
+                              {messageValue.length}/20 min
+                            </span>
+                          </div>
                           <FormControl>
                             <Textarea
                               placeholder="Tell us about your project — what you're building, the problem you're solving, your timeline, and any technical context that's useful..."
                               rows={5}
-                              className="bg-white/5 border-white/15 text-white placeholder:text-white/25 focus:border-[#00c8ff]/50 resize-none"
+                              className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50 resize-none"
                               data-testid="textarea-message"
                               {...field}
                             />
@@ -428,7 +445,7 @@ export default function ContactSection() {
                       </Button>
                     </div>
 
-                    <p className="text-white/25 text-xs text-center">
+                    <p className="text-joe-text/25 text-xs text-center">
                       By submitting this form, you agree that your information will be used to respond to your inquiry.
                       We never share your data with third parties.
                     </p>

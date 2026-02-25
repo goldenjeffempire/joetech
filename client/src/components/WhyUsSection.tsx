@@ -56,21 +56,19 @@ export default function WhyUsSection() {
     <section
       id="why-us"
       className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #06091a 0%, #060a15 100%)" }}
+      style={{ background: "var(--joe-bg-3)" }}
     >
-      {/* Grid bg */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,200,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.05) 1px, transparent 1px)",
+          opacity: "var(--joe-glow-opacity)",
+          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />
-      {/* Glow */}
       <div
-        className="absolute top-1/2 right-0 w-96 h-96 opacity-8 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)" }}
+        className="absolute top-1/2 right-0 w-96 h-96 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,9 +82,7 @@ export default function WhyUsSection() {
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">
             Why Choose Us
           </span>
-          <h2
-            className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3"
-          >
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Built Different.
             <br />
             <span
@@ -100,7 +96,7 @@ export default function WhyUsSection() {
               Engineered to Last.
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
             There are many AI consultancies. Here's what makes JOE Technologies the partner
             that serious companies choose.
           </p>
@@ -115,13 +111,15 @@ export default function WhyUsSection() {
                 initial={{ opacity: 0, y: 25 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.08 + i * 0.08 }}
-                className="group relative flex flex-col gap-4 p-7 rounded-xl border border-white/8 hover-elevate overflow-visible"
-                style={{ background: "rgba(255,255,255,0.025)" }}
+                className="group relative flex flex-col gap-4 p-7 rounded-xl border hover-elevate overflow-visible"
+                style={{
+                  background: "var(--joe-card)",
+                  borderColor: "var(--joe-card-border)",
+                }}
                 data-testid={`why-us-card-${i}`}
               >
-                {/* Number */}
                 <span
-                  className="absolute top-5 right-5 font-heading font-bold text-4xl opacity-8 leading-none"
+                  className="absolute top-5 right-5 font-heading font-bold text-4xl opacity-[0.08] leading-none"
                   style={{ color: item.accent }}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -138,15 +136,14 @@ export default function WhyUsSection() {
                 </div>
 
                 <div>
-                  <h3 className="font-heading font-bold text-white text-lg mb-2">
+                  <h3 className="font-heading font-bold text-joe-text text-lg mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-white/55 text-sm leading-relaxed">
+                  <p className="text-joe-text/55 text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </div>
 
-                {/* Accent bottom line */}
                 <div
                   className="absolute bottom-0 left-0 right-0 h-[2px] rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(90deg, transparent, ${item.accent}, transparent)` }}

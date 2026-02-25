@@ -3,13 +3,26 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
+import rateLimit from "express-rate-limit";
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { success: false, message: "Too many submissions. Please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  app.post("/api/contact", async (req, res) => {
+  app.post("/api/contact", contactLimiter, async (req, res) => {
     try {
+      if (req.body.website) {
+        return res.json({ success: true, id: "ok" });
+      }
+
       const data = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(data);
       res.json({ success: true, id: contact.id });
@@ -22,13 +35,17 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/contacts", async (req, res) => {
+  app.get("/api/contacts", async (_req, res) => {
     try {
       const contacts = await storage.getContacts();
       res.json(contacts);
     } catch (err) {
       res.status(500).json({ message: "Internal server error" });
     }
+  });
+
+  app.get("/api/health", (_req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
   return httpServer;

@@ -87,11 +87,11 @@ export default function PortfolioSection() {
 
   return (
     <section id="portfolio" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #04060d 0%, #060a15 100%)" }}>
-      <div className="absolute top-1/2 left-0 w-96 h-96 opacity-6 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)" }} />
-      <div className="absolute top-1/3 right-0 w-64 h-64 opacity-5 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)" }} />
+      style={{ background: "var(--joe-bg-1)" }}>
+      <div className="absolute top-1/2 left-0 w-96 h-96 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
+      <div className="absolute top-1/3 right-0 w-64 h-64 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.6)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -102,7 +102,7 @@ export default function PortfolioSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             AI That Delivers
             <br />
             <span style={{
@@ -114,7 +114,7 @@ export default function PortfolioSection() {
               Real Results
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             We don't build demos. We build systems that operate at scale and move business metrics.
           </p>
         </motion.div>
@@ -126,12 +126,14 @@ export default function PortfolioSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              className="group flex flex-col gap-0 rounded-xl border border-white/8 overflow-visible hover-elevate"
-              style={{ background: "rgba(255,255,255,0.025)" }}
+              className="group flex flex-col gap-0 rounded-xl border overflow-visible hover-elevate"
+              style={{
+                background: "var(--joe-card)",
+                borderColor: "var(--joe-card-border)",
+              }}
               data-testid={`portfolio-card-${i}`}
             >
-              {/* Card header */}
-              <div className="p-6 border-b border-white/8">
+              <div className="p-6" style={{ borderBottom: "1px solid var(--joe-card-border)" }}>
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div className="flex items-center gap-3">
                     <span
@@ -144,38 +146,41 @@ export default function PortfolioSection() {
                     >
                       {cs.tag}
                     </span>
-                    <span className="text-white/30 text-xs">{cs.client}</span>
+                    <span className="text-joe-text/30 text-xs">{cs.client}</span>
                   </div>
                   <ArrowUpRight
-                    className="w-5 h-5 text-white/20 group-hover:text-white/50 transition-colors flex-shrink-0 mt-0.5"
+                    className="w-5 h-5 text-joe-text/20 group-hover:text-joe-text/50 transition-colors flex-shrink-0 mt-0.5"
                   />
                 </div>
-                <h3 className="font-heading font-bold text-white text-xl mb-2">{cs.title}</h3>
-                <p className="text-white/55 text-sm leading-relaxed">{cs.description}</p>
+                <h3 className="font-heading font-bold text-joe-text text-xl mb-2">{cs.title}</h3>
+                <p className="text-joe-text/55 text-sm leading-relaxed">{cs.description}</p>
               </div>
 
-              {/* Metrics */}
-              <div className="grid grid-cols-3 divide-x divide-white/8">
+              <div className="grid grid-cols-3" style={{ borderBottom: "1px solid var(--joe-divide)" }}>
                 {cs.metrics.map((metric, mi) => {
                   const MetricIcon = metric.icon;
                   return (
-                    <div key={mi} className="flex flex-col items-center gap-1 p-4 text-center">
+                    <div key={mi} className="flex flex-col items-center gap-1 p-4 text-center"
+                      style={mi < 2 ? { borderRight: "1px solid var(--joe-divide)" } : undefined}>
                       <MetricIcon className="w-4 h-4 mb-1 opacity-40" style={{ color: cs.accent }} />
                       <span className="font-heading font-bold text-xl" style={{ color: cs.accent }}>
                         {metric.value}
                       </span>
-                      <span className="text-white/40 text-xs">{metric.label}</span>
+                      <span className="text-joe-text/40 text-xs">{metric.label}</span>
                     </div>
                   );
                 })}
               </div>
 
-              {/* Stack tags */}
               <div className="p-5 flex flex-wrap gap-2">
                 {cs.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-white/45 font-mono"
+                    className="text-xs px-2.5 py-1 rounded-md border text-joe-text/45 font-mono"
+                    style={{
+                      background: "var(--joe-overlay)",
+                      borderColor: "var(--joe-card-border)",
+                    }}
                   >
                     {tech}
                   </span>
@@ -191,7 +196,7 @@ export default function PortfolioSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <p className="text-white/40 text-sm mb-5">
+          <p className="text-joe-text/40 text-sm mb-5">
             Ready to become our next success story?
           </p>
           <Button

@@ -57,10 +57,11 @@ export default function ProcessSection() {
 
   return (
     <section id="process" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #07091a 0%, #060a15 100%)" }}>
-      <div className="absolute inset-0 opacity-10"
+      style={{ background: "var(--joe-bg-2)" }}>
+      <div className="absolute inset-0"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,200,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.05) 1px, transparent 1px)",
+          opacity: "var(--joe-glow-opacity)",
+          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }} />
 
@@ -73,7 +74,7 @@ export default function ProcessSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">How We Work</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Our Proven
             <br />
             <span style={{
@@ -85,14 +86,13 @@ export default function ProcessSection() {
               Engineering Process
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             Every project follows a battle-tested methodology that eliminates surprises
             and maximizes the chance of meaningful impact.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Vertical line connector (desktop) */}
           <div className="absolute left-[39px] top-6 bottom-6 w-px bg-gradient-to-b from-[#00c8ff]/40 via-[#0066ff]/30 to-transparent hidden lg:block" />
 
           <div className="flex flex-col gap-6">
@@ -107,7 +107,6 @@ export default function ProcessSection() {
                   className="flex gap-6 lg:gap-10"
                   data-testid={`process-step-${i}`}
                 >
-                  {/* Step indicator */}
                   <div className="flex-shrink-0 flex flex-col items-center">
                     <div
                       className="w-20 h-20 rounded-xl flex items-center justify-center border relative"
@@ -126,26 +125,32 @@ export default function ProcessSection() {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div
-                    className="flex-1 p-6 rounded-xl border border-white/8 hover-elevate mb-0"
-                    style={{ background: "rgba(255,255,255,0.025)" }}
+                    className="flex-1 p-6 rounded-xl border hover-elevate mb-0"
+                    style={{
+                      background: "var(--joe-card)",
+                      borderColor: "var(--joe-card-border)",
+                    }}
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                       <div>
                         <span className="text-[#00c8ff]/60 font-mono text-xs font-medium">{step.number}</span>
-                        <h3 className="font-heading font-bold text-white text-xl mt-0.5">{step.title}</h3>
+                        <h3 className="font-heading font-bold text-joe-text text-xl mt-0.5">{step.title}</h3>
                       </div>
                       <span className="text-xs font-mono px-3 py-1.5 rounded-full border border-[#00c8ff]/20 text-[#00c8ff] bg-[#00c8ff]/8 w-fit whitespace-nowrap flex-shrink-0">
                         {step.duration}
                       </span>
                     </div>
 
-                    <p className="text-white/55 text-sm leading-relaxed mb-4">{step.description}</p>
+                    <p className="text-joe-text/55 text-sm leading-relaxed mb-4">{step.description}</p>
 
                     <div className="flex flex-wrap gap-2">
                       {step.deliverables.map((d) => (
-                        <span key={d} className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-white/50 font-mono">
+                        <span key={d} className="text-xs px-2.5 py-1 rounded-md border text-joe-text/50 font-mono"
+                          style={{
+                            background: "var(--joe-overlay)",
+                            borderColor: "var(--joe-card-border)",
+                          }}>
                           {d}
                         </span>
                       ))}

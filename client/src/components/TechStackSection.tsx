@@ -79,9 +79,9 @@ export default function TechStackSection() {
 
   return (
     <section id="tech-stack" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #060a15 0%, #04060d 100%)" }}>
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] opacity-6 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)" }} />
+      style={{ background: "var(--joe-bg-3)" }}>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -92,7 +92,7 @@ export default function TechStackSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Our Arsenal</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Technology
             <br />
             <span style={{
@@ -104,7 +104,7 @@ export default function TechStackSection() {
               We Master
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-2xl mx-auto">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             A carefully curated, battle-tested stack — chosen for performance, reliability, and
             the ability to scale from startup to enterprise.
           </p>
@@ -117,8 +117,11 @@ export default function TechStackSection() {
               initial={{ opacity: 0, y: 25 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + ci * 0.1 }}
-              className="p-6 rounded-xl border border-white/8"
-              style={{ background: "rgba(255,255,255,0.025)" }}
+              className="p-6 rounded-xl border"
+              style={{
+                background: "var(--joe-card)",
+                borderColor: "var(--joe-card-border)",
+              }}
               data-testid={`tech-category-${ci}`}
             >
               <div className="flex items-center gap-3 mb-5">
@@ -140,15 +143,18 @@ export default function TechStackSection() {
                   return (
                     <div
                       key={ti}
-                      className="flex items-center gap-3 p-3 rounded-lg border border-white/6 hover-elevate"
-                      style={{ background: "rgba(255,255,255,0.03)" }}
+                      className="flex items-center gap-3 p-3 rounded-lg border hover-elevate"
+                      style={{
+                        background: "var(--joe-overlay)",
+                        borderColor: "var(--joe-card-border-subtle)",
+                      }}
                       data-testid={`tech-item-${ci}-${ti}`}
                     >
                       <Icon
                         className="w-5 h-5 flex-shrink-0"
                         style={{ color: tech.color }}
                       />
-                      <span className="text-white/70 text-sm font-medium">{tech.name}</span>
+                      <span className="text-joe-text/70 text-sm font-medium">{tech.name}</span>
                     </div>
                   );
                 })}

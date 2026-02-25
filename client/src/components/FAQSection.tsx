@@ -46,8 +46,11 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="border border-white/8 rounded-xl overflow-hidden"
-      style={{ background: open ? "rgba(0,200,255,0.04)" : "rgba(255,255,255,0.025)" }}
+      className="border rounded-xl overflow-hidden"
+      style={{
+        background: open ? "rgba(0,200,255,0.04)" : "var(--joe-card)",
+        borderColor: "var(--joe-card-border)",
+      }}
       data-testid={`faq-item-${index}`}
     >
       <button
@@ -55,20 +58,20 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         aria-expanded={open}
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors"
       >
-        <span className="font-heading font-semibold text-white text-base leading-snug">
+        <span className="font-heading font-semibold text-joe-text text-base leading-snug">
           {q}
         </span>
         <div
           className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-200"
           style={{
-            borderColor: open ? "rgba(0,200,255,0.4)" : "rgba(255,255,255,0.12)",
-            background: open ? "rgba(0,200,255,0.12)" : "rgba(255,255,255,0.04)",
+            borderColor: open ? "rgba(0,200,255,0.4)" : "var(--joe-card-border)",
+            background: open ? "rgba(0,200,255,0.12)" : "var(--joe-overlay)",
           }}
         >
           {open ? (
             <Minus className="w-3.5 h-3.5 text-[#00c8ff]" />
           ) : (
-            <Plus className="w-3.5 h-3.5 text-white/50" />
+            <Plus className="w-3.5 h-3.5 text-joe-text/50" />
           )}
         </div>
       </button>
@@ -81,8 +84,8 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
           >
-            <div className="px-6 pb-5 border-t border-white/6">
-              <p className="text-white/60 text-sm leading-relaxed pt-4">{a}</p>
+            <div className="px-6 pb-5" style={{ borderTop: "1px solid var(--joe-card-border-subtle)" }}>
+              <p className="text-joe-text/60 text-sm leading-relaxed pt-4">{a}</p>
             </div>
           </motion.div>
         )}
@@ -104,11 +107,11 @@ export default function FAQSection() {
     <section
       id="faq"
       className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #04060d 0%, #07091a 100%)" }}
+      style={{ background: "var(--joe-bg-1)" }}
     >
       <div
-        className="absolute top-0 right-1/4 w-80 h-80 opacity-5 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)" }}
+        className="absolute top-0 right-1/4 w-80 h-80 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.5)" }}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,7 +125,7 @@ export default function FAQSection() {
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">
             FAQ
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-white mt-3">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Questions We{" "}
             <span
               style={{
@@ -135,7 +138,7 @@ export default function FAQSection() {
               Get Asked
             </span>
           </h2>
-          <p className="text-white/50 mt-4 text-lg max-w-xl mx-auto">
+          <p className="text-joe-text/50 mt-4 text-lg max-w-xl mx-auto">
             Everything you need to know before starting a conversation with us.
           </p>
         </motion.div>
@@ -155,10 +158,10 @@ export default function FAQSection() {
           className="text-center p-8 rounded-xl border border-[#00c8ff]/15"
           style={{ background: "rgba(0,200,255,0.04)" }}
         >
-          <p className="text-white/70 font-semibold text-lg mb-2">
+          <p className="text-joe-text/70 font-semibold text-lg mb-2">
             Still have questions?
           </p>
-          <p className="text-white/40 text-sm mb-5">
+          <p className="text-joe-text/40 text-sm mb-5">
             We're happy to answer anything — no question is too early or too small.
           </p>
           <Button

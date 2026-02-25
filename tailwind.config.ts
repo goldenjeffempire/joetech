@@ -86,6 +86,9 @@ export default {
           gold: "#ffd700",
           green: "#00ff88",
         },
+        joe: {
+          text: "rgb(var(--joe-text) / <alpha-value>)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
