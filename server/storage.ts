@@ -1,20 +1,21 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type User, type InsertUser, type ContactSubmission, type InsertContact } from "@shared/schema";
 import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  createContact(contact: InsertContact): Promise<ContactSubmission>;
+  getContacts(): Promise<ContactSubmission[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
+  private contacts: Map<string, ContactSubmission>;
 
   constructor() {
     this.users = new Map();
+    this.contacts = new Map();
   }
 
   async getUser(id: string): Promise<User | undefined> {
@@ -32,6 +33,26 @@ export class MemStorage implements IStorage {
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
+  }
+
+  async createContact(insertContact: InsertContact): Promise<ContactSubmission> {
+    const id = randomUUID();
+    const contact: ContactSubmission = {
+      ...insertContact,
+      id,
+      company: insertContact.company ?? null,
+      service: insertContact.service ?? null,
+      phone: insertContact.phone ?? null,
+      createdAt: new Date().toISOString(),
+    };
+    this.contacts.set(id, contact);
+    return contact;
+  }
+
+  async getContacts(): Promise<ContactSubmission[]> {
+    return Array.from(this.contacts.values()).sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   }
 }
 

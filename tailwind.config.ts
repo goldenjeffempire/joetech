@@ -6,12 +6,11 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        lg: ".5625rem", /* 9px */
-        md: ".375rem", /* 6px */
-        sm: ".1875rem", /* 3px */
+        lg: ".5625rem",
+        md: ".375rem",
+        sm: ".1875rem",
       },
       colors: {
-        // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
         border: "hsl(var(--border) / <alpha-value>)",
@@ -81,11 +80,19 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        cyber: {
+          blue: "#00c8ff",
+          cyan: "#00e5ff",
+          gold: "#ffd700",
+          green: "#00ff88",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
+        display: ["Space Grotesk", "sans-serif"],
+        heading: ["Oxanium", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -96,10 +103,39 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.8" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "scan-line": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100vh)" },
+        },
+        "gradient-shift": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 6s ease infinite",
+      },
+      backgroundImage: {
+        "grid-pattern": "linear-gradient(rgba(0,200,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.05) 1px, transparent 1px)",
+        "hero-gradient": "radial-gradient(ellipse at 20% 50%, rgba(0,120,255,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(0,200,255,0.1) 0%, transparent 50%)",
+        "glow-blue": "radial-gradient(ellipse at center, rgba(0,120,255,0.3) 0%, transparent 70%)",
+        "glow-cyan": "radial-gradient(ellipse at center, rgba(0,200,255,0.2) 0%, transparent 70%)",
+      },
+      backgroundSize: {
+        "grid": "40px 40px",
       },
     },
   },
