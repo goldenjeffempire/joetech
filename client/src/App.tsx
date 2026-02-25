@@ -22,6 +22,10 @@ const MLOpsPage = lazy(() => import("@/pages/services/mlops"));
 const AIIntegrationPage = lazy(() => import("@/pages/services/ai-integration"));
 const FullStackPage = lazy(() => import("@/pages/services/full-stack"));
 const AdvisoryPage = lazy(() => import("@/pages/services/advisory"));
+const WhyUsPage = lazy(() => import("@/pages/why-us"));
+const ProcessPage = lazy(() => import("@/pages/process"));
+const TechStackPage = lazy(() => import("@/pages/tech-stack"));
+const FAQPage = lazy(() => import("@/pages/faq"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -58,6 +62,10 @@ function Router() {
         <Route path="/services/advisory" component={AdvisoryPage} />
         <Route path="/services" component={ServicesPage} />
         <Route path="/portfolio" component={Portfolio} />
+        <Route path="/why-us" component={WhyUsPage} />
+        <Route path="/process" component={ProcessPage} />
+        <Route path="/tech-stack" component={TechStackPage} />
+        <Route path="/faq" component={FAQPage} />
         <Route path="/contact" component={Contact} />
         <Route path="/privacy" component={PrivacyPolicy} />
         <Route path="/terms" component={TermsOfService} />

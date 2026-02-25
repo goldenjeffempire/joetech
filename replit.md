@@ -23,6 +23,10 @@ client/src/
     privacy.tsx               — Privacy Policy (legal)
     terms.tsx                 — Terms of Service (legal)
     cookies.tsx               — Cookie Policy (legal)
+    why-us.tsx                — Why Choose JOE Technologies (dedicated page)
+    process.tsx               — Our Engineering Process (dedicated page)
+    tech-stack.tsx            — Technology We Master (dedicated page)
+    faq.tsx                   — Frequently Asked Questions (dedicated page)
     not-found.tsx             — Dark-branded 404 page
   pages/services/
     ai-strategy.tsx           — AI Strategy & Architecture detail page
@@ -71,6 +75,10 @@ shared/
 | `/about` | About | Page header, AboutSection, WhyUsSection, TestimonialsSection |
 | `/services` | Services | Page header, ServicesSection, ProcessSection, TechStackSection |
 | `/portfolio` | Portfolio | Page header, PortfolioSection (4 case studies) |
+| `/why-us` | Why Us | Stats, 6 differentiators with details, commitments, CTA |
+| `/process` | Process | 5-step timeline with details, engineering principles, CTA |
+| `/tech-stack` | Tech Stack | 6 tech categories with descriptions, selection criteria, CTA |
+| `/faq` | FAQ | Categorized FAQs (4 groups), contact methods, CTA |
 | `/contact` | Contact | Page header, ContactSection, FAQSection |
 | `/services/ai-strategy` | AI Strategy | Overview, deliverables, use cases, tech stack, CTA |
 | `/services/custom-ai` | Custom AI Dev | Overview, deliverables, use cases, tech stack, CTA |

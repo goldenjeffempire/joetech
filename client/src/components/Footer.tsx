@@ -4,11 +4,11 @@ import { Link } from "wouter";
 
 const linkRoutes: Record<string, string> = {
   "About": "/about",
-  "Why Us": "/about",
+  "Why Us": "/why-us",
   "Case Studies": "/portfolio",
-  "Process": "/services",
-  "Tech Stack": "/services",
-  "FAQ": "/contact",
+  "Process": "/process",
+  "Tech Stack": "/tech-stack",
+  "FAQ": "/faq",
   "Contact": "/contact",
   "AI Strategy": "/services/ai-strategy",
   "Custom AI Dev": "/services/custom-ai",
