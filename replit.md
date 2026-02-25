@@ -24,6 +24,13 @@ client/src/
     terms.tsx                 — Terms of Service (legal)
     cookies.tsx               — Cookie Policy (legal)
     not-found.tsx             — Dark-branded 404 page
+  pages/services/
+    ai-strategy.tsx           — AI Strategy & Architecture detail page
+    custom-ai.tsx             — Custom AI Development detail page
+    mlops.tsx                 — MLOps & Infrastructure detail page
+    ai-integration.tsx        — AI Integration & APIs detail page
+    full-stack.tsx            — Full-Stack Development detail page
+    advisory.tsx              — Technical Advisory detail page
   components/
     Layout.tsx                — Shared layout (Nav + Footer + utilities)
     Navigation.tsx            — Top nav with wouter Link routing
@@ -65,6 +72,12 @@ shared/
 | `/services` | Services | Page header, ServicesSection, ProcessSection, TechStackSection |
 | `/portfolio` | Portfolio | Page header, PortfolioSection (4 case studies) |
 | `/contact` | Contact | Page header, ContactSection, FAQSection |
+| `/services/ai-strategy` | AI Strategy | Overview, deliverables, use cases, tech stack, CTA |
+| `/services/custom-ai` | Custom AI Dev | Overview, deliverables, use cases, tech stack, CTA |
+| `/services/mlops` | MLOps | Overview, deliverables, use cases, tech stack, CTA |
+| `/services/ai-integration` | AI Integration | Overview, deliverables, use cases, tech stack, CTA |
+| `/services/full-stack` | Full-Stack Dev | Overview, deliverables, use cases, tech stack, CTA |
+| `/services/advisory` | Advisory | Overview, deliverables, use cases, tech stack, CTA |
 | `/privacy` | Privacy Policy | Data collection, usage, security, GDPR, rights |
 | `/terms` | Terms of Service | Engagement, pricing, IP, confidentiality, liability |
 | `/cookies` | Cookie Policy | Cookie usage table, what we don't track, management |

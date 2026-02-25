@@ -12,6 +12,7 @@ const services = [
     description: "We assess your business context, define the AI opportunities with highest ROI, and architect a roadmap from prototype to production-scale deployment.",
     tags: ["LLMs", "MLOps", "Architecture Reviews"],
     accent: "#00c8ff",
+    slug: "ai-strategy",
   },
   {
     icon: Code2,
@@ -19,6 +20,7 @@ const services = [
     description: "From fine-tuned language models to computer vision pipelines — we build bespoke AI systems trained on your data, optimized for your domain.",
     tags: ["Python", "PyTorch", "Transformers", "Django"],
     accent: "#0066ff",
+    slug: "custom-ai",
   },
   {
     icon: CloudCog,
@@ -26,6 +28,7 @@ const services = [
     description: "Scalable model serving, automated retraining pipelines, monitoring and drift detection — we build the infrastructure your AI needs to stay performant.",
     tags: ["Kubernetes", "AWS/GCP", "Kubeflow", "MLflow"],
     accent: "#7c3aed",
+    slug: "mlops",
   },
   {
     icon: Plug,
@@ -33,6 +36,7 @@ const services = [
     description: "Connect OpenAI, Anthropic, Hugging Face and custom models into your existing stack via robust, low-latency APIs designed for production.",
     tags: ["REST APIs", "FastAPI", "OpenAI", "LangChain"],
     accent: "#00c8ff",
+    slug: "ai-integration",
   },
   {
     icon: Layers,
@@ -40,6 +44,7 @@ const services = [
     description: "End-to-end development from React frontends to Django backends. We build the complete product — not just the AI layer.",
     tags: ["React", "Django", "TypeScript", "PostgreSQL"],
     accent: "#0066ff",
+    slug: "full-stack",
   },
   {
     icon: Lightbulb,
@@ -47,6 +52,7 @@ const services = [
     description: "Fractional CTO and AI advisory services for startups and scale-ups navigating their AI transformation. Strategy, team building, and technical due diligence.",
     tags: ["Due Diligence", "Team Building", "Strategy"],
     accent: "#7c3aed",
+    slug: "advisory",
   },
 ];
 
@@ -137,6 +143,16 @@ export default function ServicesSection() {
                     </span>
                   ))}
                 </div>
+
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mt-1"
+                  style={{ color: service.accent }}
+                  data-testid={`link-service-learn-more-${i}`}
+                >
+                  Learn More
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </motion.div>
             );
           })}

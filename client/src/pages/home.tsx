@@ -15,6 +15,7 @@ const previewServices = [
     description: "We assess your business context, define the AI opportunities with highest ROI, and architect a roadmap from prototype to production-scale deployment.",
     tags: ["LLMs", "MLOps", "Architecture Reviews"],
     accent: "#00c8ff",
+    slug: "ai-strategy",
   },
   {
     icon: Code2,
@@ -22,6 +23,7 @@ const previewServices = [
     description: "From fine-tuned language models to computer vision pipelines — we build bespoke AI systems trained on your data, optimized for your domain.",
     tags: ["Python", "PyTorch", "Transformers", "Django"],
     accent: "#0066ff",
+    slug: "custom-ai",
   },
   {
     icon: Layers,
@@ -29,6 +31,7 @@ const previewServices = [
     description: "End-to-end development from React frontends to Django backends. We build the complete product — not just the AI layer.",
     tags: ["React", "Django", "TypeScript", "PostgreSQL"],
     accent: "#0066ff",
+    slug: "full-stack",
   },
 ];
 
@@ -161,6 +164,16 @@ function ServicesPreview() {
                     </span>
                   ))}
                 </div>
+
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mt-1"
+                  style={{ color: service.accent }}
+                  data-testid={`link-home-service-learn-more-${i}`}
+                >
+                  Learn More
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </motion.div>
             );
           })}

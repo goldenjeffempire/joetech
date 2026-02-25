@@ -14,6 +14,12 @@ import Contact from "@/pages/contact";
 import PrivacyPolicy from "@/pages/privacy";
 import TermsOfService from "@/pages/terms";
 import CookiePolicy from "@/pages/cookies";
+import AIStrategyPage from "@/pages/services/ai-strategy";
+import CustomAIPage from "@/pages/services/custom-ai";
+import MLOpsPage from "@/pages/services/mlops";
+import AIIntegrationPage from "@/pages/services/ai-integration";
+import FullStackPage from "@/pages/services/full-stack";
+import AdvisoryPage from "@/pages/services/advisory";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -31,6 +37,12 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/services/ai-strategy" component={AIStrategyPage} />
+      <Route path="/services/custom-ai" component={CustomAIPage} />
+      <Route path="/services/mlops" component={MLOpsPage} />
+      <Route path="/services/ai-integration" component={AIIntegrationPage} />
+      <Route path="/services/full-stack" component={FullStackPage} />
+      <Route path="/services/advisory" component={AdvisoryPage} />
       <Route path="/services" component={ServicesPage} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
