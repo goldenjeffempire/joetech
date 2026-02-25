@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Zap, Github, Linkedin, Twitter, ArrowUp, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Twitter, ArrowUp, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
+import joeLogo from "@assets/ChatGPT_Image_Feb_25,_2026,_07_47_10_PM_1772045381621.png";
 
 const linkRoutes: Record<string, string> = {
   "About": "/about",
@@ -71,14 +72,13 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-5 gap-10 mb-12">
           <div className="lg:col-span-2 flex flex-col gap-5">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center justify-center w-9 h-9 rounded-md bg-gradient-to-br from-[#00c8ff] to-[#0066ff]">
-                <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
-              </div>
-              <span className="font-heading font-bold text-xl text-joe-text tracking-wider">
-                JOE<span className="text-[#00c8ff]">.</span>Technologies
-              </span>
-            </div>
+            <Link href="/" className="inline-block" data-testid="link-footer-logo">
+              <img
+                src={joeLogo}
+                alt="JOE Technologies"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
 
             <p className="text-joe-text/45 text-sm leading-relaxed max-w-xs">
               AI-driven software engineering consultancy. We architect intelligent systems

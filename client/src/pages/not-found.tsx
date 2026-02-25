@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Zap } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import joeLogo from "@assets/ChatGPT_Image_Feb_25,_2026,_07_47_10_PM_1772045381621.png";
 
 export default function NotFound() {
   return (
@@ -14,13 +15,12 @@ export default function NotFound() {
         transition={{ duration: 0.6 }}
         className="text-center max-w-md"
       >
-        <div className="flex items-center justify-center gap-2 mb-8">
-          <div className="flex items-center justify-center w-10 h-10 rounded-md bg-gradient-to-br from-[#00c8ff] to-[#0066ff]">
-            <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
-          </div>
-          <span className="font-heading font-bold text-xl text-joe-text tracking-wider">
-            JOE<span className="text-[#00c8ff]">.</span>
-          </span>
+        <div className="flex items-center justify-center mb-8">
+          <img
+            src={joeLogo}
+            alt="JOE Technologies"
+            className="h-12 w-auto object-contain"
+          />
         </div>
 
         <h1

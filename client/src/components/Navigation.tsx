@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import ThemeToggle from "@/components/ThemeToggle";
+import joeLogo from "@assets/ChatGPT_Image_Feb_25,_2026,_07_47_10_PM_1772045381621.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -52,16 +53,16 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16 gap-4">
             <Link
               href="/"
-              className="flex items-center gap-2 flex-shrink-0"
+              className="flex items-center flex-shrink-0"
               aria-label="JOE Technologies — home"
               data-testid="link-logo"
             >
-              <div className="flex items-center justify-center w-8 h-8 rounded-md bg-gradient-to-br from-[#00c8ff] to-[#0066ff] shadow-lg shadow-[#00c8ff]/25">
-                <Zap className="w-4 h-4 text-white" strokeWidth={2.5} aria-hidden="true" />
-              </div>
-              <span className="font-heading font-bold text-lg text-joe-text tracking-wider">
-                JOE<span className="text-[#00c8ff]">.</span>
-              </span>
+              <img
+                src={joeLogo}
+                alt="JOE Technologies"
+                className="h-10 w-auto object-contain"
+                aria-hidden="true"
+              />
             </Link>
 
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5">
