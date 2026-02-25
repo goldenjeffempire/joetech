@@ -42,8 +42,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@joetechnologies.io",
-    href: "mailto:hello@joetechnologies.io",
+    value: "jeffemuodafe124@gmail.com",
+    href: "mailto:jeffemuodafe124@gmail.com",
     accent: "#00c8ff",
   },
   {
