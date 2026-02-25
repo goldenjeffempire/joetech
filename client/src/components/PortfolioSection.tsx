@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight, TrendingUp, Clock, Users, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 const caseStudies = [
   {
@@ -79,11 +80,6 @@ function useScrollInView() {
 
 export default function PortfolioSection() {
   const { ref, isInView } = useScrollInView();
-
-  const handleContact = () => {
-    const el = document.querySelector("#contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section id="portfolio" className="relative py-24 lg:py-32 overflow-hidden"
@@ -199,15 +195,16 @@ export default function PortfolioSection() {
           <p className="text-joe-text/40 text-sm mb-5">
             Ready to become our next success story?
           </p>
-          <Button
-            onClick={handleContact}
-            size="lg"
-            className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-lg shadow-[#00c8ff]/15"
-            data-testid="button-portfolio-cta"
-          >
-            Let's Build Something Great
-            <ArrowUpRight className="w-4 h-4" />
-          </Button>
+          <Link href="/contact">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-lg shadow-[#00c8ff]/15"
+              data-testid="button-portfolio-cta"
+            >
+              Let's Build Something Great
+              <ArrowUpRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

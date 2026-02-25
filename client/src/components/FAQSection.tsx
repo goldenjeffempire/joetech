@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 const faqs = [
   {
@@ -98,11 +99,6 @@ export default function FAQSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const handleContact = () => {
-    const el = document.querySelector("#contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="faq"
@@ -164,13 +160,14 @@ export default function FAQSection() {
           <p className="text-joe-text/40 text-sm mb-5">
             We're happy to answer anything — no question is too early or too small.
           </p>
-          <Button
-            onClick={handleContact}
-            className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2"
-            data-testid="button-faq-cta"
-          >
-            Ask Us Directly
-          </Button>
+          <Link href="/contact">
+            <Button
+              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2"
+              data-testid="button-faq-cta"
+            >
+              Ask Us Directly
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

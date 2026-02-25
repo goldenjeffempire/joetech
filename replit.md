@@ -1,12 +1,12 @@
 # JOE Technologies Website
 
 ## Overview
-A premium, production-ready website for **JOE Technologies** — an AI-driven software engineering consultancy founded by **Jeffery Onome Emuodafevware**. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
+A premium, production-ready multi-page platform for **JOE Technologies** — an AI-driven software engineering consultancy founded by **Jeffery Onome Emuodafevware**. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
 
 ## Architecture
 
 ### Tech Stack
-- **Frontend**: React 18, TypeScript, Tailwind CSS, Framer Motion, TanStack Query, shadcn/ui, react-icons
+- **Frontend**: React 18, TypeScript, Tailwind CSS, Framer Motion, TanStack Query, shadcn/ui, react-icons, wouter (routing)
 - **Backend**: Express.js (Node.js), in-memory storage, express-rate-limit
 - **Build**: Vite (frontend), tsx (backend)
 - **Forms**: react-hook-form + zod validation
@@ -14,10 +14,16 @@ A premium, production-ready website for **JOE Technologies** — an AI-driven so
 ### Project Structure
 ```
 client/src/
-  pages/home.tsx              — Main single-page site
-  pages/not-found.tsx         — Dark-branded 404 page
+  pages/
+    home.tsx                  — Landing page (Hero + previews + CTA)
+    about.tsx                 — About, Why Us, Testimonials
+    services.tsx              — Services, Process, Tech Stack
+    portfolio.tsx             — Portfolio / Case Studies
+    contact.tsx               — Contact form + FAQ
+    not-found.tsx             — Dark-branded 404 page
   components/
-    Navigation.tsx            — Sticky header with smooth scroll, scroll-spy, mobile menu
+    Layout.tsx                — Shared layout (Nav + Footer + utilities)
+    Navigation.tsx            — Top nav with wouter Link routing
     HeroSection.tsx           — Full-screen hero with animated code terminal
     TrustedBySection.tsx      — Client company strip
     AboutSection.tsx          — Founder bio, achievements, values
@@ -29,7 +35,7 @@ client/src/
     TestimonialsSection.tsx   — 3 client testimonials
     FAQSection.tsx            — 8-question accordion
     ContactSection.tsx        — Contact form + WhatsApp CTA + info
-    Footer.tsx                — Links, social icons, scroll-to-top
+    Footer.tsx                — Links (wouter), social icons, scroll-to-top
     WhatsAppButton.tsx        — Floating WhatsApp button (bottom-right)
     ScrollProgressBar.tsx     — Gradient bar across top of page
     ThemeToggle.tsx           — Dark/Light mode toggle
@@ -37,7 +43,8 @@ client/src/
     CookieConsent.tsx         — GDPR cookie consent banner
   hooks/
     use-theme.ts              — Dark/light theme state (localStorage)
-    use-scroll-spy.ts         — Active section detection
+    use-page-title.ts         — Per-page document title
+    use-scroll-spy.ts         — Active section detection (legacy, unused)
     use-toast.ts              — Toast notification hook
 server/
   index.ts                    — Express server entry
@@ -46,6 +53,23 @@ server/
 shared/
   schema.ts                   — Drizzle/Zod schemas for users and contacts
 ```
+
+## Pages & Routes
+| Route | Page | Content |
+|-------|------|---------|
+| `/` | Home | Hero, TrustedBy, Services preview (3), Portfolio highlights (2), Testimonials, CTA banner |
+| `/about` | About | Page header, AboutSection, WhyUsSection, TestimonialsSection |
+| `/services` | Services | Page header, ServicesSection, ProcessSection, TechStackSection |
+| `/portfolio` | Portfolio | Page header, PortfolioSection (4 case studies) |
+| `/contact` | Contact | Page header, ContactSection, FAQSection |
+| `*` | 404 | Branded not-found page |
+
+## Navigation
+- Top nav uses wouter `Link` for page routes: Home, About, Services, Portfolio, Contact
+- Active page highlighted via `useLocation` comparison
+- CTA buttons in sections link to `/contact` or `/portfolio` via wouter
+- `ScrollToTop` component resets scroll position on route change
+- Layout component wraps all pages with shared Nav, Footer, WhatsApp, ScrollProgressBar, CookieConsent
 
 ## Theme System (CSS Custom Properties)
 All sections use CSS custom properties defined in `client/src/index.css` for both `:root` (light) and `.dark` modes:
@@ -65,11 +89,11 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 **Tailwind extension**: `text-joe-text`, `bg-joe-text`, `border-joe-text` with opacity support (e.g., `text-joe-text/65`)
 
 ## Key Features
+- **Multi-page platform**: 5 pages with shared layout and wouter routing
 - **Dark-tech luxury design**: Deep navy/black backgrounds, electric blue/cyan accents, gradient text
 - **Full light/dark theme support**: CSS custom properties + Tailwind `joe.text` color
 - **Fully responsive**: Mobile-first with hamburger nav, responsive grids
-- **Smooth scroll navigation**: Anchor-based with JS smooth scroll
-- **Scroll spy**: Active nav link highlights as user scrolls through sections
+- **Per-page SEO**: Unique document title for each page via `usePageTitle` hook
 - **Animated counters**: Hero stats count up from 0 when in view
 - **Contact form**: Validated with Zod, posts to `/api/contact`, success/error states
 - **WhatsApp integration**: Floating button + form button linking to WhatsApp chat
@@ -101,17 +125,3 @@ Phone display: `+234 901 704 8791`
 ```bash
 npm run dev  # Starts Express + Vite dev server on port 5000
 ```
-
-## Sections
-1. Hero — Animated code terminal, animated number counters, CTAs
-2. Trusted By — Client company name strip with fade-edge
-3. About — Founder story and company values
-4. Services — AI Strategy, Custom AI Dev, MLOps, Integration, Full-Stack, Advisory
-5. Why JOE — 6 key differentiators with numbered cards
-6. Process — 5-step methodology (Discovery → Strategy → Dev → Deploy → Optimize)
-7. Tech Stack — AI/ML, Backend, Frontend, Data, Cloud, Engineering
-8. Portfolio — 4 case studies (FinTech, Healthcare, Legal, E-Commerce)
-9. Testimonials — 3 client quotes with ratings
-10. FAQ — 8-question accordion with animated expand/collapse
-11. Contact — Form + WhatsApp integration + availability status
-12. Footer — Links, socials, copyright

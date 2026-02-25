@@ -2,33 +2,21 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { Link, useLocation } from "wouter";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact", href: "/contact" },
 ];
-
-const sectionIds = ["hero", "about", "services", "process", "portfolio", "why-us", "tech-stack", "testimonials", "faq", "contact"];
-
-function smoothScroll(e: React.MouseEvent<HTMLAnchorElement>, setMobileOpen?: (v: boolean) => void) {
-  const href = e.currentTarget.getAttribute("href");
-  if (!href || !href.startsWith("#")) return;
-  e.preventDefault();
-  if (setMobileOpen) setMobileOpen(false);
-  const el = document.querySelector(href);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const activeId = useScrollSpy(sectionIds);
+  const [location] = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -38,12 +26,12 @@ export default function Navigation() {
 
   return (
     <>
-      <a
-        href="#hero"
+      <Link
+        href="/"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#00c8ff] focus:text-[#04060d] focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold focus:text-sm"
       >
         Skip to main content
-      </a>
+      </Link>
 
       <motion.header
         initial={{ y: -80 }}
@@ -62,9 +50,8 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 gap-4">
-            <a
-              href="#hero"
-              onClick={(e) => smoothScroll(e)}
+            <Link
+              href="/"
               className="flex items-center gap-2 flex-shrink-0"
               aria-label="JOE Technologies — home"
               data-testid="link-logo"
@@ -75,17 +62,15 @@ export default function Navigation() {
               <span className="font-heading font-bold text-lg text-joe-text tracking-wider">
                 JOE<span className="text-[#00c8ff]">.</span>
               </span>
-            </a>
+            </Link>
 
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5">
               {navLinks.map((link) => {
-                const sectionId = link.href.replace("#", "");
-                const isActive = activeId === sectionId;
+                const isActive = location === link.href;
                 return (
-                  <a
+                  <Link
                     key={link.href}
                     href={link.href}
-                    onClick={(e) => smoothScroll(e)}
                     aria-current={isActive ? "page" : undefined}
                     className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${
                       isActive
@@ -102,7 +87,7 @@ export default function Navigation() {
                         transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                       />
                     )}
-                  </a>
+                  </Link>
                 );
               })}
             </nav>
@@ -115,9 +100,9 @@ export default function Navigation() {
                 className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide"
                 data-testid="button-nav-cta"
               >
-                <a href="#contact" onClick={(e) => smoothScroll(e)}>
+                <Link href="/contact">
                   Start a Project
-                </a>
+                </Link>
               </Button>
             </div>
 
@@ -159,13 +144,12 @@ export default function Navigation() {
               className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1"
             >
               {navLinks.map((link) => {
-                const sectionId = link.href.replace("#", "");
-                const isActive = activeId === sectionId;
+                const isActive = location === link.href;
                 return (
-                  <a
+                  <Link
                     key={link.href}
                     href={link.href}
-                    onClick={(e) => smoothScroll(e, setMobileOpen)}
+                    onClick={() => setMobileOpen(false)}
                     className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 flex items-center gap-3 ${
                       isActive
                         ? "text-[#00c8ff] bg-[#00c8ff]/8"
@@ -177,7 +161,7 @@ export default function Navigation() {
                       <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff] flex-shrink-0" />
                     )}
                     {link.label}
-                  </a>
+                  </Link>
                 );
               })}
               <div className="pt-2 pb-2">
@@ -186,9 +170,9 @@ export default function Navigation() {
                   className="w-full bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold"
                   data-testid="button-mobile-cta"
                 >
-                  <a href="#contact" onClick={(e) => smoothScroll(e, setMobileOpen)}>
+                  <Link href="/contact" onClick={() => setMobileOpen(false)}>
                     Start a Project
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </nav>

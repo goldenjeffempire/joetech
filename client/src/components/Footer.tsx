@@ -1,20 +1,21 @@
 import { motion } from "framer-motion";
 import { Zap, Github, Linkedin, Twitter, ArrowUp } from "lucide-react";
+import { Link } from "wouter";
 
-const sectionMap: Record<string, string> = {
-  "About": "about",
-  "Why Us": "why-us",
-  "Case Studies": "portfolio",
-  "Process": "process",
-  "Tech Stack": "tech-stack",
-  "FAQ": "faq",
-  "Contact": "contact",
-  "AI Strategy": "services",
-  "Custom AI Dev": "services",
-  "MLOps": "services",
-  "AI Integration": "services",
-  "Full-Stack Dev": "services",
-  "Advisory": "services",
+const linkRoutes: Record<string, string> = {
+  "About": "/about",
+  "Why Us": "/about",
+  "Case Studies": "/portfolio",
+  "Process": "/services",
+  "Tech Stack": "/services",
+  "FAQ": "/contact",
+  "Contact": "/contact",
+  "AI Strategy": "/services",
+  "Custom AI Dev": "/services",
+  "MLOps": "/services",
+  "AI Integration": "/services",
+  "Full-Stack Dev": "/services",
+  "Advisory": "/services",
 };
 
 const footerLinks = {
@@ -51,14 +52,6 @@ const socials = [
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleNavClick = (linkName: string) => {
-    const sectionId = sectionMap[linkName];
-    if (sectionId) {
-      const el = document.querySelector(`#${sectionId}`);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   return (
@@ -126,14 +119,14 @@ export default function Footer() {
               <ul className="flex flex-col gap-2">
                 {links.map((link) => (
                   <li key={link}>
-                    {sectionMap[link] ? (
-                      <button
-                        onClick={() => handleNavClick(link)}
+                    {linkRoutes[link] ? (
+                      <Link
+                        href={linkRoutes[link]}
                         className="text-joe-text/40 text-sm hover:text-joe-text/70 transition-colors text-left"
                         data-testid={`link-footer-${link.toLowerCase().replace(/\s+/g, "-")}`}
                       >
                         {link}
-                      </button>
+                      </Link>
                     ) : (
                       <span
                         className="text-joe-text/40 text-sm cursor-default"

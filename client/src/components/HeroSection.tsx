@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, ChevronDown, Code2, Brain, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 const codeLines = [
   { text: "import torch", color: "text-[#c792ea]" },
@@ -85,11 +86,6 @@ export default function HeroSection() {
     }, 600);
     return () => clearTimeout(delay);
   }, []);
-
-  const handleNavClick = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section
@@ -186,25 +182,27 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <Button
-                onClick={() => handleNavClick("#contact")}
-                size="lg"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide shadow-lg shadow-[#00c8ff]/20 gap-2"
-                data-testid="button-hero-cta-primary"
-              >
-                Start Your Project
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button
-                onClick={() => handleNavClick("#portfolio")}
-                size="lg"
-                variant="outline"
-                className="border-joe-text/20 text-joe-text/80 bg-joe-text/5 font-semibold tracking-wide gap-2"
-                data-testid="button-hero-cta-secondary"
-              >
-                <Code2 className="w-4 h-4" />
-                View Our Work
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide shadow-lg shadow-[#00c8ff]/20 gap-2"
+                  data-testid="button-hero-cta-primary"
+                >
+                  Start Your Project
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/portfolio">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-joe-text/20 text-joe-text/80 bg-joe-text/5 font-semibold tracking-wide gap-2"
+                  data-testid="button-hero-cta-secondary"
+                >
+                  <Code2 className="w-4 h-4" />
+                  View Our Work
+                </Button>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -315,23 +313,27 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <motion.button
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
-        onClick={() => handleNavClick("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-joe-text/30 hover:text-joe-text/60 transition-colors flex flex-col items-center gap-2"
-        data-testid="button-scroll-indicator"
-        aria-label="Scroll to about section"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <span className="text-xs uppercase tracking-widest font-mono">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        <Link
+          href="/about"
+          className="text-joe-text/30 hover:text-joe-text/60 transition-colors flex flex-col items-center gap-2"
+          data-testid="button-scroll-indicator"
+          aria-label="Go to about page"
         >
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
-      </motion.button>
+          <span className="text-xs uppercase tracking-widest font-mono">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-5 h-5" />
+          </motion.div>
+        </Link>
+      </motion.div>
     </section>
   );
 }
