@@ -7,8 +7,8 @@ A premium, production-ready multi-page platform for **JOE Technologies** — an 
 
 ### Tech Stack
 - **Frontend**: React 18, TypeScript, Tailwind CSS, Framer Motion, TanStack Query, shadcn/ui, react-icons, wouter (routing)
-- **Backend**: Express.js (Node.js), in-memory storage, express-rate-limit
-- **Build**: Vite (frontend), tsx (backend)
+- **Backend**: Express.js (Node.js), in-memory storage, express-rate-limit, helmet, compression
+- **Build**: Vite (frontend), esbuild (backend), code-split lazy routes
 - **Forms**: react-hook-form + zod validation
 
 ### Project Structure
@@ -140,7 +140,19 @@ WhatsApp number: `2349017048791` (no + prefix in wa.me URL)
 Email: `jeffemuodafe124@gmail.com`
 Phone display: `+234 901 704 8791`
 
+## Production Hardening
+- **Security headers**: helmet (XSS, HSTS, X-Frame-Options, etc.)
+- **Response compression**: gzip via compression middleware
+- **Code splitting**: Lazy-loaded routes via React.lazy + Suspense (429KB main → split chunks)
+- **Static asset caching**: 1-year immutable cache headers on hashed assets
+- **Error sanitization**: Stack traces hidden in production (500 errors return generic message)
+- **Request size limits**: 1MB max for JSON and URL-encoded bodies
+- **SPA fallback**: index.html served with no-cache for client-side routing
+- **Deployment**: Autoscale target configured (npm run build → npm run start)
+
 ## Development
 ```bash
 npm run dev  # Starts Express + Vite dev server on port 5000
+npm run build  # Production build (client + server)
+npm run start  # Run production server
 ```
