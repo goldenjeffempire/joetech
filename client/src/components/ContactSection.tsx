@@ -49,8 +49,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "WhatsApp",
-    value: "+1 (555) JOE-TECH",
-    href: "https://wa.me/15559999999?text=Hello%20Jeffery%2C%20I%20saw%20your%20website%20and%20I%27m%20interested%20in%20discussing%20a%20project.",
+    value: "+234 901 704 8791",
+    href: "https://wa.me/2349017048791?text=Hello%20Jeffery%2C%20I%20saw%20your%20website%20and%20I%27m%20interested%20in%20discussing%20a%20project.",
     accent: "#00ff88",
   },
   {
@@ -118,7 +118,7 @@ export default function ContactSection() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/15559999999?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
+      "https://wa.me/2349017048791?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
       "_blank",
       "noopener,noreferrer"
     );

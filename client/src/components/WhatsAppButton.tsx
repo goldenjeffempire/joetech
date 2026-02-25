@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
 
   const handleClick = () => {
     window.open(
-      "https://wa.me/15559999999?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
+      "https://wa.me/2349017048791?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
       "_blank",
       "noopener,noreferrer"
     );
