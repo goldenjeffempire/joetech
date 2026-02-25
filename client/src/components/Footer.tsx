@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, ArrowUp, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
-import joeLogo from "@assets/ChatGPT_Image_Feb_25,_2026,_07_47_10_PM_1772045381621.png";
+import JoeLogo from "@/components/JoeLogo";
 
 const linkRoutes: Record<string, string> = {
   "About": "/about",
@@ -73,11 +73,7 @@ export default function Footer() {
         <div className="grid lg:grid-cols-5 gap-10 mb-12">
           <div className="lg:col-span-2 flex flex-col gap-5">
             <Link href="/" className="inline-block" data-testid="link-footer-logo">
-              <img
-                src={joeLogo}
-                alt="JOE Technologies"
-                className="h-12 w-auto object-contain"
-              />
+              <JoeLogo size="md" />
             </Link>
 
             <p className="text-joe-text/45 text-sm leading-relaxed max-w-xs">

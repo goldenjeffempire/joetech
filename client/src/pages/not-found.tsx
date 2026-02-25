@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import joeLogo from "@assets/ChatGPT_Image_Feb_25,_2026,_07_47_10_PM_1772045381621.png";
+import JoeLogo from "@/components/JoeLogo";
 
 export default function NotFound() {
   return (
@@ -16,11 +16,7 @@ export default function NotFound() {
         className="text-center max-w-md"
       >
         <div className="flex items-center justify-center mb-8">
-          <img
-            src={joeLogo}
-            alt="JOE Technologies"
-            className="h-12 w-auto object-contain"
-          />
+          <JoeLogo size="lg" />
         </div>
 
         <h1

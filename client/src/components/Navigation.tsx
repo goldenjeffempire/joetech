@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import ThemeToggle from "@/components/ThemeToggle";
-import joeLogo from "@assets/ChatGPT_Image_Feb_25,_2026,_07_47_10_PM_1772045381621.png";
+import JoeLogo from "@/components/JoeLogo";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -57,12 +57,7 @@ export default function Navigation() {
               aria-label="JOE Technologies — home"
               data-testid="link-logo"
             >
-              <img
-                src={joeLogo}
-                alt="JOE Technologies"
-                className="h-10 w-auto object-contain"
-                aria-hidden="true"
-              />
+              <JoeLogo size="sm" />
             </Link>
 
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5">
