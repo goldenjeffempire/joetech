@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { CheckCircle, Award, Globe, TrendingUp } from "lucide-react";
+import { CheckCircle, Award, Globe, TrendingUp, ExternalLink } from "lucide-react";
 
 const achievements = [
   "Led AI engineering teams at scale across 3 continents",
@@ -94,6 +94,16 @@ export default function AboutSection() {
                 <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
                 <p className="text-[#00c8ff] text-sm font-medium mt-0.5">Founder & Chief AI Architect</p>
                 <p className="text-joe-text/40 text-sm mt-1 font-mono">JOE Technologies</p>
+                <a
+                  href="https://onome-portfolio-ten.vercel.app/?/projects"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00c8ff] hover:text-[#0066ff] transition-colors mt-2"
+                  data-testid="link-founder-portfolio"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  View Personal Portfolio
+                </a>
               </div>
             </div>
 

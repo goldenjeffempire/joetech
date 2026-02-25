@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Github, Linkedin, Twitter, ArrowUp } from "lucide-react";
+import { Zap, Github, Linkedin, Twitter, ArrowUp, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 
 const linkRoutes: Record<string, string> = {
@@ -88,6 +88,16 @@ export default function Footer() {
             <div>
               <p className="text-joe-text/30 text-xs font-mono mb-1">Founded by</p>
               <p className="text-joe-text/65 text-sm font-semibold">Jeffery Onome Emuodafevware</p>
+              <a
+                href="https://onome-portfolio-ten.vercel.app/?/projects"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[#00c8ff] text-xs font-medium hover:text-[#0066ff] transition-colors mt-1"
+                data-testid="link-footer-founder-portfolio"
+              >
+                <ExternalLink className="w-3 h-3" />
+                Personal Portfolio
+              </a>
             </div>
 
             <div className="flex items-center gap-3">
