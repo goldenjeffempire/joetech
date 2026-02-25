@@ -12,10 +12,11 @@ const footerLinks = {
   ],
   Company: [
     "About",
+    "Why Us",
     "Case Studies",
     "Process",
     "Tech Stack",
-    "Blog",
+    "FAQ",
     "Contact",
   ],
   Legal: [

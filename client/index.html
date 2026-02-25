@@ -38,6 +38,81 @@
         --font-mono: 'JetBrains Mono', monospace;
       }
     </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://joetechnologies.io/#organization",
+          "name": "JOE Technologies",
+          "url": "https://joetechnologies.io",
+          "logo": "https://joetechnologies.io/favicon.png",
+          "description": "AI-driven software engineering consultancy specializing in custom AI development, MLOps, and full-stack engineering.",
+          "founder": {
+            "@type": "Person",
+            "name": "Jeffery Onome Emuodafevware",
+            "jobTitle": "Founder & Chief AI Architect",
+            "email": "jeffemuodafe124@gmail.com",
+            "telephone": "+2349017048791"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "jeffemuodafe124@gmail.com",
+            "telephone": "+2349017048791",
+            "availableLanguage": "English"
+          },
+          "sameAs": [
+            "https://linkedin.com/company/joe-technologies",
+            "https://github.com/joe-technologies",
+            "https://twitter.com/joetechnologies"
+          ],
+          "areaServed": "Worldwide",
+          "serviceType": [
+            "AI Strategy & Architecture",
+            "Custom AI Development",
+            "MLOps & Infrastructure",
+            "AI Integration & APIs",
+            "Full-Stack Development",
+            "Technical Advisory"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://joetechnologies.io/#website",
+          "url": "https://joetechnologies.io",
+          "name": "JOE Technologies",
+          "description": "AI-driven software engineering consultancy",
+          "publisher": {
+            "@id": "https://joetechnologies.io/#organization"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "JOE Technologies",
+          "image": "https://joetechnologies.io/favicon.png",
+          "telephone": "+2349017048791",
+          "email": "jeffemuodafe124@gmail.com",
+          "priceRange": "$$$$",
+          "knowsAbout": [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Software Engineering",
+            "Python",
+            "Django",
+            "MLOps",
+            "Natural Language Processing",
+            "Computer Vision",
+            "LLMs",
+            "Full-Stack Development"
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

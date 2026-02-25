@@ -63,15 +63,25 @@ npm run dev  # Starts Express + Vite dev server on port 5000
 ```
 
 ## Sections
-1. Hero — Animated code terminal, stats, CTAs
-2. About — Founder story and company values
-3. Services — AI Strategy, Custom AI Dev, MLOps, Integration, Full-Stack, Advisory
-4. Process — 5-step methodology (Discovery → Strategy → Dev → Deploy → Optimize)
-5. Tech Stack — AI/ML, Backend, Frontend, Data, Cloud, Engineering
-6. Portfolio — 4 case studies (FinTech, Healthcare, Legal, E-Commerce)
-7. Testimonials — 3 client quotes with ratings
-8. Contact — Form + WhatsApp integration + availability status
-9. Footer — Links, socials, copyright
+1. Hero — Animated code terminal, animated number counters, CTAs
+2. Trusted By — Client company name strip with fade-edge scroll
+3. About — Founder story and company values
+4. Services — AI Strategy, Custom AI Dev, MLOps, Integration, Full-Stack, Advisory
+5. Why JOE — 6 key differentiators with numbered cards
+6. Process — 5-step methodology (Discovery → Strategy → Dev → Deploy → Optimize)
+7. Tech Stack — AI/ML, Backend, Frontend, Data, Cloud, Engineering
+8. Portfolio — 4 case studies (FinTech, Healthcare, Legal, E-Commerce)
+9. Testimonials — 3 client quotes with ratings
+10. FAQ — 8-question accordion with animated expand/collapse
+11. Contact — Form + WhatsApp integration + availability status
+12. Footer — Links, socials, copyright
+
+## Enhanced Features
+- **Scroll progress bar** — Gradient bar across top of page
+- **Scroll spy** — Active nav link highlights as user scrolls through sections
+- **Theme toggle** — Dark/Light mode switch in navigation (persists via localStorage)
+- **Animated counters** — Hero stats count up from 0 when in view
+- **JSON-LD structured data** — Organization, Website, ProfessionalService schema
 
 ## WhatsApp Configuration
 Update the WhatsApp number in:
