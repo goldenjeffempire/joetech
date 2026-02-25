@@ -16,6 +16,9 @@ const linkRoutes: Record<string, string> = {
   "AI Integration": "/services",
   "Full-Stack Dev": "/services",
   "Advisory": "/services",
+  "Privacy Policy": "/privacy",
+  "Terms of Service": "/terms",
+  "Cookie Policy": "/cookies",
 };
 
 const footerLinks = {

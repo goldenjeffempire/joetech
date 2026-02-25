@@ -20,6 +20,9 @@ client/src/
     services.tsx              — Services, Process, Tech Stack
     portfolio.tsx             — Portfolio / Case Studies
     contact.tsx               — Contact form + FAQ
+    privacy.tsx               — Privacy Policy (legal)
+    terms.tsx                 — Terms of Service (legal)
+    cookies.tsx               — Cookie Policy (legal)
     not-found.tsx             — Dark-branded 404 page
   components/
     Layout.tsx                — Shared layout (Nav + Footer + utilities)
@@ -62,6 +65,9 @@ shared/
 | `/services` | Services | Page header, ServicesSection, ProcessSection, TechStackSection |
 | `/portfolio` | Portfolio | Page header, PortfolioSection (4 case studies) |
 | `/contact` | Contact | Page header, ContactSection, FAQSection |
+| `/privacy` | Privacy Policy | Data collection, usage, security, GDPR, rights |
+| `/terms` | Terms of Service | Engagement, pricing, IP, confidentiality, liability |
+| `/cookies` | Cookie Policy | Cookie usage table, what we don't track, management |
 | `*` | 404 | Branded not-found page |
 
 ## Navigation

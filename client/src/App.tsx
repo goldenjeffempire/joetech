@@ -11,6 +11,9 @@ import About from "@/pages/about";
 import ServicesPage from "@/pages/services";
 import Portfolio from "@/pages/portfolio";
 import Contact from "@/pages/contact";
+import PrivacyPolicy from "@/pages/privacy";
+import TermsOfService from "@/pages/terms";
+import CookiePolicy from "@/pages/cookies";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -31,6 +34,9 @@ function Router() {
       <Route path="/services" component={ServicesPage} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
+      <Route path="/privacy" component={PrivacyPolicy} />
+      <Route path="/terms" component={TermsOfService} />
+      <Route path="/cookies" component={CookiePolicy} />
       <Route component={NotFound} />
     </Switch>
   );
