@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 import {
   Smartphone, MonitorSmartphone, Workflow, Palette, Brain,
   CheckCircle2, ArrowRight, ChevronRight, RefreshCw, Zap,
-  Clock, DollarSign, Layers, Code2, Shield, BarChart3,
+  Clock, Layers, Code2, Shield, BarChart3,
   Bell, CreditCard, Search, Users, Database, Globe,
   MessageSquare, Lock, Eye, Settings
 } from "lucide-react";
@@ -197,25 +197,6 @@ export default function ServiceBuilderSection() {
   const service = SERVICES.find((s) => s.id === selectedService);
   const scale = SCALES.find((s) => s.id === selectedScale);
 
-  const featureCost = service
-    ? service.features
-        .filter((f) => selectedFeatures.includes(f.id))
-        .reduce((sum, f) => sum + f.price, 0)
-    : 0;
-
-  const featureWeeks = service
-    ? service.features
-        .filter((f) => selectedFeatures.includes(f.id))
-        .reduce((sum, f) => sum + f.weeks, 0)
-    : 0;
-
-  const baseTotal = service ? service.basePrice + featureCost : 0;
-  const finalPrice = scale ? Math.round(baseTotal * scale.multiplier) : baseTotal;
-  const finalWeeks = service
-    ? Math.ceil((service.baseWeeks + featureWeeks) * (scale ? (scale.multiplier > 1.5 ? 1.2 : scale.multiplier > 1 ? 1.1 : 1) : 1)) + (scale ? scale.timeline_add : 0)
-    : 0;
-
-  const leadType = finalPrice > 8000 ? "Enterprise" : finalPrice > 4000 ? "High Value" : "Standard";
 
   function reset() {
     setStep(0);
@@ -280,7 +261,7 @@ export default function ServiceBuilderSection() {
             </span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-xl mx-auto">
-            Select your service, pick features, choose your scale — get instant pricing and a delivery timeline.
+            Select your service, pick features, and choose your scale — then connect with a sales rep to get your tailored quote.
           </p>
         </motion.div>
 
@@ -360,7 +341,6 @@ export default function ServiceBuilderSection() {
                           </div>
                           <p className="text-white/85 font-semibold text-sm mb-1">{svc.name}</p>
                           <p className="text-white/35 text-xs">{svc.description}</p>
-                          <p className="text-white/25 text-xs font-mono mt-2">From ${svc.basePrice.toLocaleString()}</p>
                         </motion.button>
                       );
                     })}
@@ -388,7 +368,7 @@ export default function ServiceBuilderSection() {
                         className="text-xs font-mono px-3 py-1.5 rounded-full"
                         style={{ background: `${service.accent}15`, color: service.accent, border: `1px solid ${service.accent}30` }}
                       >
-                        +${featureCost.toLocaleString()} selected
+                        {selectedFeatures.length} feature{selectedFeatures.length !== 1 ? "s" : ""} selected
                       </div>
                     )}
                   </div>
@@ -422,7 +402,6 @@ export default function ServiceBuilderSection() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-white/75 text-sm font-medium">{feat.label}</p>
-                            <p className="text-white/30 text-xs font-mono">+${feat.price.toLocaleString()} · {feat.weeks}w</p>
                           </div>
                         </motion.button>
                       );
@@ -500,57 +479,39 @@ export default function ServiceBuilderSection() {
                       <CheckCircle2 className="w-5 h-5 text-[#00ff88]" />
                     </div>
                     <div>
-                      <p className="text-white/80 font-semibold">Your Estimate is Ready</p>
+                      <p className="text-white/80 font-semibold">Your Configuration is Ready</p>
                       <p className="text-white/35 text-xs font-mono">
-                        {service.name} · {scale.label} Scale ·{" "}
-                        <span
-                          className="font-bold"
-                          style={{ color: leadType === "Enterprise" ? "#7c3aed" : leadType === "High Value" ? "#00c8ff" : "#00ff88" }}
-                        >
-                          {leadType} Lead
-                        </span>
+                        {service.name} · {scale.label} Scale
                       </p>
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-3 gap-4 mb-8">
-                    {[
-                      {
-                        label: "Estimated Investment",
-                        value: `$${finalPrice.toLocaleString()}`,
-                        sub: `Base: $${service.basePrice.toLocaleString()} + Features`,
-                        icon: DollarSign,
-                        color: "#00c8ff",
-                      },
-                      {
-                        label: "Delivery Timeline",
-                        value: `${finalWeeks} weeks`,
-                        sub: `${scale.label} scope`,
-                        icon: Clock,
-                        color: "#0066ff",
-                      },
-                      {
-                        label: "Features Selected",
-                        value: `${selectedFeatures.length + 1}`,
-                        sub: "Including base package",
-                        icon: Layers,
-                        color: "#7c3aed",
-                      },
-                    ].map(({ label, value, sub, icon: Icon, color }) => (
-                      <motion.div
-                        key={label}
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                        className="p-5 rounded-xl border"
-                        style={{ background: `${color}08`, borderColor: `${color}25` }}
-                      >
-                        <Icon className="w-5 h-5 mb-3" style={{ color }} />
-                        <div className="font-heading font-bold text-2xl" style={{ color }}>{value}</div>
-                        <p className="text-white/60 text-sm font-medium mt-1">{label}</p>
-                        <p className="text-white/25 text-xs font-mono mt-1">{sub}</p>
-                      </motion.div>
-                    ))}
+                  <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                      className="p-5 rounded-xl border"
+                      style={{ background: "rgba(124,58,237,0.08)", borderColor: "rgba(124,58,237,0.25)" }}
+                    >
+                      <Layers className="w-5 h-5 mb-3 text-[#7c3aed]" />
+                      <div className="font-heading font-bold text-2xl text-[#7c3aed]">{selectedFeatures.length + 1}</div>
+                      <p className="text-white/60 text-sm font-medium mt-1">Features Selected</p>
+                      <p className="text-white/25 text-xs font-mono mt-1">Including base package</p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.15 }}
+                      className="p-5 rounded-xl border"
+                      style={{ background: "rgba(0,200,255,0.06)", borderColor: "rgba(0,200,255,0.2)" }}
+                    >
+                      <MessageSquare className="w-5 h-5 mb-3 text-[#00c8ff]" />
+                      <p className="text-white/80 text-sm font-semibold leading-snug">Pricing tailored to your project</p>
+                      <p className="text-white/35 text-xs mt-2 leading-relaxed">
+                        Exact pricing and timelines depend on specifics. Connect with a sales rep on WhatsApp and we'll give you a precise quote.
+                      </p>
+                    </motion.div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -595,25 +556,41 @@ export default function ServiceBuilderSection() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-4">
-                    <Link href="/contact">
-                      <Button
-                        className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-lg shadow-[#00c8ff]/20"
-                        data-testid="button-builder-cta"
+                  <div className="p-5 rounded-xl border mb-6" style={{ background: "rgba(0,255,136,0.04)", borderColor: "rgba(0,255,136,0.15)" }}>
+                    <p className="text-white/50 text-xs font-mono uppercase tracking-widest mb-4">Connect with a Sales Representative</p>
+                    <div className="flex flex-wrap gap-3">
+                      <a
+                        href={`https://wa.me/2349017078791?text=${encodeURIComponent(`Hi JOE Technologies, I used the Service Builder and I'm interested in a ${service.name} (${scale.label} scale) with ${selectedFeatures.length} add-on feature${selectedFeatures.length !== 1 ? "s" : ""}. I'd like to discuss pricing and timeline.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid="button-builder-wa-primary"
                       >
-                        Start This Project
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    </Link>
-                    <button
-                      onClick={reset}
-                      className="flex items-center gap-2 text-white/40 hover:text-white/70 text-sm font-mono transition-colors"
-                      data-testid="button-builder-restart"
-                    >
-                      <RefreshCw className="w-3.5 h-3.5" />
-                      Start over
-                    </button>
+                        <Button className="gap-2 font-semibold text-white border-0 shadow-lg" style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 18px rgba(37,211,102,0.25)" }}>
+                          <MessageSquare className="w-4 h-4" />
+                          Chat with Jeffery
+                        </Button>
+                      </a>
+                      <a
+                        href={`https://wa.me/2348159088343?text=${encodeURIComponent(`Hi JOE Technologies, I used the Service Builder and I'm interested in a ${service.name} (${scale.label} scale) with ${selectedFeatures.length} add-on feature${selectedFeatures.length !== 1 ? "s" : ""}. I'd like to discuss pricing and timeline.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid="button-builder-wa-secondary"
+                      >
+                        <Button variant="outline" className="gap-2 font-semibold border-[#25d366]/30 text-[#25d366] hover:bg-[#25d366]/10 bg-transparent">
+                          <MessageSquare className="w-4 h-4" />
+                          Chat with Sales
+                        </Button>
+                      </a>
+                    </div>
                   </div>
+                  <button
+                    onClick={reset}
+                    className="flex items-center gap-2 text-white/40 hover:text-white/70 text-sm font-mono transition-colors"
+                    data-testid="button-builder-restart"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    Start over
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -638,7 +615,7 @@ export default function ServiceBuilderSection() {
                 className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
                 data-testid="button-builder-next"
               >
-                {step === 2 ? "Calculate Estimate" : "Continue"}
+                {step === 2 ? "See My Options" : "Continue"}
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
