@@ -1,194 +1,351 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { CheckCircle, Award, Globe, TrendingUp, ExternalLink } from "lucide-react";
+import { CheckCircle, Award, Globe, TrendingUp, ExternalLink, Target, Zap, Users, Code2 } from "lucide-react";
+import { SiInstagram, SiFacebook, SiGithub, SiLinkedin } from "react-icons/si";
+
+const stats = [
+  { value: "50+", label: "Projects Shipped", accent: "#00c8ff", icon: Code2 },
+  { value: "5+", label: "Years Experience", accent: "#00ff88", icon: Award },
+  { value: "4.9/5", label: "Client Rating", accent: "#f59e0b", icon: TrendingUp },
+  { value: "100%", label: "References Available", accent: "#7c3aed", icon: Users },
+];
 
 const achievements = [
-  "Led AI engineering teams at scale across 3 continents",
-  "Architected systems processing millions of inferences daily",
-  "Delivered AI transformations for Fortune 500 companies",
-  "Open-source contributor with 2k+ GitHub stars",
-  "Speaker at NeurIPS, PyCon, and AI Summit conferences",
-  "MSc in Computer Science with AI specialization",
+  "Built and shipped 50+ digital products across 5 service pillars",
+  "Architected AI systems processing millions of inferences daily",
+  "Delivered enterprise platforms for global organizations",
+  "Full-stack + AI engineer: Python, Django, React, TypeScript",
+  "Computer Science background with AI & Machine Learning focus",
+  "Remote-first, serving clients globally across time zones",
 ];
 
 const values = [
   {
-    icon: TrendingUp,
+    icon: Target,
     title: "Impact Over Vanity",
-    description: "We measure success by the real-world results our systems deliver, not by the complexity of our code.",
+    description: "We measure success by real-world results — faster operations, higher conversions, smarter workflows — not by how complex our code looks.",
+    accent: "#00c8ff",
   },
   {
     icon: Award,
     title: "Engineering Excellence",
-    description: "Every system we build is production-ready, maintainable, and designed to scale gracefully.",
+    description: "Every system we build is production-ready, well-documented, maintainable, and designed to scale gracefully as your business grows.",
+    accent: "#00ff88",
   },
   {
     icon: Globe,
-    title: "Systems Thinking",
-    description: "We see the full picture — from data pipelines to inference endpoints to business outcomes.",
+    title: "Full-Spectrum Thinking",
+    description: "We see the complete picture — from data models and APIs to user interfaces and business outcomes — delivering coherent digital systems, not patchwork solutions.",
+    accent: "#7c3aed",
+  },
+  {
+    icon: Zap,
+    title: "Speed Without Compromise",
+    description: "We move fast, communicate clearly, and ship in weeks — not months. Quality and velocity are not trade-offs; they're the standard.",
+    accent: "#f59e0b",
+  },
+];
+
+const socialLinks = [
+  {
+    icon: SiInstagram,
+    label: "Instagram",
+    href: "https://instagram.com/joetech.ai",
+    accent: "#ec4899",
+    handle: "@joetech.ai",
+  },
+  {
+    icon: SiFacebook,
+    label: "Facebook",
+    href: "https://facebook.com/search/top?q=JOE%20Technologies",
+    accent: "#0066ff",
+    handle: "JOE Technologies",
+  },
+  {
+    icon: SiGithub,
+    label: "GitHub",
+    href: "https://github.com",
+    accent: "#00c8ff",
+    handle: "JOE Technologies",
+  },
+  {
+    icon: ExternalLink,
+    label: "Website",
+    href: "https://joetech.onrender.com",
+    accent: "#00ff88",
+    handle: "joetech.onrender.com",
   },
 ];
 
 function useScrollInView() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   return { ref, isInView };
 }
 
 export default function AboutSection() {
-  const { ref, isInView } = useScrollInView();
+  const { ref: statsRef, isInView: statsInView } = useScrollInView();
+  const { ref: bioRef, isInView: bioInView } = useScrollInView();
+  const { ref: valuesRef, isInView: valuesInView } = useScrollInView();
 
   return (
-    <section id="about" className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "var(--joe-bg-1)" }}>
-      <div className="absolute inset-0"
-        style={{
-          opacity: "var(--joe-glow-opacity)",
-          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }} />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">About the Founder</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            Built by an Engineer
-            <br />
-            <span style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              Who Builds AI
-            </span>
-          </h2>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+    <div>
+      <section className="relative py-16 lg:py-20 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex flex-col gap-8"
+            ref={statsRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={statsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4"
           >
-            <div className="flex items-start gap-5">
-              <div className="flex-shrink-0 relative">
-                <div className="w-20 h-20 rounded-xl flex items-center justify-center font-heading font-bold text-2xl text-white"
-                  style={{ background: "linear-gradient(135deg, #00c8ff 0%, #0066ff 50%, #7c3aed 100%)" }}>
-                  JOE
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center"
-                  style={{ border: "2px solid var(--joe-bg-solid)" }}>
-                  <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
-                </div>
-              </div>
-              <div>
-                <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
-                <p className="text-[#00c8ff] text-sm font-medium mt-0.5">Founder & Chief AI Architect</p>
-                <p className="text-joe-text/40 text-sm mt-1 font-mono">JOE Technologies</p>
-                <a
-                  href="https://onome-portfolio-ten.vercel.app/?/projects"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00c8ff] hover:text-[#0066ff] transition-colors mt-2"
-                  data-testid="link-founder-portfolio"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  View Personal Portfolio
-                </a>
-              </div>
-            </div>
-
-            <div className="space-y-4 text-joe-text/65 leading-relaxed">
-              <p>
-                Jeffery Onome Emuodafevware is a software engineer and AI architect with a singular focus:
-                building intelligent systems that solve real problems at real scale. With roots in West Africa
-                and a career spanning startups to global enterprises, Jeffery brings a rare combination of
-                deep technical depth and business pragmatism to every engagement.
-              </p>
-              <p>
-                He founded <span className="text-joe-text font-semibold">JOE Technologies</span> — where JOE stands for his
-                initials — after recognizing a critical gap: companies needed more than AI consulting.
-                They needed an engineering partner who could architect, build, and deploy production-grade AI
-                that actually works in the real world.
-              </p>
-              <p>
-                His expertise spans machine learning infrastructure, natural language processing, computer vision,
-                and full-stack engineering — always with Python and Django at the core.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-2">
-              {achievements.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
-                  className="flex items-start gap-3"
-                  data-testid={`achievement-${i}`}
-                >
-                  <CheckCircle className="w-4 h-4 text-[#00c8ff] flex-shrink-0 mt-0.5" />
-                  <span className="text-joe-text/60 text-sm">{item}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <div className="flex flex-col gap-6">
-            {values.map((value, i) => {
-              const Icon = value.icon;
+            {stats.map((s, i) => {
+              const Icon = s.icon;
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.2 + i * 0.12 }}
-                  className="flex items-start gap-5 p-6 rounded-xl border hover-elevate"
-                  style={{
-                    background: "var(--joe-card)",
-                    borderColor: "var(--joe-card-border)",
-                  }}
-                  data-testid={`value-card-${i}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.05 + i * 0.1 }}
+                  className="flex flex-col items-center gap-3 p-6 rounded-xl border text-center hover-elevate"
+                  style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                  data-testid={`about-stat-${i}`}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
-                    style={{ background: "rgba(0,200,255,0.1)", border: "1px solid rgba(0,200,255,0.2)" }}>
-                    <Icon className="w-5 h-5 text-[#00c8ff]" />
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center"
+                    style={{ background: `${s.accent}12`, border: `1px solid ${s.accent}25` }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: s.accent }} />
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold text-joe-text text-lg">{value.title}</h4>
-                    <p className="text-joe-text/55 mt-1 text-sm leading-relaxed">{value.description}</p>
+                    <div className="font-heading font-bold text-3xl" style={{ color: s.accent }}>{s.value}</div>
+                    <div className="text-joe-text/40 text-xs font-mono uppercase tracking-wide mt-1">{s.label}</div>
                   </div>
                 </motion.div>
               );
             })}
+          </motion.div>
+        </div>
+      </section>
 
+      <section
+        id="about"
+        className="relative py-24 lg:py-32 overflow-hidden"
+        style={{ background: "var(--joe-bg-1)" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+            opacity: "var(--joe-glow-opacity)",
+          }}
+        />
+        <div
+          className="absolute top-0 right-0 w-[600px] h-[400px] blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, #00c8ff 0%, transparent 70%)", opacity: 0.05 }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            ref={bioRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={bioInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">About the Founder</span>
+            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+              Built by an Engineer Who{" "}
+              <span className="text-gradient-blue">Builds Products</span>
+            </h2>
+            <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
+              JOE Technologies is a one-founder, highly specialized studio delivering enterprise-grade digital products — apps, websites, automation systems, UI/UX, and AI.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-2 p-6 rounded-xl border border-[#00c8ff]/20"
-              style={{ background: "rgba(0,200,255,0.05)" }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={bioInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="flex flex-col gap-8"
             >
-              <p className="text-joe-text/75 text-base italic leading-relaxed">
-                "The best AI systems aren't just technically impressive — they create compounding value
-                for the businesses and people who depend on them every day."
-              </p>
-              <p className="text-[#00c8ff] text-sm font-semibold mt-3 font-mono">
-                — Jeffery Onome Emuodafevware
-              </p>
+              <div
+                className="flex items-start gap-5 p-6 rounded-xl border"
+                style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+              >
+                <div className="flex-shrink-0 relative">
+                  <div
+                    className="w-20 h-20 rounded-xl flex items-center justify-center font-heading font-bold text-2xl text-white"
+                    style={{ background: "linear-gradient(135deg, #00c8ff 0%, #0066ff 50%, #7c3aed 100%)" }}
+                  >
+                    JOE
+                  </div>
+                  <div
+                    className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
+                    style={{ border: "2px solid var(--joe-bg-solid)" }}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
+                  <p className="text-[#00c8ff] text-sm font-medium mt-0.5">Founder & Chief Engineer</p>
+                  <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
+                  <div className="flex items-center gap-3 mt-3">
+                    <a
+                      href="https://onome-portfolio-ten.vercel.app/?/projects"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00c8ff] hover:text-[#0066ff] transition-colors"
+                      data-testid="link-founder-portfolio"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Personal Portfolio
+                    </a>
+                    <span className="text-joe-text/20">·</span>
+                    <a
+                      href="https://joetech.onrender.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#7c3aed] hover:text-[#0066ff] transition-colors"
+                      data-testid="link-website"
+                    >
+                      <Globe className="w-3 h-3" />
+                      joetech.onrender.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4 text-joe-text/60 leading-relaxed">
+                <p>
+                  Jeffery Onome Emuodafevware is a full-stack software engineer and AI architect with a singular focus:
+                  building intelligent digital systems that solve real problems at real scale. With roots in West Africa
+                  and a career spanning startups to global enterprises, Jeffery brings deep technical depth and business
+                  pragmatism to every engagement.
+                </p>
+                <p>
+                  He founded <span className="text-joe-text font-semibold">JOE Technologies</span> — where JOE represents
+                  his initials — after recognizing a critical gap: businesses needed more than consultants or freelancers.
+                  They needed a true engineering partner who could architect, build, and deploy production-grade apps,
+                  websites, automations, and AI that actually deliver results.
+                </p>
+                <p>
+                  His expertise spans the full product lifecycle: interface design and UX, frontend and backend engineering,
+                  automation architecture, database design, and machine learning infrastructure — always with clarity,
+                  quality, and business outcomes at the center.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-2">
+                {achievements.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -15 }}
+                    animate={bioInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
+                    className="flex items-start gap-3"
+                    data-testid={`achievement-${i}`}
+                  >
+                    <CheckCircle className="w-4 h-4 text-[#00c8ff] flex-shrink-0 mt-0.5" />
+                    <span className="text-joe-text/55 text-sm">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div>
+                <p className="text-joe-text/30 text-xs font-mono uppercase tracking-widest mb-3">Connect</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {socialLinks.map((s, i) => {
+                    const Icon = s.icon;
+                    return (
+                      <a
+                        key={i}
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-lg border hover-elevate transition-all duration-200"
+                        style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
+                        data-testid={`social-${s.label.toLowerCase()}`}
+                      >
+                        <Icon className="w-4 h-4 flex-shrink-0" style={{ color: s.accent }} />
+                        <div className="min-w-0">
+                          <p className="text-joe-text/35 text-xs font-mono">{s.label}</p>
+                          <p className="text-joe-text/70 text-xs font-medium truncate">{s.handle}</p>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
             </motion.div>
+
+            <div className="flex flex-col gap-5">
+              {values.map((value, i) => {
+                const Icon = value.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={bioInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
+                    className="flex items-start gap-5 p-6 rounded-xl border hover-elevate relative overflow-hidden"
+                    style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                    data-testid={`value-card-${i}`}
+                  >
+                    <div
+                      className="absolute top-0 left-0 right-0 h-0.5"
+                      style={{ background: `linear-gradient(90deg, transparent, ${value.accent}50, transparent)` }}
+                    />
+                    <div
+                      className="flex-shrink-0 w-11 h-11 rounded-lg flex items-center justify-center"
+                      style={{ background: `${value.accent}12`, border: `1px solid ${value.accent}25` }}
+                    >
+                      <Icon className="w-5 h-5" style={{ color: value.accent }} />
+                    </div>
+                    <div>
+                      <h4 className="font-heading font-bold text-joe-text text-base">{value.title}</h4>
+                      <p className="text-joe-text/50 mt-1 text-sm leading-relaxed">{value.description}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={bioInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="mt-1 p-7 rounded-xl border border-[#00c8ff]/15 relative overflow-hidden"
+                style={{ background: "rgba(0,200,255,0.04)" }}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-0.5"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(0,200,255,0.4), transparent)" }}
+                />
+                <p className="text-joe-text/70 text-base italic leading-relaxed">
+                  "The best digital systems aren't just technically impressive — they create compounding value
+                  for the businesses and people who depend on them every single day."
+                </p>
+                <div className="flex items-center gap-3 mt-5">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-xs text-white"
+                    style={{ background: "linear-gradient(135deg, #00c8ff90, #0066ff60)" }}
+                  >
+                    JOE
+                  </div>
+                  <div>
+                    <p className="text-[#00c8ff] text-sm font-semibold font-mono">Jeffery Onome Emuodafevware</p>
+                    <p className="text-joe-text/35 text-xs">Founder, JOE Technologies</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

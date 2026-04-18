@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, ArrowUp, ExternalLink, Mail, MessageCircle } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 import { Link } from "wouter";
 import JoeLogo from "@/components/JoeLogo";
 
@@ -118,7 +119,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://wa.me/2349017048791"
+                href="https://wa.me/2349017078791"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#00ff88] hover-elevate transition-colors"
@@ -127,6 +128,18 @@ export default function Footer() {
                 data-testid="link-social-whatsapp"
               >
                 <MessageCircle className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://instagram.com/joetech.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#ec4899] hover-elevate transition-colors"
+                style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
+                aria-label="Instagram"
+                data-testid="link-social-instagram"
+              >
+                <SiInstagram className="w-4 h-4" />
               </a>
             </div>
           </div>

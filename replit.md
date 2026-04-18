@@ -45,15 +45,15 @@ client/src/
     HeroSection.tsx           — Full-screen hero with canvas neural network, terminal, tech badges
     PageHero.tsx              — Reusable page header (label badge, gradient title, subtitle, CTA)
     TrustedBySection.tsx      — Infinite-scroll marquee with glowing dots
-    AboutSection.tsx          — Founder bio, achievements, values
-    ServicesSection.tsx       — 6 service cards with icons and tags
+    AboutSection.tsx          — Founder bio + stats strip, achievements, values, social links (Instagram, Facebook, GitHub, Website)
+    ServicesSection.tsx       — 6 service cards with icons and tags, correct slug routing
     WhyUsSection.tsx          — 6 differentiators
     ProcessSection.tsx        — 5-step numbered process timeline
     TechStackSection.tsx      — Tech categories with react-icons logos
-    PortfolioSection.tsx      — 4 case studies with metrics
+    PortfolioSection.tsx      — 6 case studies with animated filter tabs (All/App Dev/Website/Automation/UI-UX/AI)
     TestimonialsSection.tsx   — 3 client testimonials with result badges + gradient borders
     FAQSection.tsx            — 8-question accordion
-    ContactSection.tsx        — Contact form + WhatsApp CTA + info
+    ContactSection.tsx        — Contact form with 6 info cards (Email, WhatsApp x2, Instagram, Facebook, Website, Location)
     Footer.tsx                — Founder card, email/WhatsApp socials, animated status pulse
     WhatsAppButton.tsx        — Floating WhatsApp button (bottom-right)
     ScrollProgressBar.tsx     — Gradient bar across top of page

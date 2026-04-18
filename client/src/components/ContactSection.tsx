@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Send, MessageCircle, CheckCircle2, Globe, Phone } from "lucide-react";
+import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -48,18 +49,39 @@ const contactInfo = [
     accent: "#00c8ff",
   },
   {
-    icon: Phone,
+    icon: SiWhatsapp,
     label: "WhatsApp",
-    value: "+234 901 704 8791",
-    href: "https://wa.me/2349017048791?text=Hello%20Jeffery%2C%20I%20saw%20your%20website%20and%20I%27m%20interested%20in%20discussing%20a%20project.",
+    value: "09017078791  ·  08159088343",
+    href: "https://wa.me/2349017078791?text=Hello%20Jeffery%2C%20I%20visited%20joetech.onrender.com%20and%20I%27d%20love%20to%20discuss%20a%20project.",
     accent: "#00ff88",
+  },
+  {
+    icon: SiInstagram,
+    label: "Instagram",
+    value: "@joetech.ai",
+    href: "https://instagram.com/joetech.ai",
+    accent: "#ec4899",
+  },
+  {
+    icon: SiFacebook,
+    label: "Facebook",
+    value: "JOE Technologies",
+    href: "https://facebook.com/search/top?q=JOE%20Technologies",
+    accent: "#0066ff",
+  },
+  {
+    icon: Globe,
+    label: "Website",
+    value: "joetech.onrender.com",
+    href: "https://joetech.onrender.com",
+    accent: "#7c3aed",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Global · Remote-First",
     href: null,
-    accent: "#7c3aed",
+    accent: "#f59e0b",
   },
 ];
 
@@ -120,13 +142,11 @@ export default function ContactSection() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/2349017048791?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
+      "https://wa.me/2349017078791?text=Hello%20Jeffery%2C%20I%20visited%20joetech.onrender.com%20and%20I%27d%20love%20to%20discuss%20a%20project.",
       "_blank",
       "noopener,noreferrer"
     );
   };
-
-  const messageValue = form.watch("message") || "";
 
   return (
     <section id="contact" className="relative py-24 lg:py-32 overflow-hidden"
@@ -144,16 +164,8 @@ export default function ContactSection() {
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Let's Connect</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            Start Your AI
-            <br />
-            <span style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              Transformation
-            </span>
+            Start Your Digital{" "}
+            <span className="text-gradient-cyber">Transformation</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             Tell us about your project and we'll get back to you within 24 hours.
@@ -166,14 +178,14 @@ export default function ContactSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-2 flex flex-col gap-6"
+            className="lg:col-span-2 flex flex-col gap-4"
           >
             {contactInfo.map((info, i) => {
               const Icon = info.icon;
               const content = (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-5 rounded-xl border hover-elevate"
+                  className="flex items-center gap-4 p-4 rounded-xl border hover-elevate transition-all duration-200"
                   style={{
                     background: "var(--joe-card)",
                     borderColor: "var(--joe-card-border)",
@@ -187,11 +199,11 @@ export default function ContactSection() {
                       border: `1px solid ${info.accent}25`,
                     }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: info.accent }} />
+                    <Icon className="w-4 h-4" style={{ color: info.accent }} />
                   </div>
-                  <div>
-                    <p className="text-joe-text/40 text-xs font-mono uppercase tracking-wide mb-0.5">{info.label}</p>
-                    <p className="text-joe-text font-medium text-sm">{info.value}</p>
+                  <div className="min-w-0">
+                    <p className="text-joe-text/35 text-xs font-mono uppercase tracking-wide">{info.label}</p>
+                    <p className="text-joe-text/80 font-medium text-sm truncate">{info.value}</p>
                   </div>
                 </div>
               );
@@ -206,19 +218,19 @@ export default function ContactSection() {
             })}
 
             <div
-              className="p-6 rounded-xl border border-[#00ff88]/20"
-              style={{ background: "rgba(0, 255, 136, 0.05)" }}
+              className="p-5 rounded-xl border border-[#00ff88]/20 mt-1"
+              style={{ background: "rgba(0, 255, 136, 0.04)" }}
             >
-              <div className="flex items-center gap-2 mb-3">
-                <MessageCircle className="w-5 h-5 text-[#00ff88]" />
-                <span className="text-[#00ff88] font-semibold text-sm">Chat on WhatsApp</span>
+              <div className="flex items-center gap-2 mb-2">
+                <SiWhatsapp className="w-4 h-4 text-[#00ff88]" />
+                <span className="text-[#00ff88] font-semibold text-sm">Quick Chat on WhatsApp</span>
               </div>
-              <p className="text-joe-text/50 text-sm leading-relaxed mb-4">
-                Prefer a quick chat? Reach Jeffery directly on WhatsApp for fast responses.
+              <p className="text-joe-text/45 text-xs leading-relaxed mb-3">
+                Prefer a quick message? Reach Jeffery directly for fast responses.
               </p>
               <Button
                 onClick={handleWhatsApp}
-                className="w-full border-[#00ff88] text-[#00ff88] bg-[#00ff88]/10 font-semibold gap-2"
+                className="w-full border-[#00ff88]/40 text-[#00ff88] bg-[#00ff88]/8 font-semibold gap-2 hover:bg-[#00ff88]/15"
                 variant="outline"
                 data-testid="button-whatsapp"
               >
@@ -288,13 +300,13 @@ export default function ContactSection() {
                             <FormLabel className="text-joe-text/70 text-sm">Full Name *</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Jeffery Smith"
-                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
+                                placeholder="Jane Smith"
+                                className="bg-joe-overlay border-joe-card-border text-joe-text placeholder:text-joe-text/25"
                                 data-testid="input-name"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-red-400 text-xs" />
+                            <FormMessage />
                           </FormItem>
                         )}
                       />
@@ -306,14 +318,14 @@ export default function ContactSection() {
                             <FormLabel className="text-joe-text/70 text-sm">Email Address *</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="you@company.com"
                                 type="email"
-                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
+                                placeholder="jane@company.com"
+                                className="bg-joe-overlay border-joe-card-border text-joe-text placeholder:text-joe-text/25"
                                 data-testid="input-email"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-red-400 text-xs" />
+                            <FormMessage />
                           </FormItem>
                         )}
                       />
@@ -325,16 +337,15 @@ export default function ContactSection() {
                         name="company"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-joe-text/70 text-sm">Company</FormLabel>
+                            <FormLabel className="text-joe-text/70 text-sm">Company / Organization</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Acme Corp"
-                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
+                                className="bg-joe-overlay border-joe-card-border text-joe-text placeholder:text-joe-text/25"
                                 data-testid="input-company"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-red-400 text-xs" />
                           </FormItem>
                         )}
                       />
@@ -346,14 +357,13 @@ export default function ContactSection() {
                             <FormLabel className="text-joe-text/70 text-sm">Phone / WhatsApp</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="+1 555 000 0000"
                                 type="tel"
-                                className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50"
+                                placeholder="+1 555 000 0000"
+                                className="bg-joe-overlay border-joe-card-border text-joe-text placeholder:text-joe-text/25"
                                 data-testid="input-phone"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage className="text-red-400 text-xs" />
                           </FormItem>
                         )}
                       />
@@ -364,25 +374,22 @@ export default function ContactSection() {
                       name="service"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-joe-text/70 text-sm">Service of Interest</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormLabel className="text-joe-text/70 text-sm">Service Interested In</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
                               <SelectTrigger
-                                className="bg-joe-text/5 border-joe-text/15 text-joe-text/70 focus:border-[#00c8ff]/50"
+                                className="bg-joe-overlay border-joe-card-border text-joe-text"
                                 data-testid="select-service"
                               >
                                 <SelectValue placeholder="Select a service..." />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent style={{ background: "var(--joe-nav-bg)", borderColor: "var(--joe-card-border)" }}>
+                            <SelectContent>
                               {services.map((s) => (
-                                <SelectItem key={s} value={s} className="text-joe-text/80 focus:bg-joe-text/10 focus:text-joe-text">
-                                  {s}
-                                </SelectItem>
+                                <SelectItem key={s} value={s}>{s}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
-                          <FormMessage className="text-red-400 text-xs" />
                         </FormItem>
                       )}
                     />
@@ -392,62 +399,46 @@ export default function ContactSection() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <div className="flex items-center justify-between">
-                            <FormLabel className="text-joe-text/70 text-sm">Your Message *</FormLabel>
-                            <span className={`text-xs ${messageValue.length >= 20 ? "text-joe-text/30" : "text-joe-text/50"}`}>
-                              {messageValue.length}/20 min
-                            </span>
-                          </div>
+                          <FormLabel className="text-joe-text/70 text-sm flex items-center justify-between">
+                            <span>Project Details *</span>
+                            <span className="text-joe-text/25 font-normal text-xs">{field.value?.length || 0} chars</span>
+                          </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell us about your project — what you're building, the problem you're solving, your timeline, and any technical context that's useful..."
+                              placeholder="Tell us about your project, goals, timeline, and any relevant context..."
                               rows={5}
-                              className="bg-joe-text/5 border-joe-text/15 text-joe-text placeholder:text-joe-text/25 focus:border-[#00c8ff]/50 resize-none"
+                              className="bg-joe-overlay border-joe-card-border text-joe-text placeholder:text-joe-text/25 resize-none"
                               data-testid="textarea-message"
                               {...field}
                             />
                           </FormControl>
-                          <FormMessage className="text-red-400 text-xs" />
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
 
-                    <div className="flex flex-col sm:flex-row gap-3 pt-1">
-                      <Button
-                        type="submit"
-                        size="lg"
-                        disabled={mutation.isPending}
-                        className="flex-1 bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#00c8ff]/15"
-                        data-testid="button-submit-contact"
-                      >
-                        {mutation.isPending ? (
-                          <>
-                            <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            <Send className="w-4 h-4" />
-                            Send Message
-                          </>
-                        )}
-                      </Button>
-                      <Button
-                        type="button"
-                        size="lg"
-                        variant="outline"
-                        onClick={handleWhatsApp}
-                        className="border-[#00ff88]/30 text-[#00ff88] bg-[#00ff88]/5 font-semibold gap-2"
-                        data-testid="button-whatsapp-form"
-                      >
-                        <MessageCircle className="w-4 h-4" />
-                        WhatsApp
-                      </Button>
-                    </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={mutation.isPending}
+                      className="w-full bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-xl shadow-[#00c8ff]/15 hover:shadow-[#00c8ff]/25 transition-shadow"
+                      data-testid="button-submit"
+                    >
+                      {mutation.isPending ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Send Project Brief
+                        </>
+                      )}
+                    </Button>
 
-                    <p className="text-joe-text/25 text-xs text-center">
-                      By submitting this form, you agree that your information will be used to respond to your inquiry.
-                      We never share your data with third parties.
+                    <p className="text-joe-text/30 text-xs text-center">
+                      We'll respond within 24 hours. Free strategy call included with every inquiry.
                     </p>
                   </form>
                 </Form>

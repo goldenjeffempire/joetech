@@ -2,56 +2,140 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { usePageTitle } from "@/hooks/use-page-title";
-import { Code2, ArrowRight, Brain, Layers, Eye, MessageSquare, Star } from "lucide-react";
+import {
+  Brain, ArrowRight, Cpu, MessageSquare, Eye, BarChart3, Bot, Layers,
+  Zap, Shield, Target, Code2, TrendingUp, Clock, CheckCircle2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const accent = "#0066ff";
+const accent = "#00ff88";
+const accentSecondary = "#00c8ff";
 
-const included = [
+const metrics = [
+  { icon: Brain, value: "50+", label: "AI Models Deployed", accent: "#00ff88" },
+  { icon: Target, value: "94%", label: "Avg. Model Accuracy", accent: "#00c8ff" },
+  { icon: Zap, value: "10x", label: "Faster Than Manual", accent: "#7c3aed" },
+  { icon: TrendingUp, value: "$4.6M", label: "Client Value Created", accent: "#f59e0b" },
+];
+
+const capabilities = [
   {
     icon: Brain,
     title: "Custom Model Training",
-    description: "Purpose-built machine learning models trained on your proprietary data to solve your specific business challenges with maximum accuracy.",
+    description: "Purpose-built machine learning models trained on your proprietary data to solve your specific business challenges with maximum accuracy and performance.",
+    stat: "94%",
+    statLabel: "avg accuracy",
   },
   {
     icon: Layers,
-    title: "Fine-Tuning & Transfer Learning",
-    description: "Adapt state-of-the-art foundation models to your domain, reducing training time and cost while achieving superior performance.",
+    title: "Fine-Tuning & LLMs",
+    description: "Adapt state-of-the-art foundation models (GPT, Claude, Llama) to your domain, reducing training cost while achieving superior performance in your specific context.",
+    stat: "10x",
+    statLabel: "faster than from scratch",
   },
   {
     icon: MessageSquare,
-    title: "NLP & Language Models",
-    description: "Build intelligent text processing systems — from sentiment analysis and entity extraction to domain-specific chatbots and content generation.",
+    title: "NLP & Language AI",
+    description: "Build intelligent text processing — from sentiment analysis and named entity extraction to domain-specific chatbots, summarization, and content generation pipelines.",
+    stat: "99%",
+    statLabel: "extraction precision",
   },
   {
     icon: Eye,
-    title: "Computer Vision Pipelines",
-    description: "End-to-end image and video analysis systems for object detection, classification, segmentation, and visual inspection workflows.",
+    title: "Computer Vision",
+    description: "End-to-end image and video analysis systems for object detection, classification, segmentation, defect detection, and visual inspection in production workflows.",
+    stat: "< 50ms",
+    statLabel: "inference latency",
   },
   {
-    icon: Star,
-    title: "Recommendation Systems",
-    description: "Personalized recommendation engines that learn from user behavior to surface the most relevant products, content, or actions.",
+    icon: Bot,
+    title: "AI Agents & Automation",
+    description: "Intelligent autonomous agents that perceive, reason, and act — orchestrating multi-step workflows, browsing, tool-use, and decision-making with minimal human oversight.",
+    stat: "78%",
+    statLabel: "tasks automated",
+  },
+  {
+    icon: BarChart3,
+    title: "Predictive Analytics & ML",
+    description: "Recommendation engines, demand forecasting, anomaly detection, churn prediction, and ML pipelines that surface intelligence from your data to drive better decisions.",
+    stat: "91%",
+    statLabel: "prediction accuracy",
   },
 ];
 
 const useCases = [
   {
-    title: "Building a domain-specific chatbot",
-    description: "Fine-tune a language model on your company's knowledge base to create an AI assistant that understands your products, processes, and terminology inside out.",
+    tag: "Customer Operations",
+    accent: "#00ff88",
+    title: "AI-Powered Customer Support",
+    description: "Deploy an intelligent assistant trained on your knowledge base that understands questions, drafts accurate responses, routes complex cases, and learns from each interaction.",
+    result: "78% support automation",
   },
   {
-    title: "Automating document processing",
-    description: "Deploy NLP pipelines that extract, classify, and route information from invoices, contracts, and support tickets — eliminating manual data entry.",
+    tag: "Document Processing",
+    accent: "#00c8ff",
+    title: "Automated Document Intelligence",
+    description: "NLP pipelines that extract, classify, and route information from contracts, invoices, reports, and forms — eliminating manual data entry and reducing processing time by 85%.",
+    result: "99.2% extraction accuracy",
   },
   {
-    title: "Creating a visual inspection system",
-    description: "Train computer vision models to detect defects, anomalies, or quality issues in manufacturing, logistics, or healthcare imaging workflows.",
+    tag: "Operations & Forecasting",
+    accent: "#7c3aed",
+    title: "Predictive Business Intelligence",
+    description: "ML models trained on your operational data to forecast demand, detect anomalies, predict churn, and surface trends — giving decision-makers a live intelligence layer.",
+    result: "91% forecast accuracy",
+  },
+  {
+    tag: "Quality & Inspection",
+    accent: "#f59e0b",
+    title: "Visual Inspection Systems",
+    description: "Computer vision pipelines that detect defects, anomalies, and quality issues in manufacturing, logistics, or healthcare imaging at speed and scale humans can't match.",
+    result: "< 50ms per frame",
   },
 ];
 
-const techStack = ["Python", "PyTorch", "TensorFlow", "Transformers", "Hugging Face", "Django", "scikit-learn"];
+const deliverables = [
+  {
+    phase: "01",
+    title: "Discovery & Data Audit",
+    items: ["Problem framing workshop", "Data availability assessment", "Feasibility analysis", "Architecture recommendation"],
+    accent: "#00ff88",
+  },
+  {
+    phase: "02",
+    title: "Model Development",
+    items: ["Data preprocessing pipelines", "Model training & fine-tuning", "Evaluation & benchmarking", "Iterative improvement cycles"],
+    accent: "#00c8ff",
+  },
+  {
+    phase: "03",
+    title: "Integration & Deployment",
+    items: ["API endpoints & SDK", "System integration", "Monitoring & alerting", "Production deployment"],
+    accent: "#7c3aed",
+  },
+  {
+    phase: "04",
+    title: "Ongoing Optimization",
+    items: ["Performance monitoring", "Model drift detection", "Retraining pipelines", "Knowledge transfer"],
+    accent: "#f59e0b",
+  },
+];
+
+const techStack = [
+  { name: "Python", accent: "#00ff88" },
+  { name: "PyTorch", accent: "#00c8ff" },
+  { name: "TensorFlow", accent: "#f59e0b" },
+  { name: "Hugging Face", accent: "#7c3aed" },
+  { name: "LangChain", accent: "#00ff88" },
+  { name: "OpenAI API", accent: "#00c8ff" },
+  { name: "FastAPI", accent: "#0066ff" },
+  { name: "scikit-learn", accent: "#f59e0b" },
+  { name: "Django", accent: "#00ff88" },
+  { name: "PostgreSQL", accent: "#0066ff" },
+  { name: "AWS / GCP", accent: "#7c3aed" },
+  { name: "Docker", accent: "#00c8ff" },
+];
 
 function useScrollInView() {
   const ref = useRef(null);
@@ -60,133 +144,184 @@ function useScrollInView() {
 }
 
 export default function CustomAIPage() {
-  usePageTitle("Custom AI Development");
-  const { ref: overviewRef, isInView: overviewInView } = useScrollInView();
-  const { ref: includedRef, isInView: includedInView } = useScrollInView();
-  const { ref: useCasesRef, isInView: useCasesInView } = useScrollInView();
+  usePageTitle("AI & Machine Learning Solutions");
+
+  const { ref: capRef, isInView: capInView } = useScrollInView();
+  const { ref: useCaseRef, isInView: useCaseInView } = useScrollInView();
+  const { ref: delRef, isInView: delInView } = useScrollInView();
   const { ref: techRef, isInView: techInView } = useScrollInView();
   const { ref: ctaRef, isInView: ctaInView } = useScrollInView();
 
   return (
     <div>
-      <section
-        className="relative pt-32 pb-16 overflow-hidden"
-        style={{ background: "var(--joe-bg-hero)" }}
-      >
+      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: "var(--joe-glow-opacity)",
             backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
             backgroundSize: "60px 60px",
+            opacity: "var(--joe-glow-opacity)",
           }}
         />
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] blur-3xl pointer-events-none"
-          style={{ background: `radial-gradient(ellipse, ${accent} 0%, transparent 70%)`, opacity: "var(--joe-glow-opacity)" }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] blur-3xl pointer-events-none"
+          style={{ background: `radial-gradient(ellipse, ${accent}40 0%, transparent 65%)`, opacity: 0.12 }}
         />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div
+          className="absolute bottom-0 right-0 w-[500px] h-[400px] blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: 0.07 }}
+        />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.65 }}
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <Code2 className="w-5 h-5" style={{ color: accent }} />
-              <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
-                Service
+            <div
+              className="inline-flex items-center gap-2 mb-6 rounded-full px-4 py-2"
+              style={{ background: `${accent}10`, border: `1px solid ${accent}30` }}
+            >
+              <Brain className="w-4 h-4" style={{ color: accent }} />
+              <span className="font-mono text-xs uppercase tracking-[0.2em]" style={{ color: accent }}>
+                Core Service Pillar
               </span>
             </div>
-            <h1 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mb-4" data-testid="heading-custom-ai">
-              Custom AI{" "}
+
+            <h1 className="font-heading font-bold text-5xl lg:text-7xl text-joe-text mb-6 leading-[0.95] tracking-tight" data-testid="heading-custom-ai">
+              AI &amp; Machine{" "}
               <span
                 style={{
-                  background: `linear-gradient(135deg, #00c8ff, ${accent})`,
+                  background: `linear-gradient(135deg, ${accent}, ${accentSecondary})`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                 }}
               >
-                Development
+                Learning
               </span>
             </h1>
-            <p className="text-joe-text/50 text-lg max-w-2xl mx-auto leading-relaxed" data-testid="text-custom-ai-subtitle">
-              Bespoke AI systems built on your data, optimized for your domain — from fine-tuned language models to production-grade computer vision pipelines.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
-      <section className="py-16 lg:py-24" style={{ background: "var(--joe-bg-1)" }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            ref={overviewRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={overviewInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl text-joe-text mb-6" data-testid="heading-overview">
-              Overview
-            </h2>
-            <div className="flex flex-col gap-4">
-              <p className="text-joe-text/60 leading-relaxed">
-                Off-the-shelf AI tools get you 80% of the way. The last 20% — where the real competitive advantage lives — requires custom development. We build bespoke AI systems trained on your proprietary data and tailored to your specific domain, delivering models that outperform generic solutions by understanding the nuances of your business.
-              </p>
-              <p className="text-joe-text/60 leading-relaxed">
-                Whether you need a fine-tuned language model that speaks your industry's language, a computer vision pipeline that detects defects invisible to the human eye, or a recommendation engine that truly understands your users — we handle the full lifecycle from data preparation and model architecture through training, evaluation, and production deployment.
-              </p>
-              <p className="text-joe-text/60 leading-relaxed">
-                Our approach combines deep ML expertise with rigorous software engineering practices. Every model we build comes with comprehensive evaluation metrics, reproducible training pipelines, and clear documentation — so your team can understand, maintain, and iterate on what we deliver.
-              </p>
+            <p className="text-joe-text/55 text-xl max-w-2xl mx-auto leading-relaxed mb-10" data-testid="text-custom-ai-subtitle">
+              Intelligent systems built on your data — from fine-tuned language models and AI agents to computer vision pipelines and predictive analytics.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="font-semibold gap-2 text-black px-8 h-13"
+                  style={{ background: `linear-gradient(135deg, ${accent}, ${accentSecondary})` }}
+                  data-testid="button-hero-cta"
+                >
+                  Build Your AI System
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/portfolio">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-joe-text/15 text-joe-text/70 bg-joe-text/5 font-semibold gap-2 px-8 h-13"
+                  data-testid="button-hero-portfolio"
+                >
+                  <Code2 className="w-4 h-4" />
+                  See AI Case Studies
+                </Button>
+              </Link>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16"
+          >
+            {metrics.map((m, i) => {
+              const Icon = m.icon;
+              return (
+                <div
+                  key={i}
+                  className="flex flex-col items-center gap-3 p-5 rounded-xl border"
+                  style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                  data-testid={`metric-${i}`}
+                >
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ background: `${m.accent}12`, border: `1px solid ${m.accent}25` }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: m.accent }} />
+                  </div>
+                  <div className="text-center">
+                    <div className="font-heading font-bold text-2xl" style={{ color: m.accent }}>{m.value}</div>
+                    <div className="text-joe-text/40 text-xs font-mono mt-0.5 uppercase tracking-wide">{m.label}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-24" style={{ background: "var(--joe-bg-2)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+        <div
+          className="absolute top-0 right-0 w-[500px] h-[400px] blur-3xl pointer-events-none"
+          style={{ background: `radial-gradient(circle, ${accent} 0%, transparent 70%)`, opacity: 0.05 }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            ref={includedRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={includedInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            ref={capRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={capInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
           >
             <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
-              Capabilities
+              What We Build
             </span>
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl text-joe-text mt-3" data-testid="heading-included">
-              What's Included
+            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+              AI Capabilities &amp;{" "}
+              <span className="text-gradient-green">Core Expertise</span>
             </h2>
+            <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
+              From supervised learning models to autonomous AI agents — we cover the full spectrum of applied machine intelligence.
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {included.map((item, i) => {
-              const Icon = item.icon;
+            {capabilities.map((cap, i) => {
+              const Icon = cap.icon;
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={includedInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                  className="p-6 rounded-xl border"
-                  style={{
-                    background: "var(--joe-card)",
-                    borderColor: "var(--joe-card-border)",
-                  }}
-                  data-testid={`included-card-${i}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={capInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.05 + i * 0.08 }}
+                  className="group relative flex flex-col gap-5 p-6 rounded-xl border hover-elevate overflow-hidden"
+                  style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                  data-testid={`capability-card-${i}`}
                 >
                   <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-                    style={{
-                      background: `${accent}15`,
-                      border: `1px solid ${accent}30`,
-                    }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: accent }} />
+                    className="absolute top-0 left-0 right-0 h-0.5"
+                    style={{ background: `linear-gradient(90deg, transparent, ${accent}60, transparent)` }}
+                  />
+                  <div className="flex items-start justify-between">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                      style={{ background: `${accent}12`, border: `1px solid ${accent}25` }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: accent }} />
+                    </div>
+                    <div className="text-right">
+                      <div className="font-heading font-bold text-xl" style={{ color: accent }}>{cap.stat}</div>
+                      <div className="text-joe-text/30 text-xs font-mono mt-0.5">{cap.statLabel}</div>
+                    </div>
                   </div>
-                  <h3 className="font-heading font-bold text-joe-text text-base mb-2">{item.title}</h3>
-                  <p className="text-joe-text/55 text-sm leading-relaxed">{item.description}</p>
+                  <div>
+                    <h3 className="font-heading font-bold text-joe-text text-base mb-2">{cap.title}</h3>
+                    <p className="text-joe-text/50 text-sm leading-relaxed">{cap.description}</p>
+                  </div>
                 </motion.div>
               );
             })}
@@ -194,115 +329,255 @@ export default function CustomAIPage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24" style={{ background: "var(--joe-bg-1)" }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+            opacity: "var(--joe-glow-opacity)",
+          }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            ref={useCasesRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={useCasesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            ref={useCaseRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={useCaseInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
           >
-            <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
-              Real-World Applications
+            <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accentSecondary }}>
+              Real Applications
             </span>
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl text-joe-text mt-3" data-testid="heading-use-cases">
-              Use Cases
+            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+              AI Use Cases That{" "}
+              <span className="text-gradient-blue">Drive Results</span>
             </h2>
+            <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
+              Proven AI implementations that have created measurable business impact across industries.
+            </p>
           </motion.div>
 
-          <div className="flex flex-col gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {useCases.map((uc, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={useCasesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-                className="p-6 rounded-xl border"
-                style={{
-                  background: "var(--joe-card)",
-                  borderColor: "var(--joe-card-border)",
-                }}
+                initial={{ opacity: 0, y: 24 }}
+                animate={useCaseInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.1 + i * 0.1 }}
+                className="relative flex flex-col gap-4 p-7 rounded-xl border hover-elevate overflow-hidden"
+                style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
                 data-testid={`use-case-${i}`}
               >
-                <h3 className="font-heading font-bold text-joe-text text-base mb-2">{uc.title}</h3>
-                <p className="text-joe-text/55 text-sm leading-relaxed">{uc.description}</p>
+                <div
+                  className="absolute top-0 left-0 right-0 h-0.5"
+                  style={{ background: `linear-gradient(90deg, transparent, ${uc.accent}60, transparent)` }}
+                />
+                <div className="flex items-start justify-between gap-4">
+                  <span
+                    className="text-xs font-mono font-bold px-3 py-1.5 rounded-full flex-shrink-0"
+                    style={{ background: `${uc.accent}12`, color: uc.accent, border: `1px solid ${uc.accent}30` }}
+                  >
+                    {uc.tag}
+                  </span>
+                  <span
+                    className="text-xs font-mono px-2.5 py-1.5 rounded-full flex-shrink-0"
+                    style={{ background: `${uc.accent}08`, color: uc.accent, border: `1px solid ${uc.accent}20` }}
+                  >
+                    {uc.result}
+                  </span>
+                </div>
+                <h3 className="font-heading font-bold text-joe-text text-lg">{uc.title}</h3>
+                <p className="text-joe-text/50 text-sm leading-relaxed">{uc.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-24" style={{ background: "var(--joe-bg-2)" }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            ref={techRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={techInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
+            ref={delRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={delInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
           >
             <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
-              Tools & Frameworks
+              How We Work
             </span>
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl text-joe-text mt-3" data-testid="heading-tech-stack">
-              Tech Stack
+            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+              From Idea to{" "}
+              <span className="text-gradient-green">Production AI</span>
+            </h2>
+            <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
+              A structured delivery process that minimizes risk and gets your AI system into production reliably.
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {deliverables.map((d, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                animate={delInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: 0.08 + i * 0.1 }}
+                className="relative flex flex-col gap-5 p-6 rounded-xl border hover-elevate overflow-hidden"
+                style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                data-testid={`phase-${i}`}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-0.5"
+                  style={{ background: `linear-gradient(90deg, transparent, ${d.accent}70, transparent)` }}
+                />
+                <div className="flex items-center gap-3">
+                  <span className="font-heading font-bold text-4xl leading-none" style={{ color: `${d.accent}25` }}>
+                    {d.phase}
+                  </span>
+                  <div
+                    className="w-1 h-8 rounded-full"
+                    style={{ background: `linear-gradient(to bottom, ${d.accent}60, transparent)` }}
+                  />
+                </div>
+                <h3 className="font-heading font-bold text-joe-text text-base">{d.title}</h3>
+                <ul className="flex flex-col gap-2">
+                  {d.items.map((item, ii) => (
+                    <li key={ii} className="flex items-start gap-2 text-joe-text/50 text-xs">
+                      <CheckCircle2 className="w-3 h-3 flex-shrink-0 mt-0.5" style={{ color: d.accent }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 lg:py-24 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            ref={techRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={techInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-12"
+          >
+            <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
+              Tools &amp; Frameworks
+            </span>
+            <h2 className="font-heading font-bold text-3xl lg:text-4xl text-joe-text mt-3" data-testid="heading-tech-stack">
+              Our AI Tech Stack
             </h2>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={techInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             className="flex flex-wrap justify-center gap-3"
           >
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 rounded-lg text-sm font-mono font-medium border"
+            {techStack.map((t, i) => (
+              <motion.span
+                key={t.name}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={techInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.35, delay: 0.2 + i * 0.04 }}
+                className="px-5 py-2.5 rounded-xl text-sm font-mono font-semibold border hover-elevate cursor-default"
                 style={{
-                  background: `${accent}10`,
-                  borderColor: `${accent}25`,
-                  color: accent,
+                  background: `${t.accent}10`,
+                  borderColor: `${t.accent}25`,
+                  color: t.accent,
                 }}
-                data-testid={`tech-tag-${tech.toLowerCase().replace(/\s+/g, "-")}`}
+                data-testid={`tech-tag-${t.name.toLowerCase().replace(/[^a-z]/g, "-")}`}
               >
-                {tech}
-              </span>
+                {t.name}
+              </motion.span>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-24" style={{ background: "var(--joe-bg-3)" }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-28 lg:py-36 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+            opacity: "var(--joe-glow-opacity)",
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] blur-3xl pointer-events-none"
+          style={{ background: `radial-gradient(ellipse, ${accent}30 0%, transparent 70%)`, opacity: 0.12 }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             ref={ctaRef}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center p-10 rounded-xl border"
-            style={{
-              background: "var(--joe-card)",
-              borderColor: "var(--joe-card-border)",
-            }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col items-center gap-8"
           >
-            <h2 className="font-heading font-bold text-2xl lg:text-3xl text-joe-text mb-4" data-testid="heading-cta">
-              Ready to Get Started?
+            <div
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2"
+              style={{ background: `${accent}10`, border: `1px solid ${accent}25` }}
+            >
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: accent }} />
+              <span className="font-mono text-xs uppercase tracking-widest" style={{ color: accent }}>
+                AI Projects Open
+              </span>
+            </div>
+
+            <h2 className="font-heading font-bold text-4xl lg:text-6xl text-joe-text leading-tight">
+              Ready to Add Intelligence{" "}
+              <span className="text-gradient-green">to Your Business?</span>
             </h2>
-            <p className="text-joe-text/50 text-base max-w-xl mx-auto mb-8 leading-relaxed">
-              Let's discuss how custom AI development can give your business the competitive edge it needs. We'll scope the opportunity and define a path to production.
+
+            <p className="text-joe-text/50 text-lg max-w-2xl leading-relaxed">
+              Whether you're exploring AI for the first time or need to take an existing ML system to production — let's scope your opportunity in a free strategy call.
             </p>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#00c8ff]/15"
-                data-testid="button-custom-ai-cta"
-              >
-                Discuss Your Project
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="font-semibold tracking-wide gap-2 shadow-2xl text-black px-10 h-14 text-base"
+                  style={{
+                    background: `linear-gradient(135deg, ${accent}, ${accentSecondary})`,
+                    boxShadow: `0 20px 60px ${accent}30`,
+                  }}
+                  data-testid="button-cta-contact"
+                >
+                  Start Your AI Project
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/services">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-joe-text/15 text-joe-text/75 bg-joe-text/5 hover:bg-joe-text/10 font-semibold gap-2 px-10 h-14 text-base"
+                  data-testid="button-cta-services"
+                >
+                  Explore All Services
+                </Button>
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-6">
+              {[
+                { label: "Free AI strategy session", icon: CheckCircle2 },
+                { label: "Production-grade delivery", icon: Shield },
+                { label: "Full ML lifecycle support", icon: Layers },
+              ].map(({ label, icon: Icon }, i) => (
+                <div key={i} className="flex items-center gap-2 text-joe-text/35 text-sm">
+                  <Icon className="w-4 h-4" style={{ color: `${accent}70` }} />
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
