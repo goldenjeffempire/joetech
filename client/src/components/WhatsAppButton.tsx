@@ -5,7 +5,7 @@ import { SiWhatsapp } from "react-icons/si";
 
 const numbers = [
   {
-    label: "Jeffery (Primary)",
+    label: "JOE Technologies",
     number: "09017078791",
     wa: "https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
     tag: "Business inquiries",
