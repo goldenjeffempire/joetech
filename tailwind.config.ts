@@ -81,8 +81,9 @@ export default {
           offline: "rgb(156 163 175)",
         },
         cyber: {
-          blue: "#00c8ff",
-          cyan: "#00e5ff",
+          blue: "#1a6fff",
+          purple: "#7b2ee0",
+          cyan: "#00d4ff",
           gold: "#ffd700",
           green: "#00ff88",
         },
@@ -132,10 +133,11 @@ export default {
         "gradient-shift": "gradient-shift 6s ease infinite",
       },
       backgroundImage: {
-        "grid-pattern": "linear-gradient(rgba(0,200,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.05) 1px, transparent 1px)",
-        "hero-gradient": "radial-gradient(ellipse at 20% 50%, rgba(0,120,255,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(0,200,255,0.1) 0%, transparent 50%)",
-        "glow-blue": "radial-gradient(ellipse at center, rgba(0,120,255,0.3) 0%, transparent 70%)",
-        "glow-cyan": "radial-gradient(ellipse at center, rgba(0,200,255,0.2) 0%, transparent 70%)",
+        "grid-pattern": "linear-gradient(rgba(0,212,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.05) 1px, transparent 1px)",
+        "hero-gradient": "radial-gradient(ellipse at 20% 50%, rgba(26,111,255,0.18) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(123,46,224,0.12) 0%, transparent 50%), radial-gradient(ellipse at 60% 80%, rgba(0,212,255,0.08) 0%, transparent 50%)",
+        "glow-blue": "radial-gradient(ellipse at center, rgba(26,111,255,0.35) 0%, transparent 70%)",
+        "glow-cyan": "radial-gradient(ellipse at center, rgba(0,212,255,0.25) 0%, transparent 70%)",
+        "glow-purple": "radial-gradient(ellipse at center, rgba(123,46,224,0.3) 0%, transparent 70%)",
       },
       backgroundSize: {
         "grid": "40px 40px",
