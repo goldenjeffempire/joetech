@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import {
   Palette, MousePointer2, Layout, Layers, ArrowRight,
   Eye, Zap, Users, Target, Sparkles, CheckCircle2,
@@ -100,7 +100,21 @@ const useCases = [
 ];
 
 export default function UIUXDesign() {
-  usePageTitle("UI/UX Design");
+  useSeo({
+    title: "UI/UX Design Services",
+    description: "User-centred UI/UX design by JOE Technologies. Interface design, user research, prototyping, and experience engineering that converts visitors to customers.",
+    canonical: "/services/uiux-design",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "UI/UX Design",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/uiux-design",
+      "description": "User-centred interface design, prototyping, and UX engineering.",
+      "serviceType": "UI/UX Design",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const caps = useScrollInView();
   const cases = useScrollInView();

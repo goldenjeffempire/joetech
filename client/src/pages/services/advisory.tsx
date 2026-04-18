@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Lightbulb, Users, Search, UserPlus, Sparkles, FileCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -66,7 +66,21 @@ function useScrollInView() {
 }
 
 export default function AdvisoryPage() {
-  usePageTitle("Digital Advisory");
+  useSeo({
+    title: "Technology Advisory & Digital Strategy",
+    description: "Technology advisory and digital strategy consulting by JOE Technologies. Expert guidance for digital transformation, technology selection, and AI adoption at every scale.",
+    canonical: "/services/advisory",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Technology Advisory",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/advisory",
+      "description": "Digital strategy and technology advisory consulting.",
+      "serviceType": "Technology Advisory",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const includedSection = useScrollInView();
   const useCasesSection = useScrollInView();

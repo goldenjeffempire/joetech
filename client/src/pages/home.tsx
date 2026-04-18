@@ -15,7 +15,7 @@ import {
   SiKubernetes, SiAmazonec2, SiOpenai, SiGithub, SiRedis
 } from "react-icons/si";
 import { Button } from "@/components/ui/button";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import HeroSection from "@/components/HeroSection";
 import TrustedBySection from "@/components/TrustedBySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -274,7 +274,27 @@ const techCategories = [
 ];
 
 export default function Home() {
-  usePageTitle("Home");
+  useSeo({
+    title: "Home",
+    description: "JOE Technologies builds high-performance apps, websites, automation systems, UI/UX experiences, and AI-powered solutions for businesses and organisations. We design, engineer, and deploy premium digital platforms that convert, automate, scale, and perform.",
+    canonical: "/",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://joetechnologies.io/",
+      "url": "https://joetechnologies.io/",
+      "name": "JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions",
+      "description": "Enterprise digital product and AI solutions company.",
+      "isPartOf": { "@id": "https://joetechnologies.io/#website" },
+      "about": { "@id": "https://joetechnologies.io/#organization" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://joetechnologies.io/og-image.png",
+        "width": 1200,
+        "height": 630,
+      },
+    },
+  });
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>

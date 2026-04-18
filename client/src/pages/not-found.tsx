@@ -2,8 +2,15 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import JoeLogo from "@/components/JoeLogo";
+import { useSeo } from "@/hooks/use-seo";
 
 export default function NotFound() {
+  useSeo({
+    title: "404 — Page Not Found",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    noindex: true,
+  });
+
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4"

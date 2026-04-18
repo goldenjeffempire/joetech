@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Brain, ClipboardCheck, Map, PenTool, Search, BarChart3, ArrowRight, Briefcase, RefreshCw, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -55,7 +55,21 @@ const useCases = [
 const techStack = ["LLMs", "MLOps", "TensorFlow", "PyTorch", "Architecture Design", "Cloud (AWS/GCP)"];
 
 export default function AIStrategyPage() {
-  usePageTitle("AI Strategy & Architecture");
+  useSeo({
+    title: "AI Strategy & Architecture Consulting",
+    description: "AI strategy and architecture consulting from JOE Technologies. Define your AI roadmap, choose the right models, architect your data pipelines, and deploy with confidence.",
+    canonical: "/services/ai-strategy",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI Strategy & Architecture",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/ai-strategy",
+      "description": "AI strategy, roadmap planning, and architecture consulting.",
+      "serviceType": "AI Strategy Consulting",
+      "areaServed": "Worldwide",
+    },
+  });
 
   return (
     <div>

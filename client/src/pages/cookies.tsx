@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Cookie, Info, Settings, ShieldCheck, ToggleLeft, Mail } from "lucide-react";
 
 const sections = [
@@ -62,7 +62,12 @@ const cookieTable = [
 ];
 
 export default function CookiePolicy() {
-  usePageTitle("Cookie Policy");
+  useSeo({
+    title: "Cookie Policy",
+    description: "JOE Technologies' Cookie Policy — what cookies we use, why we use them, and how you can manage them.",
+    canonical: "/cookies",
+    noindex: true,
+  });
 
   return (
     <div>

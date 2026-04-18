@@ -5,7 +5,7 @@ import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -293,7 +293,12 @@ const TIER_CONFIG = {
 };
 
 export default function QualifyPage() {
-  usePageTitle("Smart Lead Qualification");
+  useSeo({
+    title: "Smart Lead Qualification — Find Your Fit",
+    description: "Answer a few tailored questions and we'll match you to the right JOE Technologies engagement tier — Startup, High Value, or Enterprise — instantly.",
+    canonical: "/qualify",
+    noindex: true,
+  });
   const { toast } = useToast();
 
   const [step, setStep] = useState(1);

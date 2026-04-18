@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Layers, Monitor, Server, Database, Rocket, ShieldCheck, ArrowRight, Briefcase, RefreshCw, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -65,7 +65,21 @@ function useScrollInView() {
 }
 
 export default function FullStackDevelopment() {
-  usePageTitle("Full-Stack Development");
+  useSeo({
+    title: "Full-Stack Digital Systems Development",
+    description: "Full-stack development by JOE Technologies. End-to-end engineering from database to frontend, API design to cloud deployment. Complete digital systems built for scale.",
+    canonical: "/services/full-stack",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Full-Stack Development",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/full-stack",
+      "description": "End-to-end full-stack digital systems engineering.",
+      "serviceType": "Full-Stack Development",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const included = useScrollInView();
   const cases = useScrollInView();

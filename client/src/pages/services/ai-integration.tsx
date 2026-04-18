@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { Plug, ArrowRight, Search, MessageSquare, Workflow, Webhook, Gauge, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -68,7 +68,21 @@ function useScrollInView() {
 }
 
 export default function AIIntegrationPage() {
-  usePageTitle("AI Integration & APIs");
+  useSeo({
+    title: "AI Integration & API Development",
+    description: "AI integration and API development by JOE Technologies. Connect LLMs, ML models, and AI services to your existing systems via robust, scalable API layers.",
+    canonical: "/services/ai-integration",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI Integration & APIs",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/ai-integration",
+      "description": "AI API integration, LLM connectivity, and ML model deployment APIs.",
+      "serviceType": "AI Integration",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const overview = useScrollInView();
   const included = useScrollInView();

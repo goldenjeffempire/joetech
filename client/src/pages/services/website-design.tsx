@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import {
   MonitorSmartphone, TrendingUp, Search, Zap, Globe, ArrowRight,
   LayoutDashboard, Star, Shield, Target, Palette, Code2,
@@ -102,7 +102,21 @@ const useCases = [
 ];
 
 export default function WebsiteDesign() {
-  usePageTitle("Website Design & Development");
+  useSeo({
+    title: "Website Design & Development",
+    description: "Premium website design and development by JOE Technologies. Fast, beautiful, conversion-optimised websites engineered for businesses and enterprises. Performance-first, built to rank.",
+    canonical: "/services/website-design",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Website Design & Development",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/website-design",
+      "description": "Premium website design and development for businesses and enterprises.",
+      "serviceType": "Website Design & Development",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const caps = useScrollInView();
   const cases = useScrollInView();

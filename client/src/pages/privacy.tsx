@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Shield, Eye, Database, Lock, Globe, Trash2, Mail } from "lucide-react";
 
 const sections = [
@@ -74,7 +74,12 @@ const sections = [
 ];
 
 export default function PrivacyPolicy() {
-  usePageTitle("Privacy Policy");
+  useSeo({
+    title: "Privacy Policy",
+    description: "JOE Technologies' Privacy Policy — how we collect, use, and protect your data. GDPR-compliant and committed to your privacy.",
+    canonical: "/privacy",
+    noindex: true,
+  });
 
   return (
     <div>

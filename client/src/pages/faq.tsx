@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Plus, Minus, ArrowRight, HelpCircle, MessageCircle, Mail, Phone } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
@@ -128,7 +128,27 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 }
 
 export default function FAQPage() {
-  usePageTitle("FAQ");
+  useSeo({
+    title: "Frequently Asked Questions",
+    description: "Find answers to common questions about JOE Technologies' services, pricing, timelines, technology choices, and engagement process. Get clarity before you reach out.",
+    canonical: "/faq",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "url": "https://joetechnologies.io/faq",
+      "name": "JOE Technologies — FAQ",
+      "mainEntity": faqCategories.flatMap((cat) =>
+        cat.faqs.map((faq) => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a,
+          },
+        }))
+      ),
+    },
+  });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

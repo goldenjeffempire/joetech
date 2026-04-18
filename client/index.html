@@ -2,46 +2,73 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- SEO Meta -->
+    <!-- Theme -->
+    <meta name="theme-color" content="#00c8ff" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="msapplication-TileColor" content="#0f172a" />
+
+    <!-- Primary SEO Meta -->
     <title>JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions</title>
-    <meta name="description" content="JOE Technologies builds high-performance apps, websites, automation systems, UI/UX design experiences, digital systems, and AI-powered solutions for businesses and organizations. We design, engineer, and deploy premium digital platforms that convert, automate, scale, and perform in real production environments." />
-    <meta name="keywords" content="app development, website development, automation systems, UI/UX design, digital systems, AI solutions, software engineering, business process optimization, web apps, mobile apps, machine learning, artificial intelligence, JOE Technologies" />
+    <meta name="description" content="JOE Technologies builds high-performance apps, websites, automation systems, UI/UX experiences, and AI-powered solutions for businesses and organisations. We design, engineer, and deploy premium digital platforms that convert, automate, scale, and perform." />
+    <meta name="keywords" content="app development, website development, automation systems, UI/UX design, AI solutions, machine learning, software engineering, full-stack development, MLOps, AI integration, digital systems, JOE Technologies" />
     <meta name="author" content="Jeffery Onome Emuodafevware" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://joetechnologies.io/" />
-    <meta property="og:title" content="JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions" />
-    <meta property="og:description" content="Premium technology company building apps, websites, automation systems, UI/UX experiences, digital systems, and AI-powered solutions for modern businesses and organizations." />
-    <meta property="og:image" content="/og-image.png" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions" />
-    <meta name="twitter:description" content="Premium app, website, automation, UI/UX, digital system, and AI solution development for businesses and organizations." />
+    <!-- Geographic & Language -->
+    <meta name="language" content="English" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://joetechnologies.io/" />
 
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JOE Technologies" />
+    <meta property="og:url" content="https://joetechnologies.io/" />
+    <meta property="og:title" content="JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions" />
+    <meta property="og:description" content="JOE Technologies builds high-performance apps, websites, automation systems, UI/UX experiences, and AI-powered solutions for businesses and organisations." />
+    <meta property="og:image" content="https://joetechnologies.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="JOE Technologies — Enterprise Digital Solutions" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@joetechnologies" />
+    <meta name="twitter:creator" content="@joetechnologies" />
+    <meta name="twitter:title" content="JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions" />
+    <meta name="twitter:description" content="JOE Technologies builds high-performance apps, websites, automation systems, UI/UX experiences, and AI-powered solutions for businesses and organisations." />
+    <meta name="twitter:image" content="https://joetechnologies.io/og-image.png" />
+
+    <!-- Performance: DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Oxanium:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Oxanium:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
 
     <style>
       :root {
         --font-sans: 'Inter', sans-serif;
         --font-mono: 'JetBrains Mono', monospace;
       }
+      /* Critical: prevent flash of unstyled content */
+      html { background: #0f172a; }
+      html:not(.dark) { background: #f8faff; }
     </style>
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data: Site-level -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -51,38 +78,68 @@
           "@id": "https://joetechnologies.io/#organization",
           "name": "JOE Technologies",
           "url": "https://joetechnologies.io",
-          "logo": "https://joetechnologies.io/favicon.png",
-          "description": "Enterprise technology company specializing in app development, website development, digital systems engineering, business automation, and AI-powered solutions.",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://joetechnologies.io/favicon.png",
+            "width": 32,
+            "height": 32
+          },
+          "image": "https://joetechnologies.io/og-image.png",
+          "description": "Enterprise technology company specialising in app development, website development, digital systems engineering, business automation, UI/UX design, and AI-powered solutions.",
           "founder": {
             "@type": "Person",
+            "@id": "https://joetechnologies.io/#founder",
             "name": "Jeffery Onome Emuodafevware",
             "jobTitle": "Founder & Chief AI Architect",
             "email": "jeffemuodafe124@gmail.com",
-            "telephone": "+2349017048791"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "email": "jeffemuodafe124@gmail.com",
             "telephone": "+2349017048791",
-            "availableLanguage": "English"
+            "url": "https://onome-portfolio-ten.vercel.app/?/projects"
           },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "Customer Service",
+              "email": "jeffemuodafe124@gmail.com",
+              "telephone": "+2349017048791",
+              "availableLanguage": "English"
+            }
+          ],
           "sameAs": [
             "https://onome-portfolio-ten.vercel.app/?/projects",
             "https://linkedin.com/company/joe-technologies",
             "https://github.com/joe-technologies",
-            "https://twitter.com/joetechnologies"
+            "https://twitter.com/joetechnologies",
+            "https://instagram.com/joetechnologies"
           ],
           "areaServed": "Worldwide",
-          "serviceType": [
+          "knowsAbout": [
             "App Development",
             "Website Design & Development",
-            "Automation Systems",
-            "Business Process Optimization",
+            "Business Process Automation",
             "UI/UX Design",
-            "Digital Systems Engineering",
-            "AI & Machine Learning Solutions"
-          ]
+            "Artificial Intelligence",
+            "Machine Learning",
+            "MLOps",
+            "Full-Stack Development",
+            "AI Strategy",
+            "Technology Advisory"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Digital & AI Services",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "App Development" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Design & Development" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Process Automation" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom AI & Machine Learning" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Strategy & Architecture" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MLOps & AI Infrastructure" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Integration & APIs" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full-Stack Development" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technology Advisory" } }
+            ]
+          }
         },
         {
           "@type": "WebSite",
@@ -90,40 +147,22 @@
           "url": "https://joetechnologies.io",
           "name": "JOE Technologies",
           "description": "Enterprise digital product and AI solutions company",
-          "publisher": {
-            "@id": "https://joetechnologies.io/#organization"
+          "publisher": { "@id": "https://joetechnologies.io/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://joetechnologies.io/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
           }
-        },
-        {
-          "@type": "ProfessionalService",
-          "name": "JOE Technologies",
-          "image": "https://joetechnologies.io/favicon.png",
-          "telephone": "+2349017048791",
-          "email": "jeffemuodafe124@gmail.com",
-          "priceRange": "$$$$",
-          "knowsAbout": [
-            "Artificial Intelligence",
-            "Machine Learning",
-            "Software Engineering",
-            "Application Development",
-            "Website Design",
-            "UI/UX Design",
-            "Business Process Optimization",
-            "Automation Systems",
-            "Python",
-            "Django",
-            "MLOps",
-            "Natural Language Processing",
-            "Computer Vision",
-            "LLMs",
-            "Full-Stack Development"
-          ]
         }
       ]
     }
     </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#00c8ff;color:#000;padding:8px;z-index:9999;border-radius:4px;font-weight:600;transition:top 0.2s" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

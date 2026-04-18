@@ -79,5 +79,67 @@ export async function registerRoutes(
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
+  app.get("/robots.txt", (_req, res) => {
+    res.setHeader("Content-Type", "text/plain");
+    res.send(
+`User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+Disallow: /qualify
+Disallow: /privacy
+Disallow: /terms
+Disallow: /cookies
+Disallow: /api/
+
+Sitemap: https://joetechnologies.io/sitemap.xml
+`
+    );
+  });
+
+  app.get("/sitemap.xml", (_req, res) => {
+    const BASE = "https://joetechnologies.io";
+    const now = new Date().toISOString().split("T")[0];
+
+    const pages = [
+      { path: "/", priority: "1.0", freq: "weekly" },
+      { path: "/about", priority: "0.8", freq: "monthly" },
+      { path: "/services", priority: "0.9", freq: "monthly" },
+      { path: "/services/app-development", priority: "0.9", freq: "monthly" },
+      { path: "/services/website-design", priority: "0.9", freq: "monthly" },
+      { path: "/services/uiux-design", priority: "0.8", freq: "monthly" },
+      { path: "/services/automation", priority: "0.8", freq: "monthly" },
+      { path: "/services/ai-strategy", priority: "0.9", freq: "monthly" },
+      { path: "/services/custom-ai", priority: "0.9", freq: "monthly" },
+      { path: "/services/mlops", priority: "0.8", freq: "monthly" },
+      { path: "/services/ai-integration", priority: "0.8", freq: "monthly" },
+      { path: "/services/full-stack", priority: "0.8", freq: "monthly" },
+      { path: "/services/advisory", priority: "0.7", freq: "monthly" },
+      { path: "/portfolio", priority: "0.8", freq: "monthly" },
+      { path: "/why-us", priority: "0.7", freq: "monthly" },
+      { path: "/process", priority: "0.7", freq: "monthly" },
+      { path: "/tech-stack", priority: "0.6", freq: "monthly" },
+      { path: "/faq", priority: "0.7", freq: "monthly" },
+      { path: "/contact", priority: "0.8", freq: "monthly" },
+    ];
+
+    const urls = pages
+      .map(
+        ({ path, priority, freq }) =>
+          `  <url>\n    <loc>${BASE}${path}</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>${freq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+      )
+      .join("\n");
+
+    res.setHeader("Content-Type", "application/xml");
+    res.send(
+      `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`
+    );
+  });
+
   return httpServer;
 }

@@ -26,6 +26,7 @@ export default function Layout({ children }: LayoutProps) {
       <Navigation />
       <AnimatePresence mode="wait">
         <motion.main
+          id="main-content"
           key={location}
           initial={pageTransition.initial}
           animate={pageTransition.animate}

@@ -1,11 +1,15 @@
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
 import TechStackSection from "@/components/TechStackSection";
 import PageHero from "@/components/PageHero";
 
 export default function ServicesPage() {
-  usePageTitle("Services");
+  useSeo({
+    title: "Our Services",
+    description: "Explore JOE Technologies' full range of services: App Development, Website Design, UI/UX Design, Business Automation, AI & Machine Learning, Full-Stack Development, and Technology Advisory.",
+    canonical: "/services",
+  });
 
   return (
     <>

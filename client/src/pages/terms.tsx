@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { FileText, Handshake, Scale, AlertTriangle, Banknote, ShieldCheck, RefreshCw, Mail } from "lucide-react";
 
 const sections = [
@@ -87,7 +87,12 @@ const sections = [
 ];
 
 export default function TermsOfService() {
-  usePageTitle("Terms of Service");
+  useSeo({
+    title: "Terms of Service",
+    description: "JOE Technologies' Terms of Service — the terms governing your engagement with us for app development, AI, automation, and other digital services.",
+    canonical: "/terms",
+    noindex: true,
+  });
 
   return (
     <div>

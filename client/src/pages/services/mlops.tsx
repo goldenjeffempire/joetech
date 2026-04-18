@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { CloudCog, Server, GitBranch, Activity, RefreshCw, Database, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -68,7 +68,21 @@ function useScrollInView() {
 }
 
 export default function MLOpsPage() {
-  usePageTitle("MLOps & Infrastructure");
+  useSeo({
+    title: "MLOps & AI Infrastructure",
+    description: "MLOps and AI infrastructure engineering by JOE Technologies. Model serving, monitoring, CI/CD pipelines for ML, and production deployment of machine learning systems.",
+    canonical: "/services/mlops",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "MLOps & AI Infrastructure",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/mlops",
+      "description": "MLOps infrastructure, model serving, monitoring, and production ML deployment.",
+      "serviceType": "MLOps & Infrastructure",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const overview = useScrollInView();
   const included = useScrollInView();

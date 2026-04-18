@@ -66,7 +66,8 @@ client/src/
     CookieConsent.tsx         — GDPR cookie consent banner
   hooks/
     use-theme.ts              — Dark/light theme state (localStorage)
-    use-page-title.ts         — Per-page document title
+    use-page-title.ts         — Per-page document title (legacy, replaced by use-seo)
+    use-seo.ts                — Comprehensive SEO hook: title, description, canonical, OG, Twitter, JSON-LD schema per page
     use-scroll-spy.ts         — Active section detection (legacy, unused)
     use-toast.ts              — Toast notification hook
 server/
@@ -163,6 +164,8 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - `POST /api/leads` — Rate-limited (5/15min), validates with Zod, stores scored lead submission
 - `GET /api/leads` — Returns all lead submissions
 - `GET /api/health` — Health check endpoint
+- `GET /robots.txt` — SEO crawl directives (disallows /qualify, /api, legal pages; blocks GPTBot/ChatGPT-User)
+- `GET /sitemap.xml` — Dynamic XML sitemap with 19 public pages, priorities, and change frequencies
 
 ## Lead Scoring (Smart Qualification)
 Scores are calculated from 4 signals; each contributes points (1–4):

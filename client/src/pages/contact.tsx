@@ -1,10 +1,21 @@
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import ContactSection from "@/components/ContactSection";
 import FAQSection from "@/components/FAQSection";
 import PageHero from "@/components/PageHero";
 
 export default function Contact() {
-  usePageTitle("Contact");
+  useSeo({
+    title: "Contact JOE Technologies",
+    description: "Get in touch with JOE Technologies to discuss your project. Start your app, website, automation, or AI solution today. We respond within 24 hours.",
+    canonical: "/contact",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact JOE Technologies",
+      "url": "https://joetechnologies.io/contact",
+      "description": "Contact JOE Technologies to start your digital project.",
+    },
+  });
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>

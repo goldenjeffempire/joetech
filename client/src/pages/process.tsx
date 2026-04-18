@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import PageHero from "@/components/PageHero";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { Search, PenTool, Cpu, Rocket, TrendingUp, ArrowRight, GitBranch, MessageCircle, Shield, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -83,7 +83,11 @@ const principles = [
 ];
 
 export default function ProcessPage() {
-  usePageTitle("Our Process");
+  useSeo({
+    title: "Our Engineering Process",
+    description: "Learn how JOE Technologies engineers your solution — from discovery and architecture through development, testing, and deployment. A proven 5-step process for quality delivery.",
+    canonical: "/process",
+  });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

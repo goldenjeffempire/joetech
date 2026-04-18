@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import {
   Workflow, Zap, BarChart3, GitBranch, ArrowRight,
   RefreshCw, Database, Bell, Settings, Network,
@@ -102,7 +102,21 @@ const useCases = [
 ];
 
 export default function AutomationSystems() {
-  usePageTitle("Automation Systems");
+  useSeo({
+    title: "Business Process Automation Systems",
+    description: "Business process automation by JOE Technologies. Eliminate manual workflows, integrate APIs, and scale operations automatically. Custom automation pipelines built for your business.",
+    canonical: "/services/automation",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Process Automation Systems",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/automation",
+      "description": "Custom business process automation and workflow engineering.",
+      "serviceType": "Process Automation",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const caps = useScrollInView();
   const cases = useScrollInView();

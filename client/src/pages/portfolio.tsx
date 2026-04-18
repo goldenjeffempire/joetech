@@ -1,9 +1,20 @@
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import PortfolioSection from "@/components/PortfolioSection";
 import PageHero from "@/components/PageHero";
 
 export default function Portfolio() {
-  usePageTitle("Portfolio");
+  useSeo({
+    title: "Portfolio & Case Studies",
+    description: "View JOE Technologies' portfolio of delivered apps, websites, automation systems, AI solutions, and digital platforms for businesses worldwide. Real results, real impact.",
+    canonical: "/portfolio",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "JOE Technologies Portfolio",
+      "description": "Case studies and project portfolio from JOE Technologies.",
+      "url": "https://joetechnologies.io/portfolio",
+    },
+  });
 
   return (
     <div>

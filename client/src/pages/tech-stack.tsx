@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import PageHero from "@/components/PageHero";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { ArrowRight, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -87,7 +87,11 @@ const selectionCriteria = [
 ];
 
 export default function TechStackPage() {
-  usePageTitle("Tech Stack");
+  useSeo({
+    title: "Technology Stack",
+    description: "Explore the technologies JOE Technologies masters: React, Python, Node.js, TypeScript, TensorFlow, LangChain, Kubernetes, PostgreSQL, and more. Built for production at scale.",
+    canonical: "/tech-stack",
+  });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

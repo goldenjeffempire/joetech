@@ -1,7 +1,7 @@
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import { ShieldCheck, BarChart3, GitMerge, MessageSquare, Layers, HeartHandshake, ArrowRight, Target, Users, Zap, Clock, Award, CheckCircle } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
@@ -69,7 +69,11 @@ const commitments = [
 ];
 
 export default function WhyUsPage() {
-  usePageTitle("Why Us");
+  useSeo({
+    title: "Why Choose JOE Technologies",
+    description: "Discover why businesses choose JOE Technologies: enterprise AI expertise, rapid delivery, full-stack capability, production-proven systems, and dedicated long-term partnership.",
+    canonical: "/why-us",
+  });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

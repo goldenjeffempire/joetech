@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import {
   Smartphone, Globe, Layers, Zap, Shield, ArrowRight,
   Code2, Database, RefreshCw, BarChart3, Users, CheckCircle2,
@@ -104,7 +104,21 @@ const useCases = [
 ];
 
 export default function AppDevelopment() {
-  usePageTitle("App Development");
+  useSeo({
+    title: "App Development Services",
+    description: "JOE Technologies builds native mobile apps and web applications for iOS, Android, and browser platforms. Cross-platform, performant, and production-ready from day one.",
+    canonical: "/services/app-development",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "App Development",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/app-development",
+      "description": "Native and cross-platform mobile app development for iOS and Android, plus web application engineering.",
+      "serviceType": "App Development",
+      "areaServed": "Worldwide",
+    },
+  });
   const hero = useScrollInView();
   const caps = useScrollInView();
   const cases = useScrollInView();

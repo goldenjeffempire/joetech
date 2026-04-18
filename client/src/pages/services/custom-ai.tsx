@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { usePageTitle } from "@/hooks/use-page-title";
+import { useSeo } from "@/hooks/use-seo";
 import {
   Brain, ArrowRight, Cpu, MessageSquare, Eye, BarChart3, Bot, Layers,
   Zap, Shield, Target, Code2, TrendingUp, Clock, CheckCircle2,
@@ -144,7 +144,21 @@ function useScrollInView() {
 }
 
 export default function CustomAIPage() {
-  usePageTitle("AI & Machine Learning Solutions");
+  useSeo({
+    title: "Custom AI & Machine Learning Development",
+    description: "Custom AI and machine learning development by JOE Technologies. NLP, computer vision, predictive analytics, LLMs, and production ML systems built for your specific use case.",
+    canonical: "/services/custom-ai",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Custom AI & Machine Learning Solutions",
+      "provider": { "@id": "https://joetechnologies.io/#organization" },
+      "url": "https://joetechnologies.io/services/custom-ai",
+      "description": "Custom AI and ML development including NLP, computer vision, and production ML systems.",
+      "serviceType": "AI & Machine Learning Development",
+      "areaServed": "Worldwide",
+    },
+  });
 
   const { ref: capRef, isInView: capInView } = useScrollInView();
   const { ref: useCaseRef, isInView: useCaseInView } = useScrollInView();
