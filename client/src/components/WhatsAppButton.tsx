@@ -5,10 +5,10 @@ import { SiWhatsapp } from "react-icons/si";
 
 const numbers = [
   {
-    label: "Jeffery (Primary)",
+    label: "JOE Technologies",
     number: "09017078791",
     wa: "https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
-    tag: "Fastest response",
+    tag: "",
     tagColor: "#00ff88",
   },
   {
@@ -136,16 +136,18 @@ export default function WhatsAppButton() {
                       <p className="text-white/80 text-sm font-semibold leading-tight">{n.label}</p>
                       <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                         <p className="text-white/30 text-xs font-mono">{n.number}</p>
-                        <span
-                          className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full leading-none"
-                          style={{
-                            background: `${n.tagColor}12`,
-                            color: n.tagColor,
-                            border: `1px solid ${n.tagColor}22`,
-                          }}
-                        >
-                          {n.tag}
-                        </span>
+                        {n.tag && (
+                          <span
+                            className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full leading-none"
+                            style={{
+                              background: `${n.tagColor}12`,
+                              color: n.tagColor,
+                              border: `1px solid ${n.tagColor}22`,
+                            }}
+                          >
+                            {n.tag}
+                          </span>
+                        )}
                       </div>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-[#25d366]/30 group-hover:text-[#25d366] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
