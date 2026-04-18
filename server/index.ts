@@ -68,16 +68,32 @@ app.use((req, res, next) => {
   next();
 });
 
-// Instant ping/warmup endpoint — always responds in <1ms, prevents cold-start
-// screen on Render by giving the load balancer a fast health check target.
+// Instant ping/warmup endpoint — always responds immediately, even before full
+// setup is complete, so Render health checks and keep-alive pings never block.
 app.get("/ping", (_req, res) => {
   res.status(200).send("ok");
 });
 
+// ── Readiness gate ──────────────────────────────────────────────────────────
+// The server starts listening before async setup (routes + Vite) completes so
+// the OS socket is open as fast as possible. Any request that arrives before
+// setup is done is held here and released the moment setup finishes.
+let _setupComplete = false;
+const _waitQueue: Array<() => void> = [];
+
+function markReady() {
+  _setupComplete = true;
+  _waitQueue.splice(0).forEach((fn) => fn());
+}
+
+app.use((req, _res, next) => {
+  if (_setupComplete) return next();
+  _waitQueue.push(next);
+});
+// ────────────────────────────────────────────────────────────────────────────
+
 // ALWAYS serve the app on the port specified in the environment variable PORT.
 // Other ports are firewalled. Default to 5000 if not specified.
-// Start listening FIRST so Render/the host sees a live server immediately,
-// then finish the async route/Vite setup in the background.
 const port = parseInt(process.env.PORT || "5000", 10);
 httpServer.listen(
   {
@@ -91,11 +107,11 @@ httpServer.listen(
 );
 
 // Self-ping keep-alive — production only.
-// Renders free tier spins down a service after ~15 minutes of inactivity.
+// Render free tier spins down a service after ~15 minutes of inactivity.
 // Every 4 minutes the server pings its own /ping endpoint so Render never
 // considers the service idle, eliminating cold-start delays entirely.
 if (isProduction) {
-  const PING_INTERVAL_MS = 4 * 60 * 1000; // 4 minutes
+  const PING_INTERVAL_MS = 4 * 60 * 1000;
   const selfUrl = process.env.RENDER_EXTERNAL_URL
     ? `${process.env.RENDER_EXTERNAL_URL}/ping`
     : `http://localhost:${port}/ping`;
@@ -112,9 +128,9 @@ if (isProduction) {
   log(`keep-alive enabled → pinging ${selfUrl} every 4 min`, "keepalive");
 }
 
-// Finish setup asynchronously — routes and Vite middleware are registered
-// after the server is already accepting connections, so no request ever
-// arrives before there is something listening on the socket.
+// Finish setup asynchronously — routes and Vite/static middleware are
+// registered after the socket is open. The readiness gate above holds any
+// request that arrives before this block completes, then releases them.
 (async () => {
   const { registerRoutes } = await import("./routes");
   await registerRoutes(httpServer, app);
@@ -141,4 +157,8 @@ if (isProduction) {
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
+
+  // Release any requests that arrived before setup completed.
+  markReady();
+  log("setup complete — serving requests", "express");
 })();
