@@ -121,7 +121,7 @@ export default function MLOpsPage() {
                 Service
               </span>
             </div>
-            <h1 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mb-4" data-testid="text-mlops-title">
+            <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mb-4" data-testid="text-mlops-title">
               MLOps &{" "}
               <span
                 style={{

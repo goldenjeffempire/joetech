@@ -209,12 +209,50 @@
 }
 
 @layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   * {
     @apply border-border;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    overflow-x: hidden;
+    min-height: 100dvh;
+  }
+
+  /* Accessible focus rings */
+  :focus-visible {
+    outline: 2px solid rgba(26, 111, 255, 0.7);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Smooth image rendering */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -500,5 +538,64 @@
   .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
+  }
+
+  /* ── Glassmorphism utility ── */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ── Minimum touch target ── */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Disable hover effects on touch devices ── */
+  @media (hover: none) and (pointer: coarse) {
+    .hover-elevate::after { display: none; }
+    .hover-elevate-2::after { display: none; }
+  }
+
+  /* ── Section heading responsive scaling ── */
+  .section-heading {
+    font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Responsive prose text ── */
+  .section-body {
+    font-size: clamp(0.9375rem, 2vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  /* ── Card glassmorphism for dark mode ── */
+  .glass-card {
+    background: var(--joe-card);
+    border: 1px solid var(--joe-card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* ── Animate counter utility ── */
+  @keyframes slide-in-from-bottom {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-slide-in {
+    animation: slide-in-from-bottom 0.5s ease forwards;
   }
 }

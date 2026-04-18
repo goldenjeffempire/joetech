@@ -143,7 +143,7 @@ export default function AutomationSystems() {
               <Workflow className="w-4 h-4" style={{ color: accent }} />
               <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>Core Service Pillar</span>
             </div>
-            <h1 className="font-heading font-bold text-5xl lg:text-6xl text-joe-text mb-5 leading-tight" data-testid="text-automation-title">
+            <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl text-joe-text mb-5 leading-tight" data-testid="text-automation-title">
               Automation Systems &{" "}
               <span style={{ background: `linear-gradient(135deg, ${accent}, #0066ff, #00c8ff)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Process Optimization

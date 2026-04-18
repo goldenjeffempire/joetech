@@ -159,6 +159,17 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - **Default theme**: Dark mode (defaults to `dark` class on `documentElement`)
 - **Noise overlay**: `::before` pseudo-element on body for subtle texture
 
+## Responsive Design System
+- **Breakpoints**: `xs:480px` (custom), `sm:640px`, `md:768px`, `lg:1024px`, `xl:1280px` in Tailwind config
+- **Section headings**: Always `text-3xl sm:text-4xl lg:text-5xl` (never just `text-4xl lg:text-5xl`)
+- **Hero h1 headings (service pages)**: `text-3xl sm:text-5xl lg:text-6xl` or `lg:text-7xl`
+- **Section vertical padding**: `py-20 sm:py-24 lg:py-32` (never just `py-24 lg:py-32`)
+- **Hero section grid**: `md:grid-cols-2` (right panel shows at tablet and up, not just `lg:`)
+- **Services preview grid**: `grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5`
+- **Mini tags on mobile**: show 4 primary tags always, 3 secondary tags `hidden sm:flex`
+- **Global CSS utilities**: `.glass-card`, `.touch-target` (44px min), `.section-heading`, `.focus-ring`, reduced-motion support, smooth-scroll
+- **Overflow**: `overflow-x: hidden` on html/body to prevent horizontal scroll on mobile
+
 ## API Endpoints
 - `POST /api/contact` — Rate-limited (5/15min), honeypot checked, validates with Zod
 - `GET /api/contacts` — Returns all contact submissions

@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="relative py-24 lg:py-32 overflow-hidden"
+      className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-2)" }}
     >
       <div
@@ -67,7 +67,7 @@ export default function TestimonialsSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Client Voices</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Trusted by Leaders.{" "}
             <span className="text-gradient-blue">Proven by Results.</span>
           </h2>

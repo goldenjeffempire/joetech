@@ -95,7 +95,7 @@ function NeuralBackground() {
     window.addEventListener("resize", resize);
 
     const nodes: Array<{ x: number; y: number; vx: number; vy: number; r: number }> = [];
-    const count = 55;
+    const count = window.innerWidth < 768 ? 24 : window.innerWidth < 1024 ? 36 : 55;
     for (let i = 0; i < count; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
@@ -406,24 +406,25 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none"
         style={{ background: "radial-gradient(circle, #7b2ee0 0%, transparent 70%)", opacity: 0.06 }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          <div className="flex flex-col gap-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div className="grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div className="flex flex-col gap-6 sm:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 w-fit rounded-full px-4 py-2 relative overflow-hidden"
+              className="inline-flex items-center gap-2 xs:gap-2.5 w-fit rounded-full px-3 xs:px-4 py-1.5 xs:py-2 relative overflow-hidden"
               style={{
                 background: "rgba(0,212,255,0.08)",
                 border: "1px solid rgba(0,212,255,0.25)",
               }}
             >
-              <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" />
-              <span className="text-[#00d4ff] text-sm font-medium tracking-wider uppercase font-mono">
-                Enterprise Digital Product Engineering
+              <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse flex-shrink-0" />
+              <span className="text-[#00d4ff] text-xs xs:text-sm font-medium tracking-wider uppercase font-mono whitespace-nowrap">
+                <span className="hidden sm:inline">Enterprise Digital Product Engineering</span>
+                <span className="sm:hidden">Digital Product Engineering</span>
               </span>
-              <span className="text-[#00d4ff]/40 text-xs font-mono">// v2.0</span>
+              <span className="text-[#00d4ff]/40 text-xs font-mono hidden xs:inline">// v2.0</span>
             </motion.div>
 
             <motion.div
@@ -491,24 +492,24 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-2 xs:gap-3"
             >
               {[
                 { icon: Smartphone, text: "App Development" },
                 { icon: MonitorSmartphone, text: "Web Platforms" },
                 { icon: Network, text: "Digital Systems" },
                 { icon: Brain, text: "AI Solutions" },
-                { icon: Shield, text: "Enterprise-Grade" },
-                { icon: Zap, text: "High Performance" },
-                { icon: Globe, text: "Global Scale" },
-              ].map(({ icon: Icon, text }, i) => (
+                { icon: Shield, text: "Enterprise-Grade", hideMobile: true },
+                { icon: Zap, text: "High Performance", hideMobile: true },
+                { icon: Globe, text: "Global Scale", hideMobile: true },
+              ].map(({ icon: Icon, text, hideMobile }, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-md text-joe-text/50 text-xs font-mono"
+                  className={`flex items-center gap-2 px-2.5 xs:px-3 py-1.5 rounded-md text-joe-text/50 text-xs font-mono${hideMobile ? " hidden sm:flex" : ""}`}
                   style={{ background: "var(--joe-overlay)", border: "1px solid var(--joe-card-border)" }}
                 >
-                  <Icon className="w-3 h-3 text-[#00d4ff]" />
-                  {text}
+                  <Icon className="w-3 h-3 text-[#00d4ff] flex-shrink-0" />
+                  <span className="whitespace-nowrap">{text}</span>
                 </div>
               ))}
             </motion.div>
@@ -538,7 +539,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-            className="hidden lg:block"
+            className="hidden md:block"
           >
             <div className="relative">
               <div

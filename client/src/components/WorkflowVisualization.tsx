@@ -218,7 +218,7 @@ export default function WorkflowVisualization() {
   const allSteps: WorkflowStep[] = [wf.trigger, ...wf.process, wf.output];
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+    <section ref={ref} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -246,7 +246,7 @@ export default function WorkflowVisualization() {
             <Workflow className="w-3.5 h-3.5 text-[#0066ff]" />
             <span className="text-[#0066ff] text-xs font-mono uppercase tracking-widest">Workflow Engine</span>
           </div>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text">
             Automation{" "}
             <span style={{
               background: "linear-gradient(135deg, #0066ff, #7c3aed)",

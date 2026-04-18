@@ -111,7 +111,7 @@ export default function SimulationDashboard() {
   }, [logs]);
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
+    <section ref={ref} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -139,7 +139,7 @@ export default function SimulationDashboard() {
             <div className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse" />
             <span className="text-[#00c8ff] text-xs font-mono uppercase tracking-widest">Live System Monitor</span>
           </div>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text">
             Real-Time{" "}
             <span style={{
               background: "linear-gradient(135deg, #00c8ff, #0066ff)",

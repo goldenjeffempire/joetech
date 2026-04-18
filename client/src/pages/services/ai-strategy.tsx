@@ -101,7 +101,7 @@ export default function AIStrategyPage() {
             >
               <Brain className="w-7 h-7" style={{ color: accent }} />
             </div>
-            <h1 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mb-4" data-testid="text-service-title">
+            <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mb-4" data-testid="text-service-title">
               AI Strategy &{" "}
               <span
                 style={{

@@ -152,7 +152,7 @@ export default function AppDevelopment() {
               <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>Core Service Pillar</span>
             </div>
             <h1
-              className="font-heading font-bold text-5xl lg:text-6xl text-joe-text mb-5 leading-tight"
+              className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl text-joe-text mb-5 leading-tight"
               data-testid="text-app-dev-title"
             >
               Application{" "}

@@ -218,7 +218,7 @@ export default function ServiceBuilderSection() {
     (step === 2 && selectedScale);
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+    <section ref={ref} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -250,7 +250,7 @@ export default function ServiceBuilderSection() {
             <Zap className="w-3.5 h-3.5 text-[#7c3aed]" />
             <span className="text-[#7c3aed] text-xs font-mono uppercase tracking-widest">Interactive Builder</span>
           </div>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text">
             Build Your{" "}
             <span style={{
               background: "linear-gradient(135deg, #7c3aed, #00c8ff)",

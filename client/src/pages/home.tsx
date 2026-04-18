@@ -346,7 +346,7 @@ function ImpactMetrics() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.55, delay: i * 0.08 }}
-                className="flex flex-col items-center text-center gap-3 p-6 rounded-xl border hover-elevate cursor-default"
+                className="flex flex-col items-center text-center gap-3 p-4 sm:p-6 rounded-xl border hover-elevate cursor-default"
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
                 data-testid={`impact-metric-${i}`}
               >
@@ -357,7 +357,7 @@ function ImpactMetrics() {
                   <Icon className="w-5 h-5" style={{ color: m.accent }} />
                 </div>
                 <span
-                  className="font-heading font-bold text-3xl lg:text-4xl"
+                  className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl"
                   style={{ color: m.accent }}
                 >
                   {m.value}
@@ -379,7 +379,7 @@ function ServicesPreview() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #1a6fff 0%, transparent 70%)", opacity: 0.08 }}
@@ -394,7 +394,7 @@ function ServicesPreview() {
           className="text-center mb-16"
         >
           <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Core Service Pillars</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Products That{" "}
             <span className="text-gradient-blue">Move Businesses Forward</span>
           </h2>
@@ -403,7 +403,7 @@ function ServicesPreview() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {previewServices.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -574,7 +574,7 @@ function DigitalEcosystemSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 lg:py-32 overflow-hidden"
+      className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-3)" }}
     >
       <div
@@ -598,7 +598,7 @@ function DigitalEcosystemSection() {
           className="text-center mb-16"
         >
           <span className="text-[#7b2ee0] font-mono text-sm uppercase tracking-widest">Digital Infrastructure</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Full-Stack{" "}
             <span className="text-gradient-purple">Digital Ecosystem</span>
           </h2>
@@ -783,7 +783,7 @@ function ExperienceVisualizationSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -806,7 +806,7 @@ function ExperienceVisualizationSection() {
             transition={{ duration: 0.7 }}
           >
             <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Homepage Visualization</span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3 leading-tight">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3 leading-tight">
               A Digital Command Center for{" "}
               <span className="text-gradient-cyber">Modern Growth</span>
             </h2>
@@ -952,7 +952,7 @@ function PlatformArchitectureSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -969,7 +969,7 @@ function PlatformArchitectureSection() {
             className="flex flex-col gap-6"
           >
             <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Enterprise Platform Thinking</span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text leading-tight">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text leading-tight">
               Built like a product.
               <br />
               <span className="text-gradient-cyber">Engineered like infrastructure.</span>
@@ -1073,7 +1073,7 @@ function ProcessSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -1083,7 +1083,7 @@ function ProcessSection() {
           className="text-center mb-16"
         >
           <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Delivery System</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             From Vision to{" "}
             <span className="text-gradient-cyber">Production</span>
           </h2>
@@ -1167,7 +1167,7 @@ function AICapabilitiesSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -1194,7 +1194,7 @@ function AICapabilitiesSection() {
           className="text-center mb-16"
         >
           <span className="text-[#7b2ee0] font-mono text-sm uppercase tracking-widest">Core Capabilities</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Intelligence Built Into{" "}
             <span style={{
               background: "linear-gradient(135deg, #7b2ee0, #1a6fff, #00d4ff)",
@@ -1290,7 +1290,7 @@ function PortfolioHighlights() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
       <div
         className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)", opacity: 0.07 }}
@@ -1305,7 +1305,7 @@ function PortfolioHighlights() {
           className="text-center mb-16"
         >
           <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Systems That Deliver{" "}
             <span className="text-gradient-blue">Real Results</span>
           </h2>
@@ -1420,7 +1420,7 @@ function TechEcosystemSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+    <section className="relative py-16 sm:py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #7b2ee0 0%, transparent 70%)", opacity: 0.06 }}
@@ -1435,7 +1435,7 @@ function TechEcosystemSection() {
           className="text-center mb-14"
         >
           <span className="text-[#7b2ee0] font-mono text-sm uppercase tracking-widest">Our Stack</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Technology{" "}
             <span style={{
               background: "linear-gradient(135deg, #7b2ee0, #1a6fff)",
@@ -1565,7 +1565,7 @@ function CTABanner() {
             <span className="text-[#00d4ff] text-xs font-mono uppercase tracking-widest">Open to New Projects — 2026</span>
           </div>
 
-          <h2 className="font-heading font-bold text-4xl lg:text-6xl text-joe-text leading-tight max-w-4xl">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-6xl text-joe-text leading-tight max-w-4xl">
             Ready to Build Something{" "}
             <span className="text-gradient-cyber">Intelligent?</span>
           </h2>

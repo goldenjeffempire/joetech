@@ -202,7 +202,7 @@ export default function CustomAIPage() {
               </span>
             </div>
 
-            <h1 className="font-heading font-bold text-5xl lg:text-7xl text-joe-text mb-6 leading-[0.95] tracking-tight" data-testid="heading-custom-ai">
+            <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-7xl text-joe-text mb-6 leading-[0.95] tracking-tight" data-testid="heading-custom-ai">
               AI &amp; Machine{" "}
               <span
                 style={{
@@ -278,7 +278,7 @@ export default function CustomAIPage() {
         </div>
       </section>
 
-      <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+      <section className="relative py-16 sm:py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div
           className="absolute top-0 right-0 w-[500px] h-[400px] blur-3xl pointer-events-none"
           style={{ background: `radial-gradient(circle, ${accent} 0%, transparent 70%)`, opacity: 0.05 }}
@@ -294,7 +294,7 @@ export default function CustomAIPage() {
             <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
               What We Build
             </span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               AI Capabilities &amp;{" "}
               <span className="text-gradient-green">Core Expertise</span>
             </h2>
@@ -343,7 +343,7 @@ export default function CustomAIPage() {
         </div>
       </section>
 
-      <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+      <section className="relative py-16 sm:py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -363,7 +363,7 @@ export default function CustomAIPage() {
             <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accentSecondary }}>
               Real Applications
             </span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               AI Use Cases That{" "}
               <span className="text-gradient-blue">Drive Results</span>
             </h2>
@@ -409,7 +409,7 @@ export default function CustomAIPage() {
         </div>
       </section>
 
-      <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+      <section className="relative py-16 sm:py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={delRef}
@@ -421,7 +421,7 @@ export default function CustomAIPage() {
             <span className="font-mono text-sm uppercase tracking-widest" style={{ color: accent }}>
               How We Work
             </span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               From Idea to{" "}
               <span className="text-gradient-green">Production AI</span>
             </h2>
