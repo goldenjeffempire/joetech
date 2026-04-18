@@ -29,7 +29,7 @@ const previewServices = [
     title: "App Development",
     description: "Premium web and mobile apps engineered for speed, usability, conversion, and long-term growth across customer, staff, and operational workflows.",
     tags: ["Web Apps", "Mobile Apps", "SaaS"],
-    accent: "#00c8ff",
+    accent: "#00d4ff",
     slug: "app-development",
     badge: "Core Pillar",
   },
@@ -38,7 +38,7 @@ const previewServices = [
     title: "Website Design & Development",
     description: "Immersive, SEO-ready websites and digital storefronts that communicate trust, move users through clear journeys, and convert attention into action.",
     tags: ["Brand Sites", "SEO", "Conversion"],
-    accent: "#0066ff",
+    accent: "#1a6fff",
     slug: "website-design",
     badge: null,
   },
@@ -47,7 +47,7 @@ const previewServices = [
     title: "Automation Systems",
     description: "Business process optimization, workflow automation, integrations, reporting systems, and internal tools that reduce manual work and improve visibility.",
     tags: ["Workflows", "Dashboards", "Ops"],
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
     slug: "automation",
     badge: null,
   },
@@ -74,7 +74,7 @@ const previewServices = [
 const previewCaseStudies = [
   {
     tag: "SaaS Platform",
-    tagColor: "#00c8ff",
+    tagColor: "#00d4ff",
     title: "Enterprise Operations App",
     client: "Growing Service Organization",
     description: "Built a high-performance internal operations platform with role-based dashboards, automated reporting, team workflows, and AI-assisted task routing.",
@@ -84,7 +84,7 @@ const previewCaseStudies = [
       { icon: TrendingUp, value: "91%", label: "Bug catch rate" },
       { icon: Zap, value: "4x", label: "Deploy frequency" },
     ],
-    accent: "#00c8ff",
+    accent: "#00d4ff",
   },
   {
     tag: "AI Automation",
@@ -108,21 +108,21 @@ const processSteps = [
     title: "Business Discovery",
     description: "Clarify goals, users, bottlenecks, data flows, and the digital product opportunities with the strongest return.",
     icon: BarChart3,
-    accent: "#00c8ff",
+    accent: "#00d4ff",
   },
   {
     number: "02",
     title: "Product Architecture",
     description: "Design UX flows, system modules, data models, APIs, integrations, AI layers, and a scalable deployment plan.",
     icon: GitBranch,
-    accent: "#0066ff",
+    accent: "#1a6fff",
   },
   {
     number: "03",
     title: "Build & Integrate",
     description: "Engineer the frontend, backend, automations, dashboards, and AI capabilities with clear release milestones.",
     icon: Cpu,
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
   },
   {
     number: "04",
@@ -134,10 +134,10 @@ const processSteps = [
 ];
 
 const impactMetrics = [
-  { value: "50+", label: "Digital Products Delivered", icon: Database, accent: "#00c8ff" },
+  { value: "50+", label: "Digital Products Delivered", icon: Database, accent: "#00d4ff" },
   { value: "98%", label: "Client Satisfaction Rate", icon: CheckCircle2, accent: "#00ff88" },
-  { value: "10x", label: "Average Workflow Gains", icon: Zap, accent: "#0066ff" },
-  { value: "5", label: "Core Service Pillars", icon: TrendingUp, accent: "#7c3aed" },
+  { value: "10x", label: "Average Workflow Gains", icon: Zap, accent: "#1a6fff" },
+  { value: "5", label: "Core Service Pillars", icon: TrendingUp, accent: "#7b2ee0" },
 ];
 
 const platformLayers = [
@@ -145,19 +145,19 @@ const platformLayers = [
     icon: Target,
     title: "Conversion Strategy",
     description: "Positioning, offer clarity, CTAs, analytics, and journeys built to convert traffic into qualified opportunities.",
-    accent: "#00c8ff",
+    accent: "#00d4ff",
   },
   {
     icon: Boxes,
     title: "Modular Product Systems",
     description: "Reusable frontend patterns, scalable backend services, clean data models, and extensible feature modules.",
-    accent: "#0066ff",
+    accent: "#1a6fff",
   },
   {
     icon: Bot,
     title: "AI & Automation Layer",
     description: "AI assistants, workflow automation, intelligent search, document processing, and decision-support systems.",
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
   },
   {
     icon: Lock,
@@ -168,9 +168,9 @@ const platformLayers = [
 ];
 
 const experienceSignals = [
-  { label: "Apps", value: "Cross-platform", icon: Smartphone, accent: "#00c8ff" },
-  { label: "Websites", value: "SEO + conversion", icon: MonitorSmartphone, accent: "#0066ff" },
-  { label: "Automation", value: "Workflow engines", icon: Workflow, accent: "#7c3aed" },
+  { label: "Apps", value: "Cross-platform", icon: Smartphone, accent: "#00d4ff" },
+  { label: "Websites", value: "SEO + conversion", icon: MonitorSmartphone, accent: "#1a6fff" },
+  { label: "Automation", value: "Workflow engines", icon: Workflow, accent: "#7b2ee0" },
   { label: "UI/UX", value: "Design systems", icon: Palette, accent: "#f59e0b" },
   { label: "AI/ML", value: "Intelligence layer", icon: Brain, accent: "#00ff88" },
 ];
@@ -180,7 +180,7 @@ const aiCapabilities = [
     icon: MessageSquare,
     title: "Natural Language Processing",
     description: "Custom LLMs, summarization engines, semantic search, and intelligent chat systems trained on your domain data.",
-    accent: "#00c8ff",
+    accent: "#00d4ff",
     stat: "99.2%",
     statLabel: "Intent accuracy",
     bars: [0.9, 0.75, 0.95, 0.6, 0.85, 0.7],
@@ -189,7 +189,7 @@ const aiCapabilities = [
     icon: Eye,
     title: "Computer Vision",
     description: "Object detection, classification, OCR, and visual quality inspection pipelines for industrial and consumer use cases.",
-    accent: "#0066ff",
+    accent: "#1a6fff",
     stat: "< 40ms",
     statLabel: "Inference latency",
     bars: [0.65, 0.88, 0.72, 0.94, 0.8, 0.91],
@@ -198,7 +198,7 @@ const aiCapabilities = [
     icon: TrendingUp,
     title: "Predictive Analytics",
     description: "Time-series forecasting, anomaly detection, churn prediction — models that surface insights before problems arise.",
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
     stat: "91%",
     statLabel: "Forecast accuracy",
     bars: [0.55, 0.7, 0.82, 0.76, 0.91, 0.88],
@@ -235,7 +235,7 @@ const aiCapabilities = [
 const techCategories = [
   {
     label: "AI / ML",
-    accent: "#00c8ff",
+    accent: "#00d4ff",
     techs: [
       { Icon: SiPython, name: "Python" },
       { Icon: SiPytorch, name: "PyTorch" },
@@ -245,7 +245,7 @@ const techCategories = [
   },
   {
     label: "Backend",
-    accent: "#0066ff",
+    accent: "#1a6fff",
     techs: [
       { Icon: SiDjango, name: "Django" },
       { Icon: SiFastapi, name: "FastAPI" },
@@ -255,7 +255,7 @@ const techCategories = [
   },
   {
     label: "Frontend",
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
     techs: [
       { Icon: SiReact, name: "React" },
       { Icon: SiTypescript, name: "TypeScript" },
@@ -333,7 +333,7 @@ function ImpactMetrics() {
     >
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #0066ff 0%, transparent 70%)", opacity: 0.07 }}
+        style={{ background: "radial-gradient(ellipse, #1a6fff 0%, transparent 70%)", opacity: 0.07 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -382,7 +382,7 @@ function ServicesPreview() {
     <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #0066ff 0%, transparent 70%)", opacity: 0.08 }}
+        style={{ background: "radial-gradient(ellipse, #1a6fff 0%, transparent 70%)", opacity: 0.08 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,7 +393,7 @@ function ServicesPreview() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Core Service Pillars</span>
+          <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Core Service Pillars</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Products That{" "}
             <span className="text-gradient-blue">Move Businesses Forward</span>
@@ -505,7 +505,8 @@ function ServicesPreview() {
           <Link href="/services">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#00c8ff]/15 hover:shadow-[#00c8ff]/30 transition-shadow duration-300"
+              className="font-semibold tracking-wide gap-2 text-white border-0 transition-all duration-300 hover:scale-[1.02]"
+              style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)", boxShadow: "0 8px 30px rgba(26,111,255,0.25)" }}
               data-testid="button-home-services-cta"
             >
               View All Services
@@ -526,7 +527,7 @@ function DigitalEcosystemSection() {
     {
       id: "frontend",
       label: "Frontend Layer",
-      color: "#00c8ff",
+      color: "#00d4ff",
       items: ["React Apps", "Mobile UIs", "Design Systems", "Dashboards"],
       icon: MonitorSmartphone,
       y: 0,
@@ -534,7 +535,7 @@ function DigitalEcosystemSection() {
     {
       id: "api",
       label: "API & Logic Layer",
-      color: "#0066ff",
+      color: "#1a6fff",
       items: ["REST APIs", "Webhooks", "Auth", "Real-time"],
       icon: Code2,
       y: 1,
@@ -542,7 +543,7 @@ function DigitalEcosystemSection() {
     {
       id: "ai",
       label: "AI & Intelligence",
-      color: "#7c3aed",
+      color: "#7b2ee0",
       items: ["LLMs", "ML Models", "Agents", "NLP"],
       icon: Brain,
       y: 2,
@@ -558,16 +559,16 @@ function DigitalEcosystemSection() {
   ];
 
   const nodes = [
-    { label: "Web App", x: "12%", y: "14%", color: "#00c8ff", size: "lg" },
-    { label: "Mobile App", x: "35%", y: "8%", color: "#00c8ff", size: "sm" },
-    { label: "API Gateway", x: "60%", y: "20%", color: "#0066ff", size: "md" },
-    { label: "AI Engine", x: "80%", y: "12%", color: "#7c3aed", size: "lg" },
+    { label: "Web App", x: "12%", y: "14%", color: "#00d4ff", size: "lg" },
+    { label: "Mobile App", x: "35%", y: "8%", color: "#00d4ff", size: "sm" },
+    { label: "API Gateway", x: "60%", y: "20%", color: "#1a6fff", size: "md" },
+    { label: "AI Engine", x: "80%", y: "12%", color: "#7b2ee0", size: "lg" },
     { label: "Data Lake", x: "20%", y: "72%", color: "#00ff88", size: "md" },
-    { label: "ML Pipeline", x: "55%", y: "68%", color: "#7c3aed", size: "sm" },
+    { label: "ML Pipeline", x: "55%", y: "68%", color: "#7b2ee0", size: "sm" },
     { label: "CDN", x: "78%", y: "75%", color: "#00ff88", size: "sm" },
     { label: "Automation", x: "42%", y: "48%", color: "#f59e0b", size: "lg" },
-    { label: "Dashboard", x: "10%", y: "42%", color: "#0066ff", size: "sm" },
-    { label: "Auth Service", x: "88%", y: "48%", color: "#00c8ff", size: "sm" },
+    { label: "Dashboard", x: "10%", y: "42%", color: "#1a6fff", size: "sm" },
+    { label: "Auth Service", x: "88%", y: "48%", color: "#00d4ff", size: "sm" },
   ];
 
   return (
@@ -586,7 +587,7 @@ function DigitalEcosystemSection() {
       />
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #0066ff 0%, transparent 70%)", opacity: 0.07 }}
+        style={{ background: "radial-gradient(ellipse, #1a6fff 0%, transparent 70%)", opacity: 0.07 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -596,7 +597,7 @@ function DigitalEcosystemSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#7c3aed] font-mono text-sm uppercase tracking-widest">Digital Infrastructure</span>
+          <span className="text-[#7b2ee0] font-mono text-sm uppercase tracking-widest">Digital Infrastructure</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Full-Stack{" "}
             <span className="text-gradient-purple">Digital Ecosystem</span>
@@ -617,7 +618,7 @@ function DigitalEcosystemSection() {
               className="relative rounded-2xl border overflow-hidden"
               style={{
                 background: "linear-gradient(145deg, rgba(8,13,28,0.97), rgba(3,8,18,0.99))",
-                borderColor: "rgba(0,200,255,0.12)",
+                borderColor: "rgba(0,212,255,0.12)",
                 boxShadow: "0 30px 80px rgba(0,0,0,0.45)",
                 minHeight: "420px",
               }}
@@ -636,17 +637,17 @@ function DigitalEcosystemSection() {
               <div className="relative" style={{ height: "360px" }}>
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" aria-hidden="true">
                   {[
-                    { x1: "12", y1: "14", x2: "60", y2: "20", color: "#00c8ff" },
-                    { x1: "35", y1: "8", x2: "60", y2: "20", color: "#00c8ff" },
-                    { x1: "60", y1: "20", x2: "80", y2: "12", color: "#7c3aed" },
+                    { x1: "12", y1: "14", x2: "60", y2: "20", color: "#00d4ff" },
+                    { x1: "35", y1: "8", x2: "60", y2: "20", color: "#00d4ff" },
+                    { x1: "60", y1: "20", x2: "80", y2: "12", color: "#7b2ee0" },
                     { x1: "60", y1: "20", x2: "42", y2: "48", color: "#f59e0b" },
-                    { x1: "80", y1: "12", x2: "42", y2: "48", color: "#7c3aed" },
-                    { x1: "80", y1: "12", x2: "88", y2: "48", color: "#00c8ff" },
+                    { x1: "80", y1: "12", x2: "42", y2: "48", color: "#7b2ee0" },
+                    { x1: "80", y1: "12", x2: "88", y2: "48", color: "#00d4ff" },
                     { x1: "42", y1: "48", x2: "20", y2: "72", color: "#00ff88" },
-                    { x1: "42", y1: "48", x2: "55", y2: "68", color: "#7c3aed" },
-                    { x1: "10", y1: "42", x2: "42", y2: "48", color: "#0066ff" },
+                    { x1: "42", y1: "48", x2: "55", y2: "68", color: "#7b2ee0" },
+                    { x1: "10", y1: "42", x2: "42", y2: "48", color: "#1a6fff" },
                     { x1: "55", y1: "68", x2: "78", y2: "75", color: "#00ff88" },
-                    { x1: "12", y1: "14", x2: "10", y2: "42", color: "#0066ff" },
+                    { x1: "12", y1: "14", x2: "10", y2: "42", color: "#1a6fff" },
                   ].map((line, i) => (
                     <line
                       key={i}
@@ -793,7 +794,7 @@ function ExperienceVisualizationSection() {
       />
       <div
         className="absolute top-1/4 right-0 w-[520px] h-[520px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 68%)", opacity: 0.08 }}
+        style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 68%)", opacity: 0.08 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -804,7 +805,7 @@ function ExperienceVisualizationSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Homepage Visualization</span>
+            <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Homepage Visualization</span>
             <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3 leading-tight">
               A Digital Command Center for{" "}
               <span className="text-gradient-cyber">Modern Growth</span>
@@ -848,13 +849,13 @@ function ExperienceVisualizationSection() {
           >
             <div
               className="absolute -inset-4 rounded-2xl blur-2xl opacity-25"
-              style={{ background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed, #00ff88)" }}
+              style={{ background: "linear-gradient(135deg, #00d4ff, #1a6fff, #7b2ee0, #00ff88)" }}
             />
             <div
               className="relative rounded-2xl border overflow-hidden"
               style={{
                 background: "linear-gradient(145deg, rgba(8,13,28,0.96), rgba(3,8,18,0.98))",
-                borderColor: "rgba(0,200,255,0.16)",
+                borderColor: "rgba(0,212,255,0.16)",
                 boxShadow: "0 24px 70px rgba(0,0,0,0.42)",
               }}
             >
@@ -868,10 +869,10 @@ function ExperienceVisualizationSection() {
 
               <div className="grid md:grid-cols-[1fr_0.8fr] gap-0">
                 <div className="relative min-h-[360px] p-6 border-r" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 50% 50%, rgba(0,200,255,0.18), transparent 36%)" }} />
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 50% 50%, rgba(0,212,255,0.18), transparent 36%)" }} />
                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 520 360" fill="none" aria-hidden="true">
-                    <path d="M98 178 C158 94 270 92 328 158 C380 218 420 214 462 144" stroke="rgba(0,200,255,0.38)" strokeWidth="1" strokeDasharray="5 7" />
-                    <path d="M110 220 C184 266 304 284 410 206" stroke="rgba(124,58,237,0.35)" strokeWidth="1" strokeDasharray="5 8" />
+                    <path d="M98 178 C158 94 270 92 328 158 C380 218 420 214 462 144" stroke="rgba(0,212,255,0.38)" strokeWidth="1" strokeDasharray="5 7" />
+                    <path d="M110 220 C184 266 304 284 410 206" stroke="rgba(123,46,224,0.35)" strokeWidth="1" strokeDasharray="5 8" />
                     <path d="M148 104 C230 150 292 210 370 272" stroke="rgba(0,255,136,0.3)" strokeWidth="1" strokeDasharray="4 7" />
                   </svg>
 
@@ -903,17 +904,17 @@ function ExperienceVisualizationSection() {
                       animate={{ scale: [1, 1.08, 1], opacity: [0.85, 1, 0.85] }}
                       transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
                       className="w-24 h-24 rounded-full border flex items-center justify-center"
-                      style={{ background: "rgba(0,200,255,0.1)", borderColor: "rgba(0,200,255,0.35)", boxShadow: "0 0 44px rgba(0,200,255,0.24)" }}
+                      style={{ background: "rgba(0,212,255,0.1)", borderColor: "rgba(0,212,255,0.35)", boxShadow: "0 0 44px rgba(0,212,255,0.24)" }}
                     >
-                      <Sparkles className="w-8 h-8 text-[#00c8ff]" />
+                      <Sparkles className="w-8 h-8 text-[#00d4ff]" />
                     </motion.div>
                   </div>
                 </div>
 
                 <div className="p-5 space-y-4">
                   {[
-                    { label: "Conversion Readiness", value: "94%", width: "94%", icon: Target, accent: "#00c8ff" },
-                    { label: "Automation Coverage", value: "82%", width: "82%", icon: Workflow, accent: "#7c3aed" },
+                    { label: "Conversion Readiness", value: "94%", width: "94%", icon: Target, accent: "#00d4ff" },
+                    { label: "Automation Coverage", value: "82%", width: "82%", icon: Workflow, accent: "#7b2ee0" },
                     { label: "UX Clarity Score", value: "A+", width: "88%", icon: MousePointer2, accent: "#f59e0b" },
                     { label: "AI Opportunity Index", value: "High", width: "91%", icon: Brain, accent: "#00ff88" },
                   ].map(({ label, value, width, icon: Icon, accent }) => (
@@ -955,7 +956,7 @@ function PlatformArchitectureSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle at 15% 20%, rgba(0,200,255,0.12), transparent 28%), radial-gradient(circle at 85% 60%, rgba(124,58,237,0.12), transparent 30%)`,
+          backgroundImage: `radial-gradient(circle at 15% 20%, rgba(0,212,255,0.12), transparent 28%), radial-gradient(circle at 85% 60%, rgba(123,46,224,0.12), transparent 30%)`,
         }}
       />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -967,7 +968,7 @@ function PlatformArchitectureSection() {
             transition={{ duration: 0.7 }}
             className="flex flex-col gap-6"
           >
-            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Enterprise Platform Thinking</span>
+            <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Enterprise Platform Thinking</span>
             <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text leading-tight">
               Built like a product.
               <br />
@@ -989,7 +990,7 @@ function PlatformArchitectureSection() {
                   style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
                   data-testid={`platform-proof-${i}`}
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#00c8ff] flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#00d4ff] flex-shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -998,7 +999,8 @@ function PlatformArchitectureSection() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-xl shadow-[#00c8ff]/15"
+                  className="text-white border-0 font-semibold gap-2"
+                  style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)", boxShadow: "0 8px 24px rgba(26,111,255,0.25)" }}
                   data-testid="button-platform-cta"
                 >
                   Plan a Digital System
@@ -1080,7 +1082,7 @@ function ProcessSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Delivery System</span>
+          <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Delivery System</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             From Vision to{" "}
             <span className="text-gradient-cyber">Production</span>
@@ -1176,11 +1178,11 @@ function AICapabilitiesSection() {
       />
       <div
         className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.06 }}
+        style={{ background: "radial-gradient(circle, #7b2ee0 0%, transparent 70%)", opacity: 0.06 }}
       />
       <div
         className="absolute top-0 left-0 w-[400px] h-[400px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.05 }}
+        style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)", opacity: 0.05 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1191,11 +1193,11 @@ function AICapabilitiesSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#7c3aed] font-mono text-sm uppercase tracking-widest">Core Capabilities</span>
+          <span className="text-[#7b2ee0] font-mono text-sm uppercase tracking-widest">Core Capabilities</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Intelligence Built Into{" "}
             <span style={{
-              background: "linear-gradient(135deg, #7c3aed, #0066ff, #00c8ff)",
+              background: "linear-gradient(135deg, #7b2ee0, #1a6fff, #00d4ff)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -1291,7 +1293,7 @@ function PortfolioHighlights() {
     <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
       <div
         className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.07 }}
+        style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)", opacity: 0.07 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1302,7 +1304,7 @@ function PortfolioHighlights() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
+          <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Systems That Deliver{" "}
             <span className="text-gradient-blue">Real Results</span>
@@ -1399,7 +1401,8 @@ function PortfolioHighlights() {
           <Link href="/portfolio">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-xl shadow-[#00c8ff]/15 hover:shadow-[#00c8ff]/30 transition-shadow duration-300"
+              className="text-white border-0 font-semibold gap-2 transition-all duration-300 hover:scale-[1.02]"
+              style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)", boxShadow: "0 8px 30px rgba(26,111,255,0.25)" }}
               data-testid="button-home-portfolio-cta"
             >
               See All Case Studies
@@ -1420,7 +1423,7 @@ function TechEcosystemSection() {
     <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: 0.06 }}
+        style={{ background: "radial-gradient(ellipse, #7b2ee0 0%, transparent 70%)", opacity: 0.06 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1431,11 +1434,11 @@ function TechEcosystemSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <span className="text-[#7c3aed] font-mono text-sm uppercase tracking-widest">Our Stack</span>
+          <span className="text-[#7b2ee0] font-mono text-sm uppercase tracking-widest">Our Stack</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Technology{" "}
             <span style={{
-              background: "linear-gradient(135deg, #7c3aed, #0066ff)",
+              background: "linear-gradient(135deg, #7b2ee0, #1a6fff)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -1535,15 +1538,15 @@ function CTABanner() {
       />
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] rounded-full blur-3xl pointer-events-none animate-orb-2"
-        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: 0.09 }}
+        style={{ background: "radial-gradient(circle, #1a6fff 0%, transparent 70%)", opacity: 0.09 }}
       />
       <div
         className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none animate-orb-1"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.06 }}
+        style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)", opacity: 0.06 }}
       />
       <div
         className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.05 }}
+        style={{ background: "radial-gradient(circle, #7b2ee0 0%, transparent 70%)", opacity: 0.05 }}
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1556,10 +1559,10 @@ function CTABanner() {
         >
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-2"
-            style={{ background: "rgba(0,200,255,0.08)", border: "1px solid rgba(0,200,255,0.2)" }}
+            style={{ background: "rgba(0,212,255,0.08)", border: "1px solid rgba(0,212,255,0.2)" }}
           >
-            <div className="w-2 h-2 rounded-full bg-[#00c8ff] animate-pulse" />
-            <span className="text-[#00c8ff] text-xs font-mono uppercase tracking-widest">Open to New Projects — 2026</span>
+            <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" />
+            <span className="text-[#00d4ff] text-xs font-mono uppercase tracking-widest">Open to New Projects — 2026</span>
           </div>
 
           <h2 className="font-heading font-bold text-4xl lg:text-6xl text-joe-text leading-tight max-w-4xl">
@@ -1576,7 +1579,8 @@ function CTABanner() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-2xl shadow-[#00c8ff]/25 hover:shadow-[#00c8ff]/40 transition-shadow duration-300 px-10 h-14 text-base"
+                className="text-white border-0 font-semibold tracking-wide gap-2 px-10 h-14 text-base transition-all duration-300 hover:scale-[1.02]"
+                style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)", boxShadow: "0 12px 40px rgba(26,111,255,0.3)" }}
                 data-testid="button-home-cta-contact"
               >
                 Start Your Project
@@ -1603,7 +1607,7 @@ function CTABanner() {
               { label: "Ship in weeks, not months", icon: Zap },
             ].map(({ label, icon: Icon }, i) => (
               <div key={i} className="flex items-center gap-2 text-joe-text/40 text-sm">
-                <Icon className="w-4 h-4 text-[#00c8ff]/60" />
+                <Icon className="w-4 h-4 text-[#00d4ff]/60" />
                 <span>{label}</span>
               </div>
             ))}
@@ -1617,7 +1621,7 @@ function CTABanner() {
             style={{
               background: "var(--joe-card)",
               borderColor: "var(--joe-card-border)",
-              boxShadow: "0 0 40px rgba(0,200,255,0.06)",
+              boxShadow: "0 0 40px rgba(0,212,255,0.06)",
             }}
             data-testid="cta-testimonial-snippet"
           >
@@ -1625,9 +1629,9 @@ function CTABanner() {
               <div
                 className="w-12 h-12 rounded-full flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0"
                 style={{
-                  background: "linear-gradient(135deg, #00c8ff90, #00c8ff40)",
-                  border: "1px solid rgba(0,200,255,0.3)",
-                  boxShadow: "0 0 20px rgba(0,200,255,0.2)",
+                  background: "linear-gradient(135deg, #00d4ff90, #00d4ff40)",
+                  border: "1px solid rgba(0,212,255,0.3)",
+                  boxShadow: "0 0 20px rgba(0,212,255,0.2)",
                 }}
               >
                 SC
@@ -1649,7 +1653,7 @@ function CTABanner() {
                   </span>
                   <span
                     className="ml-auto text-xs font-mono font-bold px-2.5 py-1 rounded-full"
-                    style={{ background: "rgba(0,200,255,0.1)", color: "#00c8ff", border: "1px solid rgba(0,200,255,0.2)" }}
+                    style={{ background: "rgba(0,212,255,0.1)", color: "#00d4ff", border: "1px solid rgba(0,212,255,0.2)" }}
                   >
                     73% faster reviews
                   </span>

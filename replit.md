@@ -30,10 +30,10 @@ client/src/
     qualify.tsx               — Smart Lead Qualification multi-step form (5 steps, adaptive questions, lead scoring)
     not-found.tsx             — Dark-branded 404 page
   pages/services/
-    app-development.tsx       — App Development pillar page (cyan, #00c8ff accent)
-    website-design.tsx        — Website Design & Dev pillar page (deep blue, #0066ff accent)
+    app-development.tsx       — App Development pillar page (neon cyan, #00d4ff accent)
+    website-design.tsx        — Website Design & Dev pillar page (electric blue, #1a6fff accent)
     uiux-design.tsx           — UI/UX Design pillar page (amber, #f59e0b accent)
-    automation.tsx            — Automation Systems pillar page (purple, #7c3aed accent)
+    automation.tsx            — Automation Systems pillar page (deep purple, #7b2ee0 accent)
     custom-ai.tsx             — Custom AI Development detail page (#00ff88 accent)
     full-stack.tsx            — Full-Stack / Digital Systems detail page (#ec4899 accent)
     ai-strategy.tsx           — AI Strategy & Architecture detail page
@@ -150,10 +150,11 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - **Honeypot spam protection**: Hidden `website` field silently rejects bots
 
 ## Design System
-- **Primary color**: Electric blue/cyan (#00c8ff, #0066ff) — always hardcoded
-- **Accent**: Purple (#7c3aed), Green (#00ff88) — always hardcoded
+- **Primary palette**: Electric Blue (#1a6fff), Deep Purple (#7b2ee0), Neon Cyan (#00d4ff) — always hardcoded
+- **Secondary accents**: Green (#00ff88), Amber (#f59e0b), Pink (#ec4899) — unchanged
+- **Primary CTA gradient**: `linear-gradient(135deg, #1a6fff, #7b2ee0)` (Electric Blue → Deep Purple)
 - **Typography**: Oxanium (headings via `font-heading`), Inter (body) — Google Fonts
-- **Gradient text utilities**: `.text-gradient-cyber` (blue→cyan), `.text-gradient-blue` (blue→purple)
+- **Gradient text utilities**: `.text-gradient-cyber` (cyan→blue→purple), `.text-gradient-blue` (cyan→blue)
 - **Animation utilities**: `animate-marquee`, `animate-orb-float`, `animate-glow-pulse`, `animate-scan`, `animate-blink`, `animate-shine`
 - **Default theme**: Dark mode (defaults to `dark` class on `documentElement`)
 - **Noise overlay**: `::before` pseudo-element on body for subtle texture

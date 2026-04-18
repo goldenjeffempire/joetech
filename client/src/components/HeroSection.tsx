@@ -38,21 +38,21 @@ const serviceCards = [
     icon: Smartphone,
     title: "App Development",
     desc: "Web & Mobile",
-    accent: "#00c8ff",
+    accent: "#00d4ff",
     metrics: [{ label: "Uptime", value: "99.9%" }, { label: "Performance", value: "10x" }],
   },
   {
     icon: MonitorSmartphone,
     title: "Website Design",
     desc: "SEO & Conversion",
-    accent: "#0066ff",
+    accent: "#1a6fff",
     metrics: [{ label: "Load time", value: "<1.2s" }, { label: "Conversion", value: "+40%" }],
   },
   {
     icon: Workflow,
     title: "Automation",
     desc: "Business Workflows",
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
     metrics: [{ label: "Time saved", value: "73%" }, { label: "Accuracy", value: "99.1%" }],
   },
   {
@@ -72,9 +72,9 @@ const serviceCards = [
 ];
 
 const liveMetrics = [
-  { label: "Active Projects", value: "12", icon: Database, accent: "#00c8ff" },
+  { label: "Active Projects", value: "12", icon: Database, accent: "#00d4ff" },
   { label: "Uptime SLA", value: "99.9%", icon: CheckCircle, accent: "#00ff88" },
-  { label: "AI Models", value: "6", icon: Bot, accent: "#7c3aed" },
+  { label: "AI Models", value: "6", icon: Bot, accent: "#7b2ee0" },
   { label: "Avg ROI", value: "10x", icon: TrendingUp, accent: "#f59e0b" },
 ];
 
@@ -117,7 +117,7 @@ function NeuralBackground() {
 
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0,200,255,0.45)";
+        ctx.fillStyle = "rgba(0,212,255,0.45)";
         ctx.fill();
       });
 
@@ -131,7 +131,7 @@ function NeuralBackground() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(0,120,255,${alpha})`;
+            ctx.strokeStyle = `rgba(26,111,255,${alpha})`;
             ctx.lineWidth = 0.7;
             ctx.stroke();
           }
@@ -189,8 +189,8 @@ function ServiceShowcase() {
       className="relative rounded-2xl border overflow-hidden"
       style={{
         background: "linear-gradient(145deg, rgba(8,13,28,0.97), rgba(3,8,18,0.99))",
-        borderColor: "rgba(0,200,255,0.15)",
-        boxShadow: "0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,200,255,0.06)",
+        borderColor: "rgba(0,212,255,0.15)",
+        boxShadow: "0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,212,255,0.06)",
       }}
     >
       <div
@@ -338,11 +338,11 @@ function ServiceShowcase() {
 
       <div
         className="px-5 py-3 border-t flex items-center justify-between"
-        style={{ background: "rgba(0,200,255,0.03)", borderColor: "rgba(255,255,255,0.07)" }}
+        style={{ background: "rgba(0,212,255,0.03)", borderColor: "rgba(255,255,255,0.07)" }}
       >
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <Brain className="w-3 h-3 text-[#00c8ff]" />
+            <Brain className="w-3 h-3 text-[#00d4ff]" />
             <span className="text-xs text-white/30 font-mono">AI Enabled</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -400,11 +400,11 @@ export default function HeroSection() {
       />
 
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none animate-orb-1"
-        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: 0.12 }} />
+        style={{ background: "radial-gradient(circle, #1a6fff 0%, transparent 70%)", opacity: 0.12 }} />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[80px] pointer-events-none animate-orb-2"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.1 }} />
+        style={{ background: "radial-gradient(circle, #00d4ff 0%, transparent 70%)", opacity: 0.1 }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.06 }} />
+        style={{ background: "radial-gradient(circle, #7b2ee0 0%, transparent 70%)", opacity: 0.06 }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
         <div className="grid lg:grid-cols-2 gap-14 items-center">
@@ -415,15 +415,15 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2.5 w-fit rounded-full px-4 py-2 relative overflow-hidden"
               style={{
-                background: "rgba(0,200,255,0.08)",
-                border: "1px solid rgba(0,200,255,0.25)",
+                background: "rgba(0,212,255,0.08)",
+                border: "1px solid rgba(0,212,255,0.25)",
               }}
             >
-              <div className="w-2 h-2 rounded-full bg-[#00c8ff] animate-pulse" />
-              <span className="text-[#00c8ff] text-sm font-medium tracking-wider uppercase font-mono">
+              <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" />
+              <span className="text-[#00d4ff] text-sm font-medium tracking-wider uppercase font-mono">
                 Enterprise Digital Product Engineering
               </span>
-              <span className="text-[#00c8ff]/40 text-xs font-mono">// v2.0</span>
+              <span className="text-[#00d4ff]/40 text-xs font-mono">// v2.0</span>
             </motion.div>
 
             <motion.div
@@ -453,7 +453,7 @@ export default function HeroSection() {
               JOE Technologies builds high-performance apps, websites, digital systems,
               and AI-powered solutions for businesses and organizations that need real-world
               production outcomes. Founded by{" "}
-              <span className="text-[#00c8ff] font-semibold">Jeffery Onome Emuodafevware</span>{" "}
+              <span className="text-[#00d4ff] font-semibold">Jeffery Onome Emuodafevware</span>{" "}
               — we turn complex ideas into premium digital products that convert, automate, and scale.
             </motion.p>
 
@@ -466,7 +466,8 @@ export default function HeroSection() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="relative overflow-hidden bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide shadow-xl shadow-[#00c8ff]/25 gap-2 hover:shadow-[#00c8ff]/40 transition-shadow duration-300"
+                  className="relative overflow-hidden text-white border-0 font-semibold tracking-wide gap-2 transition-all duration-300 hover:scale-[1.03]"
+                  style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)", boxShadow: "0 12px 40px rgba(26,111,255,0.35)" }}
                   data-testid="button-hero-cta-primary"
                 >
                   Build With JOE
@@ -506,7 +507,7 @@ export default function HeroSection() {
                   className="flex items-center gap-2 px-3 py-1.5 rounded-md text-joe-text/50 text-xs font-mono"
                   style={{ background: "var(--joe-overlay)", border: "1px solid var(--joe-card-border)" }}
                 >
-                  <Icon className="w-3 h-3 text-[#00c8ff]" />
+                  <Icon className="w-3 h-3 text-[#00d4ff]" />
                   {text}
                 </div>
               ))}
@@ -522,7 +523,7 @@ export default function HeroSection() {
             >
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-1.5" data-testid={`stat-${i}`}>
-                  <span className="font-heading font-bold text-3xl text-[#00c8ff]">
+                  <span className="font-heading font-bold text-3xl text-[#00d4ff]">
                     <AnimatedCounter target={stat.value} suffix={stat.suffix} isInView={statsVisible} />
                   </span>
                   <span className="text-joe-text/35 text-xs uppercase tracking-wide font-mono leading-tight">
@@ -542,7 +543,7 @@ export default function HeroSection() {
             <div className="relative">
               <div
                 className="absolute -inset-2 rounded-2xl opacity-20 blur-2xl gradient-border-animate"
-                style={{ background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed, #00c8ff)" }}
+                style={{ background: "linear-gradient(135deg, #00d4ff, #1a6fff, #7b2ee0, #00d4ff)" }}
               />
 
               {!showShowcase ? (
@@ -550,8 +551,8 @@ export default function HeroSection() {
                   className="relative rounded-xl border overflow-hidden"
                   style={{
                     background: "var(--joe-terminal-bg)",
-                    borderColor: "rgba(0,200,255,0.15)",
-                    boxShadow: "0 0 60px rgba(0,200,255,0.08), 0 25px 50px rgba(0,0,0,0.5)",
+                    borderColor: "rgba(0,212,255,0.15)",
+                    boxShadow: "0 0 60px rgba(0,212,255,0.08), 0 25px 50px rgba(0,0,0,0.5)",
                   }}
                 >
                   <div
@@ -583,17 +584,17 @@ export default function HeroSection() {
                         </div>
                       ))}
                       {visibleLines < codeLines.length && (
-                        <span className="inline-block w-2 h-[18px] bg-[#00c8ff] animate-blink align-middle" />
+                        <span className="inline-block w-2 h-[18px] bg-[#00d4ff] animate-blink align-middle" />
                       )}
                     </div>
                   </div>
 
                   <div
                     className="px-4 py-2.5 border-t flex items-center gap-5"
-                    style={{ background: "rgba(0,200,255,0.04)", borderColor: "rgba(255,255,255,0.07)" }}
+                    style={{ background: "rgba(0,212,255,0.04)", borderColor: "rgba(255,255,255,0.07)" }}
                   >
                     <div className="flex items-center gap-1.5">
-                      <Brain className="w-3 h-3 text-[#00c8ff]" />
+                      <Brain className="w-3 h-3 text-[#00d4ff]" />
                       <span className="text-xs text-white/35 font-mono">AI Enabled</span>
                     </div>
                     <div className="flex items-center gap-1.5">
@@ -617,7 +618,7 @@ export default function HeroSection() {
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-5 -right-5 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #0066ff, #0044cc)", boxShadow: "0 8px 24px rgba(0,102,255,0.5)" }}
+                style={{ background: "linear-gradient(135deg, #1a6fff, #0052d4)", boxShadow: "0 8px 24px rgba(26,111,255,0.5)" }}
               >
                 App Systems
               </motion.div>
@@ -625,7 +626,7 @@ export default function HeroSection() {
                 animate={{ y: [5, -5, 5] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -bottom-5 -left-5 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #7c3aed, #5b21b6)", boxShadow: "0 8px 24px rgba(124,58,237,0.5)" }}
+                style={{ background: "linear-gradient(135deg, #7b2ee0, #5a1fc0)", boxShadow: "0 8px 24px rgba(124,58,237,0.5)" }}
               >
                 AI Workflows
               </motion.div>
@@ -633,7 +634,7 @@ export default function HeroSection() {
                 animate={{ y: [-3, 7, -3] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute -right-5 bottom-16 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #00c8ff, #0088bb)", boxShadow: "0 8px 24px rgba(0,200,255,0.4)" }}
+                style={{ background: "linear-gradient(135deg, #00d4ff, #007acc)", boxShadow: "0 8px 24px rgba(0,212,255,0.4)" }}
               >
                 Web Platforms
               </motion.div>
@@ -659,9 +660,9 @@ export default function HeroSection() {
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="w-5 h-8 rounded-full border flex items-start justify-center pt-1.5"
-            style={{ borderColor: "rgba(0,200,255,0.2)" }}
+            style={{ borderColor: "rgba(0,212,255,0.2)" }}
           >
-            <div className="w-1 h-2 rounded-full bg-[#00c8ff]/50 animate-bounce" />
+            <div className="w-1 h-2 rounded-full bg-[#00d4ff]/50 animate-bounce" />
           </motion.div>
         </Link>
       </motion.div>

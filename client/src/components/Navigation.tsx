@@ -10,21 +10,21 @@ const serviceItems = [
   {
     label: "App Development",
     href: "/services/app-development",
-    accent: "#00c8ff",
+    accent: "#00d4ff",
     icon: Smartphone,
     desc: "Web & mobile apps, SaaS, portals",
   },
   {
     label: "Website Design & Dev",
     href: "/services/website-design",
-    accent: "#0066ff",
+    accent: "#1a6fff",
     icon: MonitorSmartphone,
     desc: "Brand sites, SEO, conversion",
   },
   {
     label: "Automation Systems",
     href: "/services/automation",
-    accent: "#7c3aed",
+    accent: "#7b2ee0",
     icon: Workflow,
     desc: "Workflows, integrations, reporting",
   },
@@ -81,7 +81,7 @@ export default function Navigation() {
     <>
       <Link
         href="/"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#00c8ff] focus:text-[#04060d] focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold focus:text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#1a6fff] focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold focus:text-sm"
       >
         Skip to main content
       </Link>
@@ -103,7 +103,7 @@ export default function Navigation() {
         {scrolled && (
           <div
             className="absolute bottom-0 left-0 right-0 h-px"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(0,200,255,0.3), transparent)" }}
+            style={{ background: "linear-gradient(90deg, transparent, rgba(0,212,255,0.35), rgba(26,111,255,0.25), transparent)" }}
           />
         )}
 
@@ -119,43 +119,22 @@ export default function Navigation() {
             </Link>
 
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5">
-              {simpleLinks.slice(0, 1).map((link) => {
+              {simpleLinks.slice(0, 2).map((link) => {
                 const isActive = location === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50 ${isActive ? "text-[#00d4ff]" : "text-joe-text/55 hover:text-joe-text"}`}
                     data-testid={`link-nav-${link.label.toLowerCase()}`}
                   >
                     {link.label}
                     {isActive && (
                       <motion.div
                         layoutId="nav-indicator"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
-                        transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
-                      />
-                    )}
-                  </Link>
-                );
-              })}
-
-              {simpleLinks.slice(1, 2).map((link) => {
-                const isActive = location === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
-                    data-testid={`link-nav-about`}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <motion.div
-                        layoutId="nav-indicator"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
+                        style={{ background: "linear-gradient(90deg, #1a6fff, #00d4ff)" }}
                         transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                       />
                     )}
@@ -169,7 +148,7 @@ export default function Navigation() {
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 <button
-                  className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isServicesActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                  className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50 ${isServicesActive ? "text-[#00d4ff]" : "text-joe-text/55 hover:text-joe-text"}`}
                   aria-expanded={servicesOpen}
                   data-testid="button-nav-services-dropdown"
                 >
@@ -178,7 +157,8 @@ export default function Navigation() {
                   {isServicesActive && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
+                      style={{ background: "linear-gradient(90deg, #1a6fff, #00d4ff)" }}
                       transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                     />
                   )}
@@ -198,7 +178,7 @@ export default function Navigation() {
                         backdropFilter: "blur(24px)",
                         WebkitBackdropFilter: "blur(24px)",
                         width: "560px",
-                        boxShadow: "0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,200,255,0.08)",
+                        boxShadow: "0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,212,255,0.08)",
                       }}
                     >
                       <div className="p-2">
@@ -235,8 +215,8 @@ export default function Navigation() {
                             className="flex items-center justify-between px-3 py-2.5 rounded-xl transition-all duration-150 hover:bg-joe-text/5 group"
                             data-testid="link-nav-all-services"
                           >
-                            <span className="text-[#00c8ff] text-sm font-semibold">View All Services</span>
-                            <ArrowRight className="w-4 h-4 text-[#00c8ff] transition-transform duration-200 group-hover:translate-x-1" />
+                            <span className="text-sm font-semibold text-gradient-blue">View All Services</span>
+                            <ArrowRight className="w-4 h-4 text-[#1a6fff] transition-transform duration-200 group-hover:translate-x-1" />
                           </Link>
                         </div>
                       </div>
@@ -252,14 +232,15 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50 ${isActive ? "text-[#00d4ff]" : "text-joe-text/55 hover:text-joe-text"}`}
                     data-testid={`link-nav-${link.label.toLowerCase()}`}
                   >
                     {link.label}
                     {isActive && (
                       <motion.div
                         layoutId="nav-indicator"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
+                        style={{ background: "linear-gradient(90deg, #1a6fff, #00d4ff)" }}
                         transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                       />
                     )}
@@ -273,7 +254,11 @@ export default function Navigation() {
               <Button
                 asChild
                 size="sm"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide shadow-lg shadow-[#00c8ff]/20"
+                className="text-white border-0 font-semibold tracking-wide shadow-lg"
+                style={{
+                  background: "linear-gradient(135deg, #1a6fff, #7b2ee0)",
+                  boxShadow: "0 4px 20px rgba(26,111,255,0.25)",
+                }}
                 data-testid="button-nav-cta"
               >
                 <Link href="/contact">Start a Project</Link>
@@ -283,7 +268,7 @@ export default function Navigation() {
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
               <button
-                className="p-2 text-joe-text/60 hover:text-joe-text transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50"
+                className="p-2 text-joe-text/60 hover:text-joe-text transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 data-testid="button-mobile-menu"
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -331,10 +316,10 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00c8ff] bg-[#00c8ff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00d4ff] bg-[#1a6fff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
                     data-testid={`link-mobile-${link.label.toLowerCase()}`}
                   >
-                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
+                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />}
                     {link.label}
                   </Link>
                 );
@@ -344,10 +329,10 @@ export default function Navigation() {
                 <Link
                   href="/services"
                   onClick={() => setMobileOpen(false)}
-                  className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isServicesActive ? "text-[#00c8ff] bg-[#00c8ff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                  className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isServicesActive ? "text-[#00d4ff] bg-[#1a6fff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
                   data-testid="link-mobile-services"
                 >
-                  {isServicesActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
+                  {isServicesActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />}
                   Services
                 </Link>
                 <div className="ml-4 pl-4 flex flex-col gap-0.5 mt-1 mb-1" style={{ borderLeft: "1px solid var(--joe-divide)" }}>
@@ -379,10 +364,10 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00c8ff] bg-[#00c8ff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00d4ff] bg-[#1a6fff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
                     data-testid={`link-mobile-${link.label.toLowerCase()}`}
                   >
-                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
+                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />}
                     {link.label}
                   </Link>
                 );
@@ -391,7 +376,8 @@ export default function Navigation() {
               <div className="pt-3 pb-2">
                 <Button
                   asChild
-                  className="w-full bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold shadow-lg shadow-[#00c8ff]/20"
+                  className="w-full text-white border-0 font-semibold"
+                  style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)" }}
                   data-testid="button-mobile-cta"
                 >
                   <Link href="/contact" onClick={() => setMobileOpen(false)}>
