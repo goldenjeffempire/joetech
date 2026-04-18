@@ -9,11 +9,11 @@ const caseStudies = [
   {
     tag: "FinTech",
     tagColor: "#00c8ff",
-    title: "IntelliCode Review Platform",
-    client: "Series B SaaS Startup",
-    description: "Built an AI-powered code review system that automatically detects security vulnerabilities, performance bottlenecks, and code quality issues — integrated directly into GitHub PRs.",
-    challenge: "Manual code reviews were the bottleneck preventing weekly deployments.",
-    solution: "Fine-tuned CodeLlama on the client's proprietary codebase, combined with static analysis tools and a Django-powered API serving real-time feedback.",
+    title: "Enterprise Operations App",
+    client: "Growing Service Organization",
+    description: "Built a high-performance internal operations platform with role-based dashboards, automated reporting, team workflows, and AI-assisted task routing.",
+    challenge: "Manual reporting and disconnected tools slowed delivery, visibility, and team accountability.",
+    solution: "Designed a modular React interface, Django API layer, PostgreSQL data model, and automation logic that unified daily operations in one platform.",
     stack: ["Python", "CodeLlama", "Django", "React", "PostgreSQL"],
     metrics: [
       { icon: Clock, value: "73%", label: "Faster reviews" },
@@ -25,11 +25,11 @@ const caseStudies = [
   {
     tag: "Healthcare",
     tagColor: "#00ff88",
-    title: "HealthSense Predictive Analytics",
-    client: "Regional Hospital Network",
-    description: "Deployed a machine learning platform that predicts patient readmission risk, enabling care teams to intervene proactively and reduce unnecessary hospital stays.",
-    challenge: "15% 30-day readmission rate was costing the network $12M+ annually.",
-    solution: "Built an ensemble model combining clinical notes (via NLP), vitals data, and social determinants. Delivered real-time risk scores via a HIPAA-compliant FastAPI service.",
+    title: "Intelligent Customer Workflow Engine",
+    client: "Multi-location Business Network",
+    description: "Designed an AI-powered digital system that captures leads, qualifies requests, routes work to teams, and surfaces performance insights in real time.",
+    challenge: "Customer requests were spread across forms, calls, spreadsheets, and manual handoffs.",
+    solution: "Created a connected workflow engine with lead intake, qualification rules, team routing, AI summaries, and executive dashboards.",
     stack: ["Python", "scikit-learn", "BERT", "FastAPI", "PostgreSQL", "AWS"],
     metrics: [
       { icon: TrendingUp, value: "91%", label: "Prediction accuracy" },
@@ -41,11 +41,11 @@ const caseStudies = [
   {
     tag: "Legal Tech",
     tagColor: "#7c3aed",
-    title: "DocuMind Document Intelligence",
-    client: "Global Law Firm",
-    description: "Created an AI system for automated contract analysis, clause extraction, and risk flagging across 50,000+ legal documents in multiple languages.",
-    challenge: "Associates spent 60% of their time on document review — expensive, slow, and error-prone.",
-    solution: "Built a custom NLP pipeline using RoBERTa for clause classification and GPT-4 for risk summarization, with a Django-powered web interface and Elasticsearch for search.",
+    title: "Premium Growth Website System",
+    client: "B2B Services Company",
+    description: "Launched a premium brand website with conversion-focused content, fast page transitions, reusable sections, SEO metadata, and contact funnel optimization.",
+    challenge: "The company had strong services but an outdated website that did not communicate trust or convert visitors.",
+    solution: "Rebuilt the web experience around clear messaging, service hierarchy, visual proof, performance optimization, and structured calls to action.",
     stack: ["Python", "RoBERTa", "GPT-4", "Django", "Elasticsearch", "GCP"],
     metrics: [
       { icon: Zap, value: "99.2%", label: "Extraction accuracy" },
@@ -57,11 +57,11 @@ const caseStudies = [
   {
     tag: "E-Commerce",
     tagColor: "#ff6b35",
-    title: "VoiceCommerce Conversational AI",
-    client: "D2C Fashion Brand",
-    description: "Designed and deployed an AI shopping assistant that understands natural language queries, provides personalized recommendations, and handles customer service at scale.",
-    challenge: "High cart abandonment and overloaded support team during peak shopping seasons.",
-    solution: "Built a multi-turn conversational agent using LangChain and GPT-4, with RAG over the product catalog, integrated with Shopify and the brand's existing CRM.",
+    title: "AI Service Assistant",
+    client: "Customer Support Organization",
+    description: "Built an intelligent assistant that understands customer questions, retrieves business knowledge, drafts responses, and escalates complex cases to the right team.",
+    challenge: "Support volume was growing faster than the team, causing slower replies and inconsistent customer experiences.",
+    solution: "Implemented a retrieval-augmented AI workflow with guardrails, response review, handoff routing, analytics, and knowledge-base synchronization.",
     stack: ["Python", "LangChain", "GPT-4", "FastAPI", "React", "Shopify API"],
     metrics: [
       { icon: TrendingUp, value: "42%", label: "Conversion lift" },
@@ -99,7 +99,7 @@ export default function PortfolioSection() {
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            AI That Delivers
+            Digital Products That Deliver
             <br />
             <span style={{
               background: "linear-gradient(135deg, #00c8ff, #0066ff)",
@@ -111,7 +111,7 @@ export default function PortfolioSection() {
             </span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
-            We don't build demos. We build systems that operate at scale and move business metrics.
+            We build production apps, websites, digital systems, and AI workflows that improve speed, visibility, conversion, and operational performance.
           </p>
         </motion.div>
 

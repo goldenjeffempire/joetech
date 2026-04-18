@@ -1,57 +1,57 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Brain, Layers, CloudCog, Plug, Code2, Lightbulb, ArrowRight } from "lucide-react";
+import { Brain, Smartphone, MonitorSmartphone, Building2, Workflow, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
 const services = [
   {
-    icon: Brain,
-    title: "AI Strategy & Architecture",
-    description: "We assess your business context, define the AI opportunities with highest ROI, and architect a roadmap from prototype to production-scale deployment.",
-    tags: ["LLMs", "MLOps", "Architecture Reviews"],
+    icon: Smartphone,
+    title: "App Development",
+    description: "Custom mobile apps, web apps, SaaS products, client portals, and internal tools designed around speed, clarity, adoption, and measurable business outcomes.",
+    tags: ["Mobile Apps", "Web Apps", "SaaS", "Portals"],
     accent: "#00c8ff",
-    slug: "ai-strategy",
+    slug: "full-stack",
   },
   {
-    icon: Code2,
-    title: "Custom AI Development",
-    description: "From fine-tuned language models to computer vision pipelines — we build bespoke AI systems trained on your data, optimized for your domain.",
-    tags: ["Python", "PyTorch", "Transformers", "Django"],
-    accent: "#0066ff",
-    slug: "custom-ai",
-  },
-  {
-    icon: CloudCog,
-    title: "MLOps & Infrastructure",
-    description: "Scalable model serving, automated retraining pipelines, monitoring and drift detection — we build the infrastructure your AI needs to stay performant.",
-    tags: ["Kubernetes", "AWS/GCP", "Kubeflow", "MLflow"],
-    accent: "#7c3aed",
-    slug: "mlops",
-  },
-  {
-    icon: Plug,
-    title: "AI Integration & APIs",
-    description: "Connect OpenAI, Anthropic, Hugging Face and custom models into your existing stack via robust, low-latency APIs designed for production.",
-    tags: ["REST APIs", "FastAPI", "OpenAI", "LangChain"],
-    accent: "#00c8ff",
-    slug: "ai-integration",
-  },
-  {
-    icon: Layers,
-    title: "Full-Stack Development",
-    description: "End-to-end development from React frontends to Django backends. We build the complete product — not just the AI layer.",
-    tags: ["React", "Django", "TypeScript", "PostgreSQL"],
+    icon: MonitorSmartphone,
+    title: "Website Development",
+    description: "Premium websites, landing pages, corporate platforms, and digital storefronts with polished UX, conversion-first messaging, technical SEO, and responsive performance.",
+    tags: ["SEO", "Landing Pages", "Brand Sites", "Conversion"],
     accent: "#0066ff",
     slug: "full-stack",
   },
   {
-    icon: Lightbulb,
-    title: "Technical Advisory",
-    description: "Fractional CTO and AI advisory services for startups and scale-ups navigating their AI transformation. Strategy, team building, and technical due diligence.",
-    tags: ["Due Diligence", "Team Building", "Strategy"],
+    icon: Building2,
+    title: "Digital Systems Engineering",
+    description: "Dashboards, databases, APIs, workflow automation, reporting systems, and secure operational platforms that modernize how organizations run.",
+    tags: ["Dashboards", "APIs", "Databases", "Automation"],
     accent: "#7c3aed",
+    slug: "full-stack",
+  },
+  {
+    icon: Brain,
+    title: "AI-Powered Solutions",
+    description: "AI agents, intelligent assistants, predictive analytics, document automation, semantic search, and custom AI integrations embedded into real workflows.",
+    tags: ["AI Agents", "LLMs", "Analytics", "Automation"],
+    accent: "#00ff88",
+    slug: "custom-ai",
+  },
+  {
+    icon: Workflow,
+    title: "Systems Integration",
+    description: "Connect apps, websites, CRMs, databases, payment flows, analytics, and business tools into cohesive digital operations with reliable APIs and automation.",
+    tags: ["Integrations", "REST APIs", "Data Sync", "Ops"],
+    accent: "#f59e0b",
+    slug: "ai-integration",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Enterprise Technical Advisory",
+    description: "Architecture reviews, product roadmaps, digital transformation planning, performance audits, and engineering leadership for ambitious organizations.",
+    tags: ["Roadmaps", "Architecture", "Audits", "Strategy"],
+    accent: "#ec4899",
     slug: "advisory",
   },
 ];
@@ -79,21 +79,20 @@ export default function ServicesSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">What We Do</span>
+          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">What JOE Technologies Builds</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            Services That{" "}
+            Enterprise Services for{" "}
             <span style={{
               background: "linear-gradient(135deg, #00c8ff, #0066ff)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}>
-              Move the Needle
+              Modern Organizations
             </span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
-            Every engagement is built around delivering measurable business outcomes —
-            not just impressive demos.
+            Every engagement is designed to ship real business capability: apps people use, websites that convert, systems that automate, and AI that creates leverage.
           </p>
         </motion.div>
 
@@ -170,7 +169,7 @@ export default function ServicesSection() {
               className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#00c8ff]/15"
               data-testid="button-services-cta"
             >
-              Discuss Your Needs
+              Start Building Your Platform
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>

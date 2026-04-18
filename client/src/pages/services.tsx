@@ -10,10 +10,10 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
-        label="What We Offer"
-        title="Our"
-        highlightedTitle="Services"
-        subtitle="End-to-end AI and software engineering services designed to deliver measurable business impact at scale."
+        label="What We Build"
+        title="Enterprise"
+        highlightedTitle="Technology Services"
+        subtitle="High-performance apps, websites, digital systems, and AI-powered solutions designed to help businesses launch faster, operate smarter, and scale with confidence."
         accentColor="#0066ff"
         data-testid-label="text-services-label"
         data-testid-title="text-services-title"

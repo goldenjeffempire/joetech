@@ -1,7 +1,7 @@
 # JOE Technologies Website
 
 ## Overview
-A premium, production-ready multi-page platform for **JOE Technologies** — an AI-driven software engineering consultancy founded by **Jeffery Onome Emuodafevware**. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
+A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company founded by **Jeffery Onome Emuodafevware**. The platform positions JOE Technologies around four core pillars: high-performance Apps, Websites, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
 
 ## Architecture
 
@@ -118,6 +118,8 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 
 ## Key Features
 - **Multi-page platform**: 14+ routes with shared layout, lazy-loaded code-split pages, AnimatePresence transitions
+- **Enterprise service positioning**: Homepage and services page emphasize App Development, Website Development, Digital Systems Engineering, AI-Powered Solutions, Systems Integration, and Enterprise Technical Advisory
+- **Platform architecture section**: Dedicated homepage section explains conversion strategy, modular product systems, AI/automation layer, and enterprise readiness
 - **Dark-tech luxury design**: Canvas neural particle network hero, futuristic grid overlays, glowing orbs, gradient text utilities
 - **PageHero design system**: Consistent reusable hero component with accent-colored label badges, gradient highlighted titles, CTA buttons
 - **Mega-menu navigation**: Dropdown Services panel with 6 service links + icons; animated mobile submenu

@@ -1,37 +1,38 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Code2, Brain, Cpu, Zap, Shield, Globe } from "lucide-react";
+import { ArrowRight, Code2, Brain, Cpu, Zap, Shield, Globe, Smartphone, MonitorSmartphone, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
 const codeLines = [
-  { text: "import torch", color: "text-[#c792ea]" },
-  { text: "from transformers import AutoModel, AutoTokenizer", color: "text-[#c792ea]" },
-  { text: "from langchain.agents import create_react_agent", color: "text-[#c792ea]" },
+  { text: "import strategy from '@joe/enterprise-systems'", color: "text-[#c792ea]" },
+  { text: "import { apps, websites, ai } from '@joe/build-stack'", color: "text-[#c792ea]" },
+  { text: "import performance from '@joe/production-runtime'", color: "text-[#c792ea]" },
   { text: "", color: "" },
-  { text: "class JOEIntelligence:", color: "text-[#82aaff]" },
-  { text: '  """Enterprise AI engineering at scale"""', color: "text-[#546e7a]" },
+  { text: "class JOETechnologiesPlatform {", color: "text-[#82aaff]" },
+  { text: "  // Apps, websites, systems and AI engineered to scale", color: "text-[#546e7a]" },
   { text: "", color: "" },
-  { text: "  def architect(self, problem: dict) -> Solution:", color: "text-[#82aaff]" },
-  { text: "    context = self.analyze_domain(problem)", color: "text-white/80" },
-  { text: "    model = self.select_optimal_model(context)", color: "text-white/80" },
-  { text: "    pipeline = self.build_pipeline(model)", color: "text-[#c3e88d]" },
-  { text: "    return self.deploy_to_production(pipeline)", color: "text-[#c3e88d]" },
+  { text: "  architect(businessGoal) {", color: "text-[#82aaff]" },
+  { text: "    const product = strategy.mapToRevenueWorkflow(businessGoal)", color: "text-white/80" },
+  { text: "    const system = apps.compose(product).with(ai.agents)", color: "text-white/80" },
+  { text: "    return performance.deploy(system, { scale: 'global' })", color: "text-[#c3e88d]" },
+  { text: "  }", color: "text-[#82aaff]" },
+  { text: "}", color: "text-[#82aaff]" },
   { text: "", color: "" },
-  { text: "# Turning complexity into competitive advantage", color: "text-[#546e7a]" },
+  { text: "// Turning digital ambition into production advantage", color: "text-[#546e7a]" },
 ];
 
 const stats = [
-  { value: 50, suffix: "+", label: "AI Systems Built" },
+  { value: 50, suffix: "+", label: "Digital Products Shipped" },
   { value: 98, suffix: "%", label: "Client Satisfaction" },
-  { value: 10, suffix: "x", label: "Avg. Performance Gains" },
-  { value: 5, suffix: "+", label: "Years of Expertise" },
+  { value: 10, suffix: "x", label: "Performance Gains" },
+  { value: 4, suffix: "", label: "Core Solution Pillars" },
 ];
 
 const floatingBadges = [
-  { text: "Django Backend", color: "#0066ff", delay: 0, x: "right-0 -top-5", shadow: "#0066ff" },
-  { text: "LangChain · GPT-4", color: "#7c3aed", delay: 1, x: "-left-6 -bottom-4", shadow: "#7c3aed" },
-  { text: "PyTorch 2.2", color: "#00c8ff", delay: 0.5, x: "right-8 bottom-16", shadow: "#00c8ff" },
+  { text: "Mobile Apps", color: "#0066ff", delay: 0, x: "right-0 -top-5", shadow: "#0066ff" },
+  { text: "AI Workflows", color: "#7c3aed", delay: 1, x: "-left-6 -bottom-4", shadow: "#7c3aed" },
+  { text: "Web Platforms", color: "#00c8ff", delay: 0.5, x: "right-8 bottom-16", shadow: "#00c8ff" },
 ];
 
 function NeuralBackground() {
@@ -194,7 +195,7 @@ export default function HeroSection() {
             >
               <div className="w-2 h-2 rounded-full bg-[#00c8ff] animate-pulse" />
               <span className="text-[#00c8ff] text-sm font-medium tracking-wider uppercase font-mono">
-                AI-Driven Engineering
+                Enterprise Digital Product Engineering
               </span>
               <span className="text-[#00c8ff]/40 text-xs font-mono">// v2.0</span>
             </motion.div>
@@ -206,14 +207,14 @@ export default function HeroSection() {
               className="flex flex-col gap-2"
             >
               <h1 className="font-heading font-bold leading-[1.05] text-joe-text" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
-                Engineering
+                Apps, Websites
                 <br />
-                <span className="text-gradient-cyber">Intelligent</span>
+                <span className="text-gradient-cyber">Digital Systems</span>
                 <br />
-                Systems
+                & AI Solutions
               </h1>
               <p className="text-joe-text/40 text-xs font-mono tracking-[0.3em] uppercase mt-2">
-                that think. that scale. that deliver.
+                engineered to launch. scale. outperform.
               </p>
             </motion.div>
 
@@ -223,10 +224,11 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="text-joe-text/60 text-lg leading-relaxed max-w-lg"
             >
-              JOE Technologies designs and deploys production-grade AI systems for ambitious
-              companies. Founded by{" "}
+              JOE Technologies builds high-performance apps, websites, digital systems,
+              and AI-powered solutions for businesses and organizations that need real-world
+              production outcomes. Founded by{" "}
               <span className="text-[#00c8ff] font-semibold">Jeffery Onome Emuodafevware</span>{" "}
-              — we turn complex engineering challenges into elegant, intelligent solutions.
+              — we turn complex ideas into premium digital products that convert, automate, and scale.
             </motion.p>
 
             <motion.div
@@ -241,7 +243,7 @@ export default function HeroSection() {
                   className="relative overflow-hidden bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide shadow-xl shadow-[#00c8ff]/25 gap-2 hover:shadow-[#00c8ff]/40 transition-shadow duration-300"
                   data-testid="button-hero-cta-primary"
                 >
-                  Start Your Project
+                  Build With JOE
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -253,7 +255,7 @@ export default function HeroSection() {
                   data-testid="button-hero-cta-secondary"
                 >
                   <Code2 className="w-4 h-4" />
-                  View Our Work
+                  Explore Case Studies
                 </Button>
               </Link>
             </motion.div>
@@ -265,7 +267,11 @@ export default function HeroSection() {
               className="flex flex-wrap gap-3"
             >
               {[
-                { icon: Shield, text: "Production-Grade" },
+                { icon: Smartphone, text: "App Development" },
+                { icon: MonitorSmartphone, text: "Web Platforms" },
+                { icon: Network, text: "Digital Systems" },
+                { icon: Brain, text: "AI Solutions" },
+                { icon: Shield, text: "Enterprise-Grade" },
                 { icon: Zap, text: "High Performance" },
                 { icon: Globe, text: "Global Scale" },
               ].map(({ icon: Icon, text }, i) => (
@@ -328,7 +334,7 @@ export default function HeroSection() {
                   <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
                   <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
                   <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-                  <span className="ml-3 text-xs text-white/25 font-mono">joe_intelligence.py</span>
+                  <span className="ml-3 text-xs text-white/25 font-mono">joe_platform.ts</span>
                   <div className="ml-auto flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
                     <span className="text-xs text-white/20 font-mono">running</span>
@@ -361,13 +367,13 @@ export default function HeroSection() {
                 >
                   <div className="flex items-center gap-1.5">
                     <Brain className="w-3 h-3 text-[#00c8ff]" />
-                    <span className="text-xs text-white/35 font-mono">AI Ready</span>
+                    <span className="text-xs text-white/35 font-mono">AI Enabled</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Cpu className="w-3 h-3 text-[#c3e88d]" />
-                    <span className="text-xs text-white/35 font-mono">Production Grade</span>
+                    <span className="text-xs text-white/35 font-mono">Enterprise Grade</span>
                   </div>
-                  <div className="ml-auto text-xs text-white/20 font-mono">Python 3.12 · PyTorch 2.2</div>
+                  <div className="ml-auto text-xs text-white/20 font-mono">React · APIs · AI · Cloud</div>
                 </div>
               </div>
 
@@ -377,7 +383,7 @@ export default function HeroSection() {
                 className="absolute -top-5 -right-5 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xl"
                 style={{ background: "linear-gradient(135deg, #0066ff, #0044cc)", boxShadow: "0 8px 24px rgba(0,102,255,0.5)" }}
               >
-                Django Backend
+                App Systems
               </motion.div>
               <motion.div
                 animate={{ y: [5, -5, 5] }}
@@ -385,7 +391,7 @@ export default function HeroSection() {
                 className="absolute -bottom-5 -left-5 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xl"
                 style={{ background: "linear-gradient(135deg, #7c3aed, #5b21b6)", boxShadow: "0 8px 24px rgba(124,58,237,0.5)" }}
               >
-                LangChain · GPT-4
+                AI Workflows
               </motion.div>
               <motion.div
                 animate={{ y: [-3, 7, -3] }}
@@ -393,7 +399,7 @@ export default function HeroSection() {
                 className="absolute -right-5 bottom-16 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xl"
                 style={{ background: "linear-gradient(135deg, #00c8ff, #0088bb)", boxShadow: "0 8px 24px rgba(0,200,255,0.4)" }}
               >
-                React + TypeScript
+                Web Platforms
               </motion.div>
             </div>
           </motion.div>

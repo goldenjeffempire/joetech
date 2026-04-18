@@ -5,7 +5,8 @@ import {
   Brain, Code2, Layers, ArrowRight, ArrowUpRight,
   TrendingUp, Clock, Zap, Server, GitBranch, BarChart3,
   CheckCircle2, Database, Cpu, Eye, MessageSquare,
-  Shield, Network, Workflow
+  Shield, Network, Workflow, Smartphone, MonitorSmartphone,
+  Building2, Lock, Boxes, Bot, Target
 } from "lucide-react";
 import {
   SiPython, SiPytorch, SiTensorflow, SiDjango, SiFastapi,
@@ -19,42 +20,51 @@ import TrustedBySection from "@/components/TrustedBySection";
 
 const previewServices = [
   {
-    icon: Brain,
-    title: "AI Strategy & Architecture",
-    description: "We assess your business context, define the AI opportunities with highest ROI, and architect a roadmap from prototype to production-scale deployment.",
-    tags: ["LLMs", "MLOps", "Architecture Reviews"],
+    icon: Smartphone,
+    title: "App Development",
+    description: "Premium mobile and web applications engineered for speed, usability, conversion, and long-term growth across customer, staff, and operational workflows.",
+    tags: ["iOS & Android", "Web Apps", "Product UX"],
     accent: "#00c8ff",
-    slug: "ai-strategy",
-    badge: "Most Popular",
+    slug: "full-stack",
+    badge: "Core Pillar",
   },
   {
-    icon: Code2,
-    title: "Custom AI Development",
-    description: "From fine-tuned language models to computer vision pipelines — we build bespoke AI systems trained on your data, optimized for your domain.",
-    tags: ["Python", "PyTorch", "Transformers", "Django"],
+    icon: MonitorSmartphone,
+    title: "Website Development",
+    description: "Immersive, SEO-ready websites and digital storefronts that communicate trust, move users through clear journeys, and convert attention into action.",
+    tags: ["Landing Pages", "SEO", "CMS Ready"],
     accent: "#0066ff",
-    slug: "custom-ai",
+    slug: "full-stack",
     badge: null,
   },
   {
-    icon: Layers,
-    title: "Full-Stack Development",
-    description: "End-to-end development from React frontends to Django backends. We build the complete product — not just the AI layer.",
-    tags: ["React", "Django", "TypeScript", "PostgreSQL"],
+    icon: Building2,
+    title: "Digital Systems Engineering",
+    description: "Secure portals, dashboards, internal tools, databases, APIs, and workflow systems that replace manual processes with reliable digital infrastructure.",
+    tags: ["Dashboards", "APIs", "Automation"],
     accent: "#7c3aed",
     slug: "full-stack",
     badge: null,
+  },
+  {
+    icon: Brain,
+    title: "AI-Powered Solutions",
+    description: "Intelligent assistants, automation agents, analytics engines, and AI integrations designed to help teams make faster decisions and deliver better service.",
+    tags: ["LLMs", "AI Agents", "Analytics"],
+    accent: "#00ff88",
+    slug: "custom-ai",
+    badge: "AI-Ready",
   },
 ];
 
 const previewCaseStudies = [
   {
-    tag: "FinTech",
+    tag: "SaaS Platform",
     tagColor: "#00c8ff",
-    title: "IntelliCode Review Platform",
-    client: "Series B SaaS Startup",
-    description: "Built an AI-powered code review system that automatically detects security vulnerabilities, performance bottlenecks, and code quality issues — integrated directly into GitHub PRs.",
-    stack: ["Python", "CodeLlama", "Django", "React", "PostgreSQL"],
+    title: "Enterprise Operations App",
+    client: "Growing Service Organization",
+    description: "Built a high-performance internal operations platform with role-based dashboards, automated reporting, team workflows, and AI-assisted task routing.",
+    stack: ["React", "Django", "TypeScript", "PostgreSQL", "AI Routing"],
     metrics: [
       { icon: Clock, value: "73%", label: "Faster reviews" },
       { icon: TrendingUp, value: "91%", label: "Bug catch rate" },
@@ -63,12 +73,12 @@ const previewCaseStudies = [
     accent: "#00c8ff",
   },
   {
-    tag: "Healthcare",
+    tag: "AI Automation",
     tagColor: "#00ff88",
-    title: "HealthSense Predictive Analytics",
-    client: "Regional Hospital Network",
-    description: "Deployed a machine learning platform that predicts patient readmission risk, enabling care teams to intervene proactively and reduce unnecessary hospital stays.",
-    stack: ["Python", "scikit-learn", "BERT", "FastAPI", "PostgreSQL", "AWS"],
+    title: "Intelligent Customer Workflow Engine",
+    client: "Multi-location Business Network",
+    description: "Designed an AI-powered digital system that captures leads, qualifies requests, routes work to teams, and surfaces performance insights in real time.",
+    stack: ["Python", "LLMs", "FastAPI", "React", "PostgreSQL", "Cloud"],
     metrics: [
       { icon: TrendingUp, value: "91%", label: "Prediction accuracy" },
       { icon: Clock, value: "38%", label: "Readmission reduction" },
@@ -81,39 +91,66 @@ const previewCaseStudies = [
 const processSteps = [
   {
     number: "01",
-    title: "Discovery & Scoping",
-    description: "Deep-dive into your business context, technical landscape, and AI opportunities with highest ROI.",
+    title: "Business Discovery",
+    description: "Clarify goals, users, bottlenecks, data flows, and the digital product opportunities with the strongest return.",
     icon: BarChart3,
     accent: "#00c8ff",
   },
   {
     number: "02",
-    title: "Architecture Design",
-    description: "Build a production-ready technical blueprint — models, data pipelines, APIs, and deployment strategy.",
+    title: "Product Architecture",
+    description: "Design UX flows, system modules, data models, APIs, integrations, AI layers, and a scalable deployment plan.",
     icon: GitBranch,
     accent: "#0066ff",
   },
   {
     number: "03",
-    title: "Development & Training",
-    description: "Iterate rapidly with clean code, custom models trained on your data, and full test coverage.",
+    title: "Build & Integrate",
+    description: "Engineer the frontend, backend, automations, dashboards, and AI capabilities with clear release milestones.",
     icon: Cpu,
     accent: "#7c3aed",
   },
   {
     number: "04",
-    title: "Deploy & Scale",
-    description: "Ship to production with CI/CD pipelines, monitoring dashboards, and ongoing performance optimization.",
+    title: "Launch & Optimize",
+    description: "Ship to production with performance tuning, analytics, monitoring, SEO, and continuous improvement loops.",
     icon: Server,
     accent: "#00ff88",
   },
 ];
 
 const impactMetrics = [
-  { value: "50+", label: "AI Systems in Production", icon: Database, accent: "#00c8ff" },
+  { value: "50+", label: "Digital Products Delivered", icon: Database, accent: "#00c8ff" },
   { value: "98%", label: "Client Satisfaction Rate", icon: CheckCircle2, accent: "#00ff88" },
-  { value: "10x", label: "Average Performance Gains", icon: Zap, accent: "#0066ff" },
-  { value: "$12M+", label: "Value Delivered for Clients", icon: TrendingUp, accent: "#7c3aed" },
+  { value: "10x", label: "Average Workflow Gains", icon: Zap, accent: "#0066ff" },
+  { value: "4", label: "Core Solution Pillars", icon: TrendingUp, accent: "#7c3aed" },
+];
+
+const platformLayers = [
+  {
+    icon: Target,
+    title: "Conversion Strategy",
+    description: "Positioning, offer clarity, CTAs, analytics, and journeys built to convert traffic into qualified opportunities.",
+    accent: "#00c8ff",
+  },
+  {
+    icon: Boxes,
+    title: "Modular Product Systems",
+    description: "Reusable frontend patterns, scalable backend services, clean data models, and extensible feature modules.",
+    accent: "#0066ff",
+  },
+  {
+    icon: Bot,
+    title: "AI & Automation Layer",
+    description: "AI assistants, workflow automation, intelligent search, document processing, and decision-support systems.",
+    accent: "#7c3aed",
+  },
+  {
+    icon: Lock,
+    title: "Enterprise Readiness",
+    description: "Secure APIs, resilient architecture, rate limiting, observability, performance, and deployment hardening.",
+    accent: "#00ff88",
+  },
 ];
 
 const aiCapabilities = [
@@ -223,6 +260,7 @@ export default function Home() {
       <TrustedBySection />
       <ImpactMetrics />
       <ServicesPreview />
+      <PlatformArchitectureSection />
       <ProcessSection />
       <AICapabilitiesSection />
       <PortfolioHighlights />
@@ -307,18 +345,17 @@ function ServicesPreview() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">What We Do</span>
+          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Core Service Pillars</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            Services That{" "}
-            <span className="text-gradient-blue">Move the Needle</span>
+            Digital Products That{" "}
+            <span className="text-gradient-blue">Move Businesses Forward</span>
           </h2>
-          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
-            Every engagement is built around delivering measurable business outcomes —
-            not just impressive demos.
+          <p className="text-joe-text/50 mt-4 text-lg max-w-3xl mx-auto leading-relaxed">
+            From customer-facing websites to AI-enabled operational systems, every engagement is structured to deliver measurable business outcomes, fast user experiences, and scalable technology foundations.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {previewServices.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -423,6 +460,126 @@ function ServicesPreview() {
   );
 }
 
+function PlatformArchitectureSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 15% 20%, rgba(0,200,255,0.12), transparent 28%), radial-gradient(circle at 85% 60%, rgba(124,58,237,0.12), transparent 30%)`,
+        }}
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-center">
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col gap-6"
+          >
+            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Enterprise Platform Thinking</span>
+            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text leading-tight">
+              Built like a product.
+              <br />
+              <span className="text-gradient-cyber">Engineered like infrastructure.</span>
+            </h2>
+            <p className="text-joe-text/55 text-lg leading-relaxed">
+              JOE Technologies combines strategy, design, full-stack engineering, automation, and AI into one delivery system. The result is a digital platform that looks premium, loads fast, supports real users, and can evolve as the organization grows.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                "Conversion-focused user journeys",
+                "Responsive interfaces across devices",
+                "API-first backend architecture",
+                "AI-ready data and workflow design",
+              ].map((item, i) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-2 rounded-md border px-3 py-2 text-sm text-joe-text/60"
+                  style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                  data-testid={`platform-proof-${i}`}
+                >
+                  <CheckCircle2 className="w-4 h-4 text-[#00c8ff] flex-shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-xl shadow-[#00c8ff]/15"
+                  data-testid="button-platform-cta"
+                >
+                  Plan a Digital System
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/process">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-joe-text/15 text-joe-text/70 bg-joe-text/5 font-semibold gap-2"
+                  data-testid="button-platform-process"
+                >
+                  See the Delivery Process
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 gap-5">
+            {platformLayers.map((layer, i) => {
+              const Icon = layer.icon;
+              return (
+                <motion.div
+                  key={layer.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                  className="group relative min-h-[230px] rounded-xl border p-6 overflow-hidden hover-elevate"
+                  style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                  data-testid={`platform-layer-${i}`}
+                >
+                  <div
+                    className="absolute -right-12 -bottom-12 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: layer.accent }}
+                  />
+                  <div className="relative z-10 flex flex-col gap-5">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ background: `${layer.accent}15`, border: `1px solid ${layer.accent}30` }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: layer.accent }} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-bold text-joe-text text-lg mb-2">{layer.title}</h3>
+                      <p className="text-joe-text/50 text-sm leading-relaxed">{layer.description}</p>
+                    </div>
+                    <div className="mt-auto h-1 rounded-full overflow-hidden" style={{ background: "var(--joe-overlay)" }}>
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ background: `linear-gradient(90deg, ${layer.accent}, transparent)` }}
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: `${72 + i * 7}%` } : { width: 0 }}
+                        transition={{ duration: 0.8, delay: 0.35 + i * 0.08 }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -437,13 +594,13 @@ function ProcessSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">How It Works</span>
+          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Delivery System</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            From Idea to{" "}
+            From Vision to{" "}
             <span className="text-gradient-cyber">Production</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
-            A proven, structured process that minimizes risk and maximizes velocity — every time.
+            A structured delivery model for apps, websites, systems, and AI products that minimizes risk and maximizes velocity.
           </p>
         </motion.div>
 
@@ -550,18 +707,18 @@ function AICapabilitiesSection() {
         >
           <span className="text-[#7c3aed] font-mono text-sm uppercase tracking-widest">Core Capabilities</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            What Our AI{" "}
+            Intelligence Built Into{" "}
             <span style={{
               background: "linear-gradient(135deg, #7c3aed, #0066ff, #00c8ff)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}>
-              Can Do For You
+              Real Business Workflows
             </span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
-            Six battle-proven AI disciplines — each built for production, not just proof-of-concept.
+            AI is integrated where it creates measurable leverage: faster decisions, smarter workflows, better customer experiences, and automated operations.
           </p>
         </motion.div>
 
@@ -661,11 +818,11 @@ function PortfolioHighlights() {
         >
           <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-            AI That Delivers{" "}
+            Digital Systems That Deliver{" "}
             <span className="text-gradient-blue">Real Results</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
-            We don't build demos. We build systems that operate at scale and move business metrics.
+            We build production platforms that help teams operate faster, serve customers better, and unlock new digital revenue.
           </p>
         </motion.div>
 
