@@ -36,20 +36,21 @@ client/src/
     full-stack.tsx            — Full-Stack Development detail page
     advisory.tsx              — Technical Advisory detail page
   components/
-    Layout.tsx                — Shared layout (Nav + Footer + utilities)
-    Navigation.tsx            — Top nav with wouter Link routing
-    HeroSection.tsx           — Full-screen hero with animated code terminal
-    TrustedBySection.tsx      — Client company strip
+    Layout.tsx                — Shared layout (Nav + Footer + utilities + AnimatePresence transitions)
+    Navigation.tsx            — Top nav with mega-menu Services dropdown + mobile submenu
+    HeroSection.tsx           — Full-screen hero with canvas neural network, terminal, tech badges
+    PageHero.tsx              — Reusable page header (label badge, gradient title, subtitle, CTA)
+    TrustedBySection.tsx      — Infinite-scroll marquee with glowing dots
     AboutSection.tsx          — Founder bio, achievements, values
     ServicesSection.tsx       — 6 service cards with icons and tags
     WhyUsSection.tsx          — 6 differentiators
     ProcessSection.tsx        — 5-step numbered process timeline
     TechStackSection.tsx      — Tech categories with react-icons logos
     PortfolioSection.tsx      — 4 case studies with metrics
-    TestimonialsSection.tsx   — 3 client testimonials
+    TestimonialsSection.tsx   — 3 client testimonials with result badges + gradient borders
     FAQSection.tsx            — 8-question accordion
     ContactSection.tsx        — Contact form + WhatsApp CTA + info
-    Footer.tsx                — Links (wouter), social icons, scroll-to-top
+    Footer.tsx                — Founder card, email/WhatsApp socials, animated status pulse
     WhatsAppButton.tsx        — Floating WhatsApp button (bottom-right)
     ScrollProgressBar.tsx     — Gradient bar across top of page
     ThemeToggle.tsx           — Dark/Light mode toggle
@@ -116,15 +117,18 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 **Tailwind extension**: `text-joe-text`, `bg-joe-text`, `border-joe-text` with opacity support (e.g., `text-joe-text/65`)
 
 ## Key Features
-- **Multi-page platform**: 5 pages with shared layout and wouter routing
-- **Dark-tech luxury design**: Deep navy/black backgrounds, electric blue/cyan accents, gradient text
+- **Multi-page platform**: 14+ routes with shared layout, lazy-loaded code-split pages, AnimatePresence transitions
+- **Dark-tech luxury design**: Canvas neural particle network hero, futuristic grid overlays, glowing orbs, gradient text utilities
+- **PageHero design system**: Consistent reusable hero component with accent-colored label badges, gradient highlighted titles, CTA buttons
+- **Mega-menu navigation**: Dropdown Services panel with 6 service links + icons; animated mobile submenu
+- **Infinite marquee strips**: CSS-animated TrustedBy logos with glow dots
 - **Full light/dark theme support**: CSS custom properties + Tailwind `joe.text` color
 - **Fully responsive**: Mobile-first with hamburger nav, responsive grids
 - **Per-page SEO**: Unique document title for each page via `usePageTitle` hook
-- **Animated counters**: Hero stats count up from 0 when in view
+- **Animated counters**: Hero stats count up from 0 when in view; impact metrics section
 - **Contact form**: Validated with Zod, posts to `/api/contact`, success/error states
 - **WhatsApp integration**: Floating button + form button linking to WhatsApp chat
-- **Framer Motion animations**: Scroll-triggered section reveals, hero type animation
+- **Framer Motion animations**: Scroll-triggered section reveals, hero type animation, page transitions
 - **SEO optimized**: Title, meta description, OG tags, canonical URL, skip link, JSON-LD structured data
 - **Accessibility**: Skip link, aria-labels, aria-expanded, semantic HTML, focus-visible styles
 - **Error boundary**: Catches React errors with branded fallback UI
@@ -135,8 +139,11 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 ## Design System
 - **Primary color**: Electric blue/cyan (#00c8ff, #0066ff) — always hardcoded
 - **Accent**: Purple (#7c3aed), Green (#00ff88) — always hardcoded
-- **Typography**: Space Grotesk (headings via font-heading), Inter (body)
-- **Default theme**: Dark mode (defaults to `dark` class)
+- **Typography**: Oxanium (headings via `font-heading`), Inter (body) — Google Fonts
+- **Gradient text utilities**: `.text-gradient-cyber` (blue→cyan), `.text-gradient-blue` (blue→purple)
+- **Animation utilities**: `animate-marquee`, `animate-orb-float`, `animate-glow-pulse`, `animate-scan`, `animate-blink`, `animate-shine`
+- **Default theme**: Dark mode (defaults to `dark` class on `documentElement`)
+- **Noise overlay**: `::before` pseudo-element on body for subtle texture
 
 ## API Endpoints
 - `POST /api/contact` — Rate-limited (5/15min), honeypot checked, validates with Zod

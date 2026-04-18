@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import PageHero from "@/components/PageHero";
 import { usePageTitle } from "@/hooks/use-page-title";
 import { Search, PenTool, Cpu, Rocket, TrendingUp, ArrowRight, GitBranch, MessageCircle, Shield, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -88,38 +89,13 @@ export default function ProcessPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
-      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
-        <div className="absolute inset-0" style={{
-          opacity: "var(--joe-glow-opacity)",
-          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00c8ff]/20 bg-[#00c8ff]/8 mb-6">
-              <Cpu className="w-4 h-4 text-[#00c8ff]" />
-              <span className="text-[#00c8ff] text-sm font-mono font-medium">How We Work</span>
-            </div>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-joe-text leading-tight">
-              Our Proven{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                Engineering Process
-              </span>
-            </h1>
-            <p className="text-joe-text/55 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              Every project follows a battle-tested methodology that eliminates surprises and maximizes the chance of meaningful impact.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        label="How We Work"
+        title="Our Proven"
+        highlightedTitle="Engineering Process"
+        subtitle="Every project follows a battle-tested methodology that eliminates surprises and maximizes the chance of meaningful impact."
+        accentColor="#00c8ff"
+      />
 
       <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="absolute inset-0" style={{

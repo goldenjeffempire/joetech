@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { usePageTitle } from "@/hooks/use-page-title";
 import { Plus, Minus, ArrowRight, HelpCircle, MessageCircle, Mail, Phone } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -135,38 +136,14 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
-      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
-        <div className="absolute inset-0" style={{
-          opacity: "var(--joe-glow-opacity)",
-          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }} />
-        <div className="absolute top-1/2 right-1/4 w-80 h-80 blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7c3aed]/20 bg-[#7c3aed]/8 mb-6">
-              <HelpCircle className="w-4 h-4 text-[#7c3aed]" />
-              <span className="text-[#7c3aed] text-sm font-mono font-medium">FAQ</span>
-            </div>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-joe-text leading-tight">
-              Questions We{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                Get Asked
-              </span>
-            </h1>
-            <p className="text-joe-text/55 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              Everything you need to know before starting a conversation with us. Can't find your answer? Reach out directly.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        label="FAQ"
+        title="Questions We"
+        highlightedTitle="Get Asked"
+        subtitle="Everything you need to know before starting a conversation with us. Can't find your answer? Reach out directly."
+        accentColor="#7c3aed"
+        size="md"
+      />
 
       <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

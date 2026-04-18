@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import PageHero from "@/components/PageHero";
 import { usePageTitle } from "@/hooks/use-page-title";
 import { ArrowRight, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -92,38 +93,13 @@ export default function TechStackPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
-      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
-        <div className="absolute inset-0" style={{
-          opacity: "var(--joe-glow-opacity)",
-          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }} />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7c3aed]/20 bg-[#7c3aed]/8 mb-6">
-              <Wrench className="w-4 h-4 text-[#7c3aed]" />
-              <span className="text-[#7c3aed] text-sm font-mono font-medium">Our Arsenal</span>
-            </div>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-joe-text leading-tight">
-              Technology{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                We Master
-              </span>
-            </h1>
-            <p className="text-joe-text/55 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              A carefully curated, battle-tested stack — chosen for performance, reliability, and the ability to scale from startup to enterprise.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        label="Our Arsenal"
+        title="Technology"
+        highlightedTitle="We Master"
+        subtitle="A carefully curated, battle-tested stack — chosen for performance, reliability, and the ability to scale from startup to enterprise."
+        accentColor="#7c3aed"
+      />
 
       <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

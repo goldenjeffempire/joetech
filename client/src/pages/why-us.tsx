@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { usePageTitle } from "@/hooks/use-page-title";
 import { ShieldCheck, BarChart3, GitMerge, MessageSquare, Layers, HeartHandshake, ArrowRight, Target, Users, Zap, Clock, Award, CheckCircle } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -74,38 +75,14 @@ export default function WhyUsPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
-      <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
-        <div className="absolute inset-0" style={{
-          opacity: "var(--joe-glow-opacity)",
-          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00c8ff]/20 bg-[#00c8ff]/8 mb-6">
-              <Award className="w-4 h-4 text-[#00c8ff]" />
-              <span className="text-[#00c8ff] text-sm font-mono font-medium">Our Difference</span>
-            </div>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-joe-text leading-tight">
-              Why Choose{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                JOE Technologies
-              </span>
-            </h1>
-            <p className="text-joe-text/55 text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
-              There are many AI consultancies. Here's what makes us the partner that serious companies choose — and stay with.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        label="Our Difference"
+        title="Why Choose"
+        highlightedTitle="JOE Technologies"
+        subtitle="There are many AI consultancies. Here's what makes us the partner that serious companies choose — and stay with."
+        accentColor="#0066ff"
+        size="md"
+      />
 
       <section className="relative py-16 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
