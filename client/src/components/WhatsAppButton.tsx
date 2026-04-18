@@ -2,23 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, ChevronRight } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
-
-const numbers = [
-  {
-    label: "JOE Technologies",
-    number: "08159088343",
-    wa: "https://wa.me/2348159088343?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
-    tag: "Business inquiries",
-    tagColor: "#00ff88",
-  },
-  {
-    label: "JOE Technologies",
-    number: "09017078791",
-    wa: "https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
-    tag: "Business inquiries",
-    tagColor: "#00c8ff",
-  },
-];
+import { WA_CONTACTS } from "@/components/WhatsAppContactPicker";
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
@@ -105,10 +89,10 @@ export default function WhatsAppButton() {
 
               <p className="text-white/28 text-[10px] font-mono uppercase tracking-widest mb-2.5">Select a contact</p>
               <div className="flex flex-col gap-2">
-                {numbers.map((n, i) => (
+                {WA_CONTACTS.map((n, i) => (
                   <a
                     key={i}
-                    href={n.wa}
+                    href={n.wa()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-200"
@@ -140,9 +124,9 @@ export default function WhatsAppButton() {
                           <span
                             className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full leading-none"
                             style={{
-                              background: `${n.tagColor}12`,
-                              color: n.tagColor,
-                              border: `1px solid ${n.tagColor}22`,
+                              background: "rgba(0,255,136,0.1)",
+                              color: "#00ff88",
+                              border: "1px solid rgba(0,255,136,0.2)",
                             }}
                           >
                             {n.tag}

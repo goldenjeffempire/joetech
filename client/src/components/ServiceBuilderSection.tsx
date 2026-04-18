@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 
 const SERVICES = [
   {
@@ -556,33 +557,10 @@ export default function ServiceBuilderSection() {
                     </div>
                   </div>
 
-                  <div className="p-5 rounded-xl border mb-6" style={{ background: "rgba(0,255,136,0.04)", borderColor: "rgba(0,255,136,0.15)" }}>
-                    <p className="text-white/50 text-xs font-mono uppercase tracking-widest mb-4">Connect with a Sales Representative</p>
-                    <div className="flex flex-wrap gap-3">
-                      <a
-                        href={`https://wa.me/2349017078791?text=${encodeURIComponent(`Hi JOE Technologies, I used the Service Builder and I'm interested in a ${service.name} (${scale.label} scale) with ${selectedFeatures.length} add-on feature${selectedFeatures.length !== 1 ? "s" : ""}. I'd like to discuss pricing and timeline.`)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-testid="button-builder-wa-primary"
-                      >
-                        <Button className="gap-2 font-semibold text-white border-0 shadow-lg" style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 18px rgba(37,211,102,0.25)" }}>
-                          <MessageSquare className="w-4 h-4" />
-                          Chat with Jeffery
-                        </Button>
-                      </a>
-                      <a
-                        href={`https://wa.me/2348159088343?text=${encodeURIComponent(`Hi JOE Technologies, I used the Service Builder and I'm interested in a ${service.name} (${scale.label} scale) with ${selectedFeatures.length} add-on feature${selectedFeatures.length !== 1 ? "s" : ""}. I'd like to discuss pricing and timeline.`)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-testid="button-builder-wa-secondary"
-                      >
-                        <Button variant="outline" className="gap-2 font-semibold border-[#25d366]/30 text-[#25d366] hover:bg-[#25d366]/10 bg-transparent">
-                          <MessageSquare className="w-4 h-4" />
-                          Chat with Sales
-                        </Button>
-                      </a>
-                    </div>
-                  </div>
+                  <WhatsAppContactPicker
+                    message={`Hi JOE Technologies, I used the Service Builder and I'm interested in ${service.name} (${scale.label} scale) with ${selectedFeatures.length} add-on feature${selectedFeatures.length !== 1 ? "s" : ""}. I'd like to discuss pricing and timeline.`}
+                    className="mb-6"
+                  />
                   <button
                     onClick={reset}
                     className="flex items-center gap-2 text-white/40 hover:text-white/70 text-sm font-mono transition-colors"

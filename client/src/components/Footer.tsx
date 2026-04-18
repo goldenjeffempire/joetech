@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowUp, ExternalLink, Mail, MessageCircle, Globe } from "lucide-react";
-import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
+import { ArrowUp, ExternalLink, Mail, Globe } from "lucide-react";
+import { SiInstagram, SiFacebook } from "react-icons/si";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 import { Link } from "wouter";
 import JoeLogo from "@/components/JoeLogo";
 
@@ -30,20 +31,6 @@ const footerLinks = {
 };
 
 const contactChannels = [
-  {
-    icon: SiWhatsapp,
-    label: "WhatsApp",
-    value: "09017078791",
-    href: "https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
-    accent: "#00ff88",
-  },
-  {
-    icon: SiWhatsapp,
-    label: "WhatsApp 2",
-    value: "08159088343",
-    href: "https://wa.me/2348159088343?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
-    accent: "#00ff88",
-  },
   {
     icon: SiInstagram,
     label: "Instagram",
@@ -162,16 +149,7 @@ export default function Footer() {
                 })}
               </div>
 
-              <a
-                href="https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#00ff88]/25 bg-[#00ff88]/05 text-[#00ff88] text-sm font-semibold hover:bg-[#00ff88]/12 hover:border-[#00ff88]/40 transition-all duration-200"
-                data-testid="link-footer-whatsapp-cta"
-              >
-                <MessageCircle className="w-4 h-4" />
-                Quick Chat on WhatsApp
-              </a>
+              <WhatsAppContactPicker />
             </div>
           </div>
 

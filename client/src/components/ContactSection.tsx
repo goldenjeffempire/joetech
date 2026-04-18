@@ -5,8 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { Mail, MapPin, Send, MessageCircle, CheckCircle2, Globe, Phone } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Globe, Phone } from "lucide-react";
 import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -140,13 +141,6 @@ export default function ContactSection() {
     mutation.mutate(data);
   };
 
-  const handleWhatsApp = () => {
-    window.open(
-      "https://wa.me/2349017078791?text=Hello%20Jeffery%2C%20I%20visited%20joetech.onrender.com%20and%20I%27d%20love%20to%20discuss%20a%20project.",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
 
   return (
     <section id="contact" className="relative py-24 lg:py-32 overflow-hidden"
@@ -217,27 +211,9 @@ export default function ContactSection() {
               );
             })}
 
-            <div
-              className="p-5 rounded-xl border border-[#00ff88]/20 mt-1"
-              style={{ background: "rgba(0, 255, 136, 0.04)" }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <SiWhatsapp className="w-4 h-4 text-[#00ff88]" />
-                <span className="text-[#00ff88] font-semibold text-sm">Quick Chat on WhatsApp</span>
-              </div>
-              <p className="text-joe-text/45 text-xs leading-relaxed mb-3">
-                Prefer a quick message? Reach Jeffery directly for fast responses.
-              </p>
-              <Button
-                onClick={handleWhatsApp}
-                className="w-full border-[#00ff88]/40 text-[#00ff88] bg-[#00ff88]/8 font-semibold gap-2 hover:bg-[#00ff88]/15"
-                variant="outline"
-                data-testid="button-whatsapp"
-              >
-                <MessageCircle className="w-4 h-4" />
-                Open WhatsApp Chat
-              </Button>
-            </div>
+            <WhatsAppContactPicker
+              message="Hello JOE Technologies, I visited your website and I'd love to discuss a project."
+            />
 
             <div className="flex items-center gap-3 p-4 rounded-xl border"
               style={{

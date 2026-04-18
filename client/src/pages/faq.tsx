@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useSeo } from "@/hooks/use-seo";
-import { Plus, Minus, ArrowRight, HelpCircle, MessageCircle, Mail, Phone } from "lucide-react";
+import { Plus, Minus, ArrowRight, HelpCircle, Mail, Phone } from "lucide-react";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -211,74 +212,79 @@ export default function FAQPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: MessageCircle,
-                title: "WhatsApp",
-                description: "Quick questions? Chat with us directly on WhatsApp.",
-                action: "Start Chat",
-                href: "https://wa.me/2349017048791?text=Hi%20JOE%20Technologies%2C%20I%20have%20a%20question.",
-                external: true,
-                accent: "#00c8ff",
-              },
-              {
-                icon: Mail,
-                title: "Email",
-                description: "Prefer email? We respond within 24 hours.",
-                action: "Send Email",
-                href: "mailto:jeffemuodafe124@gmail.com",
-                external: true,
-                accent: "#0066ff",
-              },
-              {
-                icon: Phone,
-                title: "Schedule a Call",
-                description: "Book a free 45-minute strategy call with Jeffery.",
-                action: "Get in Touch",
-                href: "/contact",
-                external: false,
-                accent: "#7c3aed",
-              },
-            ].map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="p-6 rounded-xl border text-center hover-elevate"
-                  style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
-                  data-testid={`contact-method-${i}`}
-                >
-                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4"
-                    style={{ background: `${item.accent}12`, border: `1px solid ${item.accent}28` }}>
-                    <Icon className="w-5 h-5" style={{ color: item.accent }} />
-                  </div>
-                  <h3 className="font-heading font-bold text-joe-text text-base mb-2">{item.title}</h3>
-                  <p className="text-joe-text/50 text-sm leading-relaxed mb-4">{item.description}</p>
-                  {item.external ? (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer">
-                      <Button variant="outline" className="font-semibold gap-2" style={{ borderColor: `${item.accent}30`, color: item.accent }}
-                        data-testid={`button-faq-${item.title.toLowerCase()}`}>
-                        {item.action}
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Button>
-                    </a>
-                  ) : (
-                    <Link href={item.href}>
-                      <Button variant="outline" className="font-semibold gap-2" style={{ borderColor: `${item.accent}30`, color: item.accent }}
-                        data-testid={`button-faq-${item.title.toLowerCase().replace(/\s+/g, "-")}`}>
-                        {item.action}
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Button>
-                    </Link>
-                  )}
-                </motion.div>
-              );
-            })}
+          <div className="flex flex-col gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              data-testid="contact-method-0"
+            >
+              <WhatsAppContactPicker
+                message="Hi JOE Technologies, I have a question."
+              />
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: Mail,
+                  title: "Email",
+                  description: "Prefer email? We respond within 24 hours.",
+                  action: "Send Email",
+                  href: "mailto:jeffemuodafe124@gmail.com",
+                  external: true,
+                  accent: "#0066ff",
+                },
+                {
+                  icon: Phone,
+                  title: "Schedule a Call",
+                  description: "Book a free 45-minute strategy call with Jeffery.",
+                  action: "Get in Touch",
+                  href: "/contact",
+                  external: false,
+                  accent: "#7c3aed",
+                },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: (i + 1) * 0.1 }}
+                    className="p-6 rounded-xl border text-center hover-elevate"
+                    style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                    data-testid={`contact-method-${i + 1}`}
+                  >
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4"
+                      style={{ background: `${item.accent}12`, border: `1px solid ${item.accent}28` }}>
+                      <Icon className="w-5 h-5" style={{ color: item.accent }} />
+                    </div>
+                    <h3 className="font-heading font-bold text-joe-text text-base mb-2">{item.title}</h3>
+                    <p className="text-joe-text/50 text-sm leading-relaxed mb-4">{item.description}</p>
+                    {item.external ? (
+                      <a href={item.href} target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" className="font-semibold gap-2" style={{ borderColor: `${item.accent}30`, color: item.accent }}
+                          data-testid={`button-faq-${item.title.toLowerCase()}`}>
+                          {item.action}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link href={item.href}>
+                        <Button variant="outline" className="font-semibold gap-2" style={{ borderColor: `${item.accent}30`, color: item.accent }}
+                          data-testid={`button-faq-${item.title.toLowerCase().replace(/\s+/g, "-")}`}>
+                          {item.action}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Button>
+                      </Link>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
