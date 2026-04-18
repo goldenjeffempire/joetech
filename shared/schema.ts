@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -19,6 +19,25 @@ export const contactSubmissions = pgTable("contact_submissions", {
   createdAt: text("created_at").notNull(),
 });
 
+export const leadSubmissions = pgTable("lead_submissions", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  company: text("company"),
+  phone: text("phone"),
+  serviceType: text("service_type").notNull(),
+  projectDescription: text("project_description"),
+  budget: text("budget").notNull(),
+  timeline: text("timeline").notNull(),
+  companySize: text("company_size").notNull(),
+  industry: text("industry"),
+  hasExistingSolution: text("has_existing_solution"),
+  adaptiveAnswers: text("adaptive_answers"),
+  score: integer("score").notNull(),
+  tier: text("tier").notNull(),
+  createdAt: text("created_at").notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -36,7 +55,29 @@ export const insertContactSchema = createInsertSchema(contactSubmissions).omit({
   message: z.string().min(20, "Message must be at least 20 characters"),
 });
 
+export const insertLeadSchema = createInsertSchema(leadSubmissions).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  serviceType: z.string().min(1, "Please select a service"),
+  projectDescription: z.string().optional(),
+  budget: z.string().min(1, "Please select a budget range"),
+  timeline: z.string().min(1, "Please select a timeline"),
+  companySize: z.string().min(1, "Please select your company size"),
+  industry: z.string().optional(),
+  hasExistingSolution: z.string().optional(),
+  adaptiveAnswers: z.string().optional(),
+  score: z.number().int().min(0),
+  tier: z.enum(["Startup", "High Value", "Enterprise"]),
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+export type InsertLead = z.infer<typeof insertLeadSchema>;
+export type LeadSubmission = typeof leadSubmissions.$inferSelect;

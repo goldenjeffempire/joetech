@@ -27,6 +27,7 @@ client/src/
     process.tsx               — Our Engineering Process (dedicated page)
     tech-stack.tsx            — Technology We Master (dedicated page)
     faq.tsx                   — Frequently Asked Questions (dedicated page)
+    qualify.tsx               — Smart Lead Qualification multi-step form (5 steps, adaptive questions, lead scoring)
     not-found.tsx             — Dark-branded 404 page
   pages/services/
     app-development.tsx       — App Development pillar page (cyan, #00c8ff accent)
@@ -71,9 +72,9 @@ client/src/
 server/
   index.ts                    — Express server entry
   routes.ts                   — API routes with rate limiting
-  storage.ts                  — MemStorage with contact submissions
+  storage.ts                  — MemStorage with contact and lead submissions
 shared/
-  schema.ts                   — Drizzle/Zod schemas for users and contacts
+  schema.ts                   — Drizzle/Zod schemas for users, contacts, and leads
 ```
 
 ## Pages & Routes
@@ -88,6 +89,7 @@ shared/
 | `/tech-stack` | Tech Stack | 6 tech categories with descriptions, selection criteria, CTA |
 | `/faq` | FAQ | Categorized FAQs (4 groups), contact methods, CTA |
 | `/contact` | Contact | Page header, ContactSection, FAQSection |
+| `/qualify` | Smart Lead Qualification | 5-step adaptive form: contact info → service selection → budget/timeline → adaptive questions → score reveal |
 | `/services/ai-strategy` | AI Strategy | Overview, deliverables, use cases, tech stack, CTA |
 | `/services/custom-ai` | Custom AI Dev | Overview, deliverables, use cases, tech stack, CTA |
 | `/services/mlops` | MLOps | Overview, deliverables, use cases, tech stack, CTA |
@@ -158,7 +160,24 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 ## API Endpoints
 - `POST /api/contact` — Rate-limited (5/15min), honeypot checked, validates with Zod
 - `GET /api/contacts` — Returns all contact submissions
+- `POST /api/leads` — Rate-limited (5/15min), validates with Zod, stores scored lead submission
+- `GET /api/leads` — Returns all lead submissions
 - `GET /api/health` — Health check endpoint
+
+## Lead Scoring (Smart Qualification)
+Scores are calculated from 4 signals; each contributes points (1–4):
+- **Budget**: Under $5K=1, $5K–$25K=2, $25K–$100K=3, $100K+=4
+- **Timeline**: Flexible=1, 3–6 months=2, 1–3 months=3, ASAP=4
+- **Company Size**: 1–10=1, 11–50=2, 51–200=3, 200+=4
+- **Existing Solution**: No=0, Yes=1
+
+**Tier Thresholds**: Score ≤5 → Startup | 6–9 → High Value | 10+ → Enterprise
+
+**Adaptive Questions** (based on selected service category):
+- AI/ML (Custom AI, AI Strategy, MLOps, AI Integration, Automation): data infrastructure + AI tool usage
+- Web/App Dev (App Development, Website Design, Full-Stack): platform target + project starting point
+- Design (UI/UX Design): brand guidelines + product stage
+- Advisory: primary goal + prior consulting experience
 
 ## WhatsApp Configuration
 WhatsApp number: `2349017048791` (no + prefix in wa.me URL)
