@@ -19,6 +19,9 @@ import { usePageTitle } from "@/hooks/use-page-title";
 import HeroSection from "@/components/HeroSection";
 import TrustedBySection from "@/components/TrustedBySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import ServiceBuilderSection from "@/components/ServiceBuilderSection";
+import SimulationDashboard from "@/components/SimulationDashboard";
+import WorkflowVisualization from "@/components/WorkflowVisualization";
 
 const previewServices = [
   {
@@ -279,10 +282,13 @@ export default function Home() {
       <TrustedBySection />
       <ImpactMetrics />
       <ServicesPreview />
+      <ServiceBuilderSection />
       <DigitalEcosystemSection />
+      <WorkflowVisualization />
       <ExperienceVisualizationSection />
       <PlatformArchitectureSection />
       <ProcessSection />
+      <SimulationDashboard />
       <AICapabilitiesSection />
       <PortfolioHighlights />
       <TestimonialsSection />

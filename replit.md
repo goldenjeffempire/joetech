@@ -15,7 +15,7 @@ A premium, production-ready multi-page platform for **JOE Technologies** — an 
 ```
 client/src/
   pages/
-    home.tsx                  — Landing page (Hero + previews + CTA)
+    home.tsx                  — Landing page (Hero + ServiceBuilder + WorkflowViz + SimDashboard + previews + CTA)
     about.tsx                 — About, Why Us, Testimonials
     services.tsx              — Services, Process, Tech Stack
     portfolio.tsx             — Portfolio / Case Studies
@@ -55,7 +55,10 @@ client/src/
     FAQSection.tsx            — 8-question accordion
     ContactSection.tsx        — Contact form with 6 info cards (Email, WhatsApp x2, Instagram, Facebook, Website, Location)
     Footer.tsx                — Founder card, email/WhatsApp socials, animated status pulse
-    WhatsAppButton.tsx        — Floating WhatsApp button (bottom-right)
+    WhatsAppButton.tsx        — Floating WhatsApp button (scroll-triggered, dual numbers, expand panel)
+    ServiceBuilderSection.tsx — 4-step interactive service builder with dynamic pricing/timeline calculator
+    SimulationDashboard.tsx   — Live interval-driven dashboard: animated bar charts + scrolling system logs + real-time metrics
+    WorkflowVisualization.tsx — Animated pipeline engine: 4 workflow templates (Lead, Order, AI, Monitor) with Trigger→Process→Output flow
     ScrollProgressBar.tsx     — Gradient bar across top of page
     ThemeToggle.tsx           — Dark/Light mode toggle
     ErrorBoundary.tsx         — React error boundary with branded UI
@@ -76,7 +79,7 @@ shared/
 ## Pages & Routes
 | Route | Page | Content |
 |-------|------|---------|
-| `/` | Home | Hero, TrustedBy, Services preview (3), Portfolio highlights (2), Testimonials, CTA banner |
+| `/` | Home | Hero, TrustedBy, ImpactMetrics, ServicesPreview, ServiceBuilder, DigitalEcosystem, WorkflowViz, Platform, Process, SimDashboard, AICapabilities, Portfolio, Testimonials, TechEcosystem, CTA |
 | `/about` | About | Page header, AboutSection, WhyUsSection, TestimonialsSection |
 | `/services` | Services | Page header, ServicesSection, ProcessSection, TechStackSection |
 | `/portfolio` | Portfolio | Page header, PortfolioSection (4 case studies) |
