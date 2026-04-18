@@ -90,6 +90,28 @@ httpServer.listen(
   },
 );
 
+// Self-ping keep-alive — production only.
+// Renders free tier spins down a service after ~15 minutes of inactivity.
+// Every 4 minutes the server pings its own /ping endpoint so Render never
+// considers the service idle, eliminating cold-start delays entirely.
+if (isProduction) {
+  const PING_INTERVAL_MS = 4 * 60 * 1000; // 4 minutes
+  const selfUrl = process.env.RENDER_EXTERNAL_URL
+    ? `${process.env.RENDER_EXTERNAL_URL}/ping`
+    : `http://localhost:${port}/ping`;
+
+  setInterval(async () => {
+    try {
+      const res = await fetch(selfUrl, { signal: AbortSignal.timeout(10_000) });
+      log(`keep-alive ping → ${res.status}`, "keepalive");
+    } catch (err) {
+      log(`keep-alive ping failed: ${(err as Error).message}`, "keepalive");
+    }
+  }, PING_INTERVAL_MS);
+
+  log(`keep-alive enabled → pinging ${selfUrl} every 4 min`, "keepalive");
+}
+
 // Finish setup asynchronously — routes and Vite middleware are registered
 // after the server is already accepting connections, so no request ever
 // arrives before there is something listening on the socket.
