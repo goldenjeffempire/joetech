@@ -1,16 +1,21 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import {
   Brain, Code2, Layers, ArrowRight, ArrowUpRight,
   TrendingUp, Clock, Zap, Server, GitBranch, BarChart3,
-  CheckCircle2, Database, Cpu
+  CheckCircle2, Database, Cpu, Eye, MessageSquare,
+  Shield, Network, Workflow
 } from "lucide-react";
+import {
+  SiPython, SiPytorch, SiTensorflow, SiDjango, SiFastapi,
+  SiPostgresql, SiReact, SiTypescript, SiDocker,
+  SiKubernetes, SiAmazonec2, SiOpenai, SiGithub, SiRedis
+} from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { usePageTitle } from "@/hooks/use-page-title";
 import HeroSection from "@/components/HeroSection";
 import TrustedBySection from "@/components/TrustedBySection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 
 const previewServices = [
   {
@@ -111,6 +116,104 @@ const impactMetrics = [
   { value: "$12M+", label: "Value Delivered for Clients", icon: TrendingUp, accent: "#7c3aed" },
 ];
 
+const aiCapabilities = [
+  {
+    icon: MessageSquare,
+    title: "Natural Language Processing",
+    description: "Custom LLMs, summarization engines, semantic search, and intelligent chat systems trained on your domain data.",
+    accent: "#00c8ff",
+    stat: "99.2%",
+    statLabel: "Intent accuracy",
+    bars: [0.9, 0.75, 0.95, 0.6, 0.85, 0.7],
+  },
+  {
+    icon: Eye,
+    title: "Computer Vision",
+    description: "Object detection, classification, OCR, and visual quality inspection pipelines for industrial and consumer use cases.",
+    accent: "#0066ff",
+    stat: "< 40ms",
+    statLabel: "Inference latency",
+    bars: [0.65, 0.88, 0.72, 0.94, 0.8, 0.91],
+  },
+  {
+    icon: TrendingUp,
+    title: "Predictive Analytics",
+    description: "Time-series forecasting, anomaly detection, churn prediction — models that surface insights before problems arise.",
+    accent: "#7c3aed",
+    stat: "91%",
+    statLabel: "Forecast accuracy",
+    bars: [0.55, 0.7, 0.82, 0.76, 0.91, 0.88],
+  },
+  {
+    icon: Brain,
+    title: "LLM Fine-tuning",
+    description: "Instruction-tuning and RLHF on proprietary datasets to create models that understand your business language precisely.",
+    accent: "#00ff88",
+    stat: "3.8x",
+    statLabel: "Task improvement",
+    bars: [0.4, 0.55, 0.68, 0.78, 0.88, 0.96],
+  },
+  {
+    icon: Network,
+    title: "AI Integration & APIs",
+    description: "Connect AI capabilities to your existing products via robust REST and WebSocket APIs with full authentication and rate limiting.",
+    accent: "#f59e0b",
+    stat: "< 200ms",
+    statLabel: "API response time",
+    bars: [0.92, 0.88, 0.94, 0.9, 0.93, 0.91],
+  },
+  {
+    icon: Workflow,
+    title: "MLOps & Deployment",
+    description: "End-to-end model lifecycle management — training pipelines, versioning, A/B testing, drift monitoring, and auto-retraining.",
+    accent: "#ec4899",
+    stat: "99.9%",
+    statLabel: "Model uptime SLA",
+    bars: [0.99, 0.98, 1.0, 0.99, 0.97, 0.99],
+  },
+];
+
+const techCategories = [
+  {
+    label: "AI / ML",
+    accent: "#00c8ff",
+    techs: [
+      { Icon: SiPython, name: "Python" },
+      { Icon: SiPytorch, name: "PyTorch" },
+      { Icon: SiTensorflow, name: "TensorFlow" },
+      { Icon: SiOpenai, name: "OpenAI" },
+    ],
+  },
+  {
+    label: "Backend",
+    accent: "#0066ff",
+    techs: [
+      { Icon: SiDjango, name: "Django" },
+      { Icon: SiFastapi, name: "FastAPI" },
+      { Icon: SiPostgresql, name: "PostgreSQL" },
+      { Icon: SiRedis, name: "Redis" },
+    ],
+  },
+  {
+    label: "Frontend",
+    accent: "#7c3aed",
+    techs: [
+      { Icon: SiReact, name: "React" },
+      { Icon: SiTypescript, name: "TypeScript" },
+    ],
+  },
+  {
+    label: "Infrastructure",
+    accent: "#00ff88",
+    techs: [
+      { Icon: SiAmazonec2, name: "AWS" },
+      { Icon: SiDocker, name: "Docker" },
+      { Icon: SiKubernetes, name: "Kubernetes" },
+      { Icon: SiGithub, name: "GitHub" },
+    ],
+  },
+];
+
 export default function Home() {
   usePageTitle("Home");
 
@@ -121,8 +224,9 @@ export default function Home() {
       <ImpactMetrics />
       <ServicesPreview />
       <ProcessSection />
+      <AICapabilitiesSection />
       <PortfolioHighlights />
-      <TestimonialsSection />
+      <TechEcosystemSection />
       <CTABanner />
     </div>
   );
@@ -413,12 +517,135 @@ function ProcessSection() {
   );
 }
 
-function PortfolioHighlights() {
+function AICapabilitiesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+          opacity: "var(--joe-glow-opacity)",
+        }}
+      />
+      <div
+        className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.06 }}
+      />
+      <div
+        className="absolute top-0 left-0 w-[400px] h-[400px] blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.05 }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
+          <span className="text-[#7c3aed] font-mono text-sm uppercase tracking-widest">Core Capabilities</span>
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            What Our AI{" "}
+            <span style={{
+              background: "linear-gradient(135deg, #7c3aed, #0066ff, #00c8ff)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
+              Can Do For You
+            </span>
+          </h2>
+          <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
+            Six battle-proven AI disciplines — each built for production, not just proof-of-concept.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {aiCapabilities.map((cap, i) => {
+            const Icon = cap.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.05 + i * 0.08 }}
+                className="group relative flex flex-col gap-5 p-6 rounded-xl border hover-elevate cursor-default overflow-hidden"
+                style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+                data-testid={`capability-card-${i}`}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl"
+                  style={{ background: `linear-gradient(90deg, transparent, ${cap.accent}70, transparent)` }}
+                />
+
+                <div
+                  className="absolute bottom-0 right-0 w-32 h-32 blur-2xl pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(circle, ${cap.accent} 0%, transparent 70%)`, opacity: 0.08 }}
+                />
+
+                <div className="flex items-start justify-between">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: `${cap.accent}15`, border: `1px solid ${cap.accent}30` }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: cap.accent }} />
+                  </div>
+
+                  <div className="text-right">
+                    <div className="font-heading font-bold text-2xl" style={{ color: cap.accent }}>
+                      {cap.stat}
+                    </div>
+                    <div className="text-joe-text/35 text-xs font-mono mt-0.5">{cap.statLabel}</div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-heading font-bold text-joe-text text-base mb-2">{cap.title}</h3>
+                  <p className="text-joe-text/48 text-sm leading-relaxed">{cap.description}</p>
+                </div>
+
+                <div className="flex items-end gap-1 h-8 mt-auto pt-2">
+                  {cap.bars.map((h, bi) => (
+                    <motion.div
+                      key={bi}
+                      className="flex-1 rounded-sm"
+                      style={{ background: `${cap.accent}35` }}
+                      initial={{ scaleY: 0 }}
+                      animate={isInView ? { scaleY: h } : { scaleY: 0 }}
+                      transition={{ duration: 0.4, delay: 0.3 + i * 0.08 + bi * 0.04, ease: "easeOut" }}
+                      custom={h}
+                    >
+                      <div
+                        className="w-full rounded-sm"
+                        style={{
+                          height: `${h * 100}%`,
+                          background: `linear-gradient(to top, ${cap.accent}90, ${cap.accent}40)`,
+                          minHeight: "4px",
+                        }}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PortfolioHighlights() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
       <div
         className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.07 }}
@@ -542,6 +769,113 @@ function PortfolioHighlights() {
   );
 }
 
+function TechEcosystemSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section className="relative py-24 lg:py-28 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: 0.06 }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
+        >
+          <span className="text-[#7c3aed] font-mono text-sm uppercase tracking-widest">Our Stack</span>
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            Technology{" "}
+            <span style={{
+              background: "linear-gradient(135deg, #7c3aed, #0066ff)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
+              We Master
+            </span>
+          </h2>
+          <p className="text-joe-text/50 mt-4 text-lg max-w-xl mx-auto">
+            A carefully curated stack built for performance, reliability, and scale.
+          </p>
+        </motion.div>
+
+        <div className="space-y-6">
+          {techCategories.map((cat, ci) => (
+            <motion.div
+              key={ci}
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + ci * 0.1 }}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 p-6 rounded-xl border"
+              style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+              data-testid={`tech-category-${ci}`}
+            >
+              <div className="flex-shrink-0 w-28">
+                <span
+                  className="text-xs font-mono font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
+                  style={{ background: `${cat.accent}12`, color: cat.accent, border: `1px solid ${cat.accent}25` }}
+                >
+                  {cat.label}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                {cat.techs.map(({ Icon, name }, ti) => (
+                  <motion.div
+                    key={ti}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.35, delay: 0.2 + ci * 0.1 + ti * 0.06 }}
+                    className="group flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-all duration-200 hover-elevate cursor-default"
+                    style={{
+                      background: "var(--joe-overlay)",
+                      borderColor: "var(--joe-card-border)",
+                    }}
+                    data-testid={`tech-item-${name.toLowerCase()}`}
+                  >
+                    <Icon
+                      className="w-5 h-5 transition-transform duration-200 group-hover:scale-110"
+                      style={{ color: cat.accent }}
+                    />
+                    <span className="text-joe-text/65 text-sm font-mono group-hover:text-joe-text/90 transition-colors">
+                      {name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center mt-10"
+        >
+          <Link href="/tech-stack">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-joe-text/15 text-joe-text/70 bg-joe-text/5 font-semibold gap-2"
+              data-testid="button-home-techstack-cta"
+            >
+              View Full Tech Stack
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function CTABanner() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -615,11 +949,15 @@ function CTABanner() {
             </Link>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-2">
-            {["No upfront commitment", "Response within 24 hours", "NDA available"].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-joe-text/30 text-sm">
-                <div className="w-1 h-1 rounded-full bg-[#00c8ff]/60" />
-                <span>{item}</span>
+          <div className="flex flex-wrap justify-center gap-6 pt-4">
+            {[
+              { label: "Free strategy call", icon: CheckCircle2 },
+              { label: "No long-term commitment", icon: Shield },
+              { label: "Results in weeks, not months", icon: Zap },
+            ].map(({ label, icon: Icon }, i) => (
+              <div key={i} className="flex items-center gap-2 text-joe-text/40 text-sm">
+                <Icon className="w-4 h-4 text-[#00c8ff]/60" />
+                <span>{label}</span>
               </div>
             ))}
           </div>
