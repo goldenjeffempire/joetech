@@ -16,6 +16,11 @@ const Contact = lazy(() => import("@/pages/contact"));
 const PrivacyPolicy = lazy(() => import("@/pages/privacy"));
 const TermsOfService = lazy(() => import("@/pages/terms"));
 const CookiePolicy = lazy(() => import("@/pages/cookies"));
+
+const AppDevelopmentPage = lazy(() => import("@/pages/services/app-development"));
+const WebsiteDesignPage = lazy(() => import("@/pages/services/website-design"));
+const UIUXDesignPage = lazy(() => import("@/pages/services/uiux-design"));
+const AutomationPage = lazy(() => import("@/pages/services/automation"));
 const AIStrategyPage = lazy(() => import("@/pages/services/ai-strategy"));
 const CustomAIPage = lazy(() => import("@/pages/services/custom-ai"));
 const MLOpsPage = lazy(() => import("@/pages/services/mlops"));
@@ -54,6 +59,10 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/services/app-development" component={AppDevelopmentPage} />
+        <Route path="/services/website-design" component={WebsiteDesignPage} />
+        <Route path="/services/uiux-design" component={UIUXDesignPage} />
+        <Route path="/services/automation" component={AutomationPage} />
         <Route path="/services/ai-strategy" component={AIStrategyPage} />
         <Route path="/services/custom-ai" component={CustomAIPage} />
         <Route path="/services/mlops" component={MLOpsPage} />

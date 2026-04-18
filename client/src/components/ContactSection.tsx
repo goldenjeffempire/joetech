@@ -276,7 +276,7 @@ export default function ContactSection() {
               ) : (
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-                    <input type="text" name="website" className="hidden" aria-hidden="true" tabIndex={-1}
+                    <input type="text" className="hidden" aria-hidden="true" tabIndex={-1}
                       {...form.register("website")} />
 
                     <div className="grid sm:grid-cols-2 gap-5">

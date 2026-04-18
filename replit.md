@@ -29,11 +29,15 @@ client/src/
     faq.tsx                   — Frequently Asked Questions (dedicated page)
     not-found.tsx             — Dark-branded 404 page
   pages/services/
+    app-development.tsx       — App Development pillar page (cyan, #00c8ff accent)
+    website-design.tsx        — Website Design & Dev pillar page (deep blue, #0066ff accent)
+    uiux-design.tsx           — UI/UX Design pillar page (amber, #f59e0b accent)
+    automation.tsx            — Automation Systems pillar page (purple, #7c3aed accent)
+    custom-ai.tsx             — Custom AI Development detail page (#00ff88 accent)
+    full-stack.tsx            — Full-Stack / Digital Systems detail page (#ec4899 accent)
     ai-strategy.tsx           — AI Strategy & Architecture detail page
-    custom-ai.tsx             — Custom AI Development detail page
     mlops.tsx                 — MLOps & Infrastructure detail page
     ai-integration.tsx        — AI Integration & APIs detail page
-    full-stack.tsx            — Full-Stack Development detail page
     advisory.tsx              — Digital Advisory detail page
   components/
     Layout.tsx                — Shared layout (Nav + Footer + utilities + AnimatePresence transitions)

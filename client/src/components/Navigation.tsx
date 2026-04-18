@@ -1,26 +1,59 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Smartphone, MonitorSmartphone, Workflow, Palette, Brain, Building2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import ThemeToggle from "@/components/ThemeToggle";
 import JoeLogo from "@/components/JoeLogo";
 
-const navLinks = [
+const serviceItems = [
+  {
+    label: "App Development",
+    href: "/services/app-development",
+    accent: "#00c8ff",
+    icon: Smartphone,
+    desc: "Web & mobile apps, SaaS, portals",
+  },
+  {
+    label: "Website Design & Dev",
+    href: "/services/website-design",
+    accent: "#0066ff",
+    icon: MonitorSmartphone,
+    desc: "Brand sites, SEO, conversion",
+  },
+  {
+    label: "Automation Systems",
+    href: "/services/automation",
+    accent: "#7c3aed",
+    icon: Workflow,
+    desc: "Workflows, integrations, reporting",
+  },
+  {
+    label: "UI/UX Design",
+    href: "/services/uiux-design",
+    accent: "#f59e0b",
+    icon: Palette,
+    desc: "Interfaces, design systems, UX",
+  },
+  {
+    label: "AI & Machine Learning",
+    href: "/services/custom-ai",
+    accent: "#00ff88",
+    icon: Brain,
+    desc: "AI agents, LLMs, ML pipelines",
+  },
+  {
+    label: "Digital Systems",
+    href: "/services/full-stack",
+    accent: "#ec4899",
+    icon: Building2,
+    desc: "Dashboards, APIs, enterprise arch",
+  },
+];
+
+const simpleLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  {
-    label: "Services",
-    href: "/services",
-    children: [
-      { label: "App Development", href: "/services/full-stack", accent: "#00c8ff" },
-      { label: "Website Design & Development", href: "/services/full-stack", accent: "#0066ff" },
-      { label: "Automation Systems", href: "/services/ai-integration", accent: "#7c3aed" },
-      { label: "UI/UX Design", href: "/services/full-stack", accent: "#f59e0b" },
-      { label: "AI & Machine Learning", href: "/services/custom-ai", accent: "#00ff88" },
-      { label: "Digital Systems Engineering", href: "/services/full-stack", accent: "#ec4899" },
-    ],
-  },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ];
@@ -42,6 +75,8 @@ export default function Navigation() {
     setServicesOpen(false);
   }, [location]);
 
+  const isServicesActive = location.startsWith("/services");
+
   return (
     <>
       <Link
@@ -56,7 +91,7 @@ export default function Navigation() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         role="banner"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={scrolled ? {
           background: "var(--joe-nav-bg)",
           borderBottom: "1px solid var(--joe-nav-border)",
@@ -84,83 +119,141 @@ export default function Navigation() {
             </Link>
 
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5">
-              {navLinks.map((link) => {
-                const isActive = link.children
-                  ? location.startsWith("/services")
-                  : location === link.href;
-
-                if (link.children) {
-                  return (
-                    <div
-                      key={link.href}
-                      className="relative"
-                      onMouseEnter={() => setServicesOpen(true)}
-                      onMouseLeave={() => setServicesOpen(false)}
-                    >
-                      <button
-                        className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${
-                          isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"
-                        }`}
-                        aria-expanded={servicesOpen}
-                        data-testid="button-nav-services-dropdown"
-                      >
-                        {link.label}
-                        <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
-                        />
-                        {isActive && (
-                          <motion.div
-                            layoutId="nav-indicator"
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
-                            transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
-                          />
-                        )}
-                      </button>
-
-                      <AnimatePresence>
-                        {servicesOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 8, scale: 0.97 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                            transition={{ duration: 0.18 }}
-                            className="absolute top-full left-0 mt-1 w-64 rounded-xl border overflow-hidden shadow-2xl"
-                            style={{
-                              background: "var(--joe-nav-bg)",
-                              borderColor: "var(--joe-nav-border)",
-                              backdropFilter: "blur(20px)",
-                            }}
-                          >
-                            {link.children.map((child, ci) => (
-                              <Link
-                                key={`${child.label}-${child.href}`}
-                                href={child.href}
-                                className="flex items-center gap-3 px-4 py-3 text-sm transition-colors hover:bg-joe-text/5"
-                                style={{
-                                  borderBottom: ci < link.children!.length - 1 ? "1px solid var(--joe-divide)" : undefined,
-                                }}
-                                data-testid={`link-nav-service-${ci}`}
-                              >
-                                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: child.accent }} />
-                                <span className="text-joe-text/65 hover:text-joe-text transition-colors">{child.label}</span>
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
-
+              {simpleLinks.slice(0, 1).map((link) => {
+                const isActive = location === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${
-                      isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"
-                    }`}
-                    data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    data-testid={`link-nav-${link.label.toLowerCase()}`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
+                        transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+
+              {simpleLinks.slice(1, 2).map((link) => {
+                const isActive = location === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    data-testid={`link-nav-about`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
+                        transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+
+              <div
+                className="relative"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <button
+                  className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isServicesActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                  aria-expanded={servicesOpen}
+                  data-testid="button-nav-services-dropdown"
+                >
+                  Services
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`} />
+                  {isServicesActive && (
+                    <motion.div
+                      layoutId="nav-indicator"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-[#00c8ff]"
+                      transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
+                    />
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.97 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 rounded-2xl border overflow-hidden shadow-2xl"
+                      style={{
+                        background: "var(--joe-nav-bg)",
+                        borderColor: "var(--joe-nav-border)",
+                        backdropFilter: "blur(24px)",
+                        WebkitBackdropFilter: "blur(24px)",
+                        width: "560px",
+                        boxShadow: "0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,200,255,0.08)",
+                      }}
+                    >
+                      <div className="p-2">
+                        <div className="px-3 py-2 mb-1">
+                          <p className="text-joe-text/30 text-xs font-mono uppercase tracking-[0.25em]">Core Service Pillars</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-1">
+                          {serviceItems.map((item, ci) => {
+                            const Icon = item.icon;
+                            return (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                className="group flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-150 hover:bg-joe-text/5"
+                                data-testid={`link-nav-service-${ci}`}
+                              >
+                                <div
+                                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
+                                  style={{ background: `${item.accent}12`, border: `1px solid ${item.accent}25` }}
+                                >
+                                  <Icon className="w-4 h-4" style={{ color: item.accent }} />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-joe-text/80 text-sm font-medium group-hover:text-joe-text transition-colors truncate">{item.label}</div>
+                                  <div className="text-joe-text/35 text-xs font-mono mt-0.5 truncate">{item.desc}</div>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                        <div className="mt-2 pt-2 px-2 pb-1" style={{ borderTop: "1px solid var(--joe-divide)" }}>
+                          <Link
+                            href="/services"
+                            className="flex items-center justify-between px-3 py-2.5 rounded-xl transition-all duration-150 hover:bg-joe-text/5 group"
+                            data-testid="link-nav-all-services"
+                          >
+                            <span className="text-[#00c8ff] text-sm font-semibold">View All Services</span>
+                            <ArrowRight className="w-4 h-4 text-[#00c8ff] transition-transform duration-200 group-hover:translate-x-1" />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {simpleLinks.slice(2).map((link) => {
+                const isActive = location === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c8ff]/50 ${isActive ? "text-[#00c8ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    data-testid={`link-nav-${link.label.toLowerCase()}`}
                   >
                     {link.label}
                     {isActive && (
@@ -227,65 +320,74 @@ export default function Navigation() {
               backdropFilter: "blur(20px)",
             }}
           >
-            <nav
-              aria-label="Mobile navigation"
-              className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1"
-            >
-              {navLinks.map((link) => {
-                const isActive = link.children
-                  ? location.startsWith("/services")
-                  : location === link.href;
-
-                if (link.children) {
-                  return (
-                    <div key={link.href}>
-                      <Link
-                        href={link.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${
-                          isActive
-                            ? "text-[#00c8ff] bg-[#00c8ff]/8"
-                            : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"
-                        }`}
-                        data-testid="link-mobile-services"
-                      >
-                        {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
-                        {link.label}
-                      </Link>
-                      <div className="ml-4 pl-4 flex flex-col gap-0.5 mt-1 mb-1" style={{ borderLeft: "1px solid var(--joe-divide)" }}>
-                        {link.children.map((child, ci) => (
-                          <Link
-                            key={`${child.label}-${child.href}`}
-                            href={child.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="px-3 py-2 rounded-md text-joe-text/50 hover:text-joe-text text-xs transition-colors"
-                            data-testid={`link-mobile-service-${ci}`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
+            <nav aria-label="Mobile navigation" className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+              {[
+                { label: "Home", href: "/" },
+                { label: "About", href: "/about" },
+              ].map((link) => {
+                const isActive = location === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${
-                      isActive
-                        ? "text-[#00c8ff] bg-[#00c8ff]/8"
-                        : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"
-                    }`}
-                    data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00c8ff] bg-[#00c8ff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    data-testid={`link-mobile-${link.label.toLowerCase()}`}
                   >
                     {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
                     {link.label}
                   </Link>
                 );
               })}
+
+              <div>
+                <Link
+                  href="/services"
+                  onClick={() => setMobileOpen(false)}
+                  className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isServicesActive ? "text-[#00c8ff] bg-[#00c8ff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                  data-testid="link-mobile-services"
+                >
+                  {isServicesActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
+                  Services
+                </Link>
+                <div className="ml-4 pl-4 flex flex-col gap-0.5 mt-1 mb-1" style={{ borderLeft: "1px solid var(--joe-divide)" }}>
+                  {serviceItems.map((item, ci) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-md text-joe-text/50 hover:text-joe-text text-xs transition-colors"
+                        data-testid={`link-mobile-service-${ci}`}
+                      >
+                        <Icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: item.accent }} />
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {[
+                { label: "Portfolio", href: "/portfolio" },
+                { label: "Contact", href: "/contact" },
+              ].map((link) => {
+                const isActive = location === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00c8ff] bg-[#00c8ff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                  >
+                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00c8ff]" />}
+                    {link.label}
+                  </Link>
+                );
+              })}
+
               <div className="pt-3 pb-2">
                 <Button
                   asChild

@@ -12,7 +12,7 @@ const services = [
     description: "Custom web apps, mobile apps, SaaS products, client portals, and internal tools designed around speed, clarity, adoption, and measurable business outcomes.",
     tags: ["Mobile Apps", "Web Apps", "SaaS", "Portals"],
     accent: "#00c8ff",
-    slug: "full-stack",
+    slug: "app-development",
   },
   {
     icon: MonitorSmartphone,
@@ -20,7 +20,7 @@ const services = [
     description: "Premium websites, landing pages, corporate platforms, and digital storefronts with polished UX, conversion-first messaging, technical SEO, and responsive performance.",
     tags: ["SEO", "Landing Pages", "Brand Sites", "Conversion"],
     accent: "#0066ff",
-    slug: "full-stack",
+    slug: "website-design",
   },
   {
     icon: Workflow,
@@ -28,7 +28,7 @@ const services = [
     description: "Business process optimization, workflow engines, reporting systems, integrations, and automated handoffs that reduce manual work and improve operational visibility.",
     tags: ["Workflows", "Ops", "Reporting", "Integrations"],
     accent: "#7c3aed",
-    slug: "ai-integration",
+    slug: "automation",
   },
   {
     icon: Palette,
@@ -36,7 +36,7 @@ const services = [
     description: "Interface design, user experience engineering, product flows, design systems, and interaction patterns that make complex platforms intuitive and premium.",
     tags: ["Product UX", "UI Systems", "Prototypes", "Flows"],
     accent: "#f59e0b",
-    slug: "full-stack",
+    slug: "uiux-design",
   },
   {
     icon: Brain,
