@@ -1,6 +1,10 @@
-import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Code2, Brain, Cpu, Zap, Shield, Globe, Smartphone, MonitorSmartphone, Network } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight, Code2, Brain, Cpu, Zap, Shield, Globe,
+  Smartphone, MonitorSmartphone, Network, Workflow, Palette,
+  CheckCircle, TrendingUp, Database, Bot
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -29,10 +33,49 @@ const stats = [
   { value: 5, suffix: "", label: "Service Pillars" },
 ];
 
-const floatingBadges = [
-  { text: "Mobile Apps", color: "#0066ff", delay: 0, x: "right-0 -top-5", shadow: "#0066ff" },
-  { text: "AI Workflows", color: "#7c3aed", delay: 1, x: "-left-6 -bottom-4", shadow: "#7c3aed" },
-  { text: "Web Platforms", color: "#00c8ff", delay: 0.5, x: "right-8 bottom-16", shadow: "#00c8ff" },
+const serviceCards = [
+  {
+    icon: Smartphone,
+    title: "App Development",
+    desc: "Web & Mobile",
+    accent: "#00c8ff",
+    metrics: [{ label: "Uptime", value: "99.9%" }, { label: "Performance", value: "10x" }],
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "Website Design",
+    desc: "SEO & Conversion",
+    accent: "#0066ff",
+    metrics: [{ label: "Load time", value: "<1.2s" }, { label: "Conversion", value: "+40%" }],
+  },
+  {
+    icon: Workflow,
+    title: "Automation",
+    desc: "Business Workflows",
+    accent: "#7c3aed",
+    metrics: [{ label: "Time saved", value: "73%" }, { label: "Accuracy", value: "99.1%" }],
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    desc: "Design Systems",
+    accent: "#f59e0b",
+    metrics: [{ label: "User rating", value: "4.9★" }, { label: "Retention", value: "+62%" }],
+  },
+  {
+    icon: Brain,
+    title: "AI & ML",
+    desc: "Intelligent Systems",
+    accent: "#00ff88",
+    metrics: [{ label: "Accuracy", value: "97.4%" }, { label: "Latency", value: "<40ms" }],
+  },
+];
+
+const liveMetrics = [
+  { label: "Active Projects", value: "12", icon: Database, accent: "#00c8ff" },
+  { label: "Uptime SLA", value: "99.9%", icon: CheckCircle, accent: "#00ff88" },
+  { label: "AI Models", value: "6", icon: Bot, accent: "#7c3aed" },
+  { label: "Avg ROI", value: "10x", icon: TrendingUp, accent: "#f59e0b" },
 ];
 
 function NeuralBackground() {
@@ -131,9 +174,192 @@ function AnimatedCounter({ target, suffix, isInView }: { target: number; suffix:
   return <span>{count}{suffix}</span>;
 }
 
+function ServiceShowcase() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % serviceCards.length);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div
+      className="relative rounded-2xl border overflow-hidden"
+      style={{
+        background: "linear-gradient(145deg, rgba(8,13,28,0.97), rgba(3,8,18,0.99))",
+        borderColor: "rgba(0,200,255,0.15)",
+        boxShadow: "0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,200,255,0.06)",
+      }}
+    >
+      <div
+        className="flex items-center justify-between px-5 py-3.5 border-b"
+        style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.025)" }}
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#00ff88] animate-pulse" />
+          <span className="text-white/50 text-xs font-mono uppercase tracking-widest">JOE Platform · Live</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-white/20 text-xs font-mono">v3.8 production</span>
+          <div className="flex gap-1">
+            {[serviceCards.length].fill(0).map === undefined
+              ? null
+              : serviceCards.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveIndex(i)}
+                    className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                    style={{
+                      background: i === activeIndex
+                        ? serviceCards[i].accent
+                        : "rgba(255,255,255,0.15)",
+                    }}
+                    aria-label={`View ${serviceCards[i].title}`}
+                  />
+                ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-5 flex flex-col gap-4">
+        <div className="grid grid-cols-5 gap-2">
+          {serviceCards.map((svc, i) => {
+            const Icon = svc.icon;
+            const isActive = i === activeIndex;
+            return (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className="group flex flex-col items-center gap-2 p-3 rounded-xl border transition-all duration-300"
+                style={{
+                  background: isActive ? `${svc.accent}12` : "rgba(255,255,255,0.025)",
+                  borderColor: isActive ? `${svc.accent}40` : "rgba(255,255,255,0.06)",
+                  boxShadow: isActive ? `0 0 20px ${svc.accent}20` : "none",
+                }}
+                data-testid={`hero-service-tab-${i}`}
+              >
+                <Icon
+                  className="w-4 h-4 transition-all duration-300"
+                  style={{ color: isActive ? svc.accent : "rgba(255,255,255,0.3)" }}
+                />
+                <span
+                  className="text-[9px] font-mono font-medium text-center leading-tight transition-all duration-300"
+                  style={{ color: isActive ? svc.accent : "rgba(255,255,255,0.3)" }}
+                >
+                  {svc.title.split(" ")[0]}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="rounded-xl border p-5"
+          style={{
+            background: `${serviceCards[activeIndex].accent}08`,
+            borderColor: `${serviceCards[activeIndex].accent}25`,
+          }}
+        >
+          <div className="flex items-start gap-4">
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{
+                background: `${serviceCards[activeIndex].accent}15`,
+                border: `1px solid ${serviceCards[activeIndex].accent}35`,
+                boxShadow: `0 0 24px ${serviceCards[activeIndex].accent}20`,
+              }}
+            >
+              {(() => {
+                const Icon = serviceCards[activeIndex].icon;
+                return <Icon className="w-5 h-5" style={{ color: serviceCards[activeIndex].accent }} />;
+              })()}
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4
+                className="font-heading font-bold text-sm mb-0.5"
+                style={{ color: serviceCards[activeIndex].accent }}
+              >
+                {serviceCards[activeIndex].title}
+              </h4>
+              <p className="text-white/40 text-xs font-mono">{serviceCards[activeIndex].desc}</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            {serviceCards[activeIndex].metrics.map((m, mi) => (
+              <div
+                key={mi}
+                className="flex flex-col gap-0.5 p-3 rounded-lg border"
+                style={{
+                  background: "rgba(0,0,0,0.3)",
+                  borderColor: `${serviceCards[activeIndex].accent}15`,
+                }}
+              >
+                <span
+                  className="font-heading font-bold text-lg"
+                  style={{ color: serviceCards[activeIndex].accent }}
+                >
+                  {m.value}
+                </span>
+                <span className="text-white/35 text-[10px] font-mono uppercase">{m.label}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-4 gap-2">
+          {liveMetrics.map((lm, i) => {
+            const Icon = lm.icon;
+            return (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-1.5 p-2.5 rounded-lg border text-center"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  borderColor: "rgba(255,255,255,0.06)",
+                }}
+              >
+                <Icon className="w-3 h-3" style={{ color: lm.accent }} />
+                <span className="font-heading font-bold text-sm" style={{ color: lm.accent }}>
+                  {lm.value}
+                </span>
+                <span className="text-white/25 text-[9px] font-mono leading-tight text-center">{lm.label}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div
+        className="px-5 py-3 border-t flex items-center justify-between"
+        style={{ background: "rgba(0,200,255,0.03)", borderColor: "rgba(255,255,255,0.07)" }}
+      >
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <Brain className="w-3 h-3 text-[#00c8ff]" />
+            <span className="text-xs text-white/30 font-mono">AI Enabled</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Cpu className="w-3 h-3 text-[#c3e88d]" />
+            <span className="text-xs text-white/30 font-mono">Enterprise Grade</span>
+          </div>
+        </div>
+        <div className="text-xs text-white/18 font-mono">React · APIs · AI · Cloud</div>
+      </div>
+    </div>
+  );
+}
+
 export default function HeroSection() {
   const [visibleLines, setVisibleLines] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
+  const [showShowcase, setShowShowcase] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -141,7 +367,7 @@ export default function HeroSection() {
     const delay = setTimeout(() => {
       const interval = setInterval(() => {
         if (i < codeLines.length) { setVisibleLines(i + 1); i++; }
-        else clearInterval(interval);
+        else { clearInterval(interval); setTimeout(() => setShowShowcase(true), 400); }
       }, 95);
       return () => clearInterval(interval);
     }, 500);
@@ -319,63 +545,73 @@ export default function HeroSection() {
                 style={{ background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed, #00c8ff)" }}
               />
 
-              <div
-                className="relative rounded-xl border overflow-hidden"
-                style={{
-                  background: "var(--joe-terminal-bg)",
-                  borderColor: "rgba(0,200,255,0.15)",
-                  boxShadow: "0 0 60px rgba(0,200,255,0.08), 0 25px 50px rgba(0,0,0,0.5)",
-                }}
-              >
+              {!showShowcase ? (
                 <div
-                  className="flex items-center gap-2 px-4 py-3 border-b"
-                  style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}
+                  className="relative rounded-xl border overflow-hidden"
+                  style={{
+                    background: "var(--joe-terminal-bg)",
+                    borderColor: "rgba(0,200,255,0.15)",
+                    boxShadow: "0 0 60px rgba(0,200,255,0.08), 0 25px 50px rgba(0,0,0,0.5)",
+                  }}
                 >
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                  <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                  <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-                  <span className="ml-3 text-xs text-white/25 font-mono">joe_platform.ts</span>
-                  <div className="ml-auto flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-                    <span className="text-xs text-white/20 font-mono">running</span>
+                  <div
+                    className="flex items-center gap-2 px-4 py-3 border-b"
+                    style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}
+                  >
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                    <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                    <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+                    <span className="ml-3 text-xs text-white/25 font-mono">joe_platform.ts</span>
+                    <div className="ml-auto flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
+                      <span className="text-xs text-white/20 font-mono">running</span>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col items-end pt-6 pr-3 gap-0"
+                      style={{ borderRight: "1px solid rgba(255,255,255,0.05)" }}>
+                      {Array.from({ length: Math.max(visibleLines, 1) }).map((_, i) => (
+                        <span key={i} className="text-xs font-mono leading-[1.7rem] text-white/15 select-none">{i + 1}</span>
+                      ))}
+                    </div>
+
+                    <div className="pl-14 pr-6 py-6 font-mono text-sm leading-7 min-h-[280px]">
+                      {codeLines.slice(0, visibleLines).map((line, i) => (
+                        <div key={i} className={`${line.color} transition-opacity duration-200`}>
+                          {line.text || "\u00A0"}
+                        </div>
+                      ))}
+                      {visibleLines < codeLines.length && (
+                        <span className="inline-block w-2 h-[18px] bg-[#00c8ff] animate-blink align-middle" />
+                      )}
+                    </div>
+                  </div>
+
+                  <div
+                    className="px-4 py-2.5 border-t flex items-center gap-5"
+                    style={{ background: "rgba(0,200,255,0.04)", borderColor: "rgba(255,255,255,0.07)" }}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Brain className="w-3 h-3 text-[#00c8ff]" />
+                      <span className="text-xs text-white/35 font-mono">AI Enabled</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Cpu className="w-3 h-3 text-[#c3e88d]" />
+                      <span className="text-xs text-white/35 font-mono">Enterprise Grade</span>
+                    </div>
+                    <div className="ml-auto text-xs text-white/20 font-mono">React · APIs · AI · Cloud</div>
                   </div>
                 </div>
-
-                <div className="relative">
-                  <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col items-end pt-6 pr-3 gap-0"
-                    style={{ borderRight: "1px solid rgba(255,255,255,0.05)" }}>
-                    {Array.from({ length: Math.max(visibleLines, 1) }).map((_, i) => (
-                      <span key={i} className="text-xs font-mono leading-[1.7rem] text-white/15 select-none">{i + 1}</span>
-                    ))}
-                  </div>
-
-                  <div className="pl-14 pr-6 py-6 font-mono text-sm leading-7 min-h-[280px]">
-                    {codeLines.slice(0, visibleLines).map((line, i) => (
-                      <div key={i} className={`${line.color} transition-opacity duration-200`}>
-                        {line.text || "\u00A0"}
-                      </div>
-                    ))}
-                    {visibleLines < codeLines.length && (
-                      <span className="inline-block w-2 h-[18px] bg-[#00c8ff] animate-blink align-middle" />
-                    )}
-                  </div>
-                </div>
-
-                <div
-                  className="px-4 py-2.5 border-t flex items-center gap-5"
-                  style={{ background: "rgba(0,200,255,0.04)", borderColor: "rgba(255,255,255,0.07)" }}
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <div className="flex items-center gap-1.5">
-                    <Brain className="w-3 h-3 text-[#00c8ff]" />
-                    <span className="text-xs text-white/35 font-mono">AI Enabled</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Cpu className="w-3 h-3 text-[#c3e88d]" />
-                    <span className="text-xs text-white/35 font-mono">Enterprise Grade</span>
-                  </div>
-                  <div className="ml-auto text-xs text-white/20 font-mono">React · APIs · AI · Cloud</div>
-                </div>
-              </div>
+                  <ServiceShowcase />
+                </motion.div>
+              )}
 
               <motion.div
                 animate={{ y: [-5, 5, -5] }}

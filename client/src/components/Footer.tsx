@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, ArrowUp, ExternalLink, Mail, MessageCircle } from "lucide-react";
-import { SiInstagram } from "react-icons/si";
+import { ArrowUp, ExternalLink, Mail, MessageCircle, Globe } from "lucide-react";
+import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
 import { Link } from "wouter";
 import JoeLogo from "@/components/JoeLogo";
 
@@ -29,10 +29,49 @@ const footerLinks = {
   Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
 };
 
-const socials = [
-  { icon: Github, label: "GitHub", href: "https://github.com/" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/" },
-  { icon: Twitter, label: "Twitter / X", href: "https://twitter.com/" },
+const contactChannels = [
+  {
+    icon: SiWhatsapp,
+    label: "WhatsApp",
+    value: "09017078791",
+    href: "https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
+    accent: "#00ff88",
+  },
+  {
+    icon: SiWhatsapp,
+    label: "WhatsApp 2",
+    value: "08159088343",
+    href: "https://wa.me/2348159088343?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project.",
+    accent: "#00ff88",
+  },
+  {
+    icon: SiInstagram,
+    label: "Instagram",
+    value: "@joetech.ai",
+    href: "https://instagram.com/joetech.ai",
+    accent: "#ec4899",
+  },
+  {
+    icon: SiFacebook,
+    label: "Facebook",
+    value: "JOE Technologies",
+    href: "https://facebook.com/search/top?q=JOE%20Technologies",
+    accent: "#0066ff",
+  },
+  {
+    icon: Globe,
+    label: "Website",
+    value: "joetech.onrender.com",
+    href: "https://joetech.onrender.com",
+    accent: "#7c3aed",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "jeffemuodafe124@gmail.com",
+    href: "mailto:jeffemuodafe124@gmail.com",
+    accent: "#00c8ff",
+  },
 ];
 
 export default function Footer() {
@@ -89,57 +128,49 @@ export default function Footer() {
               </a>
             </div>
 
-            <div className="flex items-center gap-2">
-              {socials.map((s) => {
-                const Icon = s.icon;
-                return (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#00c8ff] hover-elevate transition-colors"
-                    style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
-                    data-testid={`link-social-${s.label.toLowerCase().split("/")[0].trim()}`}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </a>
-                );
-              })}
+            <div className="flex flex-col gap-3">
+              <p className="text-joe-text/28 text-xs font-mono uppercase tracking-widest">Connect With Us</p>
+              <div className="grid grid-cols-2 gap-2">
+                {contactChannels.map((ch) => {
+                  const Icon = ch.icon;
+                  return (
+                    <a
+                      key={ch.label}
+                      href={ch.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-2 px-3 py-2 rounded-lg border transition-all duration-200 hover-elevate"
+                      style={{
+                        background: "var(--joe-overlay)",
+                        borderColor: "var(--joe-card-border)",
+                      }}
+                      data-testid={`link-footer-${ch.label.toLowerCase().replace(/\s+/g, "-")}`}
+                      aria-label={ch.label}
+                    >
+                      <Icon
+                        className="w-3.5 h-3.5 flex-shrink-0 transition-colors"
+                        style={{ color: ch.accent }}
+                      />
+                      <div className="min-w-0">
+                        <p className="text-joe-text/30 text-[10px] font-mono uppercase leading-none mb-0.5">{ch.label}</p>
+                        <p className="text-joe-text/55 text-xs group-hover:text-joe-text/80 transition-colors truncate font-medium">
+                          {ch.value}
+                        </p>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
 
               <a
-                href="mailto:hello@joetechnologies.io"
-                className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#00c8ff] hover-elevate transition-colors"
-                style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
-                aria-label="Email"
-                data-testid="link-social-email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://wa.me/2349017078791"
+                href="https://wa.me/2349017078791?text=Hello%20JOE%20Technologies%2C%20I%27d%20love%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#00ff88] hover-elevate transition-colors"
-                style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
-                aria-label="WhatsApp"
-                data-testid="link-social-whatsapp"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#00ff88]/25 bg-[#00ff88]/05 text-[#00ff88] text-sm font-semibold hover:bg-[#00ff88]/12 hover:border-[#00ff88]/40 transition-all duration-200"
+                data-testid="link-footer-whatsapp-cta"
               >
                 <MessageCircle className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://instagram.com/joetech.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#ec4899] hover-elevate transition-colors"
-                style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
-                aria-label="Instagram"
-                data-testid="link-social-instagram"
-              >
-                <SiInstagram className="w-4 h-4" />
+                Quick Chat on WhatsApp
               </a>
             </div>
           </div>

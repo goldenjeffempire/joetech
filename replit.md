@@ -42,7 +42,7 @@ client/src/
   components/
     Layout.tsx                — Shared layout (Nav + Footer + utilities + AnimatePresence transitions)
     Navigation.tsx            — Top nav with mega-menu Services dropdown + mobile submenu
-    HeroSection.tsx           — Full-screen hero with canvas neural network, terminal, tech badges
+    HeroSection.tsx           — Full-screen hero with canvas neural network, typing terminal that transitions to animated ServiceShowcase (interactive service tabs with live metrics)
     PageHero.tsx              — Reusable page header (label badge, gradient title, subtitle, CTA)
     TrustedBySection.tsx      — Infinite-scroll marquee with glowing dots
     AboutSection.tsx          — Founder bio + stats strip, achievements, values, social links (Instagram, Facebook, GitHub, Website)
