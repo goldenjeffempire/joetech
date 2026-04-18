@@ -10,10 +10,10 @@ import { Link } from "wouter";
 const differentiators = [
   {
     icon: ShieldCheck,
-    title: "AI-First, Not AI-Augmented",
-    description: "We don't bolt AI onto existing workflows. We architect systems where intelligence is the foundation — built for how AI actually works in production, not how it looks in a demo.",
+    title: "Systems-First, AI-Enabled",
+    description: "We don't build disconnected screens or bolt AI onto broken workflows. We architect digital systems where product, automation, data, and intelligence work together in production.",
     accent: "#00c8ff",
-    detail: "Every system we build starts with the data and model architecture, then works outward to the product layer. This means your AI isn't an afterthought — it's the core value driver.",
+    detail: "Every system we build starts with the business process, user journey, data model, and technical architecture. When AI belongs in the workflow, it is designed as a useful production capability rather than a demo feature.",
   },
   {
     icon: Layers,
@@ -32,9 +32,9 @@ const differentiators = [
   {
     icon: GitMerge,
     title: "Deep Domain Expertise",
-    description: "We've built AI systems across FinTech, Healthcare, Legal, and E-Commerce. We speak your industry's language and understand its constraints, compliance requirements, and opportunities.",
+    description: "We've built apps, websites, automations, dashboards, and AI systems across FinTech, Healthcare, Legal, E-Commerce, SaaS, and service businesses. We understand real-world constraints, compliance requirements, and growth opportunities.",
     accent: "#00c8ff",
-    detail: "Domain expertise means fewer iterations, better data decisions, and solutions that account for real-world constraints like regulatory compliance and industry-specific edge cases.",
+    detail: "Domain expertise means fewer iterations, better product decisions, stronger automation design, and solutions that account for real-world constraints like regulatory compliance and industry-specific edge cases.",
   },
   {
     icon: MessageSquare,

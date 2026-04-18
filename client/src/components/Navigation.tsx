@@ -14,11 +14,11 @@ const navLinks = [
     href: "/services",
     children: [
       { label: "App Development", href: "/services/full-stack", accent: "#00c8ff" },
-      { label: "Website Development", href: "/services/full-stack", accent: "#0066ff" },
-      { label: "Digital Systems Engineering", href: "/services/full-stack", accent: "#7c3aed" },
-      { label: "AI-Powered Solutions", href: "/services/custom-ai", accent: "#00ff88" },
-      { label: "Systems Integration", href: "/services/ai-integration", accent: "#f59e0b" },
-      { label: "Technical Advisory", href: "/services/advisory", accent: "#ec4899" },
+      { label: "Website Design & Development", href: "/services/full-stack", accent: "#0066ff" },
+      { label: "Automation Systems", href: "/services/ai-integration", accent: "#7c3aed" },
+      { label: "UI/UX Design", href: "/services/full-stack", accent: "#f59e0b" },
+      { label: "AI & Machine Learning", href: "/services/custom-ai", accent: "#00ff88" },
+      { label: "Digital Systems Engineering", href: "/services/full-stack", accent: "#ec4899" },
     ],
   },
   { label: "Portfolio", href: "/portfolio" },
@@ -133,7 +133,7 @@ export default function Navigation() {
                           >
                             {link.children.map((child, ci) => (
                               <Link
-                                key={child.href}
+                                key={`${child.label}-${child.href}`}
                                 href={child.href}
                                 className="flex items-center gap-3 px-4 py-3 text-sm transition-colors hover:bg-joe-text/5"
                                 style={{
@@ -255,7 +255,7 @@ export default function Navigation() {
                       <div className="ml-4 pl-4 flex flex-col gap-0.5 mt-1 mb-1" style={{ borderLeft: "1px solid var(--joe-divide)" }}>
                         {link.children.map((child, ci) => (
                           <Link
-                            key={child.href}
+                            key={`${child.label}-${child.href}`}
                             href={child.href}
                             onClick={() => setMobileOpen(false)}
                             className="px-3 py-2 rounded-md text-joe-text/50 hover:text-joe-text text-xs transition-colors"

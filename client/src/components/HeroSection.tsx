@@ -26,7 +26,7 @@ const stats = [
   { value: 50, suffix: "+", label: "Digital Products Shipped" },
   { value: 98, suffix: "%", label: "Client Satisfaction" },
   { value: 10, suffix: "x", label: "Performance Gains" },
-  { value: 4, suffix: "", label: "Core Solution Pillars" },
+  { value: 5, suffix: "", label: "Service Pillars" },
 ];
 
 const floatingBadges = [

@@ -7,7 +7,7 @@ const sections = [
     icon: Handshake,
     title: "1. Engagement & Scope",
     content: [
-      "JOE Technologies provides AI-driven software engineering consulting services including, but not limited to: AI strategy and architecture, custom AI development, MLOps infrastructure, AI integration, full-stack development, and technical advisory services.",
+      "JOE Technologies provides enterprise technology services including, but not limited to: application development, website design and development, automation systems, business process optimization, UI/UX design, digital systems engineering, AI and machine learning solutions, AI integration, full-stack development, and technical advisory services.",
       "All engagements begin with a mutual agreement on scope, deliverables, timeline, and pricing. A formal Statement of Work (SOW) or engagement letter will be provided before any paid work commences.",
       "The scope of work for each engagement is defined in the SOW. Any changes to scope, timeline, or deliverables must be agreed upon in writing by both parties before implementation.",
     ],

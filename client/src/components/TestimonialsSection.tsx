@@ -72,7 +72,7 @@ export default function TestimonialsSection() {
             <span className="text-gradient-blue">Proven by Results.</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-xl mx-auto">
-            Don't take our word for it — hear from the decision-makers who've shipped AI systems with us.
+            Don't take our word for it — hear from the decision-makers who've shipped apps, automations, digital platforms, and AI systems with us.
           </p>
         </motion.div>
 

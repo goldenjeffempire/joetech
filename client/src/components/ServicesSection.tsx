@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Brain, Smartphone, MonitorSmartphone, Building2, Workflow, ShieldCheck, ArrowRight } from "lucide-react";
+import { Brain, Smartphone, MonitorSmartphone, Building2, Workflow, Palette, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -9,50 +9,50 @@ const services = [
   {
     icon: Smartphone,
     title: "App Development",
-    description: "Custom mobile apps, web apps, SaaS products, client portals, and internal tools designed around speed, clarity, adoption, and measurable business outcomes.",
+    description: "Custom web apps, mobile apps, SaaS products, client portals, and internal tools designed around speed, clarity, adoption, and measurable business outcomes.",
     tags: ["Mobile Apps", "Web Apps", "SaaS", "Portals"],
     accent: "#00c8ff",
     slug: "full-stack",
   },
   {
     icon: MonitorSmartphone,
-    title: "Website Development",
+    title: "Website Design & Development",
     description: "Premium websites, landing pages, corporate platforms, and digital storefronts with polished UX, conversion-first messaging, technical SEO, and responsive performance.",
     tags: ["SEO", "Landing Pages", "Brand Sites", "Conversion"],
     accent: "#0066ff",
     slug: "full-stack",
   },
   {
-    icon: Building2,
-    title: "Digital Systems Engineering",
-    description: "Dashboards, databases, APIs, workflow automation, reporting systems, and secure operational platforms that modernize how organizations run.",
-    tags: ["Dashboards", "APIs", "Databases", "Automation"],
+    icon: Workflow,
+    title: "Automation Systems",
+    description: "Business process optimization, workflow engines, reporting systems, integrations, and automated handoffs that reduce manual work and improve operational visibility.",
+    tags: ["Workflows", "Ops", "Reporting", "Integrations"],
     accent: "#7c3aed",
+    slug: "ai-integration",
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    description: "Interface design, user experience engineering, product flows, design systems, and interaction patterns that make complex platforms intuitive and premium.",
+    tags: ["Product UX", "UI Systems", "Prototypes", "Flows"],
+    accent: "#f59e0b",
     slug: "full-stack",
   },
   {
     icon: Brain,
-    title: "AI-Powered Solutions",
+    title: "AI & Machine Learning Solutions",
     description: "AI agents, intelligent assistants, predictive analytics, document automation, semantic search, and custom AI integrations embedded into real workflows.",
-    tags: ["AI Agents", "LLMs", "Analytics", "Automation"],
+    tags: ["AI Agents", "LLMs", "Analytics", "ML"],
     accent: "#00ff88",
     slug: "custom-ai",
   },
   {
-    icon: Workflow,
-    title: "Systems Integration",
-    description: "Connect apps, websites, CRMs, databases, payment flows, analytics, and business tools into cohesive digital operations with reliable APIs and automation.",
-    tags: ["Integrations", "REST APIs", "Data Sync", "Ops"],
-    accent: "#f59e0b",
-    slug: "ai-integration",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Enterprise Technical Advisory",
-    description: "Architecture reviews, product roadmaps, digital transformation planning, performance audits, and engineering leadership for ambitious organizations.",
-    tags: ["Roadmaps", "Architecture", "Audits", "Strategy"],
+    icon: Building2,
+    title: "Digital Systems Engineering",
+    description: "Secure portals, dashboards, databases, APIs, admin systems, and enterprise-grade product architecture that modernizes how organizations run.",
+    tags: ["Dashboards", "APIs", "Databases", "Systems"],
     accent: "#ec4899",
-    slug: "advisory",
+    slug: "full-stack",
   },
 ];
 
@@ -92,7 +92,7 @@ export default function ServicesSection() {
             </span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto leading-relaxed">
-            Every engagement is designed to ship real business capability: apps people use, websites that convert, systems that automate, and AI that creates leverage.
+            Every engagement is designed to ship real business capability: apps people use, websites that convert, workflows that automate, interfaces that feel effortless, and AI that creates leverage.
           </p>
         </motion.div>
 

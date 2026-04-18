@@ -11,19 +11,19 @@ const linkRoutes: Record<string, string> = {
   "Tech Stack": "/tech-stack",
   "FAQ": "/faq",
   "Contact": "/contact",
-  "AI Strategy": "/services/ai-strategy",
-  "Custom AI Dev": "/services/custom-ai",
-  "MLOps": "/services/mlops",
-  "AI Integration": "/services/ai-integration",
-  "Full-Stack Dev": "/services/full-stack",
-  "Advisory": "/services/advisory",
+  "App Development": "/services/full-stack",
+  "Website Design": "/services/full-stack",
+  "Automation Systems": "/services/ai-integration",
+  "UI/UX Design": "/services/full-stack",
+  "AI & Machine Learning": "/services/custom-ai",
+  "Digital Systems": "/services/full-stack",
   "Privacy Policy": "/privacy",
   "Terms of Service": "/terms",
   "Cookie Policy": "/cookies",
 };
 
 const footerLinks = {
-  Services: ["AI Strategy", "Custom AI Dev", "MLOps", "AI Integration", "Full-Stack Dev", "Advisory"],
+  Services: ["App Development", "Website Design", "Automation Systems", "UI/UX Design", "AI & Machine Learning", "Digital Systems"],
   Company: ["About", "Why Us", "Case Studies", "Process", "Tech Stack", "FAQ", "Contact"],
   Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
 };
@@ -66,8 +66,8 @@ export default function Footer() {
             </Link>
 
             <p className="text-joe-text/40 text-sm leading-relaxed max-w-xs">
-              AI-driven software engineering consultancy. We architect intelligent systems
-              that think, scale, and deliver measurable business results.
+              Enterprise technology partner building apps, websites, automation systems,
+              UI/UX experiences, digital platforms, and AI solutions that scale.
             </p>
 
             <div
@@ -118,7 +118,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://wa.me/1234567890"
+                href="https://wa.me/2349017048791"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg flex items-center justify-center border text-joe-text/35 hover:text-[#00ff88] hover-elevate transition-colors"

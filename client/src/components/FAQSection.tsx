@@ -7,11 +7,11 @@ import { Link } from "wouter";
 const faqs = [
   {
     q: "How do we get started?",
-    a: "Everything begins with a free 45-minute strategy call. We discuss your goals, technical landscape, and the specific outcomes you want AI to drive. From there, we'll propose a tailored engagement structure — whether that's a focused discovery sprint, a full-stack build, or ongoing advisory.",
+    a: "Everything begins with a free 45-minute strategy call. We discuss your goals, current digital landscape, users, workflows, and the outcomes you want the platform to drive. From there, we'll propose a tailored engagement structure — whether that's a focused discovery sprint, website, app, automation build, AI integration, or ongoing advisory.",
   },
   {
     q: "What's a typical project timeline?",
-    a: "It depends on scope. A focused AI integration or MVP typically takes 6–10 weeks. A full-scale production system — with custom model training, MLOps infrastructure, and a polished front-end — usually runs 3–6 months. We always define clear milestones upfront so you know what to expect at every stage.",
+    a: "It depends on scope. A focused website, automation, AI integration, or MVP typically takes 6–10 weeks. A full-scale production platform — with polished UI/UX, backend systems, integrations, analytics, and AI capabilities — usually runs 3–6 months. We always define clear milestones upfront so you know what to expect at every stage.",
   },
   {
     q: "Do you work with non-technical founders?",
@@ -19,15 +19,15 @@ const faqs = [
   },
   {
     q: "What engagement models do you offer?",
-    a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing AI development or advisory; (3) Embedded — Jeffery or a JOE Technologies engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
+    a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing product, automation, AI, or advisory work; (3) Embedded — Jeffery or a JOE Technologies engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
   },
   {
     q: "What industries do you specialize in?",
-    a: "Our deepest experience is in FinTech, Healthcare, Legal Tech, and E-Commerce — industries where data complexity and regulatory requirements make AI engineering particularly challenging. That said, we've successfully delivered projects across logistics, edtech, and SaaS as well.",
+    a: "Our experience spans FinTech, Healthcare, Legal Tech, E-Commerce, logistics, education, SaaS, and service businesses — industries where strong UX, reliable systems, automation, and intelligent data flows create measurable advantage.",
   },
   {
     q: "Do you provide post-launch support?",
-    a: "Yes. Every project includes a 30-day post-launch support period at no extra cost. After that, we offer ongoing maintenance retainers that cover model monitoring, retraining, performance optimization, and feature development. Most clients stay with us well beyond the initial build.",
+    a: "Yes. Every project includes a 30-day post-launch support period at no extra cost. After that, we offer ongoing maintenance retainers that cover performance optimization, uptime monitoring, workflow improvements, AI model monitoring, and feature development. Most clients stay with us well beyond the initial build.",
   },
   {
     q: "How do you handle data privacy and security?",
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: "Can you work with our existing team?",
-    a: "Yes — this is actually one of our preferred modes. We collaborate effectively with internal engineering teams, providing specialized AI expertise while your team handles domain-specific and product work. We're also happy to do knowledge transfer and upskilling so your team can maintain the systems we build.",
+    a: "Yes — this is actually one of our preferred modes. We collaborate effectively with internal teams, providing product, frontend, backend, automation, UX, and AI expertise while your team contributes domain knowledge. We're also happy to do knowledge transfer and upskilling so your team can maintain the systems we build.",
   },
 ];
 

@@ -1,7 +1,7 @@
 # JOE Technologies Website
 
 ## Overview
-A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company founded by **Jeffery Onome Emuodafevware**. The platform positions JOE Technologies around four core pillars: high-performance Apps, Websites, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
+A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company founded by **Jeffery Onome Emuodafevware**. The platform positions JOE Technologies around high-performance Apps, Websites, Automation Systems, UI/UX Design, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
 
 ## Architecture
 
@@ -34,7 +34,7 @@ client/src/
     mlops.tsx                 — MLOps & Infrastructure detail page
     ai-integration.tsx        — AI Integration & APIs detail page
     full-stack.tsx            — Full-Stack Development detail page
-    advisory.tsx              — Technical Advisory detail page
+    advisory.tsx              — Digital Advisory detail page
   components/
     Layout.tsx                — Shared layout (Nav + Footer + utilities + AnimatePresence transitions)
     Navigation.tsx            — Top nav with mega-menu Services dropdown + mobile submenu
@@ -118,7 +118,8 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 
 ## Key Features
 - **Multi-page platform**: 14+ routes with shared layout, lazy-loaded code-split pages, AnimatePresence transitions
-- **Enterprise service positioning**: Homepage and services page emphasize App Development, Website Development, Digital Systems Engineering, AI-Powered Solutions, Systems Integration, and Enterprise Technical Advisory
+- **Enterprise service positioning**: Homepage and services page emphasize App Development, Website Design & Development, Automation Systems, UI/UX Design, AI & Machine Learning Solutions, and Digital Systems Engineering
+- **Interactive homepage visualization**: Digital command center section shows connected apps, websites, automation, UI/UX, and AI nodes with live-style readiness metrics
 - **Platform architecture section**: Dedicated homepage section explains conversion strategy, modular product systems, AI/automation layer, and enterprise readiness
 - **Dark-tech luxury design**: Canvas neural particle network hero, futuristic grid overlays, glowing orbs, gradient text utilities
 - **PageHero design system**: Consistent reusable hero component with accent-colored label badges, gradient highlighted titles, CTA buttons

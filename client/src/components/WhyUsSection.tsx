@@ -6,9 +6,9 @@ import { ShieldCheck, BarChart3, GitMerge, MessageSquare, Layers, HeartHandshake
 const differentiators = [
   {
     icon: ShieldCheck,
-    title: "AI-First, Not AI-Augmented",
+    title: "Systems-First, AI-Enabled",
     description:
-      "We don't bolt AI onto existing workflows. We architect systems where intelligence is the foundation — built for how AI actually works in production, not how it looks in a demo.",
+      "We don't build disconnected screens or bolt AI onto broken workflows. We architect digital systems where product, automation, data, and intelligence work together in production.",
     accent: "#00c8ff",
   },
   {
@@ -29,7 +29,7 @@ const differentiators = [
     icon: GitMerge,
     title: "Deep Domain Expertise",
     description:
-      "We've built AI systems across FinTech, Healthcare, Legal, and E-Commerce. We speak your industry's language and understand its constraints, compliance requirements, and opportunities.",
+      "We've built apps, websites, automations, dashboards, and AI systems across FinTech, Healthcare, Legal, E-Commerce, SaaS, and service businesses. We understand real-world constraints, compliance requirements, and growth opportunities.",
     accent: "#00c8ff",
   },
   {

@@ -66,7 +66,7 @@ function useScrollInView() {
 }
 
 export default function AdvisoryPage() {
-  usePageTitle("Technical Advisory");
+  usePageTitle("Digital Advisory");
   const hero = useScrollInView();
   const includedSection = useScrollInView();
   const useCasesSection = useScrollInView();
@@ -106,7 +106,7 @@ export default function AdvisoryPage() {
               </span>
             </div>
             <h1 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mb-4" data-testid="text-advisory-title">
-              Technical{" "}
+              Digital{" "}
               <span
                 style={{
                   background: `linear-gradient(135deg, ${accent}, #a855f7)`,
@@ -119,8 +119,7 @@ export default function AdvisoryPage() {
               </span>
             </h1>
             <p className="text-joe-text/50 text-lg max-w-2xl mx-auto leading-relaxed" data-testid="text-advisory-subtitle">
-              Fractional CTO, AI advisory, technical due diligence, team building, and strategy
-              for startups and scale-ups navigating growth and transformation.
+              Fractional CTO support, product strategy, system architecture, AI advisory, technical due diligence, team building, and digital transformation planning for ambitious organizations.
             </p>
           </motion.div>
         </div>

@@ -64,12 +64,12 @@ const contactInfo = [
 ];
 
 const services = [
-  "AI Strategy & Architecture",
-  "Custom AI Development",
-  "MLOps & Infrastructure",
-  "AI Integration & APIs",
-  "Full-Stack Development",
-  "Technical Advisory",
+  "App Development",
+  "Website Design & Development",
+  "Automation Systems",
+  "UI/UX Design",
+  "AI & Machine Learning Solutions",
+  "Digital Systems Engineering",
   "Other",
 ];
 
