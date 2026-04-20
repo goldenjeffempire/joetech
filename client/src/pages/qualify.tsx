@@ -214,16 +214,16 @@ function OptionCard({ label, selected, onClick, icon, testId }: OptionCardProps)
       onClick={onClick}
       className="w-full text-left rounded-xl px-4 py-3 border transition-all duration-200 flex items-center gap-3 group"
       style={{
-        background: selected ? "rgba(0,200,255,0.08)" : "var(--joe-card)",
-        borderColor: selected ? "#00c8ff" : "var(--joe-card-border)",
-        boxShadow: selected ? "0 0 0 2px rgba(0,200,255,0.18)" : "none",
+        background: selected ? "rgba(72,242,251,0.08)" : "var(--joe-card)",
+        borderColor: selected ? "#48F2FB" : "var(--joe-card-border)",
+        boxShadow: selected ? "0 0 0 2px rgba(72,242,251,0.18)" : "none",
       }}
     >
       <div
         className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200"
         style={{
-          borderColor: selected ? "#00c8ff" : "rgba(0,0,0,0.2)",
-          background: selected ? "#00c8ff" : "transparent",
+          borderColor: selected ? "#48F2FB" : "rgba(0,0,0,0.2)",
+          background: selected ? "#48F2FB" : "transparent",
         }}
       >
         {selected && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
@@ -245,9 +245,9 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
             width: i + 1 === current ? 24 : 8,
             height: 8,
             background: i + 1 < current
-              ? "#00c8ff"
+              ? "#48F2FB"
               : i + 1 === current
-              ? "linear-gradient(90deg, #00c8ff, #7c3aed)"
+              ? "linear-gradient(90deg, #48F2FB, #E867EA)"
               : "rgba(0,0,0,0.12)",
           }}
         />
@@ -269,10 +269,10 @@ const TIER_CONFIG = {
     cta: "Let's build something lean and powerful together.",
   },
   "High Value": {
-    color: "#00c8ff",
-    gradient: "linear-gradient(135deg, #00c8ff, #0066ff)",
-    bg: "rgba(0,200,255,0.08)",
-    border: "rgba(0,200,255,0.3)",
+    color: "#48F2FB",
+    gradient: "linear-gradient(135deg, #48F2FB, #E867EA)",
+    bg: "rgba(72,242,251,0.08)",
+    border: "rgba(72,242,251,0.3)",
     icon: <Star className="w-8 h-8" />,
     badge: "High Value Partner",
     headline: "You're a priority engagement",
@@ -280,10 +280,10 @@ const TIER_CONFIG = {
     cta: "We're ready to commit at the level your project deserves.",
   },
   Enterprise: {
-    color: "#7c3aed",
-    gradient: "linear-gradient(135deg, #7c3aed, #4f46e5)",
-    bg: "rgba(124,58,237,0.08)",
-    border: "rgba(124,58,237,0.3)",
+    color: "#E867EA",
+    gradient: "linear-gradient(135deg, #E867EA, #4f46e5)",
+    bg: "rgba(232,103,234,0.08)",
+    border: "rgba(232,103,234,0.3)",
     icon: <Crown className="w-8 h-8" />,
     badge: "Enterprise Client",
     headline: "You qualify for our Enterprise Program",
@@ -543,7 +543,7 @@ export default function QualifyPage() {
         highlightedTitle="Fit"
         subtitle="Answer a few tailored questions and we'll match you to the right engagement track — instantly."
         size="sm"
-        accentColor="#00c8ff"
+        accentColor="#48F2FB"
         data-testid-label="text-qualify-label"
         data-testid-title="text-qualify-title"
         data-testid-subtitle="text-qualify-subtitle"
@@ -571,8 +571,8 @@ export default function QualifyPage() {
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(0,200,255,0.1)" }}>
-                    <User className="w-5 h-5" style={{ color: "#00c8ff" }} />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(72,242,251,0.1)" }}>
+                    <User className="w-5 h-5" style={{ color: "#48F2FB" }} />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-joe-text">Let's start with you</h2>
@@ -657,8 +657,8 @@ export default function QualifyPage() {
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(0,200,255,0.1)" }}>
-                    <Briefcase className="w-5 h-5" style={{ color: "#00c8ff" }} />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(72,242,251,0.1)" }}>
+                    <Briefcase className="w-5 h-5" style={{ color: "#48F2FB" }} />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-joe-text">What are you building?</h2>
@@ -742,8 +742,8 @@ export default function QualifyPage() {
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(0,200,255,0.1)" }}>
-                    <Sparkles className="w-5 h-5" style={{ color: "#00c8ff" }} />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(72,242,251,0.1)" }}>
+                    <Sparkles className="w-5 h-5" style={{ color: "#48F2FB" }} />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-joe-text">Budget & Timeline</h2>
@@ -774,9 +774,9 @@ export default function QualifyPage() {
                                   onClick={() => field.onChange(value)}
                                   className="text-left rounded-xl px-4 py-3.5 border transition-all duration-200"
                                   style={{
-                                    background: field.value === value ? "rgba(0,200,255,0.08)" : "var(--joe-overlay)",
-                                    borderColor: field.value === value ? "#00c8ff" : "var(--joe-card-border)",
-                                    boxShadow: field.value === value ? "0 0 0 2px rgba(0,200,255,0.18)" : "none",
+                                    background: field.value === value ? "rgba(72,242,251,0.08)" : "var(--joe-overlay)",
+                                    borderColor: field.value === value ? "#48F2FB" : "var(--joe-card-border)",
+                                    boxShadow: field.value === value ? "0 0 0 2px rgba(72,242,251,0.18)" : "none",
                                   }}
                                 >
                                   <p className="font-semibold text-sm text-joe-text">{label}</p>
@@ -811,9 +811,9 @@ export default function QualifyPage() {
                                   onClick={() => field.onChange(value)}
                                   className="text-left rounded-xl px-4 py-3.5 border transition-all duration-200"
                                   style={{
-                                    background: field.value === value ? "rgba(0,200,255,0.08)" : "var(--joe-overlay)",
-                                    borderColor: field.value === value ? "#00c8ff" : "var(--joe-card-border)",
-                                    boxShadow: field.value === value ? "0 0 0 2px rgba(0,200,255,0.18)" : "none",
+                                    background: field.value === value ? "rgba(72,242,251,0.08)" : "var(--joe-overlay)",
+                                    borderColor: field.value === value ? "#48F2FB" : "var(--joe-card-border)",
+                                    boxShadow: field.value === value ? "0 0 0 2px rgba(72,242,251,0.18)" : "none",
                                   }}
                                 >
                                   <p className="font-semibold text-sm text-joe-text">{label}</p>
@@ -845,8 +845,8 @@ export default function QualifyPage() {
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(0,200,255,0.1)" }}>
-                    <Building2 className="w-5 h-5" style={{ color: "#00c8ff" }} />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(72,242,251,0.1)" }}>
+                    <Building2 className="w-5 h-5" style={{ color: "#48F2FB" }} />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-joe-text">About your organisation</h2>
@@ -877,9 +877,9 @@ export default function QualifyPage() {
                                   onClick={() => field.onChange(value)}
                                   className="text-center rounded-xl px-3 py-3 border transition-all duration-200"
                                   style={{
-                                    background: field.value === value ? "rgba(0,200,255,0.08)" : "var(--joe-overlay)",
-                                    borderColor: field.value === value ? "#00c8ff" : "var(--joe-card-border)",
-                                    boxShadow: field.value === value ? "0 0 0 2px rgba(0,200,255,0.18)" : "none",
+                                    background: field.value === value ? "rgba(72,242,251,0.08)" : "var(--joe-overlay)",
+                                    borderColor: field.value === value ? "#48F2FB" : "var(--joe-card-border)",
+                                    boxShadow: field.value === value ? "0 0 0 2px rgba(72,242,251,0.18)" : "none",
                                   }}
                                 >
                                   <p className="font-semibold text-sm text-joe-text">{label}</p>
@@ -1009,9 +1009,9 @@ export default function QualifyPage() {
               >
                 <div
                   className="w-16 h-16 rounded-2xl flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg, rgba(0,200,255,0.15), rgba(124,58,237,0.15))" }}
+                  style={{ background: "linear-gradient(135deg, rgba(72,242,251,0.15), rgba(232,103,234,0.15))" }}
                 >
-                  <Sparkles className="w-8 h-8" style={{ color: "#00c8ff" }} />
+                  <Sparkles className="w-8 h-8" style={{ color: "#48F2FB" }} />
                 </div>
 
                 <div>
@@ -1072,7 +1072,7 @@ export default function QualifyPage() {
             data-testid="button-next"
             className="flex items-center gap-2 px-6"
             style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+              background: "linear-gradient(135deg, #48F2FB, #E867EA)",
               border: "none",
             }}
           >

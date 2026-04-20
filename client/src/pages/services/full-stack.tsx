@@ -6,7 +6,7 @@ import { Layers, Monitor, Server, Database, Rocket, ShieldCheck, ArrowRight, Bri
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const accent = "#0066ff";
+const accent = "#48F2FB";
 
 const includedItems = [
   {
@@ -120,7 +120,7 @@ export default function FullStackDevelopment() {
               Full-Stack{" "}
               <span
                 style={{
-                  background: `linear-gradient(135deg, #00c8ff, ${accent})`,
+                  background: `linear-gradient(135deg, #48F2FB, ${accent})`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -305,7 +305,7 @@ export default function FullStackDevelopment() {
               Ready to{" "}
               <span
                 style={{
-                  background: `linear-gradient(135deg, #00c8ff, ${accent})`,
+                  background: `linear-gradient(135deg, #48F2FB, ${accent})`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -320,7 +320,7 @@ export default function FullStackDevelopment() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#00c8ff]/15"
+                className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#48F2FB]/15"
                 data-testid="button-fullstack-cta"
               >
                 Start Your Project

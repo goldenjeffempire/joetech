@@ -5,10 +5,10 @@ import { CheckCircle, Award, Globe, TrendingUp, ExternalLink, Target, Zap, Users
 import { SiInstagram, SiFacebook, SiGithub, SiLinkedin } from "react-icons/si";
 
 const stats = [
-  { value: "50+", label: "Projects Shipped", accent: "#00c8ff", icon: Code2 },
+  { value: "50+", label: "Projects Shipped", accent: "#48F2FB", icon: Code2 },
   { value: "5+", label: "Years Experience", accent: "#00ff88", icon: Award },
   { value: "4.9/5", label: "Client Rating", accent: "#f59e0b", icon: TrendingUp },
-  { value: "100%", label: "References Available", accent: "#7c3aed", icon: Users },
+  { value: "100%", label: "References Available", accent: "#E867EA", icon: Users },
 ];
 
 const achievements = [
@@ -25,7 +25,7 @@ const values = [
     icon: Target,
     title: "Impact Over Vanity",
     description: "We measure success by real-world results — faster operations, higher conversions, smarter workflows — not by how complex our code looks.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: Award,
@@ -37,7 +37,7 @@ const values = [
     icon: Globe,
     title: "Full-Spectrum Thinking",
     description: "We see the complete picture — from data models and APIs to user interfaces and business outcomes — delivering coherent digital systems, not patchwork solutions.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     icon: Zap,
@@ -59,22 +59,22 @@ const socialLinks = [
     icon: SiFacebook,
     label: "Facebook",
     href: "https://facebook.com/search/top?q=JOE%20Technologies",
-    accent: "#0066ff",
+    accent: "#48F2FB",
     handle: "JOE Technologies",
   },
   {
     icon: SiGithub,
     label: "GitHub",
     href: "https://github.com",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
     handle: "JOE Technologies",
   },
   {
     icon: ExternalLink,
     label: "Website",
-    href: "https://joetech.onrender.com",
+    href: "https://joetechnologies.io",
     accent: "#00ff88",
-    handle: "joetech.onrender.com",
+    handle: "joetechnologies.io",
   },
 ];
 
@@ -144,7 +144,7 @@ export default function AboutSection() {
         />
         <div
           className="absolute top-0 right-0 w-[600px] h-[400px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, #00c8ff 0%, transparent 70%)", opacity: 0.05 }}
+          style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: 0.05 }}
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -155,10 +155,10 @@ export default function AboutSection() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">About the Founder</span>
+            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">About the Founder</span>
             <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
               Built by an Engineer Who{" "}
-              <span className="text-gradient-blue">Builds Products</span>
+              <span className="text-gradient-cyber">Builds Products</span>
             </h2>
             <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
               JOE Technologies is a one-founder, highly specialized studio delivering enterprise-grade digital products — apps, websites, automation systems, UI/UX, and AI.
@@ -179,7 +179,7 @@ export default function AboutSection() {
                 <div className="flex-shrink-0 relative">
                   <div
                     className="w-20 h-20 rounded-xl flex items-center justify-center font-heading font-bold text-2xl text-white"
-                    style={{ background: "linear-gradient(135deg, #00c8ff 0%, #0066ff 50%, #7c3aed 100%)" }}
+                    style={{ background: "linear-gradient(135deg, #48F2FB 0%, #48F2FB 50%, #E867EA 100%)" }}
                   >
                     JOE
                   </div>
@@ -192,14 +192,14 @@ export default function AboutSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
-                  <p className="text-[#00c8ff] text-sm font-medium mt-0.5">Founder & Chief Engineer</p>
+                  <p className="text-[#48F2FB] text-sm font-medium mt-0.5">Founder & Chief Engineer</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
                   <div className="flex items-center gap-3 mt-3">
                     <a
                       href="https://onome-portfolio-ten.vercel.app/?/projects"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00c8ff] hover:text-[#0066ff] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#48F2FB] hover:text-[#48F2FB] transition-colors"
                       data-testid="link-founder-portfolio"
                     >
                       <ExternalLink className="w-3 h-3" />
@@ -207,14 +207,14 @@ export default function AboutSection() {
                     </a>
                     <span className="text-joe-text/20">·</span>
                     <a
-                      href="https://joetech.onrender.com"
+                      href="https://joetechnologies.io"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#7c3aed] hover:text-[#0066ff] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E867EA] hover:text-[#48F2FB] transition-colors"
                       data-testid="link-website"
                     >
                       <Globe className="w-3 h-3" />
-                      joetech.onrender.com
+                      joetechnologies.io
                     </a>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export default function AboutSection() {
                     className="flex items-start gap-3"
                     data-testid={`achievement-${i}`}
                   >
-                    <CheckCircle className="w-4 h-4 text-[#00c8ff] flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-4 h-4 text-[#48F2FB] flex-shrink-0 mt-0.5" />
                     <span className="text-joe-text/55 text-sm">{item}</span>
                   </motion.div>
                 ))}
@@ -318,12 +318,12 @@ export default function AboutSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={bioInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="mt-1 p-7 rounded-xl border border-[#00c8ff]/15 relative overflow-hidden"
-                style={{ background: "rgba(0,200,255,0.04)" }}
+                className="mt-1 p-7 rounded-xl border border-[#48F2FB]/15 relative overflow-hidden"
+                style={{ background: "rgba(72,242,251,0.04)" }}
               >
                 <div
                   className="absolute top-0 left-0 right-0 h-0.5"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(0,200,255,0.4), transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(72,242,251,0.4), transparent)" }}
                 />
                 <p className="text-joe-text/70 text-base italic leading-relaxed">
                   "The best digital systems aren't just technically impressive — they create compounding value
@@ -332,12 +332,12 @@ export default function AboutSection() {
                 <div className="flex items-center gap-3 mt-5">
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-xs text-white"
-                    style={{ background: "linear-gradient(135deg, #00c8ff90, #0066ff60)" }}
+                    style={{ background: "linear-gradient(135deg, #48F2FB90, #48F2FB60)" }}
                   >
                     JOE
                   </div>
                   <div>
-                    <p className="text-[#00c8ff] text-sm font-semibold font-mono">Jeffery Onome Emuodafevware</p>
+                    <p className="text-[#48F2FB] text-sm font-semibold font-mono">Jeffery Onome Emuodafevware</p>
                     <p className="text-joe-text/35 text-xs">Founder, JOE Technologies</p>
                   </div>
                 </div>

@@ -10,12 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
 const accent = "#00ff88";
-const accentSecondary = "#00c8ff";
+const accentSecondary = "#48F2FB";
 
 const metrics = [
   { icon: Brain, value: "50+", label: "AI Models Deployed", accent: "#00ff88" },
-  { icon: Target, value: "94%", label: "Avg. Model Accuracy", accent: "#00c8ff" },
-  { icon: Zap, value: "10x", label: "Faster Than Manual", accent: "#7c3aed" },
+  { icon: Target, value: "94%", label: "Avg. Model Accuracy", accent: "#48F2FB" },
+  { icon: Zap, value: "10x", label: "Faster Than Manual", accent: "#E867EA" },
   { icon: TrendingUp, value: "$4.6M", label: "Client Value Created", accent: "#f59e0b" },
 ];
 
@@ -74,14 +74,14 @@ const useCases = [
   },
   {
     tag: "Document Processing",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
     title: "Automated Document Intelligence",
     description: "NLP pipelines that extract, classify, and route information from contracts, invoices, reports, and forms — eliminating manual data entry and reducing processing time by 85%.",
     result: "99.2% extraction accuracy",
   },
   {
     tag: "Operations & Forecasting",
-    accent: "#7c3aed",
+    accent: "#E867EA",
     title: "Predictive Business Intelligence",
     description: "ML models trained on your operational data to forecast demand, detect anomalies, predict churn, and surface trends — giving decision-makers a live intelligence layer.",
     result: "91% forecast accuracy",
@@ -106,13 +106,13 @@ const deliverables = [
     phase: "02",
     title: "Model Development",
     items: ["Data preprocessing pipelines", "Model training & fine-tuning", "Evaluation & benchmarking", "Iterative improvement cycles"],
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     phase: "03",
     title: "Integration & Deployment",
     items: ["API endpoints & SDK", "System integration", "Monitoring & alerting", "Production deployment"],
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     phase: "04",
@@ -124,17 +124,17 @@ const deliverables = [
 
 const techStack = [
   { name: "Python", accent: "#00ff88" },
-  { name: "PyTorch", accent: "#00c8ff" },
+  { name: "PyTorch", accent: "#48F2FB" },
   { name: "TensorFlow", accent: "#f59e0b" },
-  { name: "Hugging Face", accent: "#7c3aed" },
+  { name: "Hugging Face", accent: "#E867EA" },
   { name: "LangChain", accent: "#00ff88" },
-  { name: "OpenAI API", accent: "#00c8ff" },
-  { name: "FastAPI", accent: "#0066ff" },
+  { name: "OpenAI API", accent: "#48F2FB" },
+  { name: "FastAPI", accent: "#48F2FB" },
   { name: "scikit-learn", accent: "#f59e0b" },
   { name: "Django", accent: "#00ff88" },
-  { name: "PostgreSQL", accent: "#0066ff" },
-  { name: "AWS / GCP", accent: "#7c3aed" },
-  { name: "Docker", accent: "#00c8ff" },
+  { name: "PostgreSQL", accent: "#48F2FB" },
+  { name: "AWS / GCP", accent: "#E867EA" },
+  { name: "Docker", accent: "#48F2FB" },
 ];
 
 function useScrollInView() {
@@ -183,7 +183,7 @@ export default function CustomAIPage() {
         />
         <div
           className="absolute bottom-0 right-0 w-[500px] h-[400px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: 0.07 }}
+          style={{ background: "radial-gradient(ellipse, #E867EA 0%, transparent 70%)", opacity: 0.07 }}
         />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -365,7 +365,7 @@ export default function CustomAIPage() {
             </span>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               AI Use Cases That{" "}
-              <span className="text-gradient-blue">Drive Results</span>
+              <span className="text-gradient-cyber">Drive Results</span>
             </h2>
             <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
               Proven AI implementations that have created measurable business impact across industries.

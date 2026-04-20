@@ -24,7 +24,7 @@ export default function Contact() {
         title="Get in"
         highlightedTitle="Touch"
         subtitle="Ready to discuss your next project? Reach out and let's start building something remarkable together."
-        accentColor="#00c8ff"
+        accentColor="#48F2FB"
         data-testid-label="text-contact-label"
         data-testid-title="text-contact-title"
         data-testid-subtitle="text-contact-subtitle"

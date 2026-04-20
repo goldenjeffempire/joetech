@@ -12,42 +12,42 @@ const differentiators = [
     icon: ShieldCheck,
     title: "Systems-First, AI-Enabled",
     description: "We don't build disconnected screens or bolt AI onto broken workflows. We architect digital systems where product, automation, data, and intelligence work together in production.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
     detail: "Every system we build starts with the business process, user journey, data model, and technical architecture. When AI belongs in the workflow, it is designed as a useful production capability rather than a demo feature.",
   },
   {
     icon: Layers,
     title: "Full-Stack Ownership",
     description: "From raw data ingestion to polished user interfaces, we own the entire stack. No handoffs between agencies. One team that understands how every layer connects.",
-    accent: "#0066ff",
+    accent: "#48F2FB",
     detail: "Having a single team responsible for frontend, backend, data pipelines, and ML infrastructure eliminates integration gaps and communication overhead.",
   },
   {
     icon: BarChart3,
     title: "Outcomes, Not Outputs",
     description: "We don't invoice for code — we're accountable for results. Every engagement defines clear business KPIs upfront, and we track them throughout the project lifecycle.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
     detail: "Before writing a single line of code, we define measurable success criteria tied to your business objectives. Our progress reports focus on impact, not activity.",
   },
   {
     icon: GitMerge,
     title: "Deep Domain Expertise",
     description: "We've built apps, websites, automations, dashboards, and AI systems across FinTech, Healthcare, Legal, E-Commerce, SaaS, and service businesses. We understand real-world constraints, compliance requirements, and growth opportunities.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
     detail: "Domain expertise means fewer iterations, better product decisions, stronger automation design, and solutions that account for real-world constraints like regulatory compliance and industry-specific edge cases.",
   },
   {
     icon: MessageSquare,
     title: "Radical Transparency",
     description: "Weekly progress updates. Shared dashboards. No hidden blockers. You'll always know exactly where your project stands, what's next, and what risks we're managing.",
-    accent: "#0066ff",
+    accent: "#48F2FB",
     detail: "We use shared project boards, weekly demo sessions, and real-time metrics dashboards. If something isn't working, you'll hear about it before it becomes a problem.",
   },
   {
     icon: HeartHandshake,
     title: "Partners, Not Vendors",
     description: "We're invested in your long-term success. Our best relationships are multi-year partnerships where we continuously improve, scale, and evolve the systems we build together.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
     detail: "Most of our clients have been with us for over a year. We grow with your business, adapting systems and strategies as your needs evolve.",
   },
 ];
@@ -84,7 +84,7 @@ export default function WhyUsPage() {
         title="Why Choose"
         highlightedTitle="JOE Technologies"
         subtitle="There are many AI consultancies. Here's what makes us the partner that serious companies choose — and stay with."
-        accentColor="#0066ff"
+        accentColor="#48F2FB"
         size="md"
       />
 
@@ -103,7 +103,7 @@ export default function WhyUsPage() {
                   style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
                   data-testid={`stat-card-${i}`}
                 >
-                  <Icon className="w-6 h-6 text-[#00c8ff] mx-auto mb-3" />
+                  <Icon className="w-6 h-6 text-[#48F2FB] mx-auto mb-3" />
                   <div className="font-heading font-bold text-3xl text-joe-text">{stat.value}</div>
                   <div className="text-joe-text/45 text-sm mt-1">{stat.label}</div>
                 </motion.div>
@@ -115,7 +115,7 @@ export default function WhyUsPage() {
 
       <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
         <div className="absolute top-1/2 right-0 w-96 h-96 blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
+          style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -125,11 +125,11 @@ export default function WhyUsPage() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">What Sets Us Apart</span>
+            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">What Sets Us Apart</span>
             <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
               Built Different.{" "}
               <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+                background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -186,11 +186,11 @@ export default function WhyUsPage() {
             transition={{ duration: 0.7 }}
             className="text-center mb-12"
           >
-            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Our Promise</span>
+            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Our Promise</span>
             <h2 className="font-heading font-bold text-3xl lg:text-4xl text-joe-text mt-3">
               Commitments We Make to{" "}
               <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+                background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -212,7 +212,7 @@ export default function WhyUsPage() {
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
                 data-testid={`commitment-${i}`}
               >
-                <CheckCircle className="w-5 h-5 text-[#00c8ff] flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 text-[#48F2FB] flex-shrink-0 mt-0.5" />
                 <span className="text-joe-text/65 text-sm leading-relaxed">{item}</span>
               </motion.div>
             ))}
@@ -235,7 +235,7 @@ export default function WhyUsPage() {
               Let's discuss how JOE Technologies can drive measurable impact for your business.
             </p>
             <Link href="/contact">
-              <Button className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold px-8 py-6 text-base gap-2" data-testid="button-why-us-cta">
+              <Button className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold px-8 py-6 text-base gap-2" data-testid="button-why-us-cta">
                 Start a Conversation
                 <ArrowRight className="w-4 h-4" />
               </Button>

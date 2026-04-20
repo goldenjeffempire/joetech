@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { Plug, ArrowRight, Search, MessageSquare, Workflow, Webhook, Gauge, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const ACCENT = "#00c8ff";
+const ACCENT = "#48F2FB";
 
 const includedItems = [
   {
@@ -134,7 +134,7 @@ export default function AIIntegrationPage() {
               AI Integration{" "}
               <span
                 style={{
-                  background: `linear-gradient(135deg, ${ACCENT}, #0066ff)`,
+                  background: `linear-gradient(135deg, ${ACCENT}, #48F2FB)`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -336,7 +336,7 @@ export default function AIIntegrationPage() {
               Ready to{" "}
               <span
                 style={{
-                  background: `linear-gradient(135deg, ${ACCENT}, #0066ff)`,
+                  background: `linear-gradient(135deg, ${ACCENT}, #48F2FB)`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -351,7 +351,7 @@ export default function AIIntegrationPage() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#00c8ff]/15"
+                className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#48F2FB]/15"
                 data-testid="button-cta-contact"
               >
                 Discuss Your Project

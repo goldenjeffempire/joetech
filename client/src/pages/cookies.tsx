@@ -90,8 +90,8 @@ export default function CookiePolicy() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 mb-4">
-              <Cookie className="w-5 h-5 text-[#00c8ff]" />
-              <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">
+              <Cookie className="w-5 h-5 text-[#48F2FB]" />
+              <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">
                 Legal
               </span>
             </div>
@@ -99,7 +99,7 @@ export default function CookiePolicy() {
               Cookie{" "}
               <span
                 style={{
-                  background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+                  background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -126,8 +126,8 @@ export default function CookiePolicy() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="p-6 rounded-xl border mb-10"
             style={{
-              background: "rgba(0,200,255,0.04)",
-              borderColor: "rgba(0,200,255,0.15)",
+              background: "rgba(72,242,251,0.04)",
+              borderColor: "rgba(72,242,251,0.15)",
             }}
           >
             <p className="text-joe-text/65 text-sm leading-relaxed">
@@ -156,9 +156,9 @@ export default function CookiePolicy() {
                 <div className="flex items-center gap-3 mb-4">
                   <div
                     className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(0,200,255,0.1)", border: "1px solid rgba(0,200,255,0.2)" }}
+                    style={{ background: "rgba(72,242,251,0.1)", border: "1px solid rgba(72,242,251,0.2)" }}
                   >
-                    <Icon className="w-4 h-4 text-[#00c8ff]" />
+                    <Icon className="w-4 h-4 text-[#48F2FB]" />
                   </div>
                   <h2 className="font-heading font-bold text-joe-text text-lg">{section.title}</h2>
                 </div>
@@ -185,9 +185,9 @@ export default function CookiePolicy() {
             <div className="flex items-center gap-3 mb-5">
               <div
                 className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(0,200,255,0.1)", border: "1px solid rgba(0,200,255,0.2)" }}
+                style={{ background: "rgba(72,242,251,0.1)", border: "1px solid rgba(72,242,251,0.2)" }}
               >
-                <Settings className="w-4 h-4 text-[#00c8ff]" />
+                <Settings className="w-4 h-4 text-[#48F2FB]" />
               </div>
               <h2 className="font-heading font-bold text-joe-text text-lg">Cookies We Use</h2>
             </div>
@@ -216,8 +216,8 @@ export default function CookiePolicy() {
                       data-testid={`cookie-row-${ci}`}
                     >
                       <td className="py-3 pr-4">
-                        <code className="text-[#00c8ff] font-mono text-xs px-1.5 py-0.5 rounded"
-                          style={{ background: "rgba(0,200,255,0.1)" }}>
+                        <code className="text-[#48F2FB] font-mono text-xs px-1.5 py-0.5 rounded"
+                          style={{ background: "rgba(72,242,251,0.1)" }}>
                           {cookie.name}
                         </code>
                       </td>
@@ -255,9 +255,9 @@ export default function CookiePolicy() {
                 <div className="flex items-center gap-3 mb-4">
                   <div
                     className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(0,200,255,0.1)", border: "1px solid rgba(0,200,255,0.2)" }}
+                    style={{ background: "rgba(72,242,251,0.1)", border: "1px solid rgba(72,242,251,0.2)" }}
                   >
-                    <Icon className="w-4 h-4 text-[#00c8ff]" />
+                    <Icon className="w-4 h-4 text-[#48F2FB]" />
                   </div>
                   <h2 className="font-heading font-bold text-joe-text text-lg">{section.title}</h2>
                 </div>
@@ -287,7 +287,7 @@ export default function CookiePolicy() {
               borderColor: "var(--joe-card-border)",
             }}
           >
-            <Mail className="w-5 h-5 text-[#00c8ff] flex-shrink-0 mt-0.5" />
+            <Mail className="w-5 h-5 text-[#48F2FB] flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-heading font-bold text-joe-text text-base mb-1">
                 Questions About Cookies?
@@ -296,7 +296,7 @@ export default function CookiePolicy() {
                 If you have any questions about our use of cookies or this policy, please contact us at{" "}
                 <a
                   href="mailto:jeffemuodafe124@gmail.com"
-                  className="text-[#00c8ff] hover:underline"
+                  className="text-[#48F2FB] hover:underline"
                   data-testid="link-cookies-email"
                 >
                   jeffemuodafe124@gmail.com

@@ -23,7 +23,7 @@ export default function Portfolio() {
         title=""
         highlightedTitle="Our Work"
         subtitle="Explore how we've helped businesses transform with AI-powered systems that deliver measurable impact."
-        accentColor="#0066ff"
+        accentColor="#48F2FB"
         data-testid-label="text-portfolio-label"
         data-testid-title="text-portfolio-title"
         data-testid-subtitle="text-portfolio-subtitle"

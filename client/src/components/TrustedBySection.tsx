@@ -2,16 +2,16 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const companies = [
-  { name: "Nexus Financial", industry: "FinTech", accent: "#00c8ff" },
+  { name: "Nexus Financial", industry: "FinTech", accent: "#48F2FB" },
   { name: "HealthSense Network", industry: "Healthcare", accent: "#00ff88" },
-  { name: "LegalEdge International", industry: "Legal Tech", accent: "#7c3aed" },
-  { name: "VoiceCommerce", industry: "E-Commerce", accent: "#0066ff" },
-  { name: "DataAxis Labs", industry: "Data Science", accent: "#00c8ff" },
-  { name: "Orbital Systems", industry: "SaaS", accent: "#0066ff" },
-  { name: "Meridian Capital", industry: "Finance", accent: "#7c3aed" },
+  { name: "LegalEdge International", industry: "Legal Tech", accent: "#E867EA" },
+  { name: "VoiceCommerce", industry: "E-Commerce", accent: "#48F2FB" },
+  { name: "DataAxis Labs", industry: "Data Science", accent: "#48F2FB" },
+  { name: "Orbital Systems", industry: "SaaS", accent: "#48F2FB" },
+  { name: "Meridian Capital", industry: "Finance", accent: "#E867EA" },
   { name: "ClearPath Analytics", industry: "Analytics", accent: "#00ff88" },
-  { name: "Prism Ventures", industry: "Investment", accent: "#00c8ff" },
-  { name: "Apex Intelligence", industry: "AI/ML", accent: "#0066ff" },
+  { name: "Prism Ventures", industry: "Investment", accent: "#48F2FB" },
+  { name: "Apex Intelligence", industry: "AI/ML", accent: "#48F2FB" },
 ];
 
 const doubled = [...companies, ...companies];

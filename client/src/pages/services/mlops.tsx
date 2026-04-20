@@ -6,7 +6,7 @@ import { CloudCog, Server, GitBranch, Activity, RefreshCw, Database, ArrowRight 
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const ACCENT = "#7c3aed";
+const ACCENT = "#E867EA";
 
 const includedItems = [
   {

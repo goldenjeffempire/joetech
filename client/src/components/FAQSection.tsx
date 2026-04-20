@@ -49,7 +49,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       transition={{ duration: 0.4, delay: index * 0.06 }}
       className="border rounded-xl overflow-hidden"
       style={{
-        background: open ? "rgba(0,200,255,0.04)" : "var(--joe-card)",
+        background: open ? "rgba(72,242,251,0.04)" : "var(--joe-card)",
         borderColor: "var(--joe-card-border)",
       }}
       data-testid={`faq-item-${index}`}
@@ -65,12 +65,12 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         <div
           className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-200"
           style={{
-            borderColor: open ? "rgba(0,200,255,0.4)" : "var(--joe-card-border)",
-            background: open ? "rgba(0,200,255,0.12)" : "var(--joe-overlay)",
+            borderColor: open ? "rgba(72,242,251,0.4)" : "var(--joe-card-border)",
+            background: open ? "rgba(72,242,251,0.12)" : "var(--joe-overlay)",
           }}
         >
           {open ? (
-            <Minus className="w-3.5 h-3.5 text-[#00c8ff]" />
+            <Minus className="w-3.5 h-3.5 text-[#48F2FB]" />
           ) : (
             <Plus className="w-3.5 h-3.5 text-joe-text/50" />
           )}
@@ -107,7 +107,7 @@ export default function FAQSection() {
     >
       <div
         className="absolute top-0 right-1/4 w-80 h-80 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.5)" }}
+        style={{ background: "radial-gradient(circle, #E867EA 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.5)" }}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,14 +118,14 @@ export default function FAQSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">
             FAQ
           </span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Questions We{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+                background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -151,8 +151,8 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center p-8 rounded-xl border border-[#00c8ff]/15"
-          style={{ background: "rgba(0,200,255,0.04)" }}
+          className="text-center p-8 rounded-xl border border-[#48F2FB]/15"
+          style={{ background: "rgba(72,242,251,0.04)" }}
         >
           <p className="text-joe-text/70 font-semibold text-lg mb-2">
             Still have questions?
@@ -162,7 +162,7 @@ export default function FAQSection() {
           </p>
           <Link href="/contact">
             <Button
-              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2"
+              className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold gap-2"
               data-testid="button-faq-cta"
             >
               Ask Us Directly

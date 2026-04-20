@@ -145,7 +145,7 @@ export default function WhatsAppButton() {
               style={{ borderColor: "rgba(255,255,255,0.05)", background: "rgba(0,0,0,0.25)" }}
             >
               <p className="text-white/18 text-[10px] text-center font-mono">
-                JOE Technologies · joetech.onrender.com
+                JOE Technologies · joetechnologies.io
               </p>
             </div>
           </motion.div>

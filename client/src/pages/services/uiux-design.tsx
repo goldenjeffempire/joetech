@@ -28,19 +28,19 @@ const capabilities = [
     icon: PenTool,
     title: "Wireframing & Prototyping",
     description: "Low-fidelity wireframes and interactive high-fidelity prototypes that validate concepts, gather feedback, and reduce engineering rework.",
-    accent: "#0066ff",
+    accent: "#48F2FB",
   },
   {
     icon: Palette,
     title: "Visual Interface Design",
     description: "Pixel-perfect UI screens with intentional hierarchy, accessibility-compliant contrast, motion principles, and premium visual polish.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     icon: Layers,
     title: "Design System Engineering",
     description: "Scalable component libraries, token systems, pattern documentation, and Figma handoff specs that keep design and development in sync.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: Monitor,
@@ -72,12 +72,12 @@ const deliverables = [
 
 const techStack = [
   { name: "Figma", color: "#f59e0b" },
-  { name: "FigJam", color: "#7c3aed" },
-  { name: "Framer", color: "#0066ff" },
-  { name: "Lottie", color: "#00c8ff" },
+  { name: "FigJam", color: "#E867EA" },
+  { name: "Framer", color: "#48F2FB" },
+  { name: "Lottie", color: "#48F2FB" },
   { name: "Tailwind CSS", color: "#00ff88" },
   { name: "Storybook", color: "#ec4899" },
-  { name: "React", color: "#0066ff" },
+  { name: "React", color: "#48F2FB" },
   { name: "WCAG 2.2", color: "#f59e0b" },
 ];
 
@@ -128,7 +128,7 @@ export default function UIUXDesign() {
       <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
         <div className="absolute inset-0" style={{ opacity: "var(--joe-glow-opacity)", backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] blur-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse, ${accent} 0%, transparent 70%)`, opacity: 0.08 }} />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.07 }} />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #E867EA 0%, transparent 70%)", opacity: 0.07 }} />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -143,7 +143,7 @@ export default function UIUXDesign() {
             </div>
             <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl text-joe-text mb-5 leading-tight" data-testid="text-uiux-title">
               UI/UX{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #f97316, #7c3aed)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #f97316, #E867EA)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Design
               </span>
             </h1>

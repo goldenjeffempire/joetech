@@ -10,7 +10,7 @@ const ALL_TAG = "All";
 const caseStudies = [
   {
     tag: "App Development",
-    tagColor: "#00c8ff",
+    tagColor: "#48F2FB",
     category: "App Development",
     title: "Enterprise Operations App",
     client: "Growing Service Organization",
@@ -21,7 +21,7 @@ const caseStudies = [
       { icon: TrendingUp, value: "91%", label: "Process accuracy" },
       { icon: Zap, value: "4x", label: "Deploy frequency" },
     ],
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     tag: "AI & Machine Learning",
@@ -40,7 +40,7 @@ const caseStudies = [
   },
   {
     tag: "Website Design",
-    tagColor: "#0066ff",
+    tagColor: "#48F2FB",
     category: "Website Design",
     title: "Premium Growth Website System",
     client: "B2B Services Company",
@@ -51,11 +51,11 @@ const caseStudies = [
       { icon: Clock, value: "< 3s", label: "Load time" },
       { icon: TrendingUp, value: "Top 3", label: "SEO ranking" },
     ],
-    accent: "#0066ff",
+    accent: "#48F2FB",
   },
   {
     tag: "AI & Machine Learning",
-    tagColor: "#7c3aed",
+    tagColor: "#E867EA",
     category: "AI & ML",
     title: "Legal Document Intelligence Platform",
     client: "Legal Technology Firm",
@@ -66,7 +66,7 @@ const caseStudies = [
       { icon: Clock, value: "85%", label: "Time savings" },
       { icon: TrendingUp, value: "50k+", label: "Docs processed" },
     ],
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     tag: "Automation Systems",
@@ -127,9 +127,9 @@ export default function PortfolioSection() {
     <section id="portfolio" className="relative py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-1)" }}>
       <div className="absolute top-1/2 left-0 w-96 h-96 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
+        style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
       <div className="absolute top-1/3 right-0 w-64 h-64 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.6)" }} />
+        style={{ background: "radial-gradient(circle, #E867EA 0%, transparent 70%)", opacity: "calc(var(--joe-glow-opacity) * 0.6)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -139,10 +139,10 @@ export default function PortfolioSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-10"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Case Studies</span>
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Case Studies</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Products That Deliver{" "}
-            <span className="text-gradient-blue">Real Results</span>
+            <span className="text-gradient-cyber">Real Results</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             Production apps, websites, AI systems, and automation workflows that improve speed, conversion, and operational performance.
@@ -165,9 +165,9 @@ export default function PortfolioSection() {
               onClick={() => setActiveFilter(tab)}
               className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border"
               style={activeFilter === tab ? {
-                background: "linear-gradient(135deg, #00c8ff20, #0066ff20)",
-                borderColor: "#00c8ff50",
-                color: "#00c8ff",
+                background: "linear-gradient(135deg, #48F2FB20, #48F2FB20)",
+                borderColor: "#48F2FB50",
+                color: "#48F2FB",
               } : {
                 background: "var(--joe-overlay)",
                 borderColor: "var(--joe-card-border)",
@@ -286,7 +286,7 @@ export default function PortfolioSection() {
           <Link href="/contact">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-lg shadow-[#00c8ff]/15"
+              className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold gap-2 shadow-lg shadow-[#48F2FB]/15"
               data-testid="button-portfolio-cta"
             >
               Start Your Project

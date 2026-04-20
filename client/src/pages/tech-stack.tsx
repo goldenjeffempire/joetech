@@ -16,7 +16,7 @@ import {
 const categories = [
   {
     label: "AI / ML",
-    color: "#00c8ff",
+    color: "#48F2FB",
     description: "The core of our AI engineering — frameworks and platforms for building, training, and serving intelligent models.",
     techs: [
       { icon: SiPytorch, name: "PyTorch", color: "#EE4C2C", detail: "Primary deep learning framework for custom model development" },
@@ -28,7 +28,7 @@ const categories = [
   },
   {
     label: "Backend",
-    color: "#0066ff",
+    color: "#48F2FB",
     description: "Robust server-side technologies for building scalable APIs, services, and data processing systems.",
     techs: [
       { icon: SiPython, name: "Python", color: "#3776AB", detail: "Our primary language for AI, backend, and data engineering" },
@@ -39,7 +39,7 @@ const categories = [
   },
   {
     label: "Frontend",
-    color: "#7c3aed",
+    color: "#E867EA",
     description: "Modern frontend frameworks for building responsive, performant user interfaces and dashboards.",
     techs: [
       { icon: SiReact, name: "React", color: "#61DAFB", detail: "Component-based UIs with hooks and state management" },
@@ -49,7 +49,7 @@ const categories = [
   },
   {
     label: "Data & Storage",
-    color: "#00c8ff",
+    color: "#48F2FB",
     description: "Battle-tested databases and caching layers for structured data, vectors, and high-throughput workloads.",
     techs: [
       { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1", detail: "Primary relational database with pgvector for embeddings" },
@@ -59,7 +59,7 @@ const categories = [
   },
   {
     label: "Cloud & DevOps",
-    color: "#0066ff",
+    color: "#48F2FB",
     description: "Infrastructure and deployment tools for running reliable, scalable systems in production.",
     techs: [
       { icon: SiAmazon, name: "AWS", color: "#FF9900", detail: "SageMaker, Lambda, ECS, S3, and full AWS ecosystem" },
@@ -70,7 +70,7 @@ const categories = [
   },
   {
     label: "Engineering",
-    color: "#7c3aed",
+    color: "#E867EA",
     description: "Version control and collaboration tools that power our engineering workflow.",
     techs: [
       { icon: SiGit, name: "Git", color: "#F05032", detail: "Version control with feature branching and code review" },
@@ -80,10 +80,10 @@ const categories = [
 ];
 
 const selectionCriteria = [
-  { title: "Production-Proven", description: "Every tool in our stack has been battle-tested in real production environments serving real users.", accent: "#00c8ff" },
-  { title: "Community & Support", description: "We choose technologies with strong communities, active development, and long-term viability.", accent: "#0066ff" },
-  { title: "Performance at Scale", description: "Our stack is optimized for handling millions of requests, large datasets, and complex ML workloads.", accent: "#7c3aed" },
-  { title: "Developer Experience", description: "Great tooling means faster development, fewer bugs, and happier engineers building your product.", accent: "#00c8ff" },
+  { title: "Production-Proven", description: "Every tool in our stack has been battle-tested in real production environments serving real users.", accent: "#48F2FB" },
+  { title: "Community & Support", description: "We choose technologies with strong communities, active development, and long-term viability.", accent: "#48F2FB" },
+  { title: "Performance at Scale", description: "Our stack is optimized for handling millions of requests, large datasets, and complex ML workloads.", accent: "#E867EA" },
+  { title: "Developer Experience", description: "Great tooling means faster development, fewer bugs, and happier engineers building your product.", accent: "#48F2FB" },
 ];
 
 export default function TechStackPage() {
@@ -102,7 +102,7 @@ export default function TechStackPage() {
         title="Technology"
         highlightedTitle="We Master"
         subtitle="A carefully curated, battle-tested stack — chosen for performance, reliability, and the ability to scale from startup to enterprise."
-        accentColor="#7c3aed"
+        accentColor="#E867EA"
       />
 
       <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
@@ -160,11 +160,11 @@ export default function TechStackPage() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Why This Stack</span>
+            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Why This Stack</span>
             <h2 className="font-heading font-bold text-3xl lg:text-4xl text-joe-text mt-3">
               How We{" "}
               <span style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+                background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -211,13 +211,13 @@ export default function TechStackPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/portfolio">
-                <Button className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold px-8 py-6 text-base gap-2" data-testid="button-tech-portfolio-cta">
+                <Button className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold px-8 py-6 text-base gap-2" data-testid="button-tech-portfolio-cta">
                   View Case Studies
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button variant="outline" className="border-[#00c8ff]/30 text-joe-text font-semibold px-8 py-6 text-base gap-2 hover:bg-[#00c8ff]/10" data-testid="button-tech-contact-cta">
+                <Button variant="outline" className="border-[#48F2FB]/30 text-joe-text font-semibold px-8 py-6 text-base gap-2 hover:bg-[#48F2FB]/10" data-testid="button-tech-contact-cta">
                   Discuss Your Project
                 </Button>
               </Link>

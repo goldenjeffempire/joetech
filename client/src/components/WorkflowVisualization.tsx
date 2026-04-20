@@ -30,19 +30,19 @@ const WORKFLOWS: WorkflowConfig[] = [
     id: "lead",
     label: "Lead Capture",
     badge: "Sales",
-    badgeColor: "#00c8ff",
+    badgeColor: "#48F2FB",
     description: "Intelligent lead qualification and routing with automated follow-up sequences",
     trigger: {
       id: "form",
       label: "Form Submitted",
       icon: Globe,
-      color: "#00c8ff",
+      color: "#48F2FB",
       detail: "Contact form detected on website",
     },
     process: [
-      { id: "qualify", label: "Qualify Lead", icon: Brain, color: "#7c3aed", detail: "Score by budget, industry, intent" },
-      { id: "enrich", label: "Enrich Data", icon: Database, color: "#0066ff", detail: "Append company, role, LinkedIn" },
-      { id: "route", label: "Route to CRM", icon: Users, color: "#00c8ff", detail: "Assign to correct sales rep" },
+      { id: "qualify", label: "Qualify Lead", icon: Brain, color: "#E867EA", detail: "Score by budget, industry, intent" },
+      { id: "enrich", label: "Enrich Data", icon: Database, color: "#48F2FB", detail: "Append company, role, LinkedIn" },
+      { id: "route", label: "Route to CRM", icon: Users, color: "#48F2FB", detail: "Assign to correct sales rep" },
     ],
     output: {
       id: "notify",
@@ -56,18 +56,18 @@ const WORKFLOWS: WorkflowConfig[] = [
     id: "order",
     label: "Order Processing",
     badge: "E-commerce",
-    badgeColor: "#7c3aed",
+    badgeColor: "#E867EA",
     description: "End-to-end order automation from payment to delivery confirmation",
     trigger: {
       id: "payment",
       label: "Payment Received",
       icon: CreditCard,
-      color: "#00c8ff",
+      color: "#48F2FB",
       detail: "Stripe webhook fired: payment_intent.succeeded",
     },
     process: [
-      { id: "verify", label: "Verify & Validate", icon: Shield, color: "#7c3aed", detail: "Fraud check, inventory confirm" },
-      { id: "invoice", label: "Generate Invoice", icon: FileText, color: "#0066ff", detail: "PDF created, stored in S3" },
+      { id: "verify", label: "Verify & Validate", icon: Shield, color: "#E867EA", detail: "Fraud check, inventory confirm" },
+      { id: "invoice", label: "Generate Invoice", icon: FileText, color: "#48F2FB", detail: "PDF created, stored in S3" },
       { id: "fulfill", label: "Trigger Fulfillment", icon: Workflow, color: "#f59e0b", detail: "Warehouse system notified" },
     ],
     output: {
@@ -88,12 +88,12 @@ const WORKFLOWS: WorkflowConfig[] = [
       id: "request",
       label: "AI Request In",
       icon: MessageSquare,
-      color: "#00c8ff",
+      color: "#48F2FB",
       detail: "User query via API or chat interface",
     },
     process: [
-      { id: "preprocess", label: "Preprocess Input", icon: Cpu, color: "#7c3aed", detail: "Tokenize, context window, history" },
-      { id: "infer", label: "Model Inference", icon: Brain, color: "#0066ff", detail: "LLM query · vector search · RAG" },
+      { id: "preprocess", label: "Preprocess Input", icon: Cpu, color: "#E867EA", detail: "Tokenize, context window, history" },
+      { id: "infer", label: "Model Inference", icon: Brain, color: "#48F2FB", detail: "LLM query · vector search · RAG" },
       { id: "postprocess", label: "Post-process", icon: BarChart3, color: "#f59e0b", detail: "Filter, format, confidence score" },
     ],
     output: {
@@ -114,12 +114,12 @@ const WORKFLOWS: WorkflowConfig[] = [
       id: "anomaly",
       label: "Anomaly Detected",
       icon: BarChart3,
-      color: "#00c8ff",
+      color: "#48F2FB",
       detail: "CPU spike: 94% — threshold exceeded",
     },
     process: [
-      { id: "analyze", label: "Root Cause Analysis", icon: Brain, color: "#7c3aed", detail: "Service graph traversal, correlation" },
-      { id: "scale", label: "Auto-Scale Triggered", icon: Cloud, color: "#0066ff", detail: "3 → 6 instances in 28 seconds" },
+      { id: "analyze", label: "Root Cause Analysis", icon: Brain, color: "#E867EA", detail: "Service graph traversal, correlation" },
+      { id: "scale", label: "Auto-Scale Triggered", icon: Cloud, color: "#48F2FB", detail: "3 → 6 instances in 28 seconds" },
       { id: "rollback", label: "Check Rollback", icon: Shield, color: "#f59e0b", detail: "Deploy version tested, stable" },
     ],
     output: {
@@ -229,7 +229,7 @@ export default function WorkflowVisualization() {
       />
       <div
         className="absolute bottom-0 right-0 w-[500px] h-[400px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: 0.07 }}
+        style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: 0.07 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -241,15 +241,15 @@ export default function WorkflowVisualization() {
         >
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
-            style={{ background: "rgba(0,102,255,0.1)", border: "1px solid rgba(0,102,255,0.25)" }}
+            style={{ background: "rgba(72,242,251,0.1)", border: "1px solid rgba(72,242,251,0.25)" }}
           >
-            <Workflow className="w-3.5 h-3.5 text-[#0066ff]" />
-            <span className="text-[#0066ff] text-xs font-mono uppercase tracking-widest">Workflow Engine</span>
+            <Workflow className="w-3.5 h-3.5 text-[#48F2FB]" />
+            <span className="text-[#48F2FB] text-xs font-mono uppercase tracking-widest">Workflow Engine</span>
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text">
             Automation{" "}
             <span style={{
-              background: "linear-gradient(135deg, #0066ff, #7c3aed)",
+              background: "linear-gradient(135deg, #48F2FB, #E867EA)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -321,8 +321,8 @@ export default function WorkflowVisualization() {
             <div className="p-6 lg:p-8">
               <div className="grid grid-cols-3 gap-4 mb-6 text-center">
                 {[
-                  { label: "TRIGGER", color: "#00c8ff" },
-                  { label: "PROCESS", color: "#7c3aed" },
+                  { label: "TRIGGER", color: "#48F2FB" },
+                  { label: "PROCESS", color: "#E867EA" },
                   { label: "OUTPUT", color: "#00ff88" },
                 ].map(({ label, color }) => (
                   <div key={label} className="flex items-center justify-center gap-2">
@@ -337,14 +337,14 @@ export default function WorkflowVisualization() {
 
               <div className="hidden lg:flex items-stretch gap-1">
                 <StepCard step={wf.trigger} delay={0} active={activeStep >= 0} isInView={isInView} />
-                <PulsingConnector color="#00c8ff" active={activeStep >= 1} />
+                <PulsingConnector color="#48F2FB" active={activeStep >= 1} />
                 {wf.process.map((step, i) => (
                   <span key={step.id} className="contents">
                     <StepCard step={step} delay={0.05 * (i + 1)} active={activeStep >= i + 1} isInView={isInView} />
                     {i < wf.process.length - 1 && <PulsingConnector color={step.color} active={activeStep >= i + 2} />}
                   </span>
                 ))}
-                <PulsingConnector color="#0066ff" active={activeStep >= wf.process.length + 1} />
+                <PulsingConnector color="#48F2FB" active={activeStep >= wf.process.length + 1} />
                 <StepCard step={wf.output} delay={0.2} active={activeStep >= wf.process.length + 1} isInView={isInView} />
               </div>
 
@@ -394,7 +394,7 @@ export default function WorkflowVisualization() {
               ].map(({ label, value }) => (
                 <div key={label} className="flex items-center gap-1.5 text-[11px] font-mono">
                   <span className="text-white/20">{label}:</span>
-                  <span className="text-[#00c8ff]/60 font-bold">{value}</span>
+                  <span className="text-[#48F2FB]/60 font-bold">{value}</span>
                 </div>
               ))}
             </div>

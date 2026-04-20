@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const accent = "#7c3aed";
+const accent = "#E867EA";
 
 function useScrollInView() {
   const ref = useRef(null);
@@ -22,19 +22,19 @@ const capabilities = [
     icon: Workflow,
     title: "Business Process Automation",
     description: "Map, digitize, and automate complex business processes — approvals, escalations, notifications, and multi-step workflows that run without manual intervention.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     icon: RefreshCw,
     title: "Systems Integration & APIs",
     description: "Connect your CRM, ERP, ecommerce, payments, calendars, and communication tools into a unified data layer with bidirectional real-time sync.",
-    accent: "#0066ff",
+    accent: "#48F2FB",
   },
   {
     icon: BarChart3,
     title: "Reporting & Analytics Dashboards",
     description: "Live operational dashboards, automated report generation, KPI tracking, and scheduled data exports — built to surface insights without manual effort.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: Bot,
@@ -71,16 +71,16 @@ const deliverables = [
 ];
 
 const techStack = [
-  { name: "Python", color: "#7c3aed" },
-  { name: "FastAPI", color: "#0066ff" },
-  { name: "Celery", color: "#00c8ff" },
+  { name: "Python", color: "#E867EA" },
+  { name: "FastAPI", color: "#48F2FB" },
+  { name: "Celery", color: "#48F2FB" },
   { name: "Redis", color: "#ec4899" },
-  { name: "PostgreSQL", color: "#7c3aed" },
+  { name: "PostgreSQL", color: "#E867EA" },
   { name: "Zapier / n8n", color: "#00ff88" },
-  { name: "Webhooks", color: "#0066ff" },
-  { name: "Docker", color: "#00c8ff" },
+  { name: "Webhooks", color: "#48F2FB" },
+  { name: "Docker", color: "#48F2FB" },
   { name: "AWS Lambda", color: "#f59e0b" },
-  { name: "Kafka", color: "#7c3aed" },
+  { name: "Kafka", color: "#E867EA" },
 ];
 
 const useCases = [
@@ -130,7 +130,7 @@ export default function AutomationSystems() {
       <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
         <div className="absolute inset-0" style={{ opacity: "var(--joe-glow-opacity)", backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] blur-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse, ${accent} 0%, transparent 70%)`, opacity: 0.1 }} />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.06 }} />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: 0.06 }} />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -145,7 +145,7 @@ export default function AutomationSystems() {
             </div>
             <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl text-joe-text mb-5 leading-tight" data-testid="text-automation-title">
               Automation Systems &{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #0066ff, #00c8ff)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #E867EA)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Process Optimization
               </span>
             </h1>
@@ -154,7 +154,7 @@ export default function AutomationSystems() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/contact">
-                <Button size="lg" className="text-white border-0 font-semibold tracking-wide gap-2 shadow-xl" style={{ background: `linear-gradient(135deg, ${accent}, #0066ff)`, boxShadow: `0 12px 40px ${accent}25` }} data-testid="button-automation-cta">
+                <Button size="lg" className="text-white border-0 font-semibold tracking-wide gap-2 shadow-xl" style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB)`, boxShadow: `0 12px 40px ${accent}25` }} data-testid="button-automation-cta">
                   Automate Your Business
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -358,7 +358,7 @@ export default function AutomationSystems() {
             </div>
             <h2 className="font-heading font-bold text-3xl lg:text-4xl text-joe-text mb-4">
               Ready to Stop Doing Things{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #0066ff)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Manually?
               </span>
             </h2>
@@ -367,7 +367,7 @@ export default function AutomationSystems() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/contact">
-                <Button size="lg" className="text-white border-0 font-semibold tracking-wide gap-2 shadow-xl" style={{ background: `linear-gradient(135deg, ${accent}, #0066ff)`, boxShadow: `0 12px 40px ${accent}25` }} data-testid="button-automation-cta-bottom">
+                <Button size="lg" className="text-white border-0 font-semibold tracking-wide gap-2 shadow-xl" style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB)`, boxShadow: `0 12px 40px ${accent}25` }} data-testid="button-automation-cta-bottom">
                   Start Automating
                   <ArrowRight className="w-4 h-4" />
                 </Button>

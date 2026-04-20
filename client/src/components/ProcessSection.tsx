@@ -73,12 +73,12 @@ export default function ProcessSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">How We Work</span>
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">How We Work</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Our Proven
             <br />
             <span style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+              background: "linear-gradient(135deg, #48F2FB, #E867EA)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -93,7 +93,7 @@ export default function ProcessSection() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-[39px] top-6 bottom-6 w-px bg-gradient-to-b from-[#00c8ff]/40 via-[#0066ff]/30 to-transparent hidden lg:block" />
+          <div className="absolute left-[39px] top-6 bottom-6 w-px bg-gradient-to-b from-[#48F2FB]/40 via-[#48F2FB]/30 to-transparent hidden lg:block" />
 
           <div className="flex flex-col gap-6">
             {steps.map((step, i) => {
@@ -111,14 +111,14 @@ export default function ProcessSection() {
                     <div
                       className="w-20 h-20 rounded-xl flex items-center justify-center border relative"
                       style={{
-                        background: "rgba(0,200,255,0.08)",
-                        borderColor: "rgba(0,200,255,0.25)",
+                        background: "rgba(72,242,251,0.08)",
+                        borderColor: "rgba(72,242,251,0.25)",
                       }}
                     >
-                      <Icon className="w-7 h-7 text-[#00c8ff]" />
+                      <Icon className="w-7 h-7 text-[#48F2FB]" />
                       <div
                         className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold text-white"
-                        style={{ background: "linear-gradient(135deg, #00c8ff, #0066ff)" }}
+                        style={{ background: "linear-gradient(135deg, #48F2FB, #E867EA)" }}
                       >
                         {i + 1}
                       </div>
@@ -134,10 +134,10 @@ export default function ProcessSection() {
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                       <div>
-                        <span className="text-[#00c8ff]/60 font-mono text-xs font-medium">{step.number}</span>
+                        <span className="text-[#48F2FB]/60 font-mono text-xs font-medium">{step.number}</span>
                         <h3 className="font-heading font-bold text-joe-text text-xl mt-0.5">{step.title}</h3>
                       </div>
-                      <span className="text-xs font-mono px-3 py-1.5 rounded-full border border-[#00c8ff]/20 text-[#00c8ff] bg-[#00c8ff]/8 w-fit whitespace-nowrap flex-shrink-0">
+                      <span className="text-xs font-mono px-3 py-1.5 rounded-full border border-[#48F2FB]/20 text-[#48F2FB] bg-[#48F2FB]/8 w-fit whitespace-nowrap flex-shrink-0">
                         {step.duration}
                       </span>
                     </div>

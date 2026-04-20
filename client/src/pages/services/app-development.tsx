@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const accent = "#00c8ff";
+const accent = "#48F2FB";
 
 function useScrollInView() {
   const ref = useRef(null);
@@ -22,19 +22,19 @@ const capabilities = [
     icon: Smartphone,
     title: "Native & Cross-Platform Mobile Apps",
     description: "iOS and Android apps built with React Native or native SDKs — responsive, fast, and feature-rich with offline support, push notifications, and deep-linking.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: Globe,
     title: "Web Application Development",
     description: "Full-featured browser apps, SaaS platforms, customer portals, and progressive web apps built for performance, scalability, and usability at any scale.",
-    accent: "#0066ff",
+    accent: "#48F2FB",
   },
   {
     icon: Layers,
     title: "SaaS Product Engineering",
     description: "End-to-end SaaS platforms with multi-tenancy, billing integration, user management, role-based access control, and scalable microservice architectures.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     icon: BarChart3,
@@ -71,16 +71,16 @@ const metrics = [
 ];
 
 const techStack = [
-  { name: "React Native", color: "#00c8ff" },
-  { name: "React", color: "#0066ff" },
-  { name: "TypeScript", color: "#7c3aed" },
-  { name: "Next.js", color: "#00c8ff" },
+  { name: "React Native", color: "#48F2FB" },
+  { name: "React", color: "#48F2FB" },
+  { name: "TypeScript", color: "#E867EA" },
+  { name: "Next.js", color: "#48F2FB" },
   { name: "Django", color: "#00ff88" },
-  { name: "FastAPI", color: "#0066ff" },
+  { name: "FastAPI", color: "#48F2FB" },
   { name: "Node.js", color: "#00ff88" },
-  { name: "PostgreSQL", color: "#7c3aed" },
+  { name: "PostgreSQL", color: "#E867EA" },
   { name: "Redis", color: "#ec4899" },
-  { name: "Docker", color: "#00c8ff" },
+  { name: "Docker", color: "#48F2FB" },
   { name: "AWS", color: "#f59e0b" },
   { name: "Firebase", color: "#f59e0b" },
 ];
@@ -135,7 +135,7 @@ export default function AppDevelopment() {
       >
         <div className="absolute inset-0" style={{ opacity: "var(--joe-glow-opacity)", backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] blur-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse, ${accent} 0%, transparent 70%)`, opacity: 0.1 }} />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.07 }} />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #E867EA 0%, transparent 70%)", opacity: 0.07 }} />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -156,7 +156,7 @@ export default function AppDevelopment() {
               data-testid="text-app-dev-title"
             >
               Application{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #0066ff, #7c3aed)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB, #E867EA)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Development
               </span>
             </h1>
@@ -165,7 +165,7 @@ export default function AppDevelopment() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#00c8ff]/25" data-testid="button-app-dev-cta">
+                <Button size="lg" className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#48F2FB]/25" data-testid="button-app-dev-cta">
                   Start Your App Project
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -378,7 +378,7 @@ export default function AppDevelopment() {
             </div>
             <h2 className="font-heading font-bold text-3xl lg:text-4xl text-joe-text mb-4">
               Ready to Build Your{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #0066ff)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Application?
               </span>
             </h2>
@@ -387,7 +387,7 @@ export default function AppDevelopment() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#00c8ff]/20" data-testid="button-app-dev-cta-bottom">
+                <Button size="lg" className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#48F2FB]/20" data-testid="button-app-dev-cta-bottom">
                   Start Your Project
                   <ArrowRight className="w-4 h-4" />
                 </Button>

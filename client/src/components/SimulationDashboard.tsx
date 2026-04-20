@@ -9,7 +9,7 @@ function randomBetween(min: number, max: number) {
 }
 
 const LOG_TEMPLATES = [
-  { level: "INFO", color: "#00c8ff", msgs: [
+  { level: "INFO", color: "#48F2FB", msgs: [
     "Request processed: POST /api/orders → 201 Created (12ms)",
     "Auth token validated for user_id=8471 (session active)",
     "Cache hit: product catalog loaded from Redis (0.3ms)",
@@ -30,7 +30,7 @@ const LOG_TEMPLATES = [
     "Queue depth elevated: 234 items pending (threshold 200)",
     "JWT expiry in 5 minutes for 12 active sessions",
   ]},
-  { level: "SYS", color: "#7c3aed", msgs: [
+  { level: "SYS", color: "#E867EA", msgs: [
     "Cronjob triggered: analytics-aggregation (00:00 UTC)",
     "SSL certificate auto-renewed: 90 days",
     "Database vacuum initiated: freeing 840MB",
@@ -52,8 +52,8 @@ function nextLog() {
 }
 
 const CHART_SERIES = [
-  { label: "App Traffic", color: "#00c8ff", min: 40, max: 90 },
-  { label: "AI Inference", color: "#7c3aed", min: 30, max: 80 },
+  { label: "App Traffic", color: "#48F2FB", min: 40, max: 90 },
+  { label: "AI Inference", color: "#E867EA", min: 30, max: 80 },
   { label: "Automation", color: "#00ff88", min: 20, max: 70 },
 ];
 
@@ -62,8 +62,8 @@ function generateBars(n = 16, min = 20, max = 90) {
 }
 
 const LIVE_METRICS = [
-  { label: "Active Users", icon: Globe, color: "#00c8ff", min: 1240, max: 2100, suffix: "" },
-  { label: "API Calls/min", icon: Zap, color: "#7c3aed", min: 4200, max: 8900, suffix: "" },
+  { label: "Active Users", icon: Globe, color: "#48F2FB", min: 1240, max: 2100, suffix: "" },
+  { label: "API Calls/min", icon: Zap, color: "#E867EA", min: 4200, max: 8900, suffix: "" },
   { label: "Uptime SLA", icon: Shield, color: "#00ff88", min: 99, max: 100, suffix: "%" },
   { label: "Avg Latency", icon: Activity, color: "#f59e0b", min: 12, max: 48, suffix: "ms" },
 ];
@@ -122,7 +122,7 @@ export default function SimulationDashboard() {
       />
       <div
         className="absolute top-0 left-1/3 w-[500px] h-[300px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #00c8ff 0%, transparent 70%)", opacity: 0.06 }}
+        style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: 0.06 }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,15 +134,15 @@ export default function SimulationDashboard() {
         >
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
-            style={{ background: "rgba(0,200,255,0.08)", border: "1px solid rgba(0,200,255,0.2)" }}
+            style={{ background: "rgba(72,242,251,0.08)", border: "1px solid rgba(72,242,251,0.2)" }}
           >
             <div className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse" />
-            <span className="text-[#00c8ff] text-xs font-mono uppercase tracking-widest">Live System Monitor</span>
+            <span className="text-[#48F2FB] text-xs font-mono uppercase tracking-widest">Live System Monitor</span>
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text">
             Real-Time{" "}
             <span style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+              background: "linear-gradient(135deg, #48F2FB, #E867EA)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -205,7 +205,7 @@ export default function SimulationDashboard() {
           >
             <div className="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <TrendingUp className="w-4 h-4 text-[#00c8ff]" />
+                <TrendingUp className="w-4 h-4 text-[#48F2FB]" />
                 <span className="text-white/60 text-sm font-mono">Performance Analytics</span>
               </div>
               <div className="flex gap-2">
@@ -289,7 +289,7 @@ export default function SimulationDashboard() {
           >
             <div className="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
-                <Server className="w-4 h-4 text-[#7c3aed]" />
+                <Server className="w-4 h-4 text-[#E867EA]" />
                 <span className="text-white/60 text-sm font-mono">System Logs</span>
               </div>
               <div className="flex items-center gap-2">
@@ -343,7 +343,7 @@ export default function SimulationDashboard() {
               <div className="flex-1 h-1 rounded-full overflow-hidden bg-white/[0.05]">
                 <motion.div
                   className="h-full rounded-full"
-                  style={{ background: "linear-gradient(90deg, #00c8ff, #7c3aed)" }}
+                  style={{ background: "linear-gradient(90deg, #48F2FB, #E867EA)" }}
                   animate={{ width: `${randomBetween(30, 80)}%` }}
                   transition={{ duration: 1.8, ease: "easeInOut" }}
                 />

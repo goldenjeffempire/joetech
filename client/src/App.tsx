@@ -47,7 +47,7 @@ function PageLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--joe-bg-solid)" }}>
       <div className="flex flex-col items-center gap-4">
-        <div className="w-8 h-8 border-2 border-[#00c8ff] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#48F2FB] border-t-transparent rounded-full animate-spin" />
         <span className="text-joe-text/50 text-sm font-mono">Loading...</span>
       </div>
     </div>

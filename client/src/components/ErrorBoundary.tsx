@@ -32,8 +32,8 @@ export default class ErrorBoundary extends Component<Props, State> {
           style={{ background: "var(--joe-bg-solid)" }}
         >
           <div className="text-center max-w-md">
-            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#00c8ff]/10 border border-[#00c8ff]/20 flex items-center justify-center">
-              <AlertTriangle className="w-8 h-8 text-[#00c8ff]" />
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#48F2FB]/10 border border-[#48F2FB]/20 flex items-center justify-center">
+              <AlertTriangle className="w-8 h-8 text-[#48F2FB]" />
             </div>
             <h2 className="font-heading font-bold text-joe-text text-2xl mb-2">
               Something went wrong
@@ -43,7 +43,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             </p>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2"
+              className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold gap-2"
               data-testid="button-error-reload"
             >
               <RefreshCw className="w-4 h-4" />

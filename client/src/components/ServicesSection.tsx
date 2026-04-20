@@ -11,7 +11,7 @@ const services = [
     title: "App Development",
     description: "Custom web apps, mobile apps, SaaS products, client portals, and internal tools designed around speed, clarity, adoption, and measurable business outcomes.",
     tags: ["Mobile Apps", "Web Apps", "SaaS", "Portals"],
-    accent: "#00c8ff",
+    accent: "#48F2FB",
     slug: "app-development",
   },
   {
@@ -19,7 +19,7 @@ const services = [
     title: "Website Design & Development",
     description: "Premium websites, landing pages, corporate platforms, and digital storefronts with polished UX, conversion-first messaging, technical SEO, and responsive performance.",
     tags: ["SEO", "Landing Pages", "Brand Sites", "Conversion"],
-    accent: "#0066ff",
+    accent: "#48F2FB",
     slug: "website-design",
   },
   {
@@ -27,7 +27,7 @@ const services = [
     title: "Automation Systems",
     description: "Business process optimization, workflow engines, reporting systems, integrations, and automated handoffs that reduce manual work and improve operational visibility.",
     tags: ["Workflows", "Ops", "Reporting", "Integrations"],
-    accent: "#7c3aed",
+    accent: "#E867EA",
     slug: "automation",
   },
   {
@@ -69,7 +69,7 @@ export default function ServicesSection() {
     <section id="services" className="relative py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-2)" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
+        style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -79,11 +79,11 @@ export default function ServicesSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">What JOE Technologies Builds</span>
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">What JOE Technologies Builds</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Enterprise Services for{" "}
             <span style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+              background: "linear-gradient(135deg, #48F2FB, #E867EA)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -166,7 +166,7 @@ export default function ServicesSection() {
           <Link href="/contact">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#00c8ff]/15"
+              className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#48F2FB]/15"
               data-testid="button-services-cta"
             >
               Start Building Your Platform

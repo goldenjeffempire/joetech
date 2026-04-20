@@ -9,42 +9,42 @@ const differentiators = [
     title: "Systems-First, AI-Enabled",
     description:
       "We don't build disconnected screens or bolt AI onto broken workflows. We architect digital systems where product, automation, data, and intelligence work together in production.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: Layers,
     title: "Full-Stack Ownership",
     description:
       "From raw data ingestion to polished user interfaces, we own the entire stack. No handoffs between agencies. One team that understands how every layer connects.",
-    accent: "#0066ff",
+    accent: "#4EA3BA",
   },
   {
     icon: BarChart3,
     title: "Outcomes, Not Outputs",
     description:
       "We don't invoice for code — we're accountable for results. Every engagement defines clear business KPIs upfront, and we track them throughout the project lifecycle.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     icon: GitMerge,
     title: "Deep Domain Expertise",
     description:
       "We've built apps, websites, automations, dashboards, and AI systems across FinTech, Healthcare, Legal, E-Commerce, SaaS, and service businesses. We understand real-world constraints, compliance requirements, and growth opportunities.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: MessageSquare,
     title: "Radical Transparency",
     description:
       "Weekly progress updates. Shared dashboards. No hidden blockers. You'll always know exactly where your project stands, what's next, and what risks we're managing.",
-    accent: "#0066ff",
+    accent: "#4EA3BA",
   },
   {
     icon: HeartHandshake,
     title: "Partners, Not Vendors",
     description:
       "We're invested in your long-term success. Our best relationships are multi-year partnerships where we continuously improve, scale, and evolve the systems we build together.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function WhyUsSection() {
       />
       <div
         className="absolute top-1/2 right-0 w-96 h-96 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #0066ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }}
+        style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +79,7 @@ export default function WhyUsSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">
             Why Choose Us
           </span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
@@ -87,7 +87,7 @@ export default function WhyUsSection() {
             <br />
             <span
               style={{
-                background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+                background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",

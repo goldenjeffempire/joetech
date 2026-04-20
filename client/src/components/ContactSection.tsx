@@ -47,13 +47,13 @@ const contactInfo = [
     label: "Email",
     value: "jeffemuodafe124@gmail.com",
     href: "mailto:jeffemuodafe124@gmail.com",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: SiWhatsapp,
     label: "WhatsApp",
     value: "09017078791  ·  08159088343",
-    href: "https://wa.me/2349017078791?text=Hello%20Jeffery%2C%20I%20visited%20joetech.onrender.com%20and%20I%27d%20love%20to%20discuss%20a%20project.",
+    href: "https://wa.me/2349017078791?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
     accent: "#00ff88",
   },
   {
@@ -68,14 +68,14 @@ const contactInfo = [
     label: "Facebook",
     value: "JOE Technologies",
     href: "https://facebook.com/search/top?q=JOE%20Technologies",
-    accent: "#0066ff",
+    accent: "#48F2FB",
   },
   {
     icon: Globe,
     label: "Website",
-    value: "joetech.onrender.com",
-    href: "https://joetech.onrender.com",
-    accent: "#7c3aed",
+    value: "joetechnologies.io",
+    href: "https://joetechnologies.io",
+    accent: "#E867EA",
   },
   {
     icon: MapPin,
@@ -146,7 +146,7 @@ export default function ContactSection() {
     <section id="contact" className="relative py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-3)" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #00c8ff 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
+        style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -156,7 +156,7 @@ export default function ContactSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Let's Connect</span>
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Let's Connect</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Start Your Digital{" "}
             <span className="text-gradient-cyber">Transformation</span>
@@ -243,8 +243,8 @@ export default function ContactSection() {
             >
               {mutation.isSuccess ? (
                 <div className="flex flex-col items-center justify-center gap-5 py-12 text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#00c8ff]/10 border border-[#00c8ff]/20 flex items-center justify-center">
-                    <CheckCircle2 className="w-8 h-8 text-[#00c8ff]" />
+                  <div className="w-16 h-16 rounded-full bg-[#48F2FB]/10 border border-[#48F2FB]/20 flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8 text-[#48F2FB]" />
                   </div>
                   <div>
                     <h3 className="font-heading font-bold text-joe-text text-xl mb-2">Message Sent!</h3>
@@ -397,7 +397,7 @@ export default function ContactSection() {
                       type="submit"
                       size="lg"
                       disabled={mutation.isPending}
-                      className="w-full bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 shadow-xl shadow-[#00c8ff]/15 hover:shadow-[#00c8ff]/25 transition-shadow"
+                      className="w-full bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold gap-2 shadow-xl shadow-[#48F2FB]/15 hover:shadow-[#48F2FB]/25 transition-shadow"
                       data-testid="button-submit"
                     >
                       {mutation.isPending ? (

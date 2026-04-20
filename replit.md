@@ -7,7 +7,8 @@ A premium, production-ready multi-page platform for **JOE Technologies** — an 
 
 ### Tech Stack
 - **Frontend**: React 18, TypeScript, Tailwind CSS, Framer Motion, TanStack Query, shadcn/ui, react-icons, wouter (routing)
-- **Backend**: Express.js (Node.js), in-memory storage, express-rate-limit, helmet, compression
+- **Backend**: Express.js (Node.js), PostgreSQL via Drizzle ORM + pg (node-postgres), express-rate-limit, helmet, compression
+- **Database**: Replit-provisioned PostgreSQL; connection via `server/db.ts`; schema managed with `drizzle-orm`; tables: users, contactSubmissions, leadSubmissions
 - **Build**: Vite (frontend), esbuild (backend), code-split lazy routes
 - **Forms**: react-hook-form + zod validation
 
@@ -73,9 +74,10 @@ client/src/
 server/
   index.ts                    — Express server entry
   routes.ts                   — API routes with rate limiting
-  storage.ts                  — MemStorage with contact and lead submissions
+  db.ts                       — Drizzle ORM + pg Pool connection using DATABASE_URL
+  storage.ts                  — DatabaseStorage (PostgreSQL-backed) implementing IStorage interface
 shared/
-  schema.ts                   — Drizzle/Zod schemas for users, contacts, and leads
+  schema.ts                   — Drizzle/Zod schemas for users, contactSubmissions, leadSubmissions tables
 ```
 
 ## Pages & Routes
@@ -150,14 +152,21 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - **Honeypot spam protection**: Hidden `website` field silently rejects bots
 
 ## Design System
-- **Primary palette**: Electric Blue (#1a6fff), Deep Purple (#7b2ee0), Neon Cyan (#00d4ff) — always hardcoded
-- **Secondary accents**: Green (#00ff88), Amber (#f59e0b), Pink (#ec4899) — unchanged
-- **Primary CTA gradient**: `linear-gradient(135deg, #1a6fff, #7b2ee0)` (Electric Blue → Deep Purple)
-- **Typography**: Oxanium (headings via `font-heading`), Inter (body) — Google Fonts
-- **Gradient text utilities**: `.text-gradient-cyber` (cyan→blue→purple), `.text-gradient-blue` (cyan→blue)
+- **Brand palette**:
+  - Electric Cyan `#48F2FB` — primary accent, glow effects, hero gradients
+  - Vibrant Magenta `#E867EA` — secondary accent, gradient endpoints, highlights
+  - Deep Aqua `#4EA3BA` — tertiary accent (Backend, Cloud categories, alternate section cards)
+  - Rich Obsidian `#060A10` — primary background
+  - Muted Slate `#283242` — card/surface backgrounds
+- **Secondary accents**: Green (#00ff88), Amber (#f59e0b), Pink (#ec4899) — stat/metric variety
+- **Primary CTA gradient**: `from-[#48F2FB] to-[#E867EA] text-[#060A10]` (Electric Cyan → Vibrant Magenta, dark text for contrast)
+- **Logo**: `<JOE/>` coding-format with monospace font — cyan `<JOE` opening, magenta `/>` closing; matching SVG icon
+- **Typography**: Oxanium (headings via `font-heading`), JetBrains Mono (code elements), Inter (body)
+- **Gradient text utilities**: `.text-gradient-cyber` (cyan→magenta), `.text-gradient-blue` (cyan→blue)
 - **Animation utilities**: `animate-marquee`, `animate-orb-float`, `animate-glow-pulse`, `animate-scan`, `animate-blink`, `animate-shine`
 - **Default theme**: Dark mode (defaults to `dark` class on `documentElement`)
 - **Noise overlay**: `::before` pseudo-element on body for subtle texture
+- **Website URL**: joetechnologies.io (updated across all components)
 
 ## Responsive Design System
 - **Breakpoints**: `xs:480px` (custom), `sm:640px`, `md:768px`, `lg:1024px`, `xl:1280px` in Tailwind config

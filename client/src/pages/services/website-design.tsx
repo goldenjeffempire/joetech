@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const accent = "#0066ff";
+const accent = "#48F2FB";
 
 function useScrollInView() {
   const ref = useRef(null);
@@ -22,19 +22,19 @@ const capabilities = [
     icon: Globe,
     title: "Brand & Corporate Websites",
     description: "Premium brand sites that communicate authority, build trust, and guide visitors through a clear journey — from first impression to qualified inquiry.",
-    accent: "#0066ff",
+    accent: "#48F2FB",
   },
   {
     icon: Target,
     title: "Conversion-Optimized Landing Pages",
     description: "High-impact campaign and product landing pages engineered around a single conversion goal — with persuasive copy, social proof, and frictionless CTAs.",
-    accent: "#00c8ff",
+    accent: "#48F2FB",
   },
   {
     icon: Search,
     title: "Technical SEO & Performance",
     description: "Schema markup, Core Web Vitals optimization, semantic HTML, meta strategy, sitemap architecture, and structured data that drives organic growth.",
-    accent: "#7c3aed",
+    accent: "#E867EA",
   },
   {
     icon: LayoutDashboard,
@@ -71,14 +71,14 @@ const deliverables = [
 ];
 
 const techStack = [
-  { name: "React", color: "#0066ff" },
-  { name: "Next.js", color: "#00c8ff" },
-  { name: "TypeScript", color: "#7c3aed" },
-  { name: "Tailwind CSS", color: "#0066ff" },
-  { name: "Framer Motion", color: "#7c3aed" },
+  { name: "React", color: "#48F2FB" },
+  { name: "Next.js", color: "#48F2FB" },
+  { name: "TypeScript", color: "#E867EA" },
+  { name: "Tailwind CSS", color: "#48F2FB" },
+  { name: "Framer Motion", color: "#E867EA" },
   { name: "Contentful", color: "#00ff88" },
   { name: "Sanity", color: "#f59e0b" },
-  { name: "Vercel", color: "#00c8ff" },
+  { name: "Vercel", color: "#48F2FB" },
   { name: "Cloudflare", color: "#f59e0b" },
   { name: "GA4 / GTM", color: "#ec4899" },
 ];
@@ -130,7 +130,7 @@ export default function WebsiteDesign() {
       <section className="relative pt-32 pb-20 overflow-hidden" style={{ background: "var(--joe-bg-hero)" }}>
         <div className="absolute inset-0" style={{ opacity: "var(--joe-glow-opacity)", backgroundImage: `linear-gradient(var(--joe-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--joe-grid-color) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] blur-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse, ${accent} 0%, transparent 70%)`, opacity: 0.1 }} />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.07 }} />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: 0.07 }} />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -145,7 +145,7 @@ export default function WebsiteDesign() {
             </div>
             <h1 className="font-heading font-bold text-3xl sm:text-5xl lg:text-6xl text-joe-text mb-5 leading-tight" data-testid="text-website-title">
               Website Design &{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #00c8ff, #7c3aed)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB, #E867EA)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Development
               </span>
             </h1>
@@ -154,7 +154,7 @@ export default function WebsiteDesign() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-[#0066ff] to-[#00c8ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#0066ff]/25" data-testid="button-website-cta">
+                <Button size="lg" className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#48F2FB]/25" data-testid="button-website-cta">
                   Build Your Website
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -358,7 +358,7 @@ export default function WebsiteDesign() {
             </div>
             <h2 className="font-heading font-bold text-3xl lg:text-4xl text-joe-text mb-4">
               Ready for a Website That{" "}
-              <span style={{ background: `linear-gradient(135deg, ${accent}, #00c8ff)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: `linear-gradient(135deg, ${accent}, #48F2FB)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 Actually Works?
               </span>
             </h2>
@@ -367,7 +367,7 @@ export default function WebsiteDesign() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-[#0066ff] to-[#00c8ff] text-white border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#0066ff]/20" data-testid="button-website-cta-bottom">
+                <Button size="lg" className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2 shadow-xl shadow-[#48F2FB]/20" data-testid="button-website-cta-bottom">
                   Start Your Website
                   <ArrowRight className="w-4 h-4" />
                 </Button>

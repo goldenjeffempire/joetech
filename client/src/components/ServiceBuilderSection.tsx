@@ -18,7 +18,7 @@ const SERVICES = [
     id: "app-development",
     name: "App Development",
     icon: Smartphone,
-    accent: "#00c8ff",
+    accent: "#48F2FB",
     basePrice: 3500,
     baseWeeks: 6,
     description: "Web & mobile applications",
@@ -38,7 +38,7 @@ const SERVICES = [
     id: "website-design",
     name: "Website Design",
     icon: MonitorSmartphone,
-    accent: "#0066ff",
+    accent: "#48F2FB",
     basePrice: 1800,
     baseWeeks: 3,
     description: "Brand sites & digital storefronts",
@@ -58,7 +58,7 @@ const SERVICES = [
     id: "automation",
     name: "Automation Systems",
     icon: Workflow,
-    accent: "#7c3aed",
+    accent: "#E867EA",
     basePrice: 2500,
     baseWeeks: 4,
     description: "Workflow & process automation",
@@ -123,7 +123,7 @@ const SCALES = [
     description: "Lean MVP — core features, fast to market",
     multiplier: 1.0,
     timeline_add: 0,
-    color: "#00c8ff",
+    color: "#48F2FB",
     perks: ["MVP scope", "1 round of revisions", "Basic deployment"],
   },
   {
@@ -132,7 +132,7 @@ const SCALES = [
     description: "Full-featured — team workflows, integrations",
     multiplier: 1.65,
     timeline_add: 2,
-    color: "#0066ff",
+    color: "#48F2FB",
     perks: ["Full feature set", "3 rounds of revisions", "Cloud deployment"],
   },
   {
@@ -141,7 +141,7 @@ const SCALES = [
     description: "Custom scale — white-glove support & SLA",
     multiplier: 2.5,
     timeline_add: 4,
-    color: "#7c3aed",
+    color: "#E867EA",
     perks: ["Unlimited revisions", "Dedicated support", "SLA + monitoring"],
   },
 ];
@@ -159,17 +159,17 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-all duration-300"
               style={{
-                background: i <= currentStep ? "#00c8ff" : "rgba(255,255,255,0.06)",
+                background: i <= currentStep ? "#48F2FB" : "rgba(255,255,255,0.06)",
                 color: i <= currentStep ? "#000" : "rgba(255,255,255,0.3)",
-                border: i === currentStep ? "2px solid #00c8ff" : "1px solid rgba(255,255,255,0.1)",
-                boxShadow: i === currentStep ? "0 0 14px rgba(0,200,255,0.5)" : "none",
+                border: i === currentStep ? "2px solid #48F2FB" : "1px solid rgba(255,255,255,0.1)",
+                boxShadow: i === currentStep ? "0 0 14px rgba(72,242,251,0.5)" : "none",
               }}
             >
               {i < currentStep ? <CheckCircle2 className="w-3.5 h-3.5" /> : i + 1}
             </div>
             <span
               className="text-xs font-mono hidden sm:block transition-colors duration-300"
-              style={{ color: i === currentStep ? "#00c8ff" : i < currentStep ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.22)" }}
+              style={{ color: i === currentStep ? "#48F2FB" : i < currentStep ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.22)" }}
             >
               {step}
             </span>
@@ -177,7 +177,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
           {i < STEPS.length - 1 && (
             <div
               className="h-px w-6 sm:w-10 transition-all duration-500"
-              style={{ background: i < currentStep ? "#00c8ff40" : "rgba(255,255,255,0.08)" }}
+              style={{ background: i < currentStep ? "#48F2FB40" : "rgba(255,255,255,0.08)" }}
             />
           )}
         </div>
@@ -229,11 +229,11 @@ export default function ServiceBuilderSection() {
       />
       <div
         className="absolute top-0 right-0 w-[600px] h-[600px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)", opacity: 0.07 }}
+        style={{ background: "radial-gradient(circle, #E867EA 0%, transparent 70%)", opacity: 0.07 }}
       />
       <div
         className="absolute bottom-0 left-0 w-[400px] h-[400px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #00c8ff 0%, transparent 70%)", opacity: 0.06 }}
+        style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: 0.06 }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -245,15 +245,15 @@ export default function ServiceBuilderSection() {
         >
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
-            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.25)" }}
+            style={{ background: "rgba(232,103,234,0.1)", border: "1px solid rgba(232,103,234,0.25)" }}
           >
-            <Zap className="w-3.5 h-3.5 text-[#7c3aed]" />
-            <span className="text-[#7c3aed] text-xs font-mono uppercase tracking-widest">Interactive Builder</span>
+            <Zap className="w-3.5 h-3.5 text-[#E867EA]" />
+            <span className="text-[#E867EA] text-xs font-mono uppercase tracking-widest">Interactive Builder</span>
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text">
             Build Your{" "}
             <span style={{
-              background: "linear-gradient(135deg, #7c3aed, #00c8ff)",
+              background: "linear-gradient(135deg, #E867EA, #48F2FB)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -274,7 +274,7 @@ export default function ServiceBuilderSection() {
           style={{
             background: "rgba(10, 15, 30, 0.85)",
             borderColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 60px rgba(0,0,0,0.4), 0 0 120px rgba(124,58,237,0.06)",
+            boxShadow: "0 0 60px rgba(0,0,0,0.4), 0 0 120px rgba(232,103,234,0.06)",
             backdropFilter: "blur(24px)",
           }}
         >
@@ -493,10 +493,10 @@ export default function ServiceBuilderSection() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 }}
                       className="p-5 rounded-xl border"
-                      style={{ background: "rgba(124,58,237,0.08)", borderColor: "rgba(124,58,237,0.25)" }}
+                      style={{ background: "rgba(232,103,234,0.08)", borderColor: "rgba(232,103,234,0.25)" }}
                     >
-                      <Layers className="w-5 h-5 mb-3 text-[#7c3aed]" />
-                      <div className="font-heading font-bold text-2xl text-[#7c3aed]">{selectedFeatures.length + 1}</div>
+                      <Layers className="w-5 h-5 mb-3 text-[#E867EA]" />
+                      <div className="font-heading font-bold text-2xl text-[#E867EA]">{selectedFeatures.length + 1}</div>
                       <p className="text-white/60 text-sm font-medium mt-1">Features Selected</p>
                       <p className="text-white/25 text-xs font-mono mt-1">Including base package</p>
                     </motion.div>
@@ -505,9 +505,9 @@ export default function ServiceBuilderSection() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.15 }}
                       className="p-5 rounded-xl border"
-                      style={{ background: "rgba(0,200,255,0.06)", borderColor: "rgba(0,200,255,0.2)" }}
+                      style={{ background: "rgba(72,242,251,0.06)", borderColor: "rgba(72,242,251,0.2)" }}
                     >
-                      <MessageSquare className="w-5 h-5 mb-3 text-[#00c8ff]" />
+                      <MessageSquare className="w-5 h-5 mb-3 text-[#48F2FB]" />
                       <p className="text-white/80 text-sm font-semibold leading-snug">Pricing tailored to your project</p>
                       <p className="text-white/35 text-xs mt-2 leading-relaxed">
                         Exact pricing and timelines depend on specifics. Connect with a sales rep on WhatsApp and we'll give you a precise quote.
@@ -590,7 +590,7 @@ export default function ServiceBuilderSection() {
               <Button
                 disabled={!canProceed}
                 onClick={() => setStep((s) => s + 1)}
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
                 data-testid="button-builder-next"
               >
                 {step === 2 ? "See My Options" : "Continue"}

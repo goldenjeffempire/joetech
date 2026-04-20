@@ -6,7 +6,7 @@ import { Lightbulb, Users, Search, UserPlus, Sparkles, FileCheck, ArrowRight } f
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const accent = "#7c3aed";
+const accent = "#E867EA";
 
 const included = [
   {
@@ -315,7 +315,7 @@ export default function AdvisoryPage() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#7c3aed] to-[#a855f7] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#7c3aed]/15"
+                className="bg-gradient-to-r from-[#E867EA] to-[#a855f7] text-white border-0 font-semibold tracking-wide gap-2 shadow-lg shadow-[#E867EA]/15"
                 data-testid="button-advisory-cta"
               >
                 Get in Touch

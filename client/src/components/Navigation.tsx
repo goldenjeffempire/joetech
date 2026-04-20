@@ -218,7 +218,7 @@ export default function Navigation() {
                             className="flex items-center justify-between px-3 py-2.5 rounded-xl transition-all duration-150 hover:bg-joe-text/5 group"
                             data-testid="link-nav-all-services"
                           >
-                            <span className="text-sm font-semibold text-gradient-blue">View All Services</span>
+                            <span className="text-sm font-semibold text-gradient-cyber">View All Services</span>
                             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" style={{ color: "#48F2FB" }} />
                           </Link>
                         </div>

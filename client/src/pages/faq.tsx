@@ -10,7 +10,7 @@ import { Link } from "wouter";
 const faqCategories = [
   {
     category: "Getting Started",
-    color: "#00c8ff",
+    color: "#48F2FB",
     faqs: [
       {
         q: "How do we get started?",
@@ -28,7 +28,7 @@ const faqCategories = [
   },
   {
     category: "Engagement & Pricing",
-    color: "#0066ff",
+    color: "#48F2FB",
     faqs: [
       {
         q: "What engagement models do you offer?",
@@ -46,7 +46,7 @@ const faqCategories = [
   },
   {
     category: "Technical & Industry",
-    color: "#7c3aed",
+    color: "#E867EA",
     faqs: [
       {
         q: "What industries do you specialize in?",
@@ -64,7 +64,7 @@ const faqCategories = [
   },
   {
     category: "Ongoing Support",
-    color: "#00c8ff",
+    color: "#48F2FB",
     faqs: [
       {
         q: "Do you provide post-launch support?",
@@ -88,7 +88,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       transition={{ duration: 0.4, delay: index * 0.04 }}
       className="border rounded-xl overflow-hidden"
       style={{
-        background: open ? "rgba(0,200,255,0.04)" : "var(--joe-card)",
+        background: open ? "rgba(72,242,251,0.04)" : "var(--joe-card)",
         borderColor: "var(--joe-card-border)",
       }}
       data-testid={`faq-item-${index}`}
@@ -102,11 +102,11 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         <div
           className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-200"
           style={{
-            borderColor: open ? "rgba(0,200,255,0.4)" : "var(--joe-card-border)",
-            background: open ? "rgba(0,200,255,0.12)" : "var(--joe-overlay)",
+            borderColor: open ? "rgba(72,242,251,0.4)" : "var(--joe-card-border)",
+            background: open ? "rgba(72,242,251,0.12)" : "var(--joe-overlay)",
           }}
         >
-          {open ? <Minus className="w-3.5 h-3.5 text-[#00c8ff]" /> : <Plus className="w-3.5 h-3.5 text-joe-text/50" />}
+          {open ? <Minus className="w-3.5 h-3.5 text-[#48F2FB]" /> : <Plus className="w-3.5 h-3.5 text-joe-text/50" />}
         </div>
       </button>
 
@@ -162,7 +162,7 @@ export default function FAQPage() {
         title="Questions We"
         highlightedTitle="Get Asked"
         subtitle="Everything you need to know before starting a conversation with us. Can't find your answer? Reach out directly."
-        accentColor="#7c3aed"
+        accentColor="#E867EA"
         size="md"
       />
 
@@ -234,7 +234,7 @@ export default function FAQPage() {
                   action: "Send Email",
                   href: "mailto:jeffemuodafe124@gmail.com",
                   external: true,
-                  accent: "#0066ff",
+                  accent: "#48F2FB",
                 },
                 {
                   icon: Phone,
@@ -243,7 +243,7 @@ export default function FAQPage() {
                   action: "Get in Touch",
                   href: "/contact",
                   external: false,
-                  accent: "#7c3aed",
+                  accent: "#E867EA",
                 },
               ].map((item, i) => {
                 const Icon = item.icon;

@@ -18,7 +18,7 @@ export default function PageHero({
   title,
   highlightedTitle,
   subtitle,
-  accentColor = "#00c8ff",
+  accentColor = "#48F2FB",
   size = "md",
   children,
   ...testIds
@@ -86,7 +86,7 @@ export default function PageHero({
             {highlightedTitle && (
               <span
                 style={{
-                  background: "linear-gradient(135deg, #00c8ff, #0066ff, #7c3aed)",
+                  background: "linear-gradient(135deg, #48F2FB, #E867EA)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",

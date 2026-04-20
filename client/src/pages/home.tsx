@@ -396,7 +396,7 @@ function ServicesPreview() {
           <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Core Service Pillars</span>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Products That{" "}
-            <span className="text-gradient-blue">Move Businesses Forward</span>
+            <span className="text-gradient-cyber">Move Businesses Forward</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-3xl mx-auto leading-relaxed">
             From customer-facing websites to AI-enabled operational systems, every engagement is structured to deliver measurable business outcomes, fast user experiences, and scalable technology foundations.
@@ -849,7 +849,7 @@ function ExperienceVisualizationSection() {
           >
             <div
               className="absolute -inset-4 rounded-2xl blur-2xl opacity-25"
-              style={{ background: "linear-gradient(135deg, #48F2FB, #48F2FB, #E867EA, #00ff88)" }}
+              style={{ background: "linear-gradient(135deg, #48F2FB, #E867EA, #00ff88)" }}
             />
             <div
               className="relative rounded-2xl border overflow-hidden"
@@ -1197,7 +1197,7 @@ function AICapabilitiesSection() {
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Intelligence Built Into{" "}
             <span style={{
-              background: "linear-gradient(135deg, #E867EA, #48F2FB, #48F2FB)",
+              background: "linear-gradient(135deg, #E867EA, #48F2FB)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -1307,7 +1307,7 @@ function PortfolioHighlights() {
           <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Case Studies</span>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Systems That Deliver{" "}
-            <span className="text-gradient-blue">Real Results</span>
+            <span className="text-gradient-cyber">Real Results</span>
           </h2>
           <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
             We build production platforms that help teams operate faster, serve customers better, and unlock new digital revenue.

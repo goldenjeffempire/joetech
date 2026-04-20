@@ -11,7 +11,7 @@ import {
 const categories = [
   {
     label: "AI / ML",
-    color: "#00c8ff",
+    color: "#48F2FB",
     techs: [
       { icon: SiPytorch, name: "PyTorch", color: "#EE4C2C" },
       { icon: SiTensorflow, name: "TensorFlow", color: "#FF6F00" },
@@ -22,7 +22,7 @@ const categories = [
   },
   {
     label: "Backend",
-    color: "#0066ff",
+    color: "#4EA3BA",
     techs: [
       { icon: SiPython, name: "Python", color: "#3776AB" },
       { icon: SiDjango, name: "Django", color: "#092E20" },
@@ -32,7 +32,7 @@ const categories = [
   },
   {
     label: "Frontend",
-    color: "#7c3aed",
+    color: "#E867EA",
     techs: [
       { icon: SiReact, name: "React", color: "#61DAFB" },
       { icon: SiNextdotjs, name: "Next.js", color: "#e0e0e0" },
@@ -41,7 +41,7 @@ const categories = [
   },
   {
     label: "Data & Storage",
-    color: "#00c8ff",
+    color: "#48F2FB",
     techs: [
       { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
       { icon: SiRedis, name: "Redis", color: "#DC382D" },
@@ -50,7 +50,7 @@ const categories = [
   },
   {
     label: "Cloud & DevOps",
-    color: "#0066ff",
+    color: "#4EA3BA",
     techs: [
       { icon: SiAmazon, name: "AWS", color: "#FF9900" },
       { icon: SiGooglecloud, name: "GCP", color: "#4285F4" },
@@ -60,7 +60,7 @@ const categories = [
   },
   {
     label: "Engineering",
-    color: "#7c3aed",
+    color: "#E867EA",
     techs: [
       { icon: SiGit, name: "Git", color: "#F05032" },
       { icon: SiGithub, name: "GitHub", color: "#e0e0e0" },
@@ -81,7 +81,7 @@ export default function TechStackSection() {
     <section id="tech-stack" className="relative py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-3)" }}>
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
+        style={{ background: "radial-gradient(ellipse, #E867EA 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -91,12 +91,12 @@ export default function TechStackSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00c8ff] font-mono text-sm uppercase tracking-widest">Our Arsenal</span>
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Our Arsenal</span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
             Technology
             <br />
             <span style={{
-              background: "linear-gradient(135deg, #00c8ff, #0066ff)",
+              background: "linear-gradient(135deg, #48F2FB, #E867EA)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

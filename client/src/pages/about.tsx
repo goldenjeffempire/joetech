@@ -27,7 +27,7 @@ export default function About() {
         title="About"
         highlightedTitle="JOE Technologies"
         subtitle="Founded by an engineer who builds AI — delivering intelligent systems that solve real problems at real scale."
-        accentColor="#00c8ff"
+        accentColor="#48F2FB"
         data-testid-label="text-page-label"
         data-testid-title="text-page-title"
         data-testid-subtitle="text-page-subtitle"

@@ -46,7 +46,7 @@ export default function CookieConsent() {
               <Button
                 onClick={accept}
                 size="sm"
-                className="bg-gradient-to-r from-[#00c8ff] to-[#0066ff] text-white border-0 font-semibold text-xs"
+                className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold text-xs"
                 data-testid="button-accept-cookies"
               >
                 Accept
