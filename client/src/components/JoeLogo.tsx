@@ -6,9 +6,9 @@ interface JoeLogoProps {
 
 export default function JoeLogo({ size = "md", showText = true, className = "" }: JoeLogoProps) {
   const dimensions = {
-    sm: { icon: 28, text: "text-base", gap: "gap-2" },
-    md: { icon: 34, text: "text-lg", gap: "gap-2.5" },
-    lg: { icon: 42, text: "text-xl", gap: "gap-3" },
+    sm: { icon: 30, text: "text-sm", sub: "text-[10px]", gap: "gap-2" },
+    md: { icon: 36, text: "text-base", sub: "text-[11px]", gap: "gap-2.5" },
+    lg: { icon: 44, text: "text-lg", sub: "text-xs", gap: "gap-3" },
   };
 
   const d = dimensions[size];
@@ -18,28 +18,28 @@ export default function JoeLogo({ size = "md", showText = true, className = "" }
       <svg
         width={d.icon}
         height={d.icon}
-        viewBox="0 0 120 120"
+        viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
         className="flex-shrink-0"
       >
         <defs>
-          <linearGradient id="joe-hex-fill" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#060A10" />
-            <stop offset="100%" stopColor="#0d1a2e" />
-          </linearGradient>
-          <linearGradient id="joe-hex-stroke" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#c9a84c" />
-            <stop offset="50%" stopColor="#d4b85a" />
-            <stop offset="100%" stopColor="#a08030" />
-          </linearGradient>
-          <linearGradient id="joe-circuit" x1="10" y1="50" x2="55" y2="70" gradientUnits="userSpaceOnUse">
+          <linearGradient id="logo-cyan-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#48F2FB" />
             <stop offset="100%" stopColor="#4EA3BA" />
           </linearGradient>
-          <filter id="joe-glow">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+          <linearGradient id="logo-magenta-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#E867EA" />
+            <stop offset="100%" stopColor="#b847ba" />
+          </linearGradient>
+          <linearGradient id="logo-border-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#48F2FB" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#E867EA" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#48F2FB" stopOpacity="0.2" />
+          </linearGradient>
+          <filter id="logo-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -47,75 +47,64 @@ export default function JoeLogo({ size = "md", showText = true, className = "" }
           </filter>
         </defs>
 
-        <path
-          d="M60 8 L104 33 L104 83 L60 108 L16 83 L16 33 Z"
-          fill="url(#joe-hex-fill)"
-          stroke="url(#joe-hex-stroke)"
-          strokeWidth="3.5"
-          strokeLinejoin="round"
-        />
+        <rect x="2" y="2" width="96" height="96" rx="14" fill="#060A10" stroke="url(#logo-border-grad)" strokeWidth="1.5" />
 
-        <path
-          d="M60 22 L92 40.5 L92 77.5 L60 96 L28 77.5 L28 40.5 Z"
-          fill="none"
-          stroke="url(#joe-hex-stroke)"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          opacity="0.35"
-        />
+        <rect x="8" y="8" width="84" height="84" rx="10" fill="none" stroke="#48F2FB" strokeWidth="0.4" strokeOpacity="0.12" />
 
-        <g filter="url(#joe-glow)">
-          <line x1="8" y1="58" x2="32" y2="58" stroke="url(#joe-circuit)" strokeWidth="2" strokeLinecap="round" />
-          <line x1="8" y1="50" x2="26" y2="50" stroke="url(#joe-circuit)" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="12" y1="66" x2="30" y2="66" stroke="url(#joe-circuit)" strokeWidth="1.5" strokeLinecap="round" />
-
-          <line x1="32" y1="58" x2="42" y2="52" stroke="url(#joe-circuit)" strokeWidth="2" strokeLinecap="round" />
-          <line x1="26" y1="50" x2="38" y2="46" stroke="url(#joe-circuit)" strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="30" y1="66" x2="40" y2="62" stroke="url(#joe-circuit)" strokeWidth="1.5" strokeLinecap="round" />
-
-          <circle cx="42" cy="52" r="3.5" fill="#48F2FB" />
-          <circle cx="42" cy="52" r="1.8" fill="#ffffff" />
-
-          <circle cx="38" cy="46" r="2.5" fill="#48F2FB" opacity="0.8" />
-          <circle cx="38" cy="46" r="1.2" fill="#ffffff" />
-
-          <circle cx="40" cy="62" r="2.5" fill="#48F2FB" opacity="0.8" />
-          <circle cx="40" cy="62" r="1.2" fill="#ffffff" />
+        <g filter="url(#logo-glow)">
+          <text
+            x="14"
+            y="52"
+            fontFamily="'Courier New', Courier, monospace"
+            fontWeight="700"
+            fontSize="28"
+            fill="url(#logo-cyan-grad)"
+          >&lt;</text>
+          <text
+            x="73"
+            y="52"
+            fontFamily="'Courier New', Courier, monospace"
+            fontWeight="700"
+            fontSize="22"
+            fill="url(#logo-magenta-grad)"
+          >/&gt;</text>
         </g>
 
         <text
-          x="72"
-          y="56"
+          x="50"
+          y="54"
           textAnchor="middle"
-          fontFamily="Arial Black, Impact, sans-serif"
+          fontFamily="'Courier New', Courier, monospace"
           fontWeight="900"
-          fontSize="22"
-          letterSpacing="-0.5"
-        >
-          <tspan fill="#c9a84c">J</tspan>
-          <tspan fill="#d4b85a">O</tspan>
-          <tspan fill="#a08030">E</tspan>
-        </text>
+          fontSize="18"
+          fill="#ffffff"
+          letterSpacing="0.5"
+        >JOE</text>
+
+        <line x1="16" y1="62" x2="84" y2="62" stroke="#48F2FB" strokeWidth="0.6" strokeOpacity="0.25" />
 
         <text
-          x="72"
-          y="72"
+          x="50"
+          y="76"
           textAnchor="middle"
-          fontFamily="Arial, Helvetica, sans-serif"
+          fontFamily="'Courier New', Courier, monospace"
           fontWeight="400"
-          fontSize="8.5"
-          fill="#8899aa"
+          fontSize="7"
+          fill="#48F2FB"
+          fillOpacity="0.55"
           letterSpacing="2"
-        >
-          TECH
-        </text>
+        >TECH</text>
       </svg>
 
       {showText && (
-        <div className="flex flex-col leading-none">
-          <span className={`font-heading font-bold ${d.text} tracking-wide`}>
-            <span className="text-joe-text">JOE</span>
-            <span style={{ color: "#48F2FB" }}> Technologies</span>
+        <div className="flex flex-col leading-tight">
+          <span className={`font-mono font-bold ${d.text} tracking-tight`}>
+            <span style={{ color: "#48F2FB" }}>&lt;</span>
+            <span className="text-white">JOE</span>
+            <span style={{ color: "#E867EA" }}>/&gt;</span>
+          </span>
+          <span className={`font-mono ${d.sub} tracking-widest uppercase`} style={{ color: "#48F2FB", opacity: 0.65 }}>
+            Technologies
           </span>
         </div>
       )}
