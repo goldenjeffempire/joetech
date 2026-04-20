@@ -10,7 +10,7 @@ const testimonials = [
     company: "Nexus Financial",
     stars: 5,
     initials: "SC",
-    accentColor: "#00d4ff",
+    accentColor: "#48F2FB",
     result: "73% faster code reviews",
   },
   {
@@ -30,7 +30,7 @@ const testimonials = [
     company: "LegalEdge International",
     stars: 5,
     initials: "PS",
-    accentColor: "#7b2ee0",
+    accentColor: "#E867EA",
     result: "91% accuracy rate",
   },
 ];
@@ -66,7 +66,7 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#00d4ff] font-mono text-sm uppercase tracking-widest">Client Voices</span>
+          <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Client Voices</span>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Trusted by Leaders.{" "}
             <span className="text-gradient-blue">Proven by Results.</span>
@@ -158,7 +158,7 @@ export default function TestimonialsSection() {
             "100% Reference Available",
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-2 text-joe-text/30 text-sm">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]/50" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#48F2FB]/50" />
               <span>{item}</span>
             </div>
           ))}

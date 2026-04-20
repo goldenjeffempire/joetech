@@ -10,21 +10,21 @@ const serviceItems = [
   {
     label: "App Development",
     href: "/services/app-development",
-    accent: "#00d4ff",
+    accent: "#48F2FB",
     icon: Smartphone,
     desc: "Web & mobile apps, SaaS, portals",
   },
   {
     label: "Website Design & Dev",
     href: "/services/website-design",
-    accent: "#1a6fff",
+    accent: "#4EA3BA",
     icon: MonitorSmartphone,
     desc: "Brand sites, SEO, conversion",
   },
   {
     label: "Automation Systems",
     href: "/services/automation",
-    accent: "#7b2ee0",
+    accent: "#E867EA",
     icon: Workflow,
     desc: "Workflows, integrations, reporting",
   },
@@ -45,7 +45,7 @@ const serviceItems = [
   {
     label: "Digital Systems",
     href: "/services/full-stack",
-    accent: "#ec4899",
+    accent: "#E867EA",
     icon: Building2,
     desc: "Dashboards, APIs, enterprise arch",
   },
@@ -81,7 +81,8 @@ export default function Navigation() {
     <>
       <Link
         href="/"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#1a6fff] focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold focus:text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold focus:text-sm"
+        style={{ background: "#48F2FB", color: "#060A10" }}
       >
         Skip to main content
       </Link>
@@ -103,7 +104,7 @@ export default function Navigation() {
         {scrolled && (
           <div
             className="absolute bottom-0 left-0 right-0 h-px"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(0,212,255,0.35), rgba(26,111,255,0.25), transparent)" }}
+            style={{ background: "linear-gradient(90deg, transparent, rgba(72,242,251,0.4), rgba(232,103,234,0.25), transparent)" }}
           />
         )}
 
@@ -126,7 +127,8 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50 ${isActive ? "text-[#00d4ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
+                    style={isActive ? { color: "#48F2FB" } : {}}
                     data-testid={`link-nav-${link.label.toLowerCase()}`}
                   >
                     {link.label}
@@ -134,7 +136,7 @@ export default function Navigation() {
                       <motion.div
                         layoutId="nav-indicator"
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
-                        style={{ background: "linear-gradient(90deg, #1a6fff, #00d4ff)" }}
+                        style={{ background: "linear-gradient(90deg, #48F2FB, #E867EA)" }}
                         transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                       />
                     )}
@@ -148,7 +150,8 @@ export default function Navigation() {
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 <button
-                  className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50 ${isServicesActive ? "text-[#00d4ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                  className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isServicesActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
+                  style={isServicesActive ? { color: "#48F2FB" } : {}}
                   aria-expanded={servicesOpen}
                   data-testid="button-nav-services-dropdown"
                 >
@@ -158,7 +161,7 @@ export default function Navigation() {
                     <motion.div
                       layoutId="nav-indicator"
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
-                      style={{ background: "linear-gradient(90deg, #1a6fff, #00d4ff)" }}
+                      style={{ background: "linear-gradient(90deg, #48F2FB, #E867EA)" }}
                       transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                     />
                   )}
@@ -178,7 +181,7 @@ export default function Navigation() {
                         backdropFilter: "blur(24px)",
                         WebkitBackdropFilter: "blur(24px)",
                         width: "560px",
-                        boxShadow: "0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,212,255,0.08)",
+                        boxShadow: "0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(72,242,251,0.08)",
                       }}
                     >
                       <div className="p-2">
@@ -216,7 +219,7 @@ export default function Navigation() {
                             data-testid="link-nav-all-services"
                           >
                             <span className="text-sm font-semibold text-gradient-blue">View All Services</span>
-                            <ArrowRight className="w-4 h-4 text-[#1a6fff] transition-transform duration-200 group-hover:translate-x-1" />
+                            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" style={{ color: "#48F2FB" }} />
                           </Link>
                         </div>
                       </div>
@@ -232,7 +235,8 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50 ${isActive ? "text-[#00d4ff]" : "text-joe-text/55 hover:text-joe-text"}`}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
+                    style={isActive ? { color: "#48F2FB" } : {}}
                     data-testid={`link-nav-${link.label.toLowerCase()}`}
                   >
                     {link.label}
@@ -240,7 +244,7 @@ export default function Navigation() {
                       <motion.div
                         layoutId="nav-indicator"
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
-                        style={{ background: "linear-gradient(90deg, #1a6fff, #00d4ff)" }}
+                        style={{ background: "linear-gradient(90deg, #48F2FB, #E867EA)" }}
                         transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
                       />
                     )}
@@ -254,10 +258,11 @@ export default function Navigation() {
               <Button
                 asChild
                 size="sm"
-                className="text-white border-0 font-semibold tracking-wide shadow-lg"
+                className="border-0 font-semibold tracking-wide shadow-lg neon-glow-cyan"
                 style={{
-                  background: "linear-gradient(135deg, #1a6fff, #7b2ee0)",
-                  boxShadow: "0 4px 20px rgba(26,111,255,0.25)",
+                  background: "linear-gradient(135deg, #48F2FB, #E867EA)",
+                  color: "#060A10",
+                  boxShadow: "0 4px 20px rgba(72,242,251,0.25)",
                 }}
                 data-testid="button-nav-cta"
               >
@@ -268,7 +273,7 @@ export default function Navigation() {
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
               <button
-                className="p-2 text-joe-text/60 hover:text-joe-text transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a6fff]/50"
+                className="p-2 text-joe-text/60 hover:text-joe-text transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 data-testid="button-mobile-menu"
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -316,10 +321,11 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00d4ff] bg-[#1a6fff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    style={isActive ? { color: "#48F2FB", background: "rgba(72,242,251,0.07)" } : {}}
                     data-testid={`link-mobile-${link.label.toLowerCase()}`}
                   >
-                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />}
+                    {isActive && <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#48F2FB" }} />}
                     {link.label}
                   </Link>
                 );
@@ -329,10 +335,11 @@ export default function Navigation() {
                 <Link
                   href="/services"
                   onClick={() => setMobileOpen(false)}
-                  className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isServicesActive ? "text-[#00d4ff] bg-[#1a6fff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                  className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isServicesActive ? "" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                  style={isServicesActive ? { color: "#48F2FB", background: "rgba(72,242,251,0.07)" } : {}}
                   data-testid="link-mobile-services"
                 >
-                  {isServicesActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />}
+                  {isServicesActive && <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#48F2FB" }} />}
                   Services
                 </Link>
                 <div className="ml-4 pl-4 flex flex-col gap-0.5 mt-1 mb-1" style={{ borderLeft: "1px solid var(--joe-divide)" }}>
@@ -364,10 +371,11 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "text-[#00d4ff] bg-[#1a6fff]/8" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    className={`w-full text-left px-4 py-3 rounded-md transition-colors text-sm font-medium flex items-center gap-3 ${isActive ? "" : "text-joe-text/70 hover:text-joe-text hover:bg-joe-text/5"}`}
+                    style={isActive ? { color: "#48F2FB", background: "rgba(72,242,251,0.07)" } : {}}
                     data-testid={`link-mobile-${link.label.toLowerCase()}`}
                   >
-                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />}
+                    {isActive && <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#48F2FB" }} />}
                     {link.label}
                   </Link>
                 );
@@ -376,8 +384,8 @@ export default function Navigation() {
               <div className="pt-3 pb-2">
                 <Button
                   asChild
-                  className="w-full text-white border-0 font-semibold"
-                  style={{ background: "linear-gradient(135deg, #1a6fff, #7b2ee0)" }}
+                  className="w-full border-0 font-semibold"
+                  style={{ background: "linear-gradient(135deg, #48F2FB, #E867EA)", color: "#060A10" }}
                   data-testid="button-mobile-cta"
                 >
                   <Link href="/contact" onClick={() => setMobileOpen(false)}>

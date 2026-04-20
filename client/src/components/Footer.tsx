@@ -37,28 +37,28 @@ const contactChannels = [
     label: "Instagram",
     value: "@joetech.ai",
     href: "https://instagram.com/joetech.ai",
-    accent: "#ec4899",
+    accent: "#E867EA",
   },
   {
     icon: SiFacebook,
     label: "Facebook",
     value: "JOE Technologies",
     href: "https://facebook.com/search/top?q=JOE%20Technologies",
-    accent: "#1a6fff",
+    accent: "#48F2FB",
   },
   {
     icon: Globe,
     label: "Website",
     value: "joetech.onrender.com",
     href: "https://joetech.onrender.com",
-    accent: "#7b2ee0",
+    accent: "#4EA3BA",
   },
   {
     icon: Mail,
     label: "Email",
     value: "jeffemuodafe124@gmail.com",
     href: "mailto:jeffemuodafe124@gmail.com",
-    accent: "#00d4ff",
+    accent: "#48F2FB",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Footer() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(135deg, rgba(26,111,255,0.08) 0%, rgba(123,46,224,0.06) 50%, rgba(0,212,255,0.04) 100%)",
+            background: "linear-gradient(135deg, rgba(72,242,251,0.06) 0%, rgba(232,103,234,0.05) 50%, rgba(78,163,186,0.04) 100%)",
           }}
         />
         <div
@@ -89,11 +89,11 @@ export default function Footer() {
         />
         <div
           className="absolute top-0 left-1/4 w-[400px] h-[200px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, #1a6fff 0%, transparent 70%)", opacity: 0.1 }}
+          style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: 0.08 }}
         />
         <div
           className="absolute top-0 right-1/4 w-[400px] h-[200px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, #7b2ee0 0%, transparent 70%)", opacity: 0.08 }}
+          style={{ background: "radial-gradient(ellipse, #E867EA 0%, transparent 70%)", opacity: 0.07 }}
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
@@ -107,12 +107,12 @@ export default function Footer() {
             <div
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-widest"
               style={{
-                background: "rgba(26,111,255,0.1)",
-                border: "1px solid rgba(26,111,255,0.25)",
-                color: "#00d4ff",
+                background: "rgba(72,242,251,0.08)",
+                border: "1px solid rgba(72,242,251,0.22)",
+                color: "#48F2FB",
               }}
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] animate-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#48F2FB" }} />
               Ready to Build?
             </div>
 
@@ -129,10 +129,11 @@ export default function Footer() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="text-white border-0 font-semibold tracking-wide gap-2 shadow-xl transition-all duration-300 hover:scale-105"
+                  className="border-0 font-semibold tracking-wide gap-2 shadow-xl transition-all duration-300 hover:scale-105 neon-glow-cyan"
                   style={{
-                    background: "linear-gradient(135deg, #1a6fff, #7b2ee0)",
-                    boxShadow: "0 8px 30px rgba(26,111,255,0.3)",
+                    background: "linear-gradient(135deg, #48F2FB, #E867EA)",
+                    color: "#060A10",
+                    boxShadow: "0 8px 30px rgba(72,242,251,0.25)",
                   }}
                   data-testid="button-footer-cta-primary"
                 >
@@ -162,7 +163,7 @@ export default function Footer() {
       >
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, #1a6fff 0%, transparent 70%)", opacity: 0.04 }}
+          style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: 0.04 }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
@@ -196,7 +197,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors"
-                  style={{ color: "#00d4ff" }}
+                  style={{ color: "#48F2FB" }}
                   data-testid="link-footer-founder-portfolio"
                 >
                   <ExternalLink className="w-3 h-3" />
@@ -292,8 +293,10 @@ export default function Footer() {
 
               <button
                 onClick={scrollToTop}
-                className="w-8 h-8 rounded-lg flex items-center justify-center border text-joe-text/25 hover:text-[#00d4ff] hover-elevate transition-colors"
+                className="w-8 h-8 rounded-lg flex items-center justify-center border text-joe-text/25 transition-colors hover-elevate"
                 style={{ background: "var(--joe-overlay)", borderColor: "var(--joe-card-border)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#48F2FB")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
                 aria-label="Scroll to top"
                 data-testid="button-scroll-top"
               >

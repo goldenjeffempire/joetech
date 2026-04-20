@@ -26,8 +26,8 @@ export default function JoeLogo({ size = "md", showText = true, className = "" }
       >
         <defs>
           <linearGradient id="joe-hex-fill" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#0a1628" />
-            <stop offset="100%" stopColor="#0d1e3a" />
+            <stop offset="0%" stopColor="#060A10" />
+            <stop offset="100%" stopColor="#0d1a2e" />
           </linearGradient>
           <linearGradient id="joe-hex-stroke" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#c9a84c" />
@@ -35,8 +35,8 @@ export default function JoeLogo({ size = "md", showText = true, className = "" }
             <stop offset="100%" stopColor="#a08030" />
           </linearGradient>
           <linearGradient id="joe-circuit" x1="10" y1="50" x2="55" y2="70" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00c8ff" />
-            <stop offset="100%" stopColor="#0066ff" />
+            <stop offset="0%" stopColor="#48F2FB" />
+            <stop offset="100%" stopColor="#4EA3BA" />
           </linearGradient>
           <filter id="joe-glow">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -73,13 +73,13 @@ export default function JoeLogo({ size = "md", showText = true, className = "" }
           <line x1="26" y1="50" x2="38" y2="46" stroke="url(#joe-circuit)" strokeWidth="1.5" strokeLinecap="round" />
           <line x1="30" y1="66" x2="40" y2="62" stroke="url(#joe-circuit)" strokeWidth="1.5" strokeLinecap="round" />
 
-          <circle cx="42" cy="52" r="3.5" fill="#00c8ff" />
+          <circle cx="42" cy="52" r="3.5" fill="#48F2FB" />
           <circle cx="42" cy="52" r="1.8" fill="#ffffff" />
 
-          <circle cx="38" cy="46" r="2.5" fill="#00c8ff" opacity="0.8" />
+          <circle cx="38" cy="46" r="2.5" fill="#48F2FB" opacity="0.8" />
           <circle cx="38" cy="46" r="1.2" fill="#ffffff" />
 
-          <circle cx="40" cy="62" r="2.5" fill="#00c8ff" opacity="0.8" />
+          <circle cx="40" cy="62" r="2.5" fill="#48F2FB" opacity="0.8" />
           <circle cx="40" cy="62" r="1.2" fill="#ffffff" />
         </g>
 
@@ -115,7 +115,7 @@ export default function JoeLogo({ size = "md", showText = true, className = "" }
         <div className="flex flex-col leading-none">
           <span className={`font-heading font-bold ${d.text} tracking-wide`}>
             <span className="text-joe-text">JOE</span>
-            <span className="text-[#00c8ff]"> Technologies</span>
+            <span style={{ color: "#48F2FB" }}> Technologies</span>
           </span>
         </div>
       )}
