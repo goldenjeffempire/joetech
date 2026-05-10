@@ -5,9 +5,12 @@ import {
   type InsertContact,
   type LeadSubmission,
   type InsertLead,
+  type InsertNewsletter,
+  type NewsletterSubscriber,
   users,
   contactSubmissions,
   leadSubmissions,
+  newsletterSubscribers,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { eq, desc } from "drizzle-orm";
@@ -21,6 +24,8 @@ export interface IStorage {
   getContacts(): Promise<ContactSubmission[]>;
   createLead(lead: InsertLead): Promise<LeadSubmission>;
   getLeads(): Promise<LeadSubmission[]>;
+  createNewsletterSubscriber(data: InsertNewsletter): Promise<{ subscriber: NewsletterSubscriber; alreadyExists: boolean }>;
+  getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -81,6 +86,33 @@ export class DatabaseStorage implements IStorage {
 
   async getLeads(): Promise<LeadSubmission[]> {
     return db.select().from(leadSubmissions).orderBy(desc(leadSubmissions.createdAt));
+  }
+
+  async createNewsletterSubscriber(data: InsertNewsletter): Promise<{ subscriber: NewsletterSubscriber; alreadyExists: boolean }> {
+    const [existing] = await db
+      .select()
+      .from(newsletterSubscribers)
+      .where(eq(newsletterSubscribers.email, data.email));
+
+    if (existing) {
+      return { subscriber: existing, alreadyExists: true };
+    }
+
+    const id = randomUUID();
+    const [subscriber] = await db
+      .insert(newsletterSubscribers)
+      .values({
+        ...data,
+        id,
+        source: data.source ?? "popup",
+        createdAt: new Date().toISOString(),
+      })
+      .returning();
+    return { subscriber, alreadyExists: false };
+  }
+
+  async getNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
+    return db.select().from(newsletterSubscribers).orderBy(desc(newsletterSubscribers.createdAt));
   }
 }
 

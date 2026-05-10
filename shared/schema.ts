@@ -75,6 +75,26 @@ export const insertLeadSchema = createInsertSchema(leadSubmissions).omit({
   tier: z.enum(["Startup", "High Value", "Enterprise"]),
 });
 
+export const newsletterSubscribers = pgTable("newsletter_subscribers", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  email: text("email").notNull().unique(),
+  consentGiven: text("consent_given").notNull(),
+  source: text("source").notNull().default("popup"),
+  createdAt: text("created_at").notNull(),
+});
+
+export const insertNewsletterSchema = createInsertSchema(newsletterSubscribers).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  email: z.string().email("Please enter a valid email address"),
+  consentGiven: z.literal("yes", { errorMap: () => ({ message: "You must agree to receive emails" }) }),
+  source: z.string().optional(),
+});
+
+export type InsertNewsletter = z.infer<typeof insertNewsletterSchema>;
+export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;

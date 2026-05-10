@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import CookieConsent from "@/components/CookieConsent";
+import NewsletterPopup from "@/components/NewsletterPopup";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,6 +40,7 @@ export default function Layout({ children }: LayoutProps) {
       <Footer />
       <WhatsAppButton />
       <CookieConsent />
+      <NewsletterPopup />
     </div>
   );
 }

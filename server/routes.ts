@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertLeadSchema } from "@shared/schema";
+import { insertContactSchema, insertLeadSchema, insertNewsletterSchema } from "@shared/schema";
 import { z } from "zod";
 import rateLimit from "express-rate-limit";
 
@@ -17,6 +17,14 @@ const leadLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
   message: { success: false, message: "Too many submissions. Please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const newsletterLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 10,
+  message: { success: false, message: "Too many requests. Please try again later." },
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -70,6 +78,29 @@ export async function registerRoutes(
     try {
       const leads = await storage.getLeads();
       res.json(leads);
+    } catch (err) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.post("/api/newsletter", newsletterLimiter, async (req, res) => {
+    try {
+      const data = insertNewsletterSchema.parse(req.body);
+      const { subscriber, alreadyExists } = await storage.createNewsletterSubscriber(data);
+      res.json({ success: true, id: subscriber.id, alreadyExists });
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        return res.status(400).json({ success: false, errors: err.errors });
+      }
+      console.error("Newsletter error:", err);
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/newsletter", async (_req, res) => {
+    try {
+      const subscribers = await storage.getNewsletterSubscribers();
+      res.json(subscribers);
     } catch (err) {
       res.status(500).json({ message: "Internal server error" });
     }
