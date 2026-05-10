@@ -264,7 +264,7 @@ export default function AboutSection() {
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
                   <p className="text-joe-text/55 text-sm mt-3 leading-relaxed">
                     Dominion brings operational excellence and strategic leadership to JOE Technologies. With expertise in
-                    business development, project delivery, and client success, he ensures every engagement is executed
+                    business development, project delivery, and client success, she ensures every engagement is executed
                     with precision, clarity, and measurable outcomes — bridging the gap between technical vision and
                     business reality.
                   </p>
