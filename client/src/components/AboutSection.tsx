@@ -222,21 +222,22 @@ export default function AboutSection() {
 
               <div className="space-y-4 text-joe-text/60 leading-relaxed">
                 <p>
-                  Jeffery Onome Emuodafevware is a full-stack software engineer and AI architect with a singular focus:
-                  building intelligent digital systems that solve real problems at real scale. With roots in West Africa
-                  and a career spanning startups to global enterprises, Jeffery brings deep technical depth and business
-                  pragmatism to every engagement.
+                  Jeffery Onome Emuodafevware is a full-stack software engineer and AI architect focused on building
+                  intelligent, scalable digital systems that solve real-world problems. With roots in West Africa and
+                  experience across startups and enterprise environments, he combines deep technical expertise with
+                  strong business pragmatism to deliver production-grade solutions that perform in the real world.
                 </p>
                 <p>
-                  He co-founded <span className="text-joe-text font-semibold">JOE Technologies</span> — where JOE represents
-                  his initials — after recognizing a critical gap: businesses needed more than consultants or freelancers.
-                  They needed a true engineering partner who could architect, build, and deploy production-grade apps,
-                  websites, automations, and AI that actually deliver results.
+                  He is the Co-Founder of <span className="text-joe-text font-semibold">JOE Technologies</span> — a
+                  company name derived from his initials — established in response to a clear market gap: businesses
+                  don't just need consultants or freelancers; they need a reliable engineering partner capable of
+                  designing, building, and deploying end-to-end systems including applications, websites, automation
+                  pipelines, and AI-powered infrastructure that drive measurable results.
                 </p>
                 <p>
-                  His expertise spans the full product lifecycle: interface design and UX, frontend and backend engineering,
-                  automation architecture, database design, and machine learning infrastructure — always with clarity,
-                  quality, and business outcomes at the center.
+                  His expertise covers the full product lifecycle, including UX and interface design, frontend and
+                  backend engineering, system architecture, database design, automation systems, and machine learning
+                  infrastructure — all guided by a commitment to clarity, quality, and business impact.
                 </p>
               </div>
 
@@ -260,13 +261,13 @@ export default function AboutSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Dominion Chidiebere Nkwachukwu</h3>
-                  <p className="text-[#E867EA] text-sm font-medium mt-0.5">Co-Founder & Chief Operations Officer</p>
+                  <p className="text-[#E867EA] text-sm font-medium mt-0.5">Co-Founder & Chief Marketing & Business Operations Lead</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
                   <p className="text-joe-text/55 text-sm mt-3 leading-relaxed">
-                    Dominion brings operational excellence and strategic leadership to JOE Technologies. With expertise in
-                    business development, project delivery, and client success, she ensures every engagement is executed
-                    with precision, clarity, and measurable outcomes — bridging the gap between technical vision and
-                    business reality.
+                    Dominion provides strategic leadership and operational oversight at JOE Technologies. With strong
+                    capabilities in business development, client engagement, and project execution, she ensures seamless
+                    delivery across all engagements. Her role focuses on aligning technical execution with business
+                    goals, strengthening client relationships, and driving consistent, measurable outcomes across projects.
                   </p>
                 </div>
               </div>

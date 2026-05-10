@@ -206,7 +206,7 @@ export default function Footer() {
                 </a>
                 <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--joe-card-border)" }}>
                   <p className="text-joe-text/70 text-sm font-semibold">Dominion Chidiebere Nkwachukwu</p>
-                  <p className="text-joe-text/45 text-xs">Co-Founder & Chief Operations Officer</p>
+                  <p className="text-joe-text/45 text-xs">Co-Founder & Chief Marketing & Business Operations Lead</p>
                 </div>
               </div>
 
