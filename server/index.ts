@@ -87,11 +87,6 @@ function markReady() {
   _setupComplete = true;
   _waitQueue.splice(0).forEach((fn) => fn());
 }
-
-app.use((req, _res, next) => {
-  if (_setupComplete) return next();
-  _waitQueue.push(next);
-});
 // ────────────────────────────────────────────────────────────────────────────
 
 // ALWAYS serve the app on the port specified in the environment variable PORT.
@@ -109,9 +104,6 @@ httpServer.listen(
 );
 
 // Self-ping keep-alive — production only.
-// Render free tier spins down a service after ~15 minutes of inactivity.
-// Every 4 minutes the server pings its own /ping endpoint so Render never
-// considers the service idle, eliminating cold-start delays entirely.
 if (isProduction) {
   const PING_INTERVAL_MS = 4 * 60 * 1000;
   const selfUrl = process.env.RENDER_EXTERNAL_URL
@@ -130,40 +122,47 @@ if (isProduction) {
   log(`keep-alive enabled → pinging ${selfUrl} every 4 min`, "keepalive");
 }
 
-// Finish setup asynchronously — routes and Vite/static middleware are
-// registered after the socket is open. The readiness gate above holds any
-// request that arrives before this block completes, then releases them.
+// ── Async setup ──────────────────────────────────────────────────────────────
+// markReady() MUST be called no matter what — if it is never called, all
+// incoming requests queue forever and the site shows a blank page.
+// The try/finally guarantees this even when the DB is unreachable.
 (async () => {
-  const { runMigrations } = await import("./db");
-  await runMigrations();
+  try {
+    const { runMigrations } = await import("./db");
+    await runMigrations();
 
-  const { registerRoutes } = await import("./routes");
-  await registerRoutes(httpServer, app);
+    const { registerRoutes } = await import("./routes");
+    await registerRoutes(httpServer, app);
 
-  app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = isProduction && status === 500
-      ? "Internal Server Error"
-      : err.message || "Internal Server Error";
+    app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
+      const status = err.status || err.statusCode || 500;
+      const message = isProduction && status === 500
+        ? "Internal Server Error"
+        : err.message || "Internal Server Error";
 
-    console.error("Internal Server Error:", err);
+      console.error("Internal Server Error:", err);
 
-    if (res.headersSent) {
-      return next(err);
+      if (res.headersSent) {
+        return next(err);
+      }
+
+      return res.status(status).json({ message });
+    });
+
+    if (isProduction) {
+      const { serveStatic } = await import("./static");
+      serveStatic(app);
+    } else {
+      const { setupVite } = await import("./vite");
+      await setupVite(httpServer, app);
     }
 
-    return res.status(status).json({ message });
-  });
-
-  if (isProduction) {
-    const { serveStatic } = await import("./static");
-    serveStatic(app);
-  } else {
-    const { setupVite } = await import("./vite");
-    await setupVite(httpServer, app);
+    log("setup complete — serving requests", "express");
+  } catch (err) {
+    console.error("[startup] Fatal setup error:", err);
+    console.error("[startup] Server will still serve requests but may be degraded.");
+  } finally {
+    // Always release the readiness gate so the site is never permanently blank.
+    markReady();
   }
-
-  // Release any requests that arrived before setup completed.
-  markReady();
-  log("setup complete — serving requests", "express");
 })();

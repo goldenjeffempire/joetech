@@ -13,8 +13,11 @@ pool.on("error", (err) => {
 export const db = drizzle(pool, { schema });
 
 export async function runMigrations(): Promise<void> {
-  const client = await pool.connect();
+  // pool.connect() is inside the try so any connection failure is caught and
+  // logged — it will never propagate and crash the startup IIFE.
+  let client;
   try {
+    client = await pool.connect();
     await client.query(`
       CREATE TABLE IF NOT EXISTS users (
         id varchar(255) PRIMARY KEY,
@@ -64,6 +67,6 @@ export async function runMigrations(): Promise<void> {
   } catch (err) {
     console.error("[db] Migration error:", (err as Error).message);
   } finally {
-    client.release();
+    client?.release();
   }
 }
