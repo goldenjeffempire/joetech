@@ -1,7 +1,7 @@
 # JOE Technologies Website
 
 ## Overview
-A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company founded by **Jeffery Onome Emuodafevware**. The platform positions JOE Technologies around high-performance Apps, Websites, Automation Systems, UI/UX Design, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
+A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company co-founded by **Jeffery Onome Emuodafevware** and **Dominion Chidiebere Nkwachukwu**. The platform positions JOE Technologies around high-performance Apps, Websites, Automation Systems, UI/UX Design, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
 
 ## Architecture
 

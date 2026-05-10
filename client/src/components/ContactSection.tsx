@@ -124,7 +124,7 @@ export default function ContactSection() {
     onSuccess: () => {
       toast({
         title: "Message received!",
-        description: "Thank you for reaching out. Jeffery will get back to you within 24 hours.",
+        description: "Thank you for reaching out. Our team will get back to you within 24 hours.",
       });
       form.reset();
     },
@@ -249,7 +249,7 @@ export default function ContactSection() {
                   <div>
                     <h3 className="font-heading font-bold text-joe-text text-xl mb-2">Message Sent!</h3>
                     <p className="text-joe-text/55 text-sm leading-relaxed max-w-sm">
-                      Thank you for reaching out. Jeffery will review your message and respond within 24 hours.
+                      Thank you for reaching out. Our team will review your message and respond within 24 hours.
                     </p>
                   </div>
                   <Button

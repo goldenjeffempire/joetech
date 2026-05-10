@@ -7,7 +7,7 @@ import PageHero from "@/components/PageHero";
 export default function About() {
   useSeo({
     title: "About JOE Technologies",
-    description: "Learn about JOE Technologies and our founder Jeffery Onome Emuodafevware. An enterprise digital product and AI solutions company delivering cutting-edge apps, automation, and AI-powered platforms.",
+    description: "Learn about JOE Technologies and our co-founders Jeffery Onome Emuodafevware and Dominion Chidiebere Nkwachukwu. An enterprise digital product and AI solutions company delivering cutting-edge apps, automation, and AI-powered platforms.",
     canonical: "/about",
     schema: {
       "@context": "https://schema.org",
@@ -15,7 +15,7 @@ export default function About() {
       "@id": "https://joetechnologies.io/about",
       "url": "https://joetechnologies.io/about",
       "name": "About JOE Technologies",
-      "description": "Enterprise digital product and AI solutions company founded by Jeffery Onome Emuodafevware.",
+      "description": "Enterprise digital product and AI solutions company co-founded by Jeffery Onome Emuodafevware and Dominion Chidiebere Nkwachukwu.",
       "publisher": { "@id": "https://joetechnologies.io/#organization" },
     },
   });
@@ -26,7 +26,7 @@ export default function About() {
         label="Our Story"
         title="About"
         highlightedTitle="JOE Technologies"
-        subtitle="Founded by an engineer who builds AI — delivering intelligent systems that solve real problems at real scale."
+        subtitle="Co-founded by engineers who build AI — delivering intelligent systems that solve real problems at real scale."
         accentColor="#48F2FB"
         data-testid-label="text-page-label"
         data-testid-title="text-page-title"

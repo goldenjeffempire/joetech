@@ -155,13 +155,13 @@ export default function AboutSection() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">About the Founder</span>
+            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">About the Co-Founders</span>
             <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
-              Built by an Engineer Who{" "}
-              <span className="text-gradient-cyber">Builds Products</span>
+              Built by Engineers Who{" "}
+              <span className="text-gradient-cyber">Build Products</span>
             </h2>
             <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
-              JOE Technologies is a one-founder, highly specialized studio delivering enterprise-grade digital products — apps, websites, automation systems, UI/UX, and AI.
+              JOE Technologies is a two-founder, highly specialized studio delivering enterprise-grade digital products — apps, websites, automation systems, UI/UX, and AI.
             </p>
           </motion.div>
 
@@ -192,7 +192,7 @@ export default function AboutSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
-                  <p className="text-[#48F2FB] text-sm font-medium mt-0.5">Founder & Chief Engineer</p>
+                  <p className="text-[#48F2FB] text-sm font-medium mt-0.5">Co-Founder & Chief Engineer</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
                   <div className="flex items-center gap-3 mt-3">
                     <a
@@ -228,7 +228,7 @@ export default function AboutSection() {
                   pragmatism to every engagement.
                 </p>
                 <p>
-                  He founded <span className="text-joe-text font-semibold">JOE Technologies</span> — where JOE represents
+                  He co-founded <span className="text-joe-text font-semibold">JOE Technologies</span> — where JOE represents
                   his initials — after recognizing a critical gap: businesses needed more than consultants or freelancers.
                   They needed a true engineering partner who could architect, build, and deploy production-grade apps,
                   websites, automations, and AI that actually deliver results.
@@ -238,6 +238,37 @@ export default function AboutSection() {
                   automation architecture, database design, and machine learning infrastructure — always with clarity,
                   quality, and business outcomes at the center.
                 </p>
+              </div>
+
+              <div
+                className="flex items-start gap-5 p-6 rounded-xl border mt-2"
+                style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
+              >
+                <div className="flex-shrink-0 relative">
+                  <div
+                    className="w-20 h-20 rounded-xl flex items-center justify-center font-heading font-bold text-2xl text-white"
+                    style={{ background: "linear-gradient(135deg, #E867EA 0%, #7b2ee0 100%)" }}
+                  >
+                    DCN
+                  </div>
+                  <div
+                    className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
+                    style={{ border: "2px solid var(--joe-bg-solid)" }}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading font-bold text-xl text-joe-text">Dominion Chidiebere Nkwachukwu</h3>
+                  <p className="text-[#E867EA] text-sm font-medium mt-0.5">Co-Founder & Chief Operations Officer</p>
+                  <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
+                  <p className="text-joe-text/55 text-sm mt-3 leading-relaxed">
+                    Dominion brings operational excellence and strategic leadership to JOE Technologies. With expertise in
+                    business development, project delivery, and client success, he ensures every engagement is executed
+                    with precision, clarity, and measurable outcomes — bridging the gap between technical vision and
+                    business reality.
+                  </p>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 gap-2">
@@ -338,7 +369,7 @@ export default function AboutSection() {
                   </div>
                   <div>
                     <p className="text-[#48F2FB] text-sm font-semibold font-mono">Jeffery Onome Emuodafevware</p>
-                    <p className="text-joe-text/35 text-xs">Founder, JOE Technologies</p>
+                    <p className="text-joe-text/35 text-xs">Co-Founder, JOE Technologies</p>
                   </div>
                 </div>
               </motion.div>
