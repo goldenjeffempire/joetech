@@ -18,11 +18,16 @@ services:
         fromDatabase:
           name: joetech-db
           property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
       - key: ADMIN_SECRET
-        sync: false
+        generateValue: true
+      - key: RENDER_EXTERNAL_URL
+        value: https://joetech.onrender.com
 
 databases:
   - name: joetech-db
     databaseName: joe_technologies
     user: joe_tech
     plan: free
+    ipAllowList: []
