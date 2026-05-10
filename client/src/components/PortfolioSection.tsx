@@ -124,7 +124,7 @@ export default function PortfolioSection() {
     : caseStudies.filter((cs) => cs.category === activeFilter);
 
   return (
-    <section id="portfolio" className="relative py-24 lg:py-32 overflow-hidden"
+    <section id="portfolio" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-1)" }}>
       <div className="absolute top-1/2 left-0 w-96 h-96 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
@@ -140,7 +140,7 @@ export default function PortfolioSection() {
           className="text-center mb-10"
         >
           <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Case Studies</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Digital Products That Deliver{" "}
             <span className="text-gradient-cyber">Real Results</span>
           </h2>

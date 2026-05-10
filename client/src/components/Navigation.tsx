@@ -79,13 +79,13 @@ export default function Navigation() {
 
   return (
     <>
-      <Link
-        href="/"
+      <a
+        href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:font-semibold focus:text-sm"
         style={{ background: "#48F2FB", color: "#060A10" }}
       >
         Skip to main content
-      </Link>
+      </a>
 
       <motion.header
         initial={{ y: -80, opacity: 0 }}

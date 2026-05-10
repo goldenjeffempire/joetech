@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const DELAY_MS = 4000;
+const DISMISSED_KEY = "joe-newsletter-dismissed";
+const SUBSCRIBED_KEY = "joe-newsletter-subscribed";
+const DISMISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -45,8 +48,13 @@ export default function NewsletterPopup() {
   const modalRef = useRef<HTMLDivElement>(null);
   const firstFocusRef = useRef<HTMLButtonElement>(null);
 
-  // Show after delay — every session
+  // Show after delay — respects localStorage dismissal (7-day cooldown) and permanent subscription flag
   useEffect(() => {
+    try {
+      if (localStorage.getItem(SUBSCRIBED_KEY)) return;
+      const dismissed = localStorage.getItem(DISMISSED_KEY);
+      if (dismissed && Date.now() - Number(dismissed) < DISMISS_TTL_MS) return;
+    } catch { /* localStorage unavailable — show popup */ }
     const timer = setTimeout(() => setVisible(true), DELAY_MS);
     return () => clearTimeout(timer);
   }, []);
@@ -86,7 +94,10 @@ export default function NewsletterPopup() {
     }
   }, []);
 
-  const dismiss = () => setVisible(false);
+  const dismiss = () => {
+    try { localStorage.setItem(DISMISSED_KEY, String(Date.now())); } catch { /* ignore */ }
+    setVisible(false);
+  };
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -111,6 +122,7 @@ export default function NewsletterPopup() {
       setSubmitError(null);
       setErrorKind(null);
       setDone(true);
+      try { localStorage.setItem(SUBSCRIBED_KEY, "true"); } catch { /* ignore */ }
       setTimeout(() => setVisible(false), 3200);
     },
     onError: (err: unknown) => {

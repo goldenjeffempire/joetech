@@ -71,7 +71,7 @@ export default function WhatsAppButton() {
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="w-7 h-7 rounded-lg flex items-center justify-center text-white/25 hover:text-white/55 hover:bg-white/05 transition-all"
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-white/25 hover:text-white/55 hover:bg-white/5 transition-all"
                 aria-label="Close chat panel"
                 data-testid="whatsapp-float-close"
               >

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo } from "@/hooks/use-seo";
 import { useToast } from "@/hooks/use-toast";
@@ -516,9 +517,9 @@ export default function QualifyPage() {
                 style={{ background: config.gradient, border: "none" }}
                 data-testid="button-contact-us"
               >
-                <a href="/contact">
+                <Link href="/contact">
                   Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
+                </Link>
               </Button>
               <Button
                 variant="outline"

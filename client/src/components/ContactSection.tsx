@@ -143,7 +143,7 @@ export default function ContactSection() {
 
 
   return (
-    <section id="contact" className="relative py-24 lg:py-32 overflow-hidden"
+    <section id="contact" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-3)" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
@@ -157,7 +157,7 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Let's Connect</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Start Your Digital{" "}
             <span className="text-gradient-cyber">Transformation</span>
           </h2>

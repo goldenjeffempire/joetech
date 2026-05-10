@@ -204,21 +204,19 @@ function ServiceShowcase() {
         <div className="flex items-center gap-3">
           <span className="text-white/20 text-xs font-mono">v3.8 production</span>
           <div className="flex gap-1">
-            {[serviceCards.length].fill(0).map === undefined
-              ? null
-              : serviceCards.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveIndex(i)}
-                    className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-                    style={{
-                      background: i === activeIndex
-                        ? serviceCards[i].accent
-                        : "rgba(255,255,255,0.15)",
-                    }}
-                    aria-label={`View ${serviceCards[i].title}`}
-                  />
-                ))}
+            {serviceCards.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                style={{
+                  background: i === activeIndex
+                    ? serviceCards[i].accent
+                    : "rgba(255,255,255,0.15)",
+                }}
+                aria-label={`View ${serviceCards[i].title}`}
+              />
+            ))}
           </div>
         </div>
       </div>

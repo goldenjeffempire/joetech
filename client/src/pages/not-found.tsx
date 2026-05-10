@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import JoeLogo from "@/components/JoeLogo";
 import { useSeo } from "@/hooks/use-seo";
@@ -56,10 +57,10 @@ export default function NotFound() {
           className="bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold tracking-wide gap-2"
           data-testid="button-404-home"
         >
-          <a href="/">
+          <Link href="/">
             <ArrowLeft className="w-4 h-4" />
             Back to Home
-          </a>
+          </Link>
         </Button>
       </motion.div>
     </div>
