@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { apiRequest } from "@/lib/queryClient";
 
-const STORAGE_KEY = "joe_newsletter_dismissed";
 const DELAY_MS = 4000;
 
 const formSchema = z.object({
@@ -24,14 +23,11 @@ export default function NewsletterPopup() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem(STORAGE_KEY);
-    if (dismissed) return;
     const timer = setTimeout(() => setVisible(true), DELAY_MS);
     return () => clearTimeout(timer);
   }, []);
 
   const dismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
     setVisible(false);
   };
 
@@ -49,14 +45,12 @@ export default function NewsletterPopup() {
       }),
     onSuccess: () => {
       setDone(true);
-      localStorage.setItem(STORAGE_KEY, "1");
       setTimeout(() => setVisible(false), 3200);
     },
     onError: (err: any) => {
       const msg = err?.message ?? "";
       if (msg.includes("already subscribed") || msg.includes("duplicate")) {
         setDone(true);
-        localStorage.setItem(STORAGE_KEY, "1");
         setTimeout(() => setVisible(false), 3200);
       }
     },
