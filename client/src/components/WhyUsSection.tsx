@@ -55,7 +55,7 @@ export default function WhyUsSection() {
   return (
     <section
       id="why-us"
-      className="relative py-24 lg:py-32 overflow-hidden"
+      className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-3)" }}
     >
       <div
@@ -82,7 +82,7 @@ export default function WhyUsSection() {
           <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">
             Why Choose Us
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Built Different.
             <br />
             <span

@@ -166,7 +166,7 @@ export default function FAQPage() {
         size="md"
       />
 
-      <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+      <section ref={ref} className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {isInView && faqCategories.map((cat, ci) => {
             const startIndex = globalIndex;

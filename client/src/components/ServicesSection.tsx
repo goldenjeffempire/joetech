@@ -66,7 +66,7 @@ export default function ServicesSection() {
   const { ref, isInView } = useScrollInView();
 
   return (
-    <section id="services" className="relative py-24 lg:py-32 overflow-hidden"
+    <section id="services" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "var(--joe-bg-2)" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
@@ -80,7 +80,7 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">What JOE Technologies Builds</span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
             Enterprise Services for{" "}
             <span style={{
               background: "linear-gradient(135deg, #48F2FB, #E867EA)",

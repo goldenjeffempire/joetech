@@ -67,6 +67,7 @@ export function useSeo({ title, description, canonical, ogImage, noindex, schema
     setMeta("robots", noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1");
     setLink("canonical", canonicalUrl, "canonical");
 
+    setMeta("og:type", "website", "property");
     setMeta("og:title", fullTitle, "property");
     setMeta("og:description", description, "property");
     setMeta("og:url", canonicalUrl, "property");
@@ -75,6 +76,7 @@ export function useSeo({ title, description, canonical, ogImage, noindex, schema
     setMeta("og:image:height", "630", "property");
     setMeta("og:site_name", SITE_NAME, "property");
 
+    setMeta("twitter:card", "summary_large_image");
     setMeta("twitter:title", fullTitle);
     setMeta("twitter:description", description);
     setMeta("twitter:image", ogImageUrl);

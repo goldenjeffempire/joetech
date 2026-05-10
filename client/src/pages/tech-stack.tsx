@@ -105,7 +105,7 @@ export default function TechStackPage() {
         accentColor="#E867EA"
       />
 
-      <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
+      <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-1)" }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat, ci) => (
@@ -151,7 +151,7 @@ export default function TechStackPage() {
         </div>
       </section>
 
-      <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+      <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

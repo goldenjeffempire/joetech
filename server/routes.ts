@@ -51,7 +51,12 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/contacts", async (_req, res) => {
+  app.get("/api/contacts", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
     try {
       const contacts = await storage.getContacts();
       res.json(contacts);
@@ -74,7 +79,12 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/leads", async (_req, res) => {
+  app.get("/api/leads", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
     try {
       const leads = await storage.getLeads();
       res.json(leads);
@@ -97,7 +107,12 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/newsletter", async (_req, res) => {
+  app.get("/api/newsletter", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
     try {
       const subscribers = await storage.getNewsletterSubscribers();
       res.json(subscribers);
@@ -115,18 +130,17 @@ export async function registerRoutes(
     res.send(
 `User-agent: *
 Allow: /
+Disallow: /qualify
+Disallow: /privacy
+Disallow: /terms
+Disallow: /cookies
+Disallow: /api/
 
 User-agent: GPTBot
 Disallow: /
 
 User-agent: ChatGPT-User
 Disallow: /
-
-Disallow: /qualify
-Disallow: /privacy
-Disallow: /terms
-Disallow: /cookies
-Disallow: /api/
 
 Sitemap: https://joetechnologies.io/sitemap.xml
 `

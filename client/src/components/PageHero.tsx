@@ -30,10 +30,10 @@ export default function PageHero({
     : "pt-24 pb-16 lg:pt-32 lg:pb-20";
 
   const titleClass = size === "lg"
-    ? "text-5xl lg:text-7xl"
+    ? "text-4xl sm:text-5xl lg:text-7xl"
     : size === "sm"
-    ? "text-3xl lg:text-5xl"
-    : "text-4xl lg:text-6xl";
+    ? "text-3xl sm:text-4xl lg:text-5xl"
+    : "text-3xl sm:text-4xl lg:text-6xl";
 
   return (
     <section

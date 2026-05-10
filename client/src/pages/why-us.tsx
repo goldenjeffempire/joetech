@@ -113,7 +113,7 @@ export default function WhyUsPage() {
         </div>
       </section>
 
-      <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
+      <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-2)" }}>
         <div className="absolute top-1/2 right-0 w-96 h-96 blur-3xl pointer-events-none"
           style={{ background: "radial-gradient(circle, #48F2FB 0%, transparent 70%)", opacity: "var(--joe-glow-opacity)" }} />
 
@@ -126,7 +126,7 @@ export default function WhyUsPage() {
             className="text-center mb-16"
           >
             <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">What Sets Us Apart</span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               Built Different.{" "}
               <span style={{
                 background: "linear-gradient(135deg, #48F2FB, #E867EA)",
@@ -177,7 +177,7 @@ export default function WhyUsPage() {
         </div>
       </section>
 
-      <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
+      <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "var(--joe-bg-3)" }}>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

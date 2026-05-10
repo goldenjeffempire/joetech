@@ -544,7 +544,7 @@ export default function CustomAIPage() {
               </span>
             </div>
 
-            <h2 className="font-heading font-bold text-4xl lg:text-6xl text-joe-text leading-tight">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-6xl text-joe-text leading-tight">
               Ready to Add Intelligence{" "}
               <span className="text-gradient-green">to Your Business?</span>
             </h2>

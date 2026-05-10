@@ -107,7 +107,7 @@ export default function PrivacyPolicy() {
                 Legal
               </span>
             </div>
-            <h1 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mb-4">
+            <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mb-4">
               Privacy{" "}
               <span
                 style={{

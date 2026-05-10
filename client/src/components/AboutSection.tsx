@@ -131,7 +131,7 @@ export default function AboutSection() {
 
       <section
         id="about"
-        className="relative py-24 lg:py-32 overflow-hidden"
+        className="relative py-20 sm:py-24 lg:py-32 overflow-hidden"
         style={{ background: "var(--joe-bg-1)" }}
       >
         <div
@@ -156,7 +156,7 @@ export default function AboutSection() {
             className="text-center mb-16"
           >
             <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">About the Co-Founders</span>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl text-joe-text mt-3">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               Built by Engineers Who{" "}
               <span className="text-gradient-cyber">Build Products</span>
             </h2>

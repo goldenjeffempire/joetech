@@ -116,7 +116,7 @@ export default function Footer() {
               Ready to Build?
             </div>
 
-            <h2 className="font-heading font-bold text-3xl lg:text-5xl text-joe-text max-w-3xl leading-tight">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text max-w-3xl leading-tight">
               Turn Your Digital Vision Into{" "}
               <span className="text-gradient-cyber">Production Reality</span>
             </h2>

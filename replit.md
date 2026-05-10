@@ -150,6 +150,9 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - **Cookie consent**: GDPR-compliant banner with localStorage persistence
 - **Rate limiting**: `/api/contact` limited to 5 requests per 15 minutes
 - **Honeypot spam protection**: Hidden `website` field silently rejects bots
+- **Admin API protection**: GET `/api/contacts`, `/api/leads`, `/api/newsletter` require `x-api-key: <ADMIN_SECRET>` header; set `ADMIN_SECRET` env var to enable access
+- **SEO meta**: Every page sets `og:type`, `og:title/description/image`, `twitter:card`, `twitter:title/description/image`, canonical URL, and JSON-LD schema
+- **robots.txt**: Scoped disallow rules properly under `User-agent: *`; GPTBot/ChatGPT-User fully blocked
 
 ## Design System
 - **Brand palette**:
