@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: joe_technologies
+      POSTGRES_USER: joe_tech
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U joe_tech -d joe_technologies"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: postgres://joe_tech:${POSTGRES_PASSWORD:-changeme}@db:5432/joe_technologies
+      ADMIN_SECRET: ${ADMIN_SECRET:-}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
