@@ -1,0 +1,578 @@
+import { useState, useCallback, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  LogOut, RefreshCw, Download, Copy, CheckCheck,
+  Mail, Users, MessageSquare, TrendingUp, Eye, EyeOff,
+  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import type { ContactSubmission, LeadSubmission, NewsletterSubscriber } from "@shared/schema";
+
+const SESSION_KEY = "joe-admin-key";
+
+async function adminFetch<T>(url: string, key: string): Promise<T> {
+  const res = await fetch(url, { headers: { "x-api-key": key }, credentials: "include" });
+  if (res.status === 403) throw new Error("403");
+  if (!res.ok) throw new Error(`${res.status}`);
+  return res.json();
+}
+
+function formatDate(d: string) {
+  try {
+    return new Date(d).toLocaleString("en-GB", {
+      day: "2-digit", month: "short", year: "numeric",
+      hour: "2-digit", minute: "2-digit",
+    });
+  } catch { return d; }
+}
+
+function exportCSV(rows: Record<string, unknown>[], name: string) {
+  if (!rows.length) return;
+  const keys = Object.keys(rows[0]);
+  const csv = [
+    keys.join(","),
+    ...rows.map(r =>
+      keys.map(k => `"${String(r[k] ?? "").replace(/"/g, '""')}"`).join(",")
+    ),
+  ].join("\n");
+  const a = Object.assign(document.createElement("a"), {
+    href: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
+    download: name,
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function CopyBtn({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
+      title="Copy"
+      className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-[#48F2FB]/70 hover:text-[#48F2FB]"
+      data-testid={`copy-${text}`}
+    >
+      {copied ? <CheckCheck size={11} /> : <Copy size={11} />}
+    </button>
+  );
+}
+
+function TierBadge({ tier }: { tier: string }) {
+  const s: Record<string, string> = {
+    "Startup":    "bg-slate-700/60   text-slate-300   border-slate-600/50",
+    "High Value": "bg-amber-900/40   text-amber-300   border-amber-600/40",
+    "Enterprise": "bg-[#48F2FB]/10   text-[#48F2FB]   border-[#48F2FB]/30",
+  };
+  return (
+    <span className={`text-xs px-2 py-0.5 rounded-full border font-mono whitespace-nowrap ${s[tier] ?? s["Startup"]}`}>
+      {tier}
+    </span>
+  );
+}
+
+function ScorePill({ score }: { score: number }) {
+  const color = score >= 10 ? "#48F2FB" : score >= 6 ? "#f59e0b" : "#94a3b8";
+  return (
+    <span className="font-mono text-sm font-semibold" style={{ color }}>
+      {score}<span className="text-white/25 font-normal">/13</span>
+    </span>
+  );
+}
+
+function SkeletonRow({ cols }: { cols: number }) {
+  return (
+    <tr>
+      {Array.from({ length: cols }).map((_, i) => (
+        <td key={i} className="px-4 py-3">
+          <div className="h-3 rounded bg-white/5 animate-pulse" style={{ width: `${60 + (i * 17) % 40}%` }} />
+        </td>
+      ))}
+    </tr>
+  );
+}
+
+function EmptyState({ label }: { label: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <Inbox className="text-white/15 mb-3" size={40} />
+      <p className="text-joe-text/35 text-sm font-mono">no {label} yet</p>
+    </div>
+  );
+}
+
+function TableWrapper({
+  title, count, icon: Icon, accentColor, loading, refetching, onRefresh, onExport, children,
+}: {
+  title: string; count?: number; icon: React.ElementType; accentColor: string;
+  loading: boolean; refetching: boolean; onRefresh: () => void; onExport: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border overflow-hidden" style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "var(--joe-card-border)" }}>
+        <div className="flex items-center gap-2.5">
+          <Icon size={16} style={{ color: accentColor }} />
+          <span className="font-mono text-sm text-joe-text/80">{title}</span>
+          {count !== undefined && (
+            <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/40 font-mono">{count}</span>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost" size="sm" onClick={onRefresh} disabled={refetching}
+            data-testid={`button-refresh-${title.toLowerCase()}`}
+            className="text-joe-text/40 hover:text-joe-text gap-1.5 text-xs font-mono h-8 px-3"
+          >
+            <RefreshCw size={12} className={refetching ? "animate-spin" : ""} />
+            <span className="hidden sm:inline">Refresh</span>
+          </Button>
+          <Button
+            variant="ghost" size="sm" onClick={onExport}
+            data-testid={`button-export-${title.toLowerCase()}`}
+            className="text-joe-text/40 hover:text-joe-text gap-1.5 text-xs font-mono h-8 px-3"
+          >
+            <Download size={12} />
+            <span className="hidden sm:inline">CSV</span>
+          </Button>
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        {loading
+          ? <table className="w-full text-sm"><tbody>{Array.from({ length: 4 }).map((_, i) => <SkeletonRow key={i} cols={6} />)}</tbody></table>
+          : children}
+      </div>
+    </div>
+  );
+}
+
+function Th({ children }: { children: React.ReactNode }) {
+  return (
+    <th className="px-4 py-3 text-left text-xs font-mono text-joe-text/40 whitespace-nowrap border-b"
+      style={{ borderColor: "var(--joe-card-border)" }}>
+      {children}
+    </th>
+  );
+}
+
+function Td({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <td className={`px-4 py-3 text-sm text-joe-text/75 align-top ${className}`}>{children}</td>
+  );
+}
+
+function ExpandableMessage({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  const short = text.length > 90;
+  return (
+    <span>
+      {open || !short ? text : text.slice(0, 90) + "…"}
+      {short && (
+        <button onClick={() => setOpen(o => !o)} className="ml-1 text-[#48F2FB]/60 hover:text-[#48F2FB] inline-flex items-center">
+          {open ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+        </button>
+      )}
+    </span>
+  );
+}
+
+function ContactsTable({ data, loading, refetching, refetch }: {
+  data?: ContactSubmission[]; loading: boolean; refetching: boolean; refetch: () => void;
+}) {
+  return (
+    <TableWrapper
+      title="Contact Submissions" count={data?.length} icon={MessageSquare} accentColor="#48F2FB"
+      loading={loading} refetching={refetching} onRefresh={refetch}
+      onExport={() => exportCSV((data ?? []) as unknown as Record<string, unknown>[], "contacts.csv")}
+    >
+      {!data?.length ? <EmptyState label="contacts" /> : (
+        <table className="w-full text-sm">
+          <thead>
+            <tr>
+              <Th>Date</Th><Th>Name</Th><Th>Email</Th><Th>Company</Th><Th>Service</Th><Th>Message</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...data].reverse().map((c, i) => (
+              <tr key={c.id} className={`group border-b transition-colors hover:bg-white/[0.02] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                style={{ borderColor: "var(--joe-card-border)" }}>
+                <Td><span className="font-mono text-xs text-joe-text/40 whitespace-nowrap">{formatDate(c.createdAt)}</span></Td>
+                <Td><span className="font-medium text-joe-text whitespace-nowrap">{c.name}</span></Td>
+                <Td>
+                  <span className="flex items-center whitespace-nowrap">
+                    <span className="text-[#48F2FB]/80">{c.email}</span>
+                    <CopyBtn text={c.email} />
+                  </span>
+                </Td>
+                <Td>{c.company ?? <span className="text-joe-text/25">—</span>}</Td>
+                <Td>
+                  {c.service
+                    ? <span className="text-xs px-2 py-0.5 rounded-full bg-[#48F2FB]/10 text-[#48F2FB]/80 border border-[#48F2FB]/20 whitespace-nowrap">{c.service}</span>
+                    : <span className="text-joe-text/25">—</span>}
+                </Td>
+                <Td className="max-w-[280px]"><ExpandableMessage text={c.message} /></Td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </TableWrapper>
+  );
+}
+
+function LeadsTable({ data, loading, refetching, refetch }: {
+  data?: LeadSubmission[]; loading: boolean; refetching: boolean; refetch: () => void;
+}) {
+  return (
+    <TableWrapper
+      title="Lead Submissions" count={data?.length} icon={TrendingUp} accentColor="#E867EA"
+      loading={loading} refetching={refetching} onRefresh={refetch}
+      onExport={() => exportCSV((data ?? []) as unknown as Record<string, unknown>[], "leads.csv")}
+    >
+      {!data?.length ? <EmptyState label="leads" /> : (
+        <table className="w-full text-sm">
+          <thead>
+            <tr>
+              <Th>Date</Th><Th>Name</Th><Th>Email</Th><Th>Company</Th><Th>Service</Th>
+              <Th>Budget</Th><Th>Timeline</Th><Th>Score</Th><Th>Tier</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...data].reverse().map((l, i) => (
+              <tr key={l.id} className={`group border-b transition-colors hover:bg-white/[0.02] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                style={{ borderColor: "var(--joe-card-border)" }}>
+                <Td><span className="font-mono text-xs text-joe-text/40 whitespace-nowrap">{formatDate(l.createdAt)}</span></Td>
+                <Td><span className="font-medium text-joe-text whitespace-nowrap">{l.name}</span></Td>
+                <Td>
+                  <span className="flex items-center whitespace-nowrap">
+                    <span className="text-[#E867EA]/80">{l.email}</span>
+                    <CopyBtn text={l.email} />
+                  </span>
+                </Td>
+                <Td>{l.company ?? <span className="text-joe-text/25">—</span>}</Td>
+                <Td><span className="text-xs px-2 py-0.5 rounded-full bg-[#E867EA]/10 text-[#E867EA]/80 border border-[#E867EA]/20 whitespace-nowrap">{l.serviceType}</span></Td>
+                <Td><span className="text-joe-text/60 whitespace-nowrap text-xs">{l.budget}</span></Td>
+                <Td><span className="text-joe-text/60 whitespace-nowrap text-xs">{l.timeline}</span></Td>
+                <Td><ScorePill score={l.score} /></Td>
+                <Td><TierBadge tier={l.tier} /></Td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </TableWrapper>
+  );
+}
+
+function NewsletterTable({ data, loading, refetching, refetch }: {
+  data?: NewsletterSubscriber[]; loading: boolean; refetching: boolean; refetch: () => void;
+}) {
+  return (
+    <TableWrapper
+      title="Newsletter Subscribers" count={data?.length} icon={Mail} accentColor="#00ff88"
+      loading={loading} refetching={refetching} onRefresh={refetch}
+      onExport={() => exportCSV((data ?? []) as unknown as Record<string, unknown>[], "newsletter.csv")}
+    >
+      {!data?.length ? <EmptyState label="subscribers" /> : (
+        <table className="w-full text-sm">
+          <thead>
+            <tr>
+              <Th>Date</Th><Th>Email</Th><Th>Source</Th><Th>Consent</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...data].reverse().map((n, i) => (
+              <tr key={n.id} className={`group border-b transition-colors hover:bg-white/[0.02] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                style={{ borderColor: "var(--joe-card-border)" }}>
+                <Td><span className="font-mono text-xs text-joe-text/40 whitespace-nowrap">{formatDate(n.createdAt)}</span></Td>
+                <Td>
+                  <span className="flex items-center whitespace-nowrap">
+                    <span className="text-[#00ff88]/80">{n.email}</span>
+                    <CopyBtn text={n.email} />
+                  </span>
+                </Td>
+                <Td>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/50 border border-white/10 font-mono">
+                    {n.source}
+                  </span>
+                </Td>
+                <Td>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#00ff88]/10 text-[#00ff88]/80 border border-[#00ff88]/20 font-mono">
+                    {n.consentGiven === "yes" ? "✓ given" : n.consentGiven}
+                  </span>
+                </Td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </TableWrapper>
+  );
+}
+
+function LoginGate({ onLogin }: { onLogin: (key: string) => void }) {
+  const [key, setKey] = useState("");
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!key.trim()) return;
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch("/api/contacts", { headers: { "x-api-key": key.trim() }, credentials: "include" });
+      if (res.status === 403) { setError(true); }
+      else { onLogin(key.trim()); }
+    } catch { setError(true); }
+    setLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "var(--joe-bg-solid)" }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="w-full max-w-sm">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#48F2FB]/10 border border-[#48F2FB]/20 mb-5">
+            <ShieldCheck className="text-[#48F2FB]" size={26} />
+          </div>
+          <h1 className="text-2xl font-bold text-joe-text font-heading tracking-tight">Admin Dashboard</h1>
+          <p className="text-joe-text/40 text-sm mt-1.5 font-mono">JOE Technologies — restricted access</p>
+        </div>
+
+        <div className="rounded-2xl border p-6" style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+          <form onSubmit={submit} className="space-y-4">
+            <div>
+              <label className="text-joe-text/60 text-xs font-mono mb-2 block uppercase tracking-widest">
+                Admin Secret
+              </label>
+              <div className="relative">
+                <Input
+                  type={show ? "text" : "password"}
+                  value={key}
+                  onChange={e => { setKey(e.target.value); setError(false); }}
+                  placeholder="Enter your admin secret key"
+                  autoFocus
+                  autoComplete="current-password"
+                  className={`pr-10 bg-black/30 border-white/10 text-joe-text placeholder:text-white/20 font-mono text-sm focus-visible:ring-[#48F2FB]/30 focus-visible:border-[#48F2FB]/40 ${error ? "border-red-500/50 focus-visible:border-red-500/50" : ""}`}
+                  data-testid="input-admin-secret"
+                />
+                <button
+                  type="button" onClick={() => setShow(s => !s)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+                >
+                  {show ? <EyeOff size={14} /> : <Eye size={14} />}
+                </button>
+              </div>
+              <AnimatePresence>
+                {error && (
+                  <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
+                    className="text-red-400 text-xs mt-2 flex items-center gap-1.5 font-mono">
+                    <AlertCircle size={11} /> Invalid admin secret
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+            <Button
+              type="submit" disabled={loading || !key.trim()}
+              data-testid="button-admin-login"
+              className="w-full font-mono text-sm h-10 bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] font-semibold hover:opacity-90 transition-opacity disabled:opacity-40"
+            >
+              {loading ? "Verifying…" : "Enter Dashboard →"}
+            </Button>
+          </form>
+        </div>
+
+        <p className="text-center text-joe-text/20 text-xs font-mono mt-5">
+          Session ends when tab is closed
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
+type Tab = "contacts" | "leads" | "newsletter";
+
+export default function AdminPage() {
+  useEffect(() => { document.title = "Admin — JOE Technologies"; }, []);
+
+  const stored = typeof window !== "undefined" ? sessionStorage.getItem(SESSION_KEY) : null;
+  const [adminKey, setAdminKey] = useState<string | null>(stored);
+  const [tab, setTab] = useState<Tab>("contacts");
+
+  const handleLogin = useCallback((key: string) => {
+    sessionStorage.setItem(SESSION_KEY, key);
+    setAdminKey(key);
+  }, []);
+
+  const handleLogout = useCallback(() => {
+    sessionStorage.removeItem(SESSION_KEY);
+    setAdminKey(null);
+  }, []);
+
+  const contactsQ = useQuery<ContactSubmission[]>({
+    queryKey: ["/api/contacts", adminKey],
+    queryFn: () => adminFetch("/api/contacts", adminKey!),
+    enabled: !!adminKey,
+    retry: false,
+  });
+
+  const leadsQ = useQuery<LeadSubmission[]>({
+    queryKey: ["/api/leads", adminKey],
+    queryFn: () => adminFetch("/api/leads", adminKey!),
+    enabled: !!adminKey,
+    retry: false,
+  });
+
+  const newsletterQ = useQuery<NewsletterSubscriber[]>({
+    queryKey: ["/api/newsletter", adminKey],
+    queryFn: () => adminFetch("/api/newsletter", adminKey!),
+    enabled: !!adminKey,
+    retry: false,
+  });
+
+  if (contactsQ.error?.message === "403" && adminKey) {
+    sessionStorage.removeItem(SESSION_KEY);
+    setAdminKey(null);
+  }
+
+  if (!adminKey) return <LoginGate onLogin={handleLogin} />;
+
+  const tabs: { id: Tab; label: string; icon: React.ElementType; count?: number }[] = [
+    { id: "contacts",   label: "Contacts",   icon: MessageSquare, count: contactsQ.data?.length },
+    { id: "leads",      label: "Leads",      icon: TrendingUp,    count: leadsQ.data?.length },
+    { id: "newsletter", label: "Newsletter", icon: Mail,          count: newsletterQ.data?.length },
+  ];
+
+  const statCards = [
+    { label: "Total Contacts",   value: contactsQ.data?.length,   icon: MessageSquare, color: "#48F2FB", loading: contactsQ.isLoading },
+    { label: "Total Leads",      value: leadsQ.data?.length,      icon: TrendingUp,    color: "#E867EA", loading: leadsQ.isLoading },
+    { label: "Subscribers",      value: newsletterQ.data?.length, icon: Users,         color: "#00ff88", loading: newsletterQ.isLoading },
+  ];
+
+  const enterpriseLeads = leadsQ.data?.filter(l => l.tier === "Enterprise").length ?? 0;
+  const highValueLeads  = leadsQ.data?.filter(l => l.tier === "High Value").length ?? 0;
+
+  return (
+    <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
+      {/* Sticky header */}
+      <div className="sticky top-0 z-40 border-b backdrop-blur-md"
+        style={{ borderColor: "var(--joe-card-border)", background: "var(--joe-nav-bg)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <ShieldCheck size={16} className="text-[#48F2FB]" />
+            <span className="font-mono text-sm text-joe-text/70">admin</span>
+            <span className="text-joe-text/20 font-mono text-xs hidden sm:inline">// joetechnologies.io</span>
+          </div>
+          <Button
+            variant="ghost" size="sm" onClick={handleLogout}
+            data-testid="button-logout"
+            className="text-joe-text/40 hover:text-joe-text gap-1.5 font-mono text-xs h-8"
+          >
+            <LogOut size={12} /> Sign out
+          </Button>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+        {/* Heading */}
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-joe-text font-heading tracking-tight">
+            Dashboard
+          </h1>
+          <p className="text-joe-text/40 text-sm font-mono mt-1">
+            All submissions and lead data for JOE Technologies
+          </p>
+        </div>
+
+        {/* Stats row */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {statCards.map(s => (
+            <div key={s.label} className="rounded-xl border p-4"
+              style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+              <div className="flex items-center gap-2 mb-2">
+                <s.icon size={13} style={{ color: s.color }} />
+                <span className="text-joe-text/40 text-xs font-mono">{s.label}</span>
+              </div>
+              {s.loading
+                ? <div className="h-7 w-12 bg-white/5 rounded animate-pulse" />
+                : <div className="text-2xl font-bold font-heading" style={{ color: s.color }}>{s.value ?? 0}</div>}
+            </div>
+          ))}
+          {/* Bonus: enterprise count */}
+          <div className="rounded-xl border p-4" style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp size={13} className="text-amber-400" />
+              <span className="text-joe-text/40 text-xs font-mono">Enterprise / High</span>
+            </div>
+            {leadsQ.isLoading
+              ? <div className="h-7 w-16 bg-white/5 rounded animate-pulse" />
+              : <div className="text-2xl font-bold font-heading text-amber-400">
+                  {enterpriseLeads}
+                  <span className="text-amber-400/40 text-lg font-normal">/{enterpriseLeads + highValueLeads}</span>
+                </div>}
+          </div>
+        </div>
+
+        {/* Tab nav */}
+        <div className="flex gap-1 rounded-xl p-1 w-fit border"
+          style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+          {tabs.map(t => (
+            <button
+              key={t.id} onClick={() => setTab(t.id)}
+              data-testid={`tab-${t.id}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono transition-all duration-200 ${
+                tab === t.id
+                  ? "text-[#060A10] font-semibold shadow-sm"
+                  : "text-joe-text/45 hover:text-joe-text/70"
+              }`}
+              style={tab === t.id ? { background: "linear-gradient(135deg, #48F2FB 0%, #E867EA 100%)" } : {}}
+            >
+              <t.icon size={13} />
+              {t.label}
+              {t.count !== undefined && (
+                <span className={`text-xs px-1.5 py-0.5 rounded-full font-mono ${tab === t.id ? "bg-black/20 text-[#060A10]" : "bg-white/8 text-joe-text/30"}`}>
+                  {t.count}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Tables */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tab}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+          >
+            {tab === "contacts" && (
+              <ContactsTable
+                data={contactsQ.data} loading={contactsQ.isLoading}
+                refetching={contactsQ.isFetching && !contactsQ.isLoading}
+                refetch={() => contactsQ.refetch()}
+              />
+            )}
+            {tab === "leads" && (
+              <LeadsTable
+                data={leadsQ.data} loading={leadsQ.isLoading}
+                refetching={leadsQ.isFetching && !leadsQ.isLoading}
+                refetch={() => leadsQ.refetch()}
+              />
+            )}
+            {tab === "newsletter" && (
+              <NewsletterTable
+                data={newsletterQ.data} loading={newsletterQ.isLoading}
+                refetching={newsletterQ.isFetching && !newsletterQ.isLoading}
+                refetch={() => newsletterQ.refetch()}
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}

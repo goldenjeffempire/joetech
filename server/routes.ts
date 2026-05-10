@@ -131,6 +131,7 @@ export async function registerRoutes(
 `User-agent: *
 Allow: /
 Disallow: /qualify
+Disallow: /admin
 Disallow: /privacy
 Disallow: /terms
 Disallow: /cookies

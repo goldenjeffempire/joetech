@@ -33,6 +33,7 @@ const ProcessPage = lazy(() => import("@/pages/process"));
 const TechStackPage = lazy(() => import("@/pages/tech-stack"));
 const FAQPage = lazy(() => import("@/pages/faq"));
 const QualifyPage = lazy(() => import("@/pages/qualify"));
+const AdminPage = lazy(() => import("@/pages/admin"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -79,6 +80,7 @@ function Router() {
         <Route path="/faq" component={FAQPage} />
         <Route path="/contact" component={Contact} />
         <Route path="/qualify" component={QualifyPage} />
+        <Route path="/admin" component={AdminPage} />
         <Route path="/privacy" component={PrivacyPolicy} />
         <Route path="/terms" component={TermsOfService} />
         <Route path="/cookies" component={CookiePolicy} />
