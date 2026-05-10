@@ -1,8 +1,26 @@
 services:
   - type: web
-    name: joetech
+    name: joe-technologies
     env: node
+    plan: free
     buildCommand: npm run build
     startCommand: node ./dist/index.cjs
-    healthCheckPath: /ping
+    healthCheckPath: /api/health
     autoDeploy: false
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: joe-technologies-db
+          property: connectionString
+      - key: ADMIN_SECRET
+        sync: false
+
+databases:
+  - name: joe-technologies-db
+    databaseName: joe_technologies
+    user: joe_tech
+    plan: free
