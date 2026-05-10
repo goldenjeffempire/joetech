@@ -6,8 +6,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Layout from "@/components/Layout";
-import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
+
+const Home = lazy(() => import("@/pages/home"));
 
 const About = lazy(() => import("@/pages/about"));
 const ServicesPage = lazy(() => import("@/pages/services"));
@@ -37,7 +38,7 @@ function ScrollToTop() {
   const [location] = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [location]);
 
   return null;

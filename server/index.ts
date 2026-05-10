@@ -132,6 +132,9 @@ if (isProduction) {
 // registered after the socket is open. The readiness gate above holds any
 // request that arrives before this block completes, then releases them.
 (async () => {
+  const { runMigrations } = await import("./db");
+  await runMigrations();
+
   const { registerRoutes } = await import("./routes");
   await registerRoutes(httpServer, app);
 
