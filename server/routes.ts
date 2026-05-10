@@ -143,13 +143,13 @@ Disallow: /
 User-agent: ChatGPT-User
 Disallow: /
 
-Sitemap: https://joetechnologies.io/sitemap.xml
+Sitemap: https://joetech.onrender.com/sitemap.xml
 `
     );
   });
 
   app.get("/sitemap.xml", (_req, res) => {
-    const BASE = "https://joetechnologies.io";
+    const BASE = "https://joetech.onrender.com";
     const now = new Date().toISOString().split("T")[0];
 
     const pages = [

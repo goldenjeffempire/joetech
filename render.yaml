@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: joe-technologies
+    name: joetech
     env: node
     plan: free
     buildCommand: npm install --include=dev && npm run build
@@ -16,13 +16,13 @@ services:
         value: 5000
       - key: DATABASE_URL
         fromDatabase:
-          name: joe-technologies-db
+          name: joetech-db
           property: connectionString
       - key: ADMIN_SECRET
         sync: false
 
 databases:
-  - name: joe-technologies-db
+  - name: joetech-db
     databaseName: joe_technologies
     user: joe_tech
     plan: free
