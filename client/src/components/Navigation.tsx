@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Smartphone, MonitorSmartphone, Workflow, Palette, Brain, Building2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -77,6 +77,15 @@ export default function Navigation() {
 
   const isServicesActive = location.startsWith("/services");
 
+  const handleServicesKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setServicesOpen((prev) => !prev);
+    } else if (e.key === "Escape") {
+      setServicesOpen(false);
+    }
+  }, []);
+
   return (
     <>
       <a
@@ -153,6 +162,8 @@ export default function Navigation() {
                   className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isServicesActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
                   style={isServicesActive ? { color: "#48F2FB" } : {}}
                   aria-expanded={servicesOpen}
+                  aria-haspopup="true"
+                  onKeyDown={handleServicesKeyDown}
                   data-testid="button-nav-services-dropdown"
                 >
                   Services

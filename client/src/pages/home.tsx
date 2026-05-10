@@ -94,8 +94,8 @@ const previewCaseStudies = [
     description: "Designed an AI-powered digital system that captures leads, qualifies requests, routes work to teams, and surfaces performance insights in real time.",
     stack: ["Python", "LLMs", "FastAPI", "React", "PostgreSQL", "Cloud"],
     metrics: [
-      { icon: TrendingUp, value: "91%", label: "Prediction accuracy" },
-      { icon: Clock, value: "38%", label: "Readmission reduction" },
+      { icon: TrendingUp, value: "91%", label: "AI routing accuracy" },
+      { icon: Clock, value: "68%", label: "Faster processing" },
       { icon: Zap, value: "$4.6M", label: "Annual savings" },
     ],
     accent: "#00ff88",

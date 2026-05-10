@@ -87,6 +87,15 @@ function markReady() {
   _setupComplete = true;
   _waitQueue.splice(0).forEach((fn) => fn());
 }
+
+// Queue all non-ping requests until setup is complete.
+// Without this middleware, requests arriving during startup (runMigrations +
+// registerRoutes + Vite setup) would fall through with no matching route and
+// return a 404 or hang — causing a blank page on first load.
+app.use((req, _res, next) => {
+  if (_setupComplete || req.path === "/ping") return next();
+  _waitQueue.push(next);
+});
 // ────────────────────────────────────────────────────────────────────────────
 
 // ALWAYS serve the app on the port specified in the environment variable PORT.

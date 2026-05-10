@@ -178,7 +178,6 @@ export default function ContactSection() {
               const Icon = info.icon;
               const content = (
                 <div
-                  key={i}
                   className="flex items-center gap-4 p-4 rounded-xl border hover-elevate transition-all duration-200"
                   style={{
                     background: "var(--joe-card)",

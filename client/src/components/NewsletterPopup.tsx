@@ -59,6 +59,25 @@ export default function NewsletterPopup() {
     return () => clearTimeout(timer);
   }, []);
 
+  const dismiss = useCallback(() => {
+    try { localStorage.setItem(DISMISSED_KEY, String(Date.now())); } catch { /* ignore */ }
+    setVisible(false);
+  }, []);
+
+  const trapFocus = useCallback((e: KeyboardEvent) => {
+    if (!modalRef.current) return;
+    const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }, []);
+
   // Body scroll lock
   useEffect(() => {
     if (visible) {
@@ -78,26 +97,7 @@ export default function NewsletterPopup() {
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [visible]);
-
-  const trapFocus = useCallback((e: KeyboardEvent) => {
-    if (!modalRef.current) return;
-    const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  }, []);
-
-  const dismiss = () => {
-    try { localStorage.setItem(DISMISSED_KEY, String(Date.now())); } catch { /* ignore */ }
-    setVisible(false);
-  };
+  }, [visible, dismiss, trapFocus]);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
