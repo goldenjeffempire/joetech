@@ -70,7 +70,7 @@ const LIVE_METRICS = [
 
 export default function SimulationDashboard() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
   const logRef = useRef<HTMLDivElement>(null);
 
   const [logs, setLogs] = useState(() => Array.from({ length: 6 }, () => nextLog()));

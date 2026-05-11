@@ -197,7 +197,7 @@ function StepCard({
 
 export default function WorkflowVisualization() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   const [activeWorkflow, setActiveWorkflow] = useState(0);
   const [activeStep, setActiveStep] = useState(-1);

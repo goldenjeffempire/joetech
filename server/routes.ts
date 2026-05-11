@@ -1,9 +1,18 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema, insertLeadSchema, insertNewsletterSchema } from "@shared/schema";
 import { z } from "zod";
 import rateLimit from "express-rate-limit";
+
+function requireAdmin(req: Request, res: Response, next: NextFunction) {
+  const secret = process.env.ADMIN_SECRET;
+  const provided = req.headers["x-api-key"];
+  if (!secret || provided !== secret) {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+  next();
+}
 
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -59,12 +68,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/contacts", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/contacts", requireAdmin, async (_req, res) => {
     try {
       const contacts = await storage.getContacts();
       res.json(contacts);
@@ -87,12 +91,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/leads", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/leads", requireAdmin, async (_req, res) => {
     try {
       const leads = await storage.getLeads();
       res.json(leads);
@@ -120,12 +119,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/newsletter", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/newsletter", requireAdmin, async (_req, res) => {
     try {
       const subscribers = await storage.getNewsletterSubscribers();
       res.json(subscribers);
@@ -134,12 +128,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/newsletter/export", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/newsletter/export", requireAdmin, async (_req, res) => {
     try {
       const subscribers = await storage.getNewsletterSubscribers();
       const dateStamp = new Date().toISOString().slice(0, 10);
@@ -186,12 +175,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/analytics/timeline", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/analytics/timeline", requireAdmin, async (req, res) => {
     try {
       const raw = parseInt(String(req.query.days ?? "30"), 10);
       const days = Number.isFinite(raw) ? Math.min(Math.max(raw, 7), 90) : 30;
@@ -203,12 +187,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/analytics/referrers", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/analytics/referrers", requireAdmin, async (_req, res) => {
     try {
       const stats = await storage.getReferrerStats();
       res.json(stats);
@@ -218,12 +197,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/analytics/conversions", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/analytics/conversions", requireAdmin, async (_req, res) => {
     try {
       const data = await storage.getTopConvertingPages();
       res.json(data);
@@ -233,12 +207,7 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/analytics", async (req, res) => {
-    const secret = process.env.ADMIN_SECRET;
-    const provided = req.headers["x-api-key"];
-    if (!secret || provided !== secret) {
-      return res.status(403).json({ message: "Forbidden" });
-    }
+  app.get("/api/analytics", requireAdmin, async (_req, res) => {
     try {
       const stats = await storage.getPageViewStats();
       res.json(stats);

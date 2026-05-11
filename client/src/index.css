@@ -405,9 +405,9 @@
     background-clip: text;
   }
 
-  /* Cyan → Aqua */
+  /* Green → Cyan */
   .text-gradient-green {
-    background: linear-gradient(135deg, #48F2FB, #4EA3BA);
+    background: linear-gradient(135deg, #00ff88, #48F2FB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

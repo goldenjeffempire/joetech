@@ -106,7 +106,8 @@ function NeuralBackground() {
       });
     }
 
-    let frame: number;
+    let frame: number | null = null;
+
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       nodes.forEach((n) => {
@@ -139,9 +140,23 @@ function NeuralBackground() {
       }
       frame = requestAnimationFrame(draw);
     };
-    draw();
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (frame === null) frame = requestAnimationFrame(draw);
+        } else {
+          if (frame !== null) { cancelAnimationFrame(frame); frame = null; }
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+    frame = requestAnimationFrame(draw);
+
     return () => {
-      cancelAnimationFrame(frame);
+      if (frame !== null) cancelAnimationFrame(frame);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, []);
