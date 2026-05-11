@@ -45,6 +45,20 @@ function ScrollToTop() {
   return null;
 }
 
+function PageViewTracker() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    fetch("/api/analytics/pageview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ path: location, referrer: document.referrer || null }),
+    }).catch(() => {});
+  }, [location]);
+
+  return null;
+}
+
 function PageLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--joe-bg-solid)" }}>
@@ -97,6 +111,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <ScrollToTop />
+          <PageViewTracker />
           <Layout>
             <Router />
           </Layout>

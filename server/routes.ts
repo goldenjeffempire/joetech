@@ -29,6 +29,14 @@ const newsletterLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+const analyticsLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 120,
+  standardHeaders: true,
+  legacyHeaders: false,
+  skip: () => false,
+});
+
 export async function registerRoutes(
   httpServer: Server,
   app: Express
@@ -117,6 +125,37 @@ export async function registerRoutes(
       const subscribers = await storage.getNewsletterSubscribers();
       res.json(subscribers);
     } catch (err) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.post("/api/analytics/pageview", analyticsLimiter, async (req, res) => {
+    try {
+      const { path, referrer } = req.body ?? {};
+      if (typeof path !== "string" || !path.startsWith("/")) {
+        return res.status(400).json({ message: "Invalid path" });
+      }
+      const safePath = path.slice(0, 200);
+      const safeReferrer = typeof referrer === "string" ? referrer.slice(0, 500) : null;
+      await storage.trackPageView(safePath, safeReferrer);
+      res.json({ ok: true });
+    } catch (err) {
+      console.error("Analytics error:", err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/analytics", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    try {
+      const stats = await storage.getPageViewStats();
+      res.json(stats);
+    } catch (err) {
+      console.error("Analytics fetch error:", err);
       res.status(500).json({ message: "Internal server error" });
     }
   });

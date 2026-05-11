@@ -71,6 +71,15 @@ export async function runMigrations(): Promise<void> {
         source text NOT NULL DEFAULT 'popup',
         created_at text NOT NULL
       );
+
+      CREATE TABLE IF NOT EXISTS page_views (
+        id varchar(255) PRIMARY KEY,
+        path text NOT NULL,
+        referrer text,
+        viewed_at text NOT NULL
+      );
+
+      CREATE INDEX IF NOT EXISTS page_views_path_idx ON page_views (path);
     `);
     console.log("[db] Schema verified — all tables present");
   } catch (err) {

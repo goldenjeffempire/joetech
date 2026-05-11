@@ -95,6 +95,15 @@ export const insertNewsletterSchema = createInsertSchema(newsletterSubscribers).
 export type InsertNewsletter = z.infer<typeof insertNewsletterSchema>;
 export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
 
+export const pageViews = pgTable("page_views", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  path: text("path").notNull(),
+  referrer: text("referrer"),
+  viewedAt: text("viewed_at").notNull(),
+});
+
+export type PageViewStat = { path: string; views: number };
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;

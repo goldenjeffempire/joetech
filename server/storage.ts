@@ -7,13 +7,15 @@ import {
   type InsertLead,
   type InsertNewsletter,
   type NewsletterSubscriber,
+  type PageViewStat,
   users,
   contactSubmissions,
   leadSubmissions,
   newsletterSubscribers,
+  pageViews,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 import { db } from "./db";
 
 export interface IStorage {
@@ -26,6 +28,8 @@ export interface IStorage {
   getLeads(): Promise<LeadSubmission[]>;
   createNewsletterSubscriber(data: InsertNewsletter): Promise<{ subscriber: NewsletterSubscriber; alreadyExists: boolean }>;
   getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
+  trackPageView(path: string, referrer?: string | null): Promise<void>;
+  getPageViewStats(): Promise<PageViewStat[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -127,6 +131,27 @@ export class DatabaseStorage implements IStorage {
 
   async getNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
     return db.select().from(newsletterSubscribers).orderBy(desc(newsletterSubscribers.createdAt));
+  }
+
+  async trackPageView(path: string, referrer?: string | null): Promise<void> {
+    await db.insert(pageViews).values({
+      id: randomUUID(),
+      path,
+      referrer: referrer ?? null,
+      viewedAt: new Date().toISOString(),
+    });
+  }
+
+  async getPageViewStats(): Promise<PageViewStat[]> {
+    const rows = await db
+      .select({
+        path: pageViews.path,
+        views: sql<number>`cast(count(*) as int)`,
+      })
+      .from(pageViews)
+      .groupBy(pageViews.path)
+      .orderBy(sql`count(*) desc`);
+    return rows.map(r => ({ path: r.path, views: r.views }));
   }
 }
 

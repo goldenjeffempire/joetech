@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LogOut, RefreshCw, Download, Copy, CheckCheck,
   Mail, Users, MessageSquare, TrendingUp, Eye, EyeOff,
-  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp,
+  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp, BarChart2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { ContactSubmission, LeadSubmission, NewsletterSubscriber } from "@shared/schema";
+import type { ContactSubmission, LeadSubmission, NewsletterSubscriber, PageViewStat } from "@shared/schema";
 
 const SESSION_KEY = "joe-admin-key";
 
@@ -311,6 +311,64 @@ function NewsletterTable({ data, loading, refetching, refetch }: {
   );
 }
 
+function AnalyticsPanel({ data, loading, refetching, refetch }: {
+  data?: PageViewStat[]; loading: boolean; refetching: boolean; refetch: () => void;
+}) {
+  const total = data?.reduce((s, d) => s + d.views, 0) ?? 0;
+  const max = Math.max(...(data ?? []).map(d => d.views), 1);
+  return (
+    <TableWrapper
+      title="Page Views" count={total} icon={BarChart2} accentColor="#f59e0b"
+      loading={loading} refetching={refetching} onRefresh={refetch}
+      onExport={() => exportCSV((data ?? []) as unknown as Record<string, unknown>[], "analytics.csv")}
+    >
+      {!data?.length ? <EmptyState label="analytics data" /> : (
+        <table className="w-full text-sm">
+          <thead>
+            <tr>
+              <Th>#</Th><Th>Page</Th><Th>Views</Th><Th>Relative Traffic</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, i) => (
+              <tr key={row.path} className={`group border-b transition-colors hover:bg-white/[0.02] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                style={{ borderColor: "var(--joe-card-border)" }}
+                data-testid={`row-analytics-${i}`}>
+                <Td><span className="font-mono text-xs text-joe-text/25">{i + 1}</span></Td>
+                <Td><span className="font-mono text-xs text-[#f59e0b]/80 whitespace-nowrap">{row.path}</span></Td>
+                <Td>
+                  <span className="font-mono font-semibold text-joe-text">
+                    {row.views.toLocaleString()}
+                  </span>
+                  <span className="ml-1.5 text-xs text-joe-text/30 font-mono">
+                    ({Math.round((row.views / total) * 100)}%)
+                  </span>
+                </Td>
+                <Td className="w-52">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "var(--joe-card-border)" }}>
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${(row.views / max) * 100}%`,
+                          background: "linear-gradient(90deg, #f59e0b 0%, #E867EA 100%)",
+                        }}
+                      />
+                    </div>
+                    <span className="text-xs font-mono text-joe-text/30 w-8 text-right shrink-0">
+                      {Math.round((row.views / max) * 100)}%
+                    </span>
+                  </div>
+                </Td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </TableWrapper>
+  );
+}
+
 function LoginGate({ onLogin }: { onLogin: (key: string) => void }) {
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
@@ -392,7 +450,7 @@ function LoginGate({ onLogin }: { onLogin: (key: string) => void }) {
   );
 }
 
-type Tab = "contacts" | "leads" | "newsletter";
+type Tab = "contacts" | "leads" | "newsletter" | "analytics";
 
 export default function AdminPage() {
   useEffect(() => { document.title = "Admin — JOE Technologies"; }, []);
@@ -432,6 +490,14 @@ export default function AdminPage() {
     retry: false,
   });
 
+  const analyticsQ = useQuery<PageViewStat[]>({
+    queryKey: ["/api/analytics", adminKey],
+    queryFn: () => adminFetch("/api/analytics", adminKey!),
+    enabled: !!adminKey,
+    retry: false,
+    refetchInterval: 60_000,
+  });
+
   // Handle expired / invalid API key returned from any query.
   // Must be in a useEffect — calling setState during render is a React
   // anti-pattern that causes infinite re-render loops.
@@ -448,12 +514,14 @@ export default function AdminPage() {
     { id: "contacts",   label: "Contacts",   icon: MessageSquare, count: contactsQ.data?.length },
     { id: "leads",      label: "Leads",      icon: TrendingUp,    count: leadsQ.data?.length },
     { id: "newsletter", label: "Newsletter", icon: Mail,          count: newsletterQ.data?.length },
+    { id: "analytics",  label: "Analytics",  icon: BarChart2,     count: analyticsQ.data?.reduce((s, d) => s + d.views, 0) },
   ];
 
   const statCards = [
     { label: "Total Contacts",   value: contactsQ.data?.length,   icon: MessageSquare, color: "#48F2FB", loading: contactsQ.isLoading },
     { label: "Total Leads",      value: leadsQ.data?.length,      icon: TrendingUp,    color: "#E867EA", loading: leadsQ.isLoading },
     { label: "Subscribers",      value: newsletterQ.data?.length, icon: Users,         color: "#00ff88", loading: newsletterQ.isLoading },
+    { label: "Page Views",       value: analyticsQ.data?.reduce((s, d) => s + d.views, 0), icon: BarChart2, color: "#f59e0b", loading: analyticsQ.isLoading },
   ];
 
   const enterpriseLeads = leadsQ.data?.filter(l => l.tier === "Enterprise").length ?? 0;
@@ -487,12 +555,12 @@ export default function AdminPage() {
             Dashboard
           </h1>
           <p className="text-joe-text/40 text-sm font-mono mt-1">
-            All submissions and lead data for JOE Technologies
+            All submissions, lead data, and visitor analytics for JOE Technologies
           </p>
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
           {statCards.map(s => (
             <div key={s.label} className="rounded-xl border p-4"
               style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
@@ -502,10 +570,10 @@ export default function AdminPage() {
               </div>
               {s.loading
                 ? <div className="h-7 w-12 bg-white/5 rounded animate-pulse" />
-                : <div className="text-2xl font-bold font-heading" style={{ color: s.color }}>{s.value ?? 0}</div>}
+                : <div className="text-2xl font-bold font-heading" style={{ color: s.color }}>{(s.value ?? 0).toLocaleString()}</div>}
             </div>
           ))}
-          {/* Bonus: enterprise count */}
+          {/* Enterprise / High Value breakdown */}
           <div className="rounded-xl border p-4" style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp size={13} className="text-amber-400" />
@@ -573,6 +641,13 @@ export default function AdminPage() {
                 data={newsletterQ.data} loading={newsletterQ.isLoading}
                 refetching={newsletterQ.isFetching && !newsletterQ.isLoading}
                 refetch={() => newsletterQ.refetch()}
+              />
+            )}
+            {tab === "analytics" && (
+              <AnalyticsPanel
+                data={analyticsQ.data} loading={analyticsQ.isLoading}
+                refetching={analyticsQ.isFetching && !analyticsQ.isLoading}
+                refetch={() => analyticsQ.refetch()}
               />
             )}
           </motion.div>
