@@ -66,6 +66,37 @@
       /* Critical: prevent flash of unstyled content */
       html { background: #0f172a; }
       html:not(.dark) { background: #f8faff; }
+
+      /* Inline loading shell — visible immediately, before any JS runs.
+         React's createRoot().render() replaces all children of #root, so
+         this disappears automatically the moment React mounts. */
+      #app-shell {
+        position: fixed; inset: 0;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 20px;
+        background: #060A10;
+        z-index: 9999;
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+      }
+      #app-shell-logo {
+        font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
+        color: #48F2FB;
+      }
+      #app-shell-logo span { color: #E867EA; }
+      #app-shell-spinner {
+        width: 36px; height: 36px;
+        border: 2px solid rgba(72,242,251,0.2);
+        border-top-color: #48F2FB;
+        border-radius: 50%;
+        animation: shell-spin 0.8s linear infinite;
+      }
+      #app-shell-label {
+        font-size: 0.75rem; color: rgba(255,255,255,0.35);
+        letter-spacing: 0.1em; text-transform: uppercase;
+      }
+      @keyframes shell-spin { to { transform: rotate(360deg); } }
+      /* Hide shell once React has mounted */
+      #root:not(:empty) #app-shell { display: none; }
     </style>
 
     <!-- JSON-LD Structured Data: Site-level -->
@@ -163,7 +194,24 @@
   </head>
   <body>
     <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#00c8ff;color:#000;padding:8px;z-index:9999;border-radius:4px;font-weight:600;transition:top 0.2s" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
-    <div id="root"></div>
+
+    <noscript>
+      <div style="position:fixed;inset:0;background:#060A10;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:sans-serif;text-align:center;padding:24px;">
+        <div style="font-size:1.5rem;font-weight:700;color:#48F2FB">&lt;JOE/<span style="color:#E867EA">&gt;</span></div>
+        <p style="color:rgba(255,255,255,0.6);max-width:320px">JOE Technologies requires JavaScript. Please enable JavaScript in your browser to continue.</p>
+      </div>
+    </noscript>
+
+    <div id="root">
+      <!-- Inline app shell — shown immediately before React mounts.
+           React's createRoot().render() replaces all children of #root. -->
+      <div id="app-shell" aria-label="Loading JOE Technologies" aria-live="polite">
+        <div id="app-shell-logo">&lt;JOE<span>/&gt;</span></div>
+        <div id="app-shell-spinner" role="status"></div>
+        <div id="app-shell-label">Loading platform&hellip;</div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
