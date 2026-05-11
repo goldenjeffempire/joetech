@@ -1,6 +1,4 @@
 import {
-  type User,
-  type InsertUser,
   type ContactSubmission,
   type InsertContact,
   type LeadSubmission,
@@ -8,7 +6,6 @@ import {
   type InsertNewsletter,
   type NewsletterSubscriber,
   type PageViewStat,
-  users,
   contactSubmissions,
   leadSubmissions,
   newsletterSubscribers,
@@ -19,9 +16,6 @@ import { eq, desc, sql } from "drizzle-orm";
 import { db } from "./db";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
   createContact(contact: InsertContact): Promise<ContactSubmission>;
   getContacts(): Promise<ContactSubmission[]>;
   createLead(lead: InsertLead): Promise<LeadSubmission>;
@@ -36,22 +30,6 @@ export interface IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
-  async getUser(id: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user;
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user;
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const [user] = await db.insert(users).values({ ...insertUser, id }).returning();
-    return user;
-  }
-
   async createContact(insertContact: InsertContact): Promise<ContactSubmission> {
     const id = randomUUID();
     const [contact] = await db
@@ -106,10 +84,6 @@ export class DatabaseStorage implements IStorage {
     }
 
     const id = randomUUID();
-    // Use ON CONFLICT DO NOTHING to handle the rare race condition where two
-    // concurrent requests for the same email both pass the select check above.
-    // If the row already existed, .returning() returns an empty array — we
-    // re-fetch and return { alreadyExists: true } in that case.
     const [subscriber] = await db
       .insert(newsletterSubscribers)
       .values({
@@ -158,10 +132,6 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getTopConvertingPages(): Promise<{ page: string; toContact: number; toQualify: number; total: number }[]> {
-    // Pull all page-view rows where the visitor arrived at a conversion endpoint
-    // (contact form or lead qualification) and the referrer is set.
-    // The referrer may be a full URL (document.referrer) or a bare path — we
-    // normalise both to just the pathname so same-site pages collapse correctly.
     const rows = await db
       .select({
         path: pageViews.path,
@@ -177,15 +147,14 @@ export class DatabaseStorage implements IStorage {
       if (!row.referrer) continue;
       let sourcePage: string;
       if (row.referrer.startsWith("/")) {
-        sourcePage = row.referrer.split("?")[0]; // strip query string
+        sourcePage = row.referrer.split("?")[0];
       } else {
         try {
           sourcePage = new URL(row.referrer).pathname;
         } catch {
-          continue; // unparseable external referrer, skip
+          continue;
         }
       }
-      // Skip the conversion pages themselves to avoid circular entries
       if (sourcePage === "/contact" || sourcePage === "/qualify") continue;
       const existing = map.get(sourcePage) ?? { toContact: 0, toQualify: 0 };
       if (row.path === "/contact") {
@@ -197,10 +166,7 @@ export class DatabaseStorage implements IStorage {
 
     return Array.from(map.entries())
       .map(([page, { toContact, toQualify }]) => ({
-        page,
-        toContact,
-        toQualify,
-        total: toContact + toQualify,
+        page, toContact, toQualify, total: toContact + toQualify,
       }))
       .filter((r) => r.total > 0)
       .sort((a, b) => b.total - a.total);
@@ -216,9 +182,6 @@ export class DatabaseStorage implements IStorage {
       .groupBy(pageViews.referrer)
       .orderBy(sql`count(*) desc`);
 
-    // Aggregate by extracted domain so multiple referrer paths from the same
-    // site collapse into one row.  We do this in TS rather than SQL to avoid
-    // complex regex differences across Postgres versions.
     const domainMap = new Map<string, number>();
     for (const row of rows) {
       let source = "Direct";
@@ -227,9 +190,7 @@ export class DatabaseStorage implements IStorage {
           const url = new URL(row.referrer);
           source = url.hostname.replace(/^www\./, "");
         } catch {
-          source = row.referrer.length > 60
-            ? row.referrer.slice(0, 60) + "…"
-            : row.referrer;
+          source = row.referrer.length > 60 ? row.referrer.slice(0, 60) + "…" : row.referrer;
         }
       }
       domainMap.set(source, (domainMap.get(source) ?? 0) + row.views);
