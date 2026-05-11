@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LogOut, RefreshCw, Download, Copy, CheckCheck,
   Mail, Users, MessageSquare, TrendingUp, Eye, EyeOff,
-  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp, BarChart2,
+  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp, BarChart2, Globe2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -369,6 +369,89 @@ function AnalyticsPanel({ data, loading, refetching, refetch }: {
   );
 }
 
+const SOURCE_GRADIENTS = [
+  "linear-gradient(90deg, #48F2FB, #E867EA)",
+  "linear-gradient(90deg, #E867EA, #f59e0b)",
+  "linear-gradient(90deg, #f59e0b, #00ff88)",
+  "linear-gradient(90deg, #00ff88, #48F2FB)",
+];
+
+function ReferrerPanel({ data, loading, refetching, refetch }: {
+  data?: { source: string; views: number }[];
+  loading: boolean; refetching: boolean; refetch: () => void;
+}) {
+  const total = data?.reduce((s, d) => s + d.views, 0) ?? 0;
+  const max = Math.max(...(data ?? []).map(d => d.views), 1);
+
+  return (
+    <div className="rounded-2xl border overflow-hidden flex flex-col"
+      style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+      <div className="flex items-center justify-between px-5 py-4 border-b shrink-0"
+        style={{ borderColor: "var(--joe-card-border)" }}>
+        <div className="flex items-center gap-2.5">
+          <Globe2 size={15} className="text-[#48F2FB]" />
+          <span className="font-mono text-sm text-joe-text/80">Traffic Sources</span>
+          {total > 0 && (
+            <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/40 font-mono">{total}</span>
+          )}
+        </div>
+        <Button
+          variant="ghost" size="sm" onClick={refetch} disabled={refetching}
+          data-testid="button-refresh-referrers"
+          className="text-joe-text/40 hover:text-joe-text gap-1.5 text-xs font-mono h-8 px-3"
+        >
+          <RefreshCw size={12} className={refetching ? "animate-spin" : ""} />
+          <span className="hidden sm:inline">Refresh</span>
+        </Button>
+      </div>
+
+      {loading ? (
+        <div className="p-5 space-y-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="space-y-1.5">
+              <div className="h-3 bg-white/5 rounded animate-pulse" style={{ width: `${80 - i * 12}%`, opacity: 1 - i * 0.12 }} />
+              <div className="h-1 bg-white/5 rounded animate-pulse" style={{ width: `${70 - i * 10}%`, opacity: 1 - i * 0.12 }} />
+            </div>
+          ))}
+        </div>
+      ) : !data?.length ? (
+        <EmptyState label="referrer data" />
+      ) : (
+        <div className="p-4 space-y-3 overflow-y-auto">
+          {data.map((row, i) => (
+            <div key={row.source} data-testid={`referrer-source-${i}`}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-mono text-joe-text/70 truncate max-w-[65%] flex items-center gap-1.5">
+                  {row.source === "Direct" && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#48F2FB] shrink-0 inline-block" />
+                  )}
+                  {row.source}
+                </span>
+                <span className="text-xs font-mono text-joe-text/40 shrink-0 ml-2">
+                  {row.views.toLocaleString()}
+                  <span className="text-joe-text/20 ml-1">
+                    ({Math.round((row.views / total) * 100)}%)
+                  </span>
+                </span>
+              </div>
+              <div className="h-1 rounded-full overflow-hidden"
+                style={{ background: "var(--joe-card-border)" }}>
+                <div
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{
+                    width: `${(row.views / max) * 100}%`,
+                    background: SOURCE_GRADIENTS[i % SOURCE_GRADIENTS.length],
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function fillMissingDates(data: PageViewTimeline[], days: number): PageViewTimeline[] {
   const map = new Map(data.map(d => [d.date, d.views]));
   return Array.from({ length: days }, (_, i) => {
@@ -467,6 +550,14 @@ function AnalyticsTab({ adminKey, pageData, pageLoading, pageRefetching, pageRef
     refetchInterval: 60_000,
   });
 
+  const referrerQ = useQuery<{ source: string; views: number }[]>({
+    queryKey: ["/api/analytics/referrers", adminKey],
+    queryFn: () => adminFetch("/api/analytics/referrers", adminKey),
+    enabled: true,
+    retry: false,
+    refetchInterval: 60_000,
+  });
+
   return (
     <div className="space-y-4">
       <TimelineChart
@@ -475,12 +566,22 @@ function AnalyticsTab({ adminKey, pageData, pageLoading, pageRefetching, pageRef
         onDaysChange={(d) => setDays(d as 7 | 30 | 90)}
         loading={timelineQ.isLoading}
       />
-      <AnalyticsPanel
-        data={pageData}
-        loading={pageLoading}
-        refetching={pageRefetching}
-        refetch={pageRefetch}
-      />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="lg:col-span-2">
+          <AnalyticsPanel
+            data={pageData}
+            loading={pageLoading}
+            refetching={pageRefetching}
+            refetch={pageRefetch}
+          />
+        </div>
+        <ReferrerPanel
+          data={referrerQ.data}
+          loading={referrerQ.isLoading}
+          refetching={referrerQ.isFetching && !referrerQ.isLoading}
+          refetch={() => referrerQ.refetch()}
+        />
+      </div>
     </div>
   );
 }

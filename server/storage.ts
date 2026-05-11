@@ -31,6 +31,7 @@ export interface IStorage {
   trackPageView(path: string, referrer?: string | null): Promise<void>;
   getPageViewStats(): Promise<PageViewStat[]>;
   getPageViewTimeline(days: number): Promise<{ date: string; views: number }[]>;
+  getReferrerStats(): Promise<{ source: string; views: number }[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -153,6 +154,40 @@ export class DatabaseStorage implements IStorage {
       .groupBy(pageViews.path)
       .orderBy(sql`count(*) desc`);
     return rows.map(r => ({ path: r.path, views: r.views }));
+  }
+
+  async getReferrerStats(): Promise<{ source: string; views: number }[]> {
+    const rows = await db
+      .select({
+        referrer: pageViews.referrer,
+        views: sql<number>`cast(count(*) as int)`,
+      })
+      .from(pageViews)
+      .groupBy(pageViews.referrer)
+      .orderBy(sql`count(*) desc`);
+
+    // Aggregate by extracted domain so multiple referrer paths from the same
+    // site collapse into one row.  We do this in TS rather than SQL to avoid
+    // complex regex differences across Postgres versions.
+    const domainMap = new Map<string, number>();
+    for (const row of rows) {
+      let source = "Direct";
+      if (row.referrer) {
+        try {
+          const url = new URL(row.referrer);
+          source = url.hostname.replace(/^www\./, "");
+        } catch {
+          source = row.referrer.length > 60
+            ? row.referrer.slice(0, 60) + "…"
+            : row.referrer;
+        }
+      }
+      domainMap.set(source, (domainMap.get(source) ?? 0) + row.views);
+    }
+
+    return Array.from(domainMap.entries())
+      .map(([source, views]) => ({ source, views }))
+      .sort((a, b) => b.views - a.views);
   }
 
   async getPageViewTimeline(days: number): Promise<{ date: string; views: number }[]> {

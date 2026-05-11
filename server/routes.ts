@@ -162,6 +162,21 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/analytics/referrers", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    try {
+      const stats = await storage.getReferrerStats();
+      res.json(stats);
+    } catch (err) {
+      console.error("Referrer stats error:", err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   app.get("/api/analytics", async (req, res) => {
     const secret = process.env.ADMIN_SECRET;
     const provided = req.headers["x-api-key"];
