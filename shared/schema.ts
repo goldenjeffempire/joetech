@@ -103,6 +103,7 @@ export const pageViews = pgTable("page_views", {
 });
 
 export type PageViewStat = { path: string; views: number };
+export type PageViewTimeline = { date: string; views: number };
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;

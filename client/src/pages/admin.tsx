@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { ContactSubmission, LeadSubmission, NewsletterSubscriber, PageViewStat } from "@shared/schema";
+import type { ContactSubmission, LeadSubmission, NewsletterSubscriber, PageViewStat, PageViewTimeline } from "@shared/schema";
 
 const SESSION_KEY = "joe-admin-key";
 
@@ -369,6 +369,122 @@ function AnalyticsPanel({ data, loading, refetching, refetch }: {
   );
 }
 
+function fillMissingDates(data: PageViewTimeline[], days: number): PageViewTimeline[] {
+  const map = new Map(data.map(d => [d.date, d.views]));
+  return Array.from({ length: days }, (_, i) => {
+    const d = new Date(Date.now() - (days - 1 - i) * 86_400_000);
+    const key = d.toISOString().slice(0, 10);
+    return { date: key, views: map.get(key) ?? 0 };
+  });
+}
+
+function TimelineChart({ data, days, onDaysChange, loading }: {
+  data?: PageViewTimeline[]; days: number; onDaysChange: (d: number) => void; loading: boolean;
+}) {
+  const filled = fillMissingDates(data ?? [], days);
+  const max = Math.max(...filled.map(d => d.views), 1);
+  const total = filled.reduce((s, d) => s + d.views, 0);
+  const avg = filled.length ? Math.round(total / days) : 0;
+  const peakDay = filled.reduce((a, b) => (b.views > a.views ? b : a), { date: "", views: 0 });
+
+  return (
+    <div className="rounded-2xl border p-5" style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2.5 flex-wrap gap-y-1.5">
+          <BarChart2 size={14} className="text-[#f59e0b] shrink-0" />
+          <span className="font-mono text-sm text-joe-text/80">Daily Trend</span>
+          <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/40 font-mono">
+            {total.toLocaleString()} total
+          </span>
+          {peakDay.views > 0 && (
+            <span className="text-xs px-2 py-0.5 rounded-full bg-[#f59e0b]/10 text-[#f59e0b]/70 border border-[#f59e0b]/20 font-mono">
+              peak {peakDay.date.slice(5)}: {peakDay.views}
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-1 shrink-0">
+          {([7, 30, 90] as const).map(d => (
+            <button
+              key={d}
+              onClick={() => onDaysChange(d)}
+              data-testid={`button-timeline-${d}d`}
+              className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all ${
+                days === d ? "text-[#060A10] font-semibold shadow-sm" : "text-joe-text/40 hover:text-joe-text/70"
+              }`}
+              style={days === d ? { background: "linear-gradient(135deg, #f59e0b 0%, #E867EA 100%)" } : {}}
+            >
+              {d}d
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="h-28 rounded-xl bg-white/5 animate-pulse" />
+      ) : (
+        <>
+          <div className="flex items-end gap-px h-28">
+            {filled.map((d) => (
+              <div
+                key={d.date}
+                title={`${d.date}: ${d.views} view${d.views !== 1 ? "s" : ""}`}
+                className="flex-1 rounded-t-sm transition-all duration-300 cursor-default"
+                style={{
+                  height: d.views > 0 ? `${Math.max((d.views / max) * 100, 6)}%` : "3%",
+                  background: d.views > 0
+                    ? "linear-gradient(to top, #f59e0b, #E867EA)"
+                    : "rgba(255,255,255,0.05)",
+                  opacity: d.views > 0 ? 1 : 0.5,
+                }}
+              />
+            ))}
+          </div>
+          <div className="flex justify-between mt-2">
+            <span className="text-xs font-mono text-joe-text/25">{filled[0]?.date.slice(5)}</span>
+            <span className="text-xs font-mono text-joe-text/25">{avg} avg/day</span>
+            <span className="text-xs font-mono text-joe-text/25">{filled[filled.length - 1]?.date.slice(5)}</span>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function AnalyticsTab({ adminKey, pageData, pageLoading, pageRefetching, pageRefetch }: {
+  adminKey: string;
+  pageData?: PageViewStat[];
+  pageLoading: boolean;
+  pageRefetching: boolean;
+  pageRefetch: () => void;
+}) {
+  const [days, setDays] = useState<7 | 30 | 90>(30);
+
+  const timelineQ = useQuery<PageViewTimeline[]>({
+    queryKey: ["/api/analytics/timeline", adminKey, days],
+    queryFn: () => adminFetch(`/api/analytics/timeline?days=${days}`, adminKey),
+    enabled: true,
+    retry: false,
+    refetchInterval: 60_000,
+  });
+
+  return (
+    <div className="space-y-4">
+      <TimelineChart
+        data={timelineQ.data}
+        days={days}
+        onDaysChange={(d) => setDays(d as 7 | 30 | 90)}
+        loading={timelineQ.isLoading}
+      />
+      <AnalyticsPanel
+        data={pageData}
+        loading={pageLoading}
+        refetching={pageRefetching}
+        refetch={pageRefetch}
+      />
+    </div>
+  );
+}
+
 function LoginGate({ onLogin }: { onLogin: (key: string) => void }) {
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
@@ -644,10 +760,12 @@ export default function AdminPage() {
               />
             )}
             {tab === "analytics" && (
-              <AnalyticsPanel
-                data={analyticsQ.data} loading={analyticsQ.isLoading}
-                refetching={analyticsQ.isFetching && !analyticsQ.isLoading}
-                refetch={() => analyticsQ.refetch()}
+              <AnalyticsTab
+                adminKey={adminKey!}
+                pageData={analyticsQ.data}
+                pageLoading={analyticsQ.isLoading}
+                pageRefetching={analyticsQ.isFetching && !analyticsQ.isLoading}
+                pageRefetch={() => analyticsQ.refetch()}
               />
             )}
           </motion.div>

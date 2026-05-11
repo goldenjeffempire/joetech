@@ -30,6 +30,7 @@ export interface IStorage {
   getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
   trackPageView(path: string, referrer?: string | null): Promise<void>;
   getPageViewStats(): Promise<PageViewStat[]>;
+  getPageViewTimeline(days: number): Promise<{ date: string; views: number }[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -152,6 +153,20 @@ export class DatabaseStorage implements IStorage {
       .groupBy(pageViews.path)
       .orderBy(sql`count(*) desc`);
     return rows.map(r => ({ path: r.path, views: r.views }));
+  }
+
+  async getPageViewTimeline(days: number): Promise<{ date: string; views: number }[]> {
+    const since = new Date(Date.now() - days * 86_400_000).toISOString();
+    const rows = await db
+      .select({
+        date: sql<string>`substr(viewed_at, 1, 10)`,
+        views: sql<number>`cast(count(*) as int)`,
+      })
+      .from(pageViews)
+      .where(sql`viewed_at >= ${since}`)
+      .groupBy(sql`substr(viewed_at, 1, 10)`)
+      .orderBy(sql`substr(viewed_at, 1, 10) asc`);
+    return rows.map(r => ({ date: r.date, views: r.views }));
   }
 }
 

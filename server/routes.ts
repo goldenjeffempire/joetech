@@ -145,6 +145,23 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/analytics/timeline", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    try {
+      const raw = parseInt(String(req.query.days ?? "30"), 10);
+      const days = Number.isFinite(raw) ? Math.min(Math.max(raw, 7), 90) : 30;
+      const timeline = await storage.getPageViewTimeline(days);
+      res.json(timeline);
+    } catch (err) {
+      console.error("Analytics timeline error:", err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   app.get("/api/analytics", async (req, res) => {
     const secret = process.env.ADMIN_SECRET;
     const provided = req.headers["x-api-key"];
