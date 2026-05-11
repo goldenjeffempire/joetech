@@ -5,6 +5,7 @@ import {
   LogOut, RefreshCw, Download, Copy, CheckCheck,
   Mail, Users, MessageSquare, TrendingUp, Eye, EyeOff,
   ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp, BarChart2, Globe2, Target,
+  Search, X, CalendarDays, ShieldCheck as ConsentIcon, Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -256,52 +257,6 @@ function LeadsTable({ data, loading, refetching, refetch }: {
                 <Td><span className="text-joe-text/60 whitespace-nowrap text-xs">{l.timeline}</span></Td>
                 <Td><ScorePill score={l.score} /></Td>
                 <Td><TierBadge tier={l.tier} /></Td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </TableWrapper>
-  );
-}
-
-function NewsletterTable({ data, loading, refetching, refetch }: {
-  data?: NewsletterSubscriber[]; loading: boolean; refetching: boolean; refetch: () => void;
-}) {
-  return (
-    <TableWrapper
-      title="Newsletter Subscribers" count={data?.length} icon={Mail} accentColor="#00ff88"
-      loading={loading} refetching={refetching} onRefresh={refetch}
-      onExport={() => exportCSV((data ?? []) as unknown as Record<string, unknown>[], "newsletter.csv")}
-    >
-      {!data?.length ? <EmptyState label="subscribers" /> : (
-        <table className="w-full text-sm">
-          <thead>
-            <tr>
-              <Th>Date</Th><Th>Email</Th><Th>Source</Th><Th>Consent</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...data].reverse().map((n, i) => (
-              <tr key={n.id} className={`group border-b transition-colors hover:bg-white/[0.02] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
-                style={{ borderColor: "var(--joe-card-border)" }}>
-                <Td><span className="font-mono text-xs text-joe-text/40 whitespace-nowrap">{formatDate(n.createdAt)}</span></Td>
-                <Td>
-                  <span className="flex items-center whitespace-nowrap">
-                    <span className="text-[#00ff88]/80">{n.email}</span>
-                    <CopyBtn text={n.email} />
-                  </span>
-                </Td>
-                <Td>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/50 border border-white/10 font-mono">
-                    {n.source}
-                  </span>
-                </Td>
-                <Td>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#00ff88]/10 text-[#00ff88]/80 border border-[#00ff88]/20 font-mono">
-                    {n.consentGiven === "yes" ? "✓ given" : n.consentGiven}
-                  </span>
-                </Td>
               </tr>
             ))}
           </tbody>
@@ -691,6 +646,263 @@ function AnalyticsTab({ adminKey, pageData, pageLoading, pageRefetching, pageRef
   );
 }
 
+async function downloadNewsletterCSV(adminKey: string, setExporting: (v: boolean) => void) {
+  setExporting(true);
+  try {
+    const res = await fetch("/api/newsletter/export", {
+      headers: { "x-api-key": adminKey },
+      credentials: "include",
+    });
+    if (!res.ok) return;
+    const blob = await res.blob();
+    const dateStamp = new Date().toISOString().slice(0, 10);
+    const filename = `joe-newsletter-subscribers-${dateStamp}.csv`;
+    const url = URL.createObjectURL(blob);
+    Object.assign(document.createElement("a"), { href: url, download: filename }).click();
+    URL.revokeObjectURL(url);
+  } finally {
+    setExporting(false);
+  }
+}
+
+function NewsletterStatCard({
+  label, value, icon: Icon, color, loading, sub,
+}: {
+  label: string; value: string | number; icon: React.ElementType;
+  color: string; loading: boolean; sub?: string;
+}) {
+  return (
+    <div className="rounded-xl border p-4 flex flex-col gap-1"
+      style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+      <div className="flex items-center gap-2 mb-1">
+        <Icon size={13} style={{ color }} />
+        <span className="text-joe-text/40 text-xs font-mono">{label}</span>
+      </div>
+      {loading
+        ? <div className="h-7 w-16 bg-white/5 rounded animate-pulse" />
+        : <div className="text-2xl font-bold font-heading" style={{ color }}>{value}</div>}
+      {sub && !loading && (
+        <p className="text-joe-text/30 text-[11px] font-mono">{sub}</p>
+      )}
+    </div>
+  );
+}
+
+function NewsletterTab({
+  adminKey, data, loading, refetching, refetch,
+}: {
+  adminKey: string;
+  data?: NewsletterSubscriber[];
+  loading: boolean;
+  refetching: boolean;
+  refetch: () => void;
+}) {
+  const [search, setSearch] = useState("");
+  const [exporting, setExporting] = useState(false);
+
+  const now = Date.now();
+  const week = 7 * 24 * 60 * 60 * 1000;
+  const month = 30 * 24 * 60 * 60 * 1000;
+
+  const total = data?.length ?? 0;
+  const newThisWeek = data?.filter(s => now - new Date(s.createdAt).getTime() < week).length ?? 0;
+  const newThisMonth = data?.filter(s => now - new Date(s.createdAt).getTime() < month).length ?? 0;
+  const consentRate = total > 0
+    ? Math.round((data!.filter(s => s.consentGiven === "yes").length / total) * 100)
+    : 100;
+
+  const filtered = (data ?? [])
+    .slice()
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .filter(s =>
+      !search.trim() || s.email.toLowerCase().includes(search.toLowerCase())
+    );
+
+  return (
+    <div className="space-y-4">
+      {/* Stats row */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <NewsletterStatCard
+          label="Total Subscribers" value={total} icon={Users}
+          color="#00ff88" loading={loading} sub="all time"
+        />
+        <NewsletterStatCard
+          label="New This Week" value={newThisWeek} icon={CalendarDays}
+          color="#48F2FB" loading={loading}
+          sub={total > 0 ? `${Math.round((newThisWeek / total) * 100)}% of total` : undefined}
+        />
+        <NewsletterStatCard
+          label="New This Month" value={newThisMonth} icon={TrendingUp}
+          color="#E867EA" loading={loading}
+          sub={total > 0 ? `${Math.round((newThisMonth / total) * 100)}% of total` : undefined}
+        />
+        <NewsletterStatCard
+          label="Consent Rate" value={`${consentRate}%`} icon={ConsentIcon}
+          color="#f59e0b" loading={loading} sub="GDPR compliant"
+        />
+      </div>
+
+      {/* Table card */}
+      <div className="rounded-2xl border overflow-hidden"
+        style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}>
+
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 py-4 border-b"
+          style={{ borderColor: "var(--joe-card-border)" }}>
+          <div className="flex items-center gap-2.5">
+            <Mail size={16} className="text-[#00ff88]" />
+            <span className="font-mono text-sm text-joe-text/80">Newsletter Subscribers</span>
+            {total > 0 && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/40 font-mono">{total}</span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            {/* Search */}
+            <div className="relative">
+              <Search size={12} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/25 pointer-events-none" />
+              <input
+                type="email"
+                inputMode="email"
+                placeholder="Filter by email…"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="h-8 pl-7 pr-7 text-xs font-mono rounded-lg border bg-transparent text-joe-text/70 placeholder:text-white/20 outline-none focus:border-[#00ff88]/40 transition-colors"
+                style={{ borderColor: "var(--joe-card-border)", minWidth: 160 }}
+                data-testid="input-newsletter-search"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors"
+                  aria-label="Clear search"
+                >
+                  <X size={11} />
+                </button>
+              )}
+            </div>
+
+            {/* Refresh */}
+            <Button
+              variant="ghost" size="sm" onClick={refetch} disabled={refetching}
+              data-testid="button-refresh-newsletter"
+              className="text-joe-text/40 hover:text-joe-text gap-1.5 text-xs font-mono h-8 px-3"
+            >
+              <RefreshCw size={12} className={refetching ? "animate-spin" : ""} />
+              <span className="hidden sm:inline">Refresh</span>
+            </Button>
+
+            {/* Export CSV */}
+            <Button
+              variant="ghost" size="sm"
+              onClick={() => downloadNewsletterCSV(adminKey, setExporting)}
+              disabled={exporting || loading || total === 0}
+              data-testid="button-export-newsletter"
+              className="text-[#00ff88]/70 hover:text-[#00ff88] border gap-1.5 text-xs font-mono h-8 px-3 transition-colors"
+              style={{ borderColor: "rgba(0,255,136,0.2)", background: "rgba(0,255,136,0.04)" }}
+            >
+              {exporting
+                ? <Loader2 size={12} className="animate-spin" />
+                : <Download size={12} />}
+              <span>Export CSV</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Table */}
+        <div className="overflow-x-auto">
+          {loading ? (
+            <table className="w-full text-sm">
+              <tbody>{Array.from({ length: 4 }).map((_, i) => <SkeletonRow key={i} cols={4} />)}</tbody>
+            </table>
+          ) : !filtered.length ? (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              {search ? (
+                <>
+                  <Search className="text-white/15 mb-3" size={36} />
+                  <p className="text-joe-text/35 text-sm font-mono">no results for "{search}"</p>
+                  <button onClick={() => setSearch("")} className="text-[#00ff88]/60 text-xs font-mono mt-2 hover:text-[#00ff88]">
+                    clear filter
+                  </button>
+                </>
+              ) : (
+                <EmptyState label="subscribers" />
+              )}
+            </div>
+          ) : (
+            <table className="w-full text-sm">
+              <thead>
+                <tr>
+                  <Th>#</Th>
+                  <Th>Email</Th>
+                  <Th>Subscribed</Th>
+                  <Th>Source</Th>
+                  <Th>Consent</Th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((n, i) => (
+                  <tr
+                    key={n.id}
+                    className={`group border-b transition-colors hover:bg-white/[0.02] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                    style={{ borderColor: "var(--joe-card-border)" }}
+                    data-testid={`row-subscriber-${i}`}
+                  >
+                    <Td>
+                      <span className="font-mono text-xs text-joe-text/25">{i + 1}</span>
+                    </Td>
+                    <Td>
+                      <span className="flex items-center whitespace-nowrap gap-1">
+                        <span className="text-[#00ff88]/80 font-mono text-xs">{n.email}</span>
+                        <CopyBtn text={n.email} />
+                      </span>
+                    </Td>
+                    <Td>
+                      <span className="font-mono text-xs text-joe-text/40 whitespace-nowrap">
+                        {formatDate(n.createdAt)}
+                      </span>
+                    </Td>
+                    <Td>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-joe-text/50 border font-mono"
+                        style={{ borderColor: "var(--joe-card-border)" }}>
+                        {n.source}
+                      </span>
+                    </Td>
+                    <Td>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#00ff88]/10 text-[#00ff88]/80 border border-[#00ff88]/20 font-mono">
+                        ✓ given
+                      </span>
+                    </Td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+        {/* Footer */}
+        {filtered.length > 0 && (
+          <div className="px-5 py-3 border-t flex items-center justify-between"
+            style={{ borderColor: "var(--joe-card-border)" }}>
+            <span className="text-joe-text/25 text-xs font-mono">
+              {search ? `${filtered.length} of ${total} shown` : `${total} subscriber${total !== 1 ? "s" : ""} total`}
+            </span>
+            <button
+              onClick={() => downloadNewsletterCSV(adminKey, setExporting)}
+              disabled={exporting || total === 0}
+              className="text-[#00ff88]/40 hover:text-[#00ff88]/70 text-xs font-mono flex items-center gap-1 transition-colors disabled:opacity-30"
+              data-testid="button-export-newsletter-footer"
+            >
+              {exporting ? <Loader2 size={11} className="animate-spin" /> : <Download size={11} />}
+              Download {total} subscriber{total !== 1 ? "s" : ""} as CSV
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LoginGate({ onLogin }: { onLogin: (key: string) => void }) {
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
@@ -810,6 +1022,7 @@ export default function AdminPage() {
     queryFn: () => adminFetch("/api/newsletter", adminKey!),
     enabled: !!adminKey,
     retry: false,
+    refetchInterval: 60_000,
   });
 
   const analyticsQ = useQuery<PageViewStat[]>({
@@ -959,7 +1172,8 @@ export default function AdminPage() {
               />
             )}
             {tab === "newsletter" && (
-              <NewsletterTable
+              <NewsletterTab
+                adminKey={adminKey!}
                 data={newsletterQ.data} loading={newsletterQ.isLoading}
                 refetching={newsletterQ.isFetching && !newsletterQ.isLoading}
                 refetch={() => newsletterQ.refetch()}

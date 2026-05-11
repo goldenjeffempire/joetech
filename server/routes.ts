@@ -134,6 +134,42 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/newsletter/export", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    try {
+      const subscribers = await storage.getNewsletterSubscribers();
+      const dateStamp = new Date().toISOString().slice(0, 10);
+      const filename = `joe-newsletter-subscribers-${dateStamp}.csv`;
+
+      const header = ["Email", "Subscribed Date", "Source", "Consent Given"].join(",");
+      const rows = subscribers.map((s) => {
+        const date = new Date(s.createdAt).toLocaleString("en-GB", {
+          day: "2-digit", month: "short", year: "numeric",
+          hour: "2-digit", minute: "2-digit",
+        });
+        return [
+          `"${s.email}"`,
+          `"${date}"`,
+          `"${s.source}"`,
+          `"${s.consentGiven === "yes" ? "Yes" : s.consentGiven}"`,
+        ].join(",");
+      });
+
+      const csv = [header, ...rows].join("\r\n");
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+      res.setHeader("Cache-Control", "no-store");
+      res.send("\uFEFF" + csv); // BOM for Excel UTF-8 compatibility
+    } catch (err) {
+      console.error("Newsletter export error:", err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   app.post("/api/analytics/pageview", analyticsLimiter, async (req, res) => {
     try {
       const { path, referrer } = req.body ?? {};
