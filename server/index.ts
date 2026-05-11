@@ -7,6 +7,20 @@ const app = express();
 const httpServer = createServer(app);
 const isProduction = process.env.NODE_ENV === "production";
 
+// ── Startup diagnostics ───────────────────────────────────────────────────────
+// Logged on every cold start so Render / Docker logs show exactly what the
+// server sees. Helps diagnose blank-page issues caused by wrong PORT, missing
+// DATABASE_URL, or incorrect static-file paths without needing remote access.
+console.log("[startup] ═══════════════════════════════════════════════════");
+console.log(`[startup] NODE_ENV      = ${process.env.NODE_ENV ?? "(not set)"}`);
+console.log(`[startup] PORT          = ${process.env.PORT ?? "(not set, will use 5000)"}`);
+console.log(`[startup] DATABASE_URL  = ${process.env.DATABASE_URL ? "set ✓" : "NOT SET ✗"}`);
+console.log(`[startup] ADMIN_SECRET  = ${process.env.ADMIN_SECRET ? "set ✓" : "(not set)"}`);
+console.log(`[startup] process.cwd() = ${process.cwd()}`);
+console.log(`[startup] Node version  = ${process.version}`);
+console.log("[startup] ═══════════════════════════════════════════════════");
+// ─────────────────────────────────────────────────────────────────────────────
+
 app.set("trust proxy", 1);
 
 declare module "http" {

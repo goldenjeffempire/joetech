@@ -2,34 +2,45 @@ import { build as esbuild, type Plugin } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
 
-// server deps to bundle to reduce openat(2) syscalls
-// which helps cold start times
+// Server deps to bundle into the CJS output.
+// Bundling eliminates all external require() calls for these packages, making
+// the production binary fully self-contained and immune to node_modules issues
+// on any deployment platform (Render native, Docker, Railway, Fly, etc.).
+// Rule: add a package here if it is imported in ANY server/*.ts file at runtime.
 const allowlist = [
-  "@google/generative-ai",
-  "axios",
-  "connect-pg-simple",
-  "cors",
-  "date-fns",
-  "drizzle-orm",
-  "drizzle-zod",
+  // ── HTTP & middleware ──────────────────────────────────────────────────────
   "express",
   "express-rate-limit",
   "express-session",
-  "jsonwebtoken",
-  "memorystore",
-  "multer",
-  "nanoid",
-  "nodemailer",
-  "openai",
+  "helmet",          // MUST be bundled — used in server/index.ts
+  "compression",     // MUST be bundled — used in server/index.ts
+  "cors",
+  // ── Auth ──────────────────────────────────────────────────────────────────
   "passport",
   "passport-local",
+  "connect-pg-simple",
+  "memorystore",
+  // ── Database ──────────────────────────────────────────────────────────────
   "pg",
-  "stripe",
-  "uuid",
-  "ws",
-  "xlsx",
+  "drizzle-orm",
+  "drizzle-zod",
+  // ── Validation ────────────────────────────────────────────────────────────
   "zod",
   "zod-validation-error",
+  // ── Utilities ─────────────────────────────────────────────────────────────
+  "nanoid",
+  "uuid",
+  "date-fns",
+  // ── Optional / AI / integrations (safe to bundle) ─────────────────────────
+  "@google/generative-ai",
+  "axios",
+  "jsonwebtoken",
+  "multer",
+  "nodemailer",
+  "openai",
+  "stripe",
+  "ws",
+  "xlsx",
 ];
 
 async function buildAll() {
