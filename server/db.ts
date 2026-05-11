@@ -2,7 +2,8 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "@shared/schema";
 
-const pool = new Pool({
+// Export the pool so server/index.ts can close it during graceful shutdown.
+export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 

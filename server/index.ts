@@ -135,6 +135,61 @@ if (isProduction) {
   log(`keep-alive enabled → pinging ${selfUrl} every 4 min`, "keepalive");
 }
 
+// ── Graceful shutdown ─────────────────────────────────────────────────────────
+// Render sends SIGTERM to the old instance during a rolling deploy. Without a
+// proper shutdown handler, in-flight requests receive a TCP RST (connection
+// reset) — the browser shows a network error mid-load. This handler:
+//   1. Stops the HTTP server accepting new connections immediately.
+//   2. Waits up to DRAIN_TIMEOUT_MS for in-flight requests to finish.
+//   3. Force-closes any lingering keep-alive connections.
+//   4. Drains and closes the PostgreSQL pool.
+//   5. Exits with code 0 so Render marks the old instance as cleanly stopped.
+const DRAIN_TIMEOUT_MS = 15_000;
+let _isShuttingDown = false;
+
+async function gracefulShutdown(signal: string): Promise<void> {
+  if (_isShuttingDown) return;
+  _isShuttingDown = true;
+
+  log(`${signal} received — draining in-flight requests (${DRAIN_TIMEOUT_MS / 1000}s max)`, "shutdown");
+
+  // 1 + 3. Stop accepting new connections; force-close keep-alive connections
+  // that haven't finished within the drain window.
+  const drainTimer = setTimeout(() => {
+    log("drain timeout — force-closing idle keep-alive connections", "shutdown");
+    httpServer.closeAllConnections?.();
+  }, DRAIN_TIMEOUT_MS);
+  drainTimer.unref();
+
+  await new Promise<void>((resolve) => {
+    httpServer.close((err) => {
+      if (err) log(`HTTP close error: ${err.message}`, "shutdown");
+      clearTimeout(drainTimer);
+      resolve();
+    });
+  });
+
+  log("HTTP server closed — all requests drained", "shutdown");
+
+  // 4. Return DB connections to the pool and close it cleanly.
+  try {
+    const { pool } = await import("./db");
+    await pool.end();
+    log("DB pool closed", "shutdown");
+  } catch (err) {
+    log(`DB pool close error: ${(err as Error).message}`, "shutdown");
+  }
+
+  log("shutdown complete", "shutdown");
+  process.exit(0);
+}
+
+// Register once so SIGTERM (Render rolling deploy) and SIGINT (Ctrl-C) both
+// trigger the same clean shutdown path.
+process.once("SIGTERM", () => gracefulShutdown("SIGTERM"));
+process.once("SIGINT",  () => gracefulShutdown("SIGINT"));
+// ────────────────────────────────────────────────────────────────────────────
+
 // ── Async setup ──────────────────────────────────────────────────────────────
 // markReady() MUST be called no matter what — if it is never called, all
 // incoming requests queue forever and the site shows a blank page.
