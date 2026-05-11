@@ -106,6 +106,11 @@ function NeuralBackground() {
       });
     }
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.removeEventListener("resize", resize);
+      return;
+    }
+
     let frame: number | null = null;
 
     const draw = () => {

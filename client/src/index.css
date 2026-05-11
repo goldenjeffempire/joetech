@@ -669,3 +669,46 @@
     pointer-events: none;
   }
 }
+
+/* ── prefers-reduced-motion ──────────────────────────────────────────────────
+   Disables all decorative animations and transitions for users who have opted
+   into reduced motion in their OS accessibility settings (WCAG 2.1 SC 2.3.3).
+   Framer Motion handles its own reduced-motion via useReducedMotion().
+   Canvas animations check matchMedia at init time and bail out early.
+   ──────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* Kill all CSS keyframe animations — marquees, orbs, scan lines, glows */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+  }
+
+  /* Kill all CSS transitions (hover effects, theme switches, etc.) */
+  * {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* Specifically target named animation utilities */
+  .animate-marquee,
+  .animate-orb-float,
+  .animate-glow-pulse,
+  .animate-scan,
+  .animate-blink,
+  .animate-shine,
+  .animate-pulse-ring,
+  .animate-float-y,
+  .animate-slide-in,
+  .skeleton-pulse {
+    animation: none !important;
+  }
+
+  /* Freeze the scroll progress bar — it animates via inline style, not CSS,
+     but this ensures no stutter if a browser ever applies transform to it */
+  [data-scroll-progress] {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,347 @@
+You are an elite senior software engineer, UI/UX architect, SEO strategist, DevOps engineer, CRO specialist, and product designer.
+
+Your mission is to fully audit, redesign, optimize, and professionally transform this live production website:
+
+https://joetech-3xqa.onrender.com/
+
+The website belongs to a technology and digital solutions company offering:
+
+* Web development
+* Mobile app development
+* Branding & graphics
+* Video production
+* Digital marketing
+* AI-powered tech education
+
+Your task is to make this website look and perform like a premium world-class tech company platform comparable to Stripe, Vercel, Linear, Framer, Notion, Webflow, and Apple.
+
+==================================================
+CORE OBJECTIVE
+==============
+
+Transform the website into a:
+
+* Modern enterprise-grade platform
+* Extremely fast-loading web app
+* SEO-optimized website
+* Mobile-first responsive experience
+* High-converting digital agency website
+* Trustworthy premium brand experience
+* Accessible and scalable production-ready platform
+
+==================================================
+PHASE 1 — FULL TECHNICAL & UX AUDIT
+===================================
+
+Perform a complete audit and generate a detailed report covering:
+
+1. UI/UX design flaws
+2. Layout consistency
+3. Visual hierarchy
+4. Typography system
+5. Color palette consistency
+6. Responsiveness issues
+7. Accessibility problems
+8. Performance bottlenecks
+9. SEO weaknesses
+10. Code quality issues
+11. Animation quality
+12. Navigation usability
+13. Conversion optimization issues
+14. Branding inconsistencies
+15. Security vulnerabilities
+16. Deployment inefficiencies
+17. Lighthouse scores
+18. Mobile usability
+19. Content structure
+20. Image optimization
+21. Page speed issues
+22. Technical debt
+23. Broken UI patterns
+24. Poor spacing/alignment
+25. Trust and credibility weaknesses
+
+List ALL discovered problems before implementing fixes.
+
+==================================================
+PHASE 2 — PROFESSIONAL REDESIGN
+===============================
+
+Completely redesign the frontend experience.
+
+Requirements:
+
+* Premium modern SaaS design
+* Elegant minimal interface
+* Strong visual hierarchy
+* Better typography pairing
+* Consistent spacing system
+* Smooth transitions and micro-interactions
+* Modern card layouts
+* Improved hero section
+* Strong CTA sections
+* Better section separation
+* Improved navbar and footer
+* Interactive hover effects
+* Premium gradients and glassmorphism (subtle)
+* Better content readability
+* Clean iconography
+* Enterprise-level aesthetic
+* Better project showcase design
+* Better testimonials section
+* Strong social proof presentation
+
+Use inspiration from:
+
+* Stripe
+* Linear
+* Apple
+* Framer
+* Vercel
+* Notion
+* Webflow
+
+==================================================
+PHASE 3 — RESPONSIVENESS & MOBILE UX
+====================================
+
+Fix ALL responsiveness problems.
+
+Requirements:
+
+* Fully mobile-first architecture
+* Tablet optimization
+* Perfect rendering on all screen sizes
+* Flexible responsive layouts
+* Responsive typography scaling
+* No overflow issues
+* Better touch interactions
+* Mobile-friendly menus
+* Proper spacing across breakpoints
+* Responsive grids
+* Fluid containers
+
+Test on:
+
+* iPhone
+* Android
+* Tablet
+* Desktop
+* Ultrawide monitors
+
+==================================================
+PHASE 4 — PERFORMANCE OPTIMIZATION
+==================================
+
+Aggressively optimize performance.
+
+Current issues already identified:
+
+* Render-blocking resources
+* Excessive requests
+* Image optimization problems
+* Missing modern image formats
+* Speed inefficiencies
+
+Implement:
+
+* Code splitting
+* Route-based lazy loading
+* Image compression
+* WebP/AVIF conversion
+* Lazy loading
+* Tree shaking
+* Font optimization
+* Script optimization
+* Reduced DOM complexity
+* Reduced HTTP requests
+* Asset preloading
+* Cache optimization
+* Bundle optimization
+* CDN optimization
+* Critical CSS
+* Deferred non-critical scripts
+
+Targets:
+
+* Lighthouse score above 95
+* Excellent Core Web Vitals
+* Fast mobile performance
+* Excellent Time To Interactive
+
+==================================================
+PHASE 5 — SEO OPTIMIZATION
+==========================
+
+Implement advanced enterprise SEO.
+
+Current SEO issues detected include:
+
+* Canonicalization problems
+* Render-blocking resources
+* Missing security headers
+* Missing custom 404 page
+* Image optimization problems
+
+Fix and improve:
+
+* Meta titles
+* Meta descriptions
+* Canonical URLs
+* Structured data/schema
+* Open Graph tags
+* Twitter cards
+* Heading structure
+* Semantic HTML
+* Sitemap.xml
+* Robots.txt
+* Internal linking
+* Accessibility SEO
+* SEO-friendly URLs
+* Image alt texts
+* Page indexing
+* Search engine crawlability
+
+Add:
+
+* FAQ schema
+* Organization schema
+* Breadcrumb schema
+* Service schema
+* Article schema where needed
+
+==================================================
+PHASE 6 — ACCESSIBILITY (WCAG)
+==============================
+
+Ensure full accessibility compliance.
+
+Implement:
+
+* Keyboard navigation
+* ARIA labels
+* Proper focus states
+* Screen reader support
+* Accessible forms
+* Proper semantic markup
+* Color contrast compliance
+* Accessible buttons and links
+
+==================================================
+PHASE 7 — TRUST & CONVERSION OPTIMIZATION
+=========================================
+
+Improve business credibility and conversions.
+
+Add/improve:
+
+* Stronger hero messaging
+* Better CTAs
+* Portfolio/project showcase
+* Testimonials
+* Client logos
+* Success metrics
+* Process/workflow section
+* FAQ section
+* Better contact forms
+* WhatsApp/chat integration
+* Lead generation optimization
+* Service explanation clarity
+* Better onboarding flow
+* Better call scheduling UX
+
+==================================================
+PHASE 8 — CODEBASE REFACTORING
+==============================
+
+Refactor the entire codebase professionally.
+
+Requirements:
+
+* Remove dead code
+* Reusable components
+* Scalable architecture
+* Proper folder structure
+* Clean naming conventions
+* Type-safe architecture
+* Improved state management
+* Better API structure
+* Error handling
+* Logging improvements
+* Environment variable management
+* Better maintainability
+
+==================================================
+PHASE 9 — SECURITY & PRODUCTION HARDENING
+=========================================
+
+Implement production-grade security.
+
+Fix issues such as:
+
+* Missing HSTS headers
+* Unsafe external links
+* Security hardening
+
+Implement:
+
+* HTTPS enforcement
+* CSP headers
+* HSTS
+* XSS protection
+* CSRF protection
+* Secure headers
+* Input sanitization
+* Rate limiting
+* Secure API handling
+* Better deployment configuration
+
+==================================================
+PHASE 10 — FINAL DELIVERY
+=========================
+
+After all improvements:
+
+1. Generate full audit report
+2. Show before vs after comparison
+3. Provide Lighthouse scores
+4. Provide SEO improvements
+5. Explain all optimizations
+6. List all fixes implemented
+7. Ensure zero console errors
+8. Ensure clean production build
+9. Ensure deployment works perfectly on Render/Vercel
+10. Provide future scaling recommendations
+
+==================================================
+TECH STACK EXPECTATIONS
+=======================
+
+Use modern best practices:
+
+* React / Next.js
+* TypeScript
+* TailwindCSS
+* Framer Motion
+* Responsive architecture
+* Component-driven development
+* SEO-first implementation
+* Performance-first architecture
+
+==================================================
+OUTPUT FORMAT
+=============
+
+Provide:
+
+1. Audit findings
+2. Issues discovered
+3. Solutions implemented
+4. Updated code
+5. Optimization metrics
+6. SEO improvements
+7. Performance improvements
+8. Deployment recommendations
+
+Do NOT provide generic advice.
+Operate like a world-class senior engineering and product design team.

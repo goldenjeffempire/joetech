@@ -1,20 +1,32 @@
+import { lazy, Suspense } from "react";
 import { useSeo } from "@/hooks/use-seo";
 import HeroSection from "@/components/HeroSection";
 import TrustedBySection from "@/components/TrustedBySection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ServiceBuilderSection from "@/components/ServiceBuilderSection";
-import SimulationDashboard from "@/components/SimulationDashboard";
-import WorkflowVisualization from "@/components/WorkflowVisualization";
 import ImpactMetrics from "@/components/home/ImpactMetrics";
 import ServicesPreview from "@/components/home/ServicesPreview";
-import DigitalEcosystemSection from "@/components/home/DigitalEcosystemSection";
-import ExperienceVisualizationSection from "@/components/home/ExperienceVisualizationSection";
-import PlatformArchitectureSection from "@/components/home/PlatformArchitectureSection";
-import HomeProcessSection from "@/components/home/HomeProcessSection";
-import AICapabilitiesSection from "@/components/home/AICapabilitiesSection";
-import PortfolioHighlights from "@/components/home/PortfolioHighlights";
-import TechEcosystemSection from "@/components/home/TechEcosystemSection";
-import CTABanner from "@/components/home/CTABanner";
+
+const ServiceBuilderSection = lazy(() => import("@/components/ServiceBuilderSection"));
+const DigitalEcosystemSection = lazy(() => import("@/components/home/DigitalEcosystemSection"));
+const WorkflowVisualization = lazy(() => import("@/components/WorkflowVisualization"));
+const ExperienceVisualizationSection = lazy(() => import("@/components/home/ExperienceVisualizationSection"));
+const PlatformArchitectureSection = lazy(() => import("@/components/home/PlatformArchitectureSection"));
+const HomeProcessSection = lazy(() => import("@/components/home/HomeProcessSection"));
+const SimulationDashboard = lazy(() => import("@/components/SimulationDashboard"));
+const AICapabilitiesSection = lazy(() => import("@/components/home/AICapabilitiesSection"));
+const PortfolioHighlights = lazy(() => import("@/components/home/PortfolioHighlights"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const TechEcosystemSection = lazy(() => import("@/components/home/TechEcosystemSection"));
+const CTABanner = lazy(() => import("@/components/home/CTABanner"));
+
+function SectionFallback() {
+  return (
+    <div
+      className="w-full py-20 sm:py-24 lg:py-32"
+      style={{ background: "var(--joe-bg-solid)" }}
+      aria-hidden="true"
+    />
+  );
+}
 
 export default function Home() {
   useSeo({
@@ -41,22 +53,60 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
+      {/* ── Above-the-fold: always eager ── */}
       <HeroSection />
       <TrustedBySection />
       <ImpactMetrics />
       <ServicesPreview />
-      <ServiceBuilderSection />
-      <DigitalEcosystemSection />
-      <WorkflowVisualization />
-      <ExperienceVisualizationSection />
-      <PlatformArchitectureSection />
-      <HomeProcessSection />
-      <SimulationDashboard />
-      <AICapabilitiesSection />
-      <PortfolioHighlights />
-      <TestimonialsSection />
-      <TechEcosystemSection />
-      <CTABanner />
+
+      {/* ── Below-the-fold: lazy-loaded, split into separate chunks ── */}
+      <Suspense fallback={<SectionFallback />}>
+        <ServiceBuilderSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <DigitalEcosystemSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <WorkflowVisualization />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <ExperienceVisualizationSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <PlatformArchitectureSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <HomeProcessSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <SimulationDashboard />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <AICapabilitiesSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <PortfolioHighlights />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <TestimonialsSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <TechEcosystemSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionFallback />}>
+        <CTABanner />
+      </Suspense>
     </div>
   );
 }

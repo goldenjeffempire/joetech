@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useLocation } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -11,15 +11,21 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const pageTransition = {
-  initial: { opacity: 0, y: 8 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -4 },
-  transition: { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] },
-};
-
 export default function Layout({ children }: LayoutProps) {
   const [location] = useLocation();
+  const prefersReducedMotion = useReducedMotion();
+
+  const transition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.18, ease: [0.25, 0.1, 0.25, 1] as const };
+
+  const variants = prefersReducedMotion
+    ? { initial: {}, animate: {}, exit: {} }
+    : {
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -4 },
+      };
 
   return (
     <div className="min-h-screen" style={{ background: "var(--joe-bg-solid)" }}>
@@ -29,10 +35,10 @@ export default function Layout({ children }: LayoutProps) {
         <motion.main
           id="main-content"
           key={location}
-          initial={pageTransition.initial}
-          animate={pageTransition.animate}
-          exit={pageTransition.exit}
-          transition={pageTransition.transition}
+          initial={variants.initial}
+          animate={variants.animate}
+          exit={variants.exit}
+          transition={transition}
         >
           {children}
         </motion.main>

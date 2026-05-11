@@ -87,10 +87,6 @@ export function useSeo({ title, description, canonical, ogImage, noindex, schema
     setMeta("twitter:image", ogImageUrl);
 
     setPageSchema(schemaJson != null ? JSON.parse(schemaJson) : undefined);
-
-    return () => {
-      setPageSchema(undefined);
-    };
   // schemaJson (string) is used instead of schema (object) for stable comparison
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, description, canonical, ogImage, noindex, schemaJson]);
