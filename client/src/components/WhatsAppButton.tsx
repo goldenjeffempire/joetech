@@ -2,10 +2,51 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, ChevronRight } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
-import { WA_CONTACTS } from "@/components/WhatsAppContactPicker";
+import { useLocation } from "wouter";
+import { WA_CONTACTS } from "@/lib/wa-contacts";
+
+const PAGE_MESSAGES: Record<string, string> = {
+  "/services/app-development":
+    "Hi JOE Technologies! I'm interested in App Development services. I visited your site and would love to discuss building an app for my project.",
+  "/services/website-design":
+    "Hi JOE Technologies! I'm interested in Website Design & Development. I visited your site and would love to discuss a website for my business.",
+  "/services/uiux-design":
+    "Hi JOE Technologies! I'm interested in UI/UX Design services. I visited your site and would love to talk about designing a great user experience.",
+  "/services/automation":
+    "Hi JOE Technologies! I'm interested in Automation Systems. I visited your site and would love to discuss automating workflows for my business.",
+  "/services/ai-strategy":
+    "Hi JOE Technologies! I'm interested in AI Strategy & Architecture. I visited your site and would love to explore an AI roadmap for my organisation.",
+  "/services/custom-ai":
+    "Hi JOE Technologies! I'm interested in Custom AI Development. I visited your site and would love to discuss building a custom AI solution.",
+  "/services/mlops":
+    "Hi JOE Technologies! I'm interested in MLOps & Infrastructure. I visited your site and would love to discuss ML pipeline and infrastructure needs.",
+  "/services/ai-integration":
+    "Hi JOE Technologies! I'm interested in AI Integration & APIs. I visited your site and would love to discuss integrating AI into my existing systems.",
+  "/services/full-stack":
+    "Hi JOE Technologies! I'm interested in Full-Stack Development. I visited your site and would love to discuss a digital systems project.",
+  "/services/advisory":
+    "Hi JOE Technologies! I'm interested in your Digital Advisory service. I visited your site and would love to explore how you can guide my technology strategy.",
+  "/services":
+    "Hi JOE Technologies! I visited your services page and I'd love to discuss which service best fits my needs.",
+  "/portfolio":
+    "Hi JOE Technologies! I saw your portfolio and I'm really impressed. I'd love to discuss a project with your team.",
+  "/about":
+    "Hi JOE Technologies! I've been learning about your team and I'd love to have a conversation about working together.",
+  "/qualify":
+    "Hi JOE Technologies! I've just completed your qualification form and I'd love to chat further about my project.",
+};
+
+const DEFAULT_MESSAGE =
+  "Hello JOE Technologies! I visited joetechnologies.io and I'd love to discuss a project with your team.";
+
+function usePageMessage(): string {
+  const [location] = useLocation();
+  return PAGE_MESSAGES[location] ?? DEFAULT_MESSAGE;
+}
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
+  const pageMessage = usePageMessage();
   const [open, setOpen] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -92,7 +133,7 @@ export default function WhatsAppButton() {
                 {WA_CONTACTS.map((n, i) => (
                   <a
                     key={i}
-                    href={n.wa()}
+                    href={n.wa(pageMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-200"
