@@ -32,6 +32,11 @@ declare module "http" {
 app.use(helmet({
   contentSecurityPolicy: false,
   crossOriginEmbedderPolicy: false,
+  // Disable CORP header — leaving it as "same-origin" blocks Render's HTTPS
+  // proxy from serving ES module chunks that have the `crossorigin` attribute
+  // on <link rel="modulepreload"> tags, causing the JS bundle to fail silently
+  // and the loading screen to persist indefinitely in production.
+  crossOriginResourcePolicy: false,
 }));
 
 app.use(compression());
@@ -221,14 +226,22 @@ process.on("uncaughtException", (err: Error) => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Async setup ──────────────────────────────────────────────────────────────
-// markReady() MUST be called no matter what — if it is never called, all
-// incoming requests queue forever and the site shows a blank page.
-// The try/finally guarantees this even when the DB is unreachable.
+// Structure: DB migrations and API routes are best-effort (errors logged but
+// do NOT prevent the site from serving). Static file / Vite setup runs in its
+// own block so a route-registration failure never takes the frontend down.
+// markReady() is called in the outer finally so the readiness gate is ALWAYS
+// released — preventing the infinite loading screen even on partial failures.
 (async () => {
+  // ── Step 1: DB migrations (best-effort) ─────────────────────────────────
   try {
     const { runMigrations } = await import("./db");
     await runMigrations();
+  } catch (err) {
+    console.error("[startup] DB migration error (non-fatal):", err);
+  }
 
+  // ── Step 2: API routes (best-effort) ────────────────────────────────────
+  try {
     const { registerRoutes } = await import("./routes");
     await registerRoutes(httpServer, app);
 
@@ -246,7 +259,15 @@ process.on("uncaughtException", (err: Error) => {
 
       return res.status(status).json({ message });
     });
+  } catch (err) {
+    console.error("[startup] Route registration error (non-fatal):", err);
+  }
 
+  // ── Step 3: Static files / Vite — ALWAYS runs so the frontend is served ──
+  // This step is isolated from Steps 1 & 2. Even if DB or routes failed,
+  // the SPA (index.html + assets) must be reachable so the user sees the app
+  // (or the error boundary) instead of the infinite loading screen.
+  try {
     if (isProduction) {
       const { serveStatic } = await import("./static");
       serveStatic(app);
@@ -254,13 +275,12 @@ process.on("uncaughtException", (err: Error) => {
       const { setupVite } = await import("./vite");
       await setupVite(httpServer, app);
     }
-
     log("setup complete — serving requests", "express");
   } catch (err) {
-    console.error("[startup] Fatal setup error:", err);
-    console.error("[startup] Server will still serve requests but may be degraded.");
+    console.error("[startup] Static/Vite setup error:", err);
   } finally {
-    // Always release the readiness gate so the site is never permanently blank.
+    // Release the readiness gate unconditionally — the site must never be
+    // stuck behind the queue regardless of what failed above.
     markReady();
   }
 })();
