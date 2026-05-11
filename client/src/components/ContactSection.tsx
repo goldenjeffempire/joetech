@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { Mail, MapPin, Send, CheckCircle2, Globe, Phone } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Globe } from "lucide-react";
 import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 import { Button } from "@/components/ui/button";

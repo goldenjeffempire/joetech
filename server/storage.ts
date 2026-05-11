@@ -99,6 +99,10 @@ export class DatabaseStorage implements IStorage {
     }
 
     const id = randomUUID();
+    // Use ON CONFLICT DO NOTHING to handle the rare race condition where two
+    // concurrent requests for the same email both pass the select check above.
+    // If the row already existed, .returning() returns an empty array — we
+    // re-fetch and return { alreadyExists: true } in that case.
     const [subscriber] = await db
       .insert(newsletterSubscribers)
       .values({
@@ -107,7 +111,17 @@ export class DatabaseStorage implements IStorage {
         source: data.source ?? "popup",
         createdAt: new Date().toISOString(),
       })
+      .onConflictDoNothing()
       .returning();
+
+    if (!subscriber) {
+      const [raceWinner] = await db
+        .select()
+        .from(newsletterSubscribers)
+        .where(eq(newsletterSubscribers.email, data.email));
+      return { subscriber: raceWinner!, alreadyExists: true };
+    }
+
     return { subscriber, alreadyExists: false };
   }
 

@@ -121,10 +121,6 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/health", (_req, res) => {
-    res.json({ status: "ok", timestamp: new Date().toISOString() });
-  });
-
   app.get("/robots.txt", (_req, res) => {
     res.setHeader("Content-Type", "text/plain");
     res.send(
@@ -185,6 +181,13 @@ Sitemap: https://joetechnologies.io/sitemap.xml
     res.send(
       `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`
     );
+  });
+
+  // Catch-all for unmatched /api/* routes — return JSON 404 instead of
+  // falling through to the SPA handler which would return index.html.
+  // app.use() does simple prefix matching and avoids path-to-regexp wildcards.
+  app.use("/api", (_req, res) => {
+    res.status(404).json({ message: "API route not found" });
   });
 
   return httpServer;

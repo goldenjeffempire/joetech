@@ -432,10 +432,15 @@ export default function AdminPage() {
     retry: false,
   });
 
-  if (contactsQ.error?.message === "403" && adminKey) {
-    sessionStorage.removeItem(SESSION_KEY);
-    setAdminKey(null);
-  }
+  // Handle expired / invalid API key returned from any query.
+  // Must be in a useEffect — calling setState during render is a React
+  // anti-pattern that causes infinite re-render loops.
+  useEffect(() => {
+    if (contactsQ.error?.message === "403" && adminKey) {
+      sessionStorage.removeItem(SESSION_KEY);
+      setAdminKey(null);
+    }
+  }, [contactsQ.error, adminKey]);
 
   if (!adminKey) return <LoginGate onLogin={handleLogin} />;
 

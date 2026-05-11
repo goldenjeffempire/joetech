@@ -5,6 +5,14 @@ import * as schema from "@shared/schema";
 // Export the pool so server/index.ts can close it during graceful shutdown.
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  // Limit connections — free Render/Supabase DBs have a low max_connections cap.
+  max: 10,
+  // Return idle connections to the pool after 30 s so we never hold DB slots
+  // open for minutes during low-traffic periods.
+  idleTimeoutMillis: 30_000,
+  // Fail fast if the DB is unreachable during a health check or request rather
+  // than hanging for the OS TCP timeout (~2 min).
+  connectionTimeoutMillis: 5_000,
 });
 
 pool.on("error", (err) => {

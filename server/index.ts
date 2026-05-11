@@ -188,7 +188,23 @@ async function gracefulShutdown(signal: string): Promise<void> {
 // trigger the same clean shutdown path.
 process.once("SIGTERM", () => gracefulShutdown("SIGTERM"));
 process.once("SIGINT",  () => gracefulShutdown("SIGINT"));
-// ────────────────────────────────────────────────────────────────────────────
+
+// ── Global error guards ───────────────────────────────────────────────────────
+// Without these, a single unhandled promise rejection silently crashes the
+// process on Node 18+, taking the entire service down with no log.
+process.on("unhandledRejection", (reason: unknown) => {
+  console.error("[server] Unhandled Promise Rejection:", reason);
+  // Do NOT exit — the rejection is almost always from a request handler,
+  // not a fatal process-level failure.
+});
+
+process.on("uncaughtException", (err: Error) => {
+  // An uncaught synchronous exception is genuinely fatal — the process is
+  // in an unknown state. Log it and let the process manager restart us.
+  console.error("[server] Uncaught Exception (fatal):", err);
+  process.exit(1);
+});
+// ─────────────────────────────────────────────────────────────────────────────
 
 // ── Async setup ──────────────────────────────────────────────────────────────
 // markReady() MUST be called no matter what — if it is never called, all
