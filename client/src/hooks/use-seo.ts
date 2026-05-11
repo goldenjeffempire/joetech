@@ -51,6 +51,11 @@ function setPageSchema(schema: object | object[] | undefined) {
 }
 
 export function useSeo({ title, description, canonical, ogImage, noindex, schema }: SeoConfig) {
+  // Serialize to a stable string so React's dep comparison uses value equality
+  // rather than object identity.  Schema literals are recreated on every render,
+  // which would otherwise cause the effect (and DOM updates) to run every cycle.
+  const schemaJson = schema != null ? JSON.stringify(schema) : undefined;
+
   useEffect(() => {
     const fullTitle = title.includes(SITE_NAME)
       ? title
@@ -81,10 +86,12 @@ export function useSeo({ title, description, canonical, ogImage, noindex, schema
     setMeta("twitter:description", description);
     setMeta("twitter:image", ogImageUrl);
 
-    setPageSchema(schema);
+    setPageSchema(schemaJson != null ? JSON.parse(schemaJson) : undefined);
 
     return () => {
       setPageSchema(undefined);
     };
-  }, [title, description, canonical, ogImage, noindex, schema]);
+  // schemaJson (string) is used instead of schema (object) for stable comparison
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, description, canonical, ogImage, noindex, schemaJson]);
 }

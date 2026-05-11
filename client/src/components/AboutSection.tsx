@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { CheckCircle, Award, Globe, TrendingUp, ExternalLink, Target, Zap, Users, Code2 } from "lucide-react";
-import { SiInstagram, SiFacebook, SiGithub, SiLinkedin } from "react-icons/si";
+import { SiInstagram, SiFacebook, SiGithub } from "react-icons/si";
 
 const stats = [
   { value: "50+", label: "Projects Shipped", accent: "#48F2FB", icon: Code2 },

@@ -162,7 +162,8 @@ export default function Navigation() {
                   className={`relative flex items-center gap-1.5 px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isServicesActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
                   style={isServicesActive ? { color: "#48F2FB" } : {}}
                   aria-expanded={servicesOpen}
-                  aria-haspopup="true"
+                  aria-haspopup="menu"
+                  aria-controls="services-mega-menu"
                   onKeyDown={handleServicesKeyDown}
                   data-testid="button-nav-services-dropdown"
                 >
@@ -181,6 +182,9 @@ export default function Navigation() {
                 <AnimatePresence>
                   {servicesOpen && (
                     <motion.div
+                      id="services-mega-menu"
+                      role="menu"
+                      aria-label="Services menu"
                       initial={{ opacity: 0, y: 10, scale: 0.97 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.97 }}

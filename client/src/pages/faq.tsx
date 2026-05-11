@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useSeo } from "@/hooks/use-seo";
-import { Plus, Minus, ArrowRight, HelpCircle, Mail, Phone } from "lucide-react";
+import { Plus, Minus, ArrowRight, Mail, Phone } from "lucide-react";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
