@@ -70,11 +70,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Instant ping/warmup endpoint — always responds immediately, even before full
-// setup is complete, so Render health checks and keep-alive pings never block.
-app.get("/ping", (_req, res) => {
-  res.status(200).send("ok");
-});
+// Instant ping/warmup endpoints — always respond immediately, even before
+// full setup is complete, so Render/Replit health checks never time out.
+app.get("/ping", (_req, res) => res.status(200).send("ok"));
+app.get("/api/health", (_req, res) =>
+  res.json({ status: "ok", timestamp: new Date().toISOString() })
+);
 
 // ── Readiness gate ──────────────────────────────────────────────────────────
 // The server starts listening before async setup (routes + Vite) completes so
@@ -88,12 +89,15 @@ function markReady() {
   _waitQueue.splice(0).forEach((fn) => fn());
 }
 
-// Queue all non-ping requests until setup is complete.
+// Queue all non-essential requests until setup is complete.
 // Without this middleware, requests arriving during startup (runMigrations +
 // registerRoutes + Vite setup) would fall through with no matching route and
 // return a 404 or hang — causing a blank page on first load.
+// /ping and /api/health are always exempt so Render/Replit health checks
+// never time out during the startup window.
+const ALWAYS_READY = new Set(["/ping", "/api/health"]);
 app.use((req, _res, next) => {
-  if (_setupComplete || req.path === "/ping") return next();
+  if (_setupComplete || ALWAYS_READY.has(req.path)) return next();
   _waitQueue.push(next);
 });
 // ────────────────────────────────────────────────────────────────────────────

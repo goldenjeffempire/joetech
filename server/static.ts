@@ -3,12 +3,23 @@ import fs from "fs";
 import path from "path";
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(__dirname, "public");
-  if (!fs.existsSync(distPath)) {
+  // __dirname in the esbuild CJS bundle points to the dist/ directory.
+  // As a belt-and-suspenders fallback, also check relative to process.cwd().
+  const candidates = [
+    path.resolve(__dirname, "public"),
+    path.resolve(process.cwd(), "dist", "public"),
+    path.resolve(process.cwd(), "public"),
+  ];
+  const distPath = candidates.find(fs.existsSync);
+
+  if (!distPath) {
     throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
+      `Could not find the build directory. Tried: ${candidates.join(", ")}. ` +
+      `Make sure to run the build step before starting the server.`,
     );
   }
+
+  console.log(`[static] serving from ${distPath}`);
 
   // Serve hashed assets (JS, CSS, images) with long-term immutable cache.
   // HTML files are intentionally excluded — they must never be cached so that
