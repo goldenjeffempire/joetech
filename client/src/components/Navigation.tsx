@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import ThemeToggle from "@/components/ThemeToggle";
 import JoeLogo from "@/components/JoeLogo";
+import { prefetchRoute } from "@/lib/prefetch";
 
 const serviceItems = [
   {
@@ -139,6 +140,7 @@ export default function Navigation() {
                     className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
                     style={isActive ? { color: "#48F2FB" } : {}}
                     data-testid={`link-nav-${link.label.toLowerCase()}`}
+                    onMouseEnter={() => prefetchRoute(link.href)}
                   >
                     {link.label}
                     {isActive && (
@@ -155,7 +157,7 @@ export default function Navigation() {
 
               <div
                 className="relative"
-                onMouseEnter={() => setServicesOpen(true)}
+                onMouseEnter={() => { setServicesOpen(true); serviceItems.forEach(s => prefetchRoute(s.href)); prefetchRoute("/services"); }}
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 <button
@@ -253,6 +255,7 @@ export default function Navigation() {
                     className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 ${isActive ? "" : "text-joe-text/55 hover:text-joe-text"}`}
                     style={isActive ? { color: "#48F2FB" } : {}}
                     data-testid={`link-nav-${link.label.toLowerCase()}`}
+                    onMouseEnter={() => prefetchRoute(link.href)}
                   >
                     {link.label}
                     {isActive && (

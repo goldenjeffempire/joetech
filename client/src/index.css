@@ -627,4 +627,45 @@
   .animate-slide-in {
     animation: slide-in-from-bottom 0.5s ease forwards;
   }
+
+  /* ── Page skeleton shimmer ── */
+  @keyframes skeleton-shimmer {
+    0%   { background-position: -600px 0; }
+    100% { background-position: 600px 0; }
+  }
+
+  .skeleton-pulse {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.04) 25%,
+      rgba(72,242,251,0.08) 50%,
+      rgba(255,255,255,0.04) 75%
+    );
+    background-size: 600px 100%;
+    animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  }
+
+  .dark .skeleton-pulse {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 25%,
+      rgba(72,242,251,0.07) 50%,
+      rgba(255,255,255,0.03) 75%
+    );
+    background-size: 600px 100%;
+    animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  }
+
+  /* ── Hero skeleton glow orb ── */
+  .skeleton-hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 40%,
+      rgba(72,242,251,0.06) 0%,
+      rgba(232,103,234,0.04) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
 }

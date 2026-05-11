@@ -1,0 +1,50 @@
+2026-05-11T10:35:12.669540992Z ../dist/public/assets/admin-D-aAfr99.js                 33.80 kB
+2026-05-11T10:35:12.669547412Z ../dist/public/assets/vendor-radix-l_S1UU7N.js          54.25 kB
+2026-05-11T10:35:12.669553762Z ../dist/public/assets/vendor-DlLNcehT.js                58.36 kB
+2026-05-11T10:35:12.669558333Z ../dist/public/assets/vendor-icons-Dg6PTNGQ.js          68.28 kB
+2026-05-11T10:35:12.669610765Z ../dist/public/assets/index-2eDDPE9f.js                 70.93 kB
+2026-05-11T10:35:12.669615276Z ../dist/public/assets/vendor-forms-DvsiJyi9.js          86.92 kB
+2026-05-11T10:35:12.669630366Z ../dist/public/assets/home-DoyEpN_v.js                 110.80 kB
+2026-05-11T10:35:12.669668728Z ../dist/public/assets/vendor-framer-rRWR6rx1.js        120.83 kB
+2026-05-11T10:35:12.669671479Z ../dist/public/assets/vendor-react-CoRtBsfJ.js         145.49 kB
+2026-05-11T10:35:12.670060149Z ✓ built in 6.39s
+2026-05-11T10:35:12.670210047Z building server...
+2026-05-11T10:35:12.869091339Z 
+2026-05-11T10:35:12.86911096Z   dist/index.cjs  1.1mb ⚠️
+2026-05-11T10:35:12.869113861Z 
+2026-05-11T10:35:12.869116551Z ⚡ Done in 182ms
+2026-05-11T10:35:20.021025714Z ==> Uploading build...
+2026-05-11T10:35:29.841241406Z ==> Uploaded in 4.7s. Compression took 5.1s
+2026-05-11T10:35:29.88508116Z ==> Build successful 🎉
+2026-05-11T10:35:33.620430138Z ==> Deploying...
+2026-05-11T10:35:33.681910797Z ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+2026-05-11T10:35:49.606055239Z ==> Running 'node ./dist/index.cjs'
+2026-05-11T10:35:50.399963226Z [startup] ═══════════════════════════════════════════════════
+2026-05-11T10:35:50.400616903Z [startup] NODE_ENV      = production
+2026-05-11T10:35:50.400632474Z [startup] PORT          = 10000
+2026-05-11T10:35:50.400643384Z [startup] DATABASE_URL  = set ✓
+2026-05-11T10:35:50.400693145Z [startup] ADMIN_SECRET  = set ✓
+2026-05-11T10:35:50.400700795Z [startup] process.cwd() = /opt/render/project/src
+2026-05-11T10:35:50.400746047Z [startup] Node version  = v20.20.2
+2026-05-11T10:35:50.400781497Z [startup] ═══════════════════════════════════════════════════
+2026-05-11T10:35:50.50527417Z 10:35:50 AM [keepalive] keep-alive enabled → pinging https://joetech-3xqa.onrender.com/ping every 4 min
+2026-05-11T10:35:50.507435668Z 10:35:50 AM [express] serving on port 10000
+2026-05-11T10:35:51.000915786Z [db] Schema verified — all tables present
+2026-05-11T10:35:51.005977921Z [static] searching for build directory...
+2026-05-11T10:35:51.006115295Z [static]   [0] /opt/render/project/src/dist/public — FOUND ✓
+2026-05-11T10:35:51.006135605Z [static]   [1] /opt/render/project/src/dist/public — FOUND ✓
+2026-05-11T10:35:51.006364432Z [static]   [2] /opt/render/project/src/public — not found
+2026-05-11T10:35:51.006375092Z [static] serving from /opt/render/project/src/dist/public
+2026-05-11T10:35:51.006545306Z [static] index.html confirmed at /opt/render/project/src/dist/public/index.html
+2026-05-11T10:35:51.007180603Z 10:35:51 AM [express] setup complete — serving requests
+2026-05-11T10:35:55.246607526Z ==> Your service is live 🎉
+2026-05-11T10:35:55.338667329Z ==> 
+2026-05-11T10:35:55.341307026Z ==> ///////////////////////////////////////////////////////////
+2026-05-11T10:35:55.34376924Z ==> 
+2026-05-11T10:35:55.346155181Z ==> Available at your primary URL https://joetech-3xqa.onrender.com
+2026-05-11T10:35:55.348335417Z ==> 
+2026-05-11T10:35:55.35077282Z ==> ///////////////////////////////////////////////////////////
+2026-05-11T10:39:50.81175721Z 10:39:50 AM [keepalive] keep-alive ping → 200
+2026-05-11T10:41:00.191704976Z ==> Detected service running on port 10000
+2026-05-11T10:41:00.301481686Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2026-05-11T10:43:50.465300333Z 10:43:50 AM [keepalive] keep-alive ping → 200

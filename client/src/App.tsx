@@ -7,9 +7,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Layout from "@/components/Layout";
 import NotFound from "@/pages/not-found";
+import { prefetchIdle } from "@/lib/prefetch";
 
 const Home = lazy(() => import("@/pages/home"));
-
 const About = lazy(() => import("@/pages/about"));
 const ServicesPage = lazy(() => import("@/pages/services"));
 const Portfolio = lazy(() => import("@/pages/portfolio"));
@@ -37,17 +37,14 @@ const AdminPage = lazy(() => import("@/pages/admin"));
 
 function ScrollToTop() {
   const [location] = useLocation();
-
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [location]);
-
   return null;
 }
 
 function PageViewTracker() {
   const [location] = useLocation();
-
   useEffect(() => {
     fetch("/api/analytics/pageview", {
       method: "POST",
@@ -55,16 +52,93 @@ function PageViewTracker() {
       body: JSON.stringify({ path: location, referrer: document.referrer || null }),
     }).catch(() => {});
   }, [location]);
-
   return null;
 }
 
-function PageLoader() {
+function IdlePrefetcher() {
+  useEffect(() => {
+    prefetchIdle([
+      "/about",
+      "/services",
+      "/portfolio",
+      "/contact",
+      "/services/app-development",
+      "/services/website-design",
+      "/services/automation",
+      "/services/custom-ai",
+    ]);
+  }, []);
+  return null;
+}
+
+function PageSkeleton() {
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--joe-bg-solid)" }}>
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-8 h-8 border-2 border-[#48F2FB] border-t-transparent rounded-full animate-spin" />
-        <span className="text-joe-text/50 text-sm font-mono">Loading...</span>
+    <div
+      className="min-h-screen"
+      style={{ background: "var(--joe-bg-solid)" }}
+      aria-hidden="true"
+    >
+      <div
+        className="fixed top-0 left-0 right-0 h-16 z-40"
+        style={{ background: "var(--joe-nav-bg)", borderBottom: "1px solid var(--joe-nav-border)" }}
+      >
+        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <div className="w-7 h-7 rounded-md skeleton-pulse" style={{ background: "rgba(72,242,251,0.15)" }} />
+            <div className="w-28 h-4 rounded skeleton-pulse" style={{ background: "rgba(72,242,251,0.1)" }} />
+          </div>
+          <div className="hidden md:flex items-center gap-6">
+            {[60, 48, 56, 68, 52].map((w, i) => (
+              <div key={i} className="h-3 rounded skeleton-pulse" style={{ width: w, background: "rgba(255,255,255,0.07)" }} />
+            ))}
+          </div>
+          <div className="w-28 h-8 rounded-lg skeleton-pulse" style={{ background: "rgba(72,242,251,0.12)" }} />
+        </div>
+      </div>
+
+      <div
+        className="relative flex flex-col items-center justify-center text-center overflow-hidden"
+        style={{ minHeight: "100vh", paddingTop: "4rem" }}
+      >
+        <div className="skeleton-hero-glow" />
+        <div className="relative z-10 flex flex-col items-center gap-5 px-6 w-full max-w-3xl mx-auto">
+          <div className="w-32 h-5 rounded-full skeleton-pulse" style={{ background: "rgba(72,242,251,0.15)" }} />
+          <div className="flex flex-col gap-3 w-full items-center">
+            <div className="w-full max-w-xl h-10 rounded-xl skeleton-pulse" style={{ background: "rgba(255,255,255,0.07)" }} />
+            <div className="w-3/4 h-10 rounded-xl skeleton-pulse" style={{ background: "rgba(255,255,255,0.05)" }} />
+          </div>
+          <div className="flex flex-col gap-2 w-full items-center max-w-lg">
+            <div className="w-full h-4 rounded skeleton-pulse" style={{ background: "rgba(255,255,255,0.05)" }} />
+            <div className="w-5/6 h-4 rounded skeleton-pulse" style={{ background: "rgba(255,255,255,0.04)" }} />
+          </div>
+          <div className="flex gap-4 mt-2">
+            <div className="w-36 h-11 rounded-xl skeleton-pulse" style={{ background: "rgba(72,242,251,0.2)" }} />
+            <div className="w-36 h-11 rounded-xl skeleton-pulse" style={{ background: "rgba(255,255,255,0.07)" }} />
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 pb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="rounded-2xl p-6 flex flex-col gap-4 skeleton-pulse"
+              style={{
+                background: "var(--joe-card)",
+                border: "1px solid var(--joe-card-border)",
+                animationDelay: `${i * 0.05}s`,
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl" style={{ background: "rgba(72,242,251,0.1)" }} />
+              <div className="h-5 rounded w-3/4" style={{ background: "rgba(255,255,255,0.07)" }} />
+              <div className="flex flex-col gap-2">
+                <div className="h-3 rounded w-full" style={{ background: "rgba(255,255,255,0.05)" }} />
+                <div className="h-3 rounded w-5/6" style={{ background: "rgba(255,255,255,0.04)" }} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -72,7 +146,7 @@ function PageLoader() {
 
 function Router() {
   return (
-    <Suspense fallback={<PageLoader />}>
+    <Suspense fallback={<PageSkeleton />}>
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
@@ -112,6 +186,7 @@ function App() {
           <Toaster />
           <ScrollToTop />
           <PageViewTracker />
+          <IdlePrefetcher />
           <Layout>
             <Router />
           </Layout>
