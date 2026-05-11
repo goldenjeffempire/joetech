@@ -32,6 +32,7 @@ export interface IStorage {
   getPageViewStats(): Promise<PageViewStat[]>;
   getPageViewTimeline(days: number): Promise<{ date: string; views: number }[]>;
   getReferrerStats(): Promise<{ source: string; views: number }[]>;
+  getTopConvertingPages(): Promise<{ page: string; toContact: number; toQualify: number; total: number }[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -154,6 +155,55 @@ export class DatabaseStorage implements IStorage {
       .groupBy(pageViews.path)
       .orderBy(sql`count(*) desc`);
     return rows.map(r => ({ path: r.path, views: r.views }));
+  }
+
+  async getTopConvertingPages(): Promise<{ page: string; toContact: number; toQualify: number; total: number }[]> {
+    // Pull all page-view rows where the visitor arrived at a conversion endpoint
+    // (contact form or lead qualification) and the referrer is set.
+    // The referrer may be a full URL (document.referrer) or a bare path — we
+    // normalise both to just the pathname so same-site pages collapse correctly.
+    const rows = await db
+      .select({
+        path: pageViews.path,
+        referrer: pageViews.referrer,
+        count: sql<number>`cast(count(*) as int)`,
+      })
+      .from(pageViews)
+      .where(sql`path IN ('/contact', '/qualify') AND referrer IS NOT NULL AND referrer != ''`)
+      .groupBy(pageViews.path, pageViews.referrer);
+
+    const map = new Map<string, { toContact: number; toQualify: number }>();
+    for (const row of rows) {
+      if (!row.referrer) continue;
+      let sourcePage: string;
+      if (row.referrer.startsWith("/")) {
+        sourcePage = row.referrer.split("?")[0]; // strip query string
+      } else {
+        try {
+          sourcePage = new URL(row.referrer).pathname;
+        } catch {
+          continue; // unparseable external referrer, skip
+        }
+      }
+      // Skip the conversion pages themselves to avoid circular entries
+      if (sourcePage === "/contact" || sourcePage === "/qualify") continue;
+      const existing = map.get(sourcePage) ?? { toContact: 0, toQualify: 0 };
+      if (row.path === "/contact") {
+        map.set(sourcePage, { ...existing, toContact: existing.toContact + row.count });
+      } else if (row.path === "/qualify") {
+        map.set(sourcePage, { ...existing, toQualify: existing.toQualify + row.count });
+      }
+    }
+
+    return Array.from(map.entries())
+      .map(([page, { toContact, toQualify }]) => ({
+        page,
+        toContact,
+        toQualify,
+        total: toContact + toQualify,
+      }))
+      .filter((r) => r.total > 0)
+      .sort((a, b) => b.total - a.total);
   }
 
   async getReferrerStats(): Promise<{ source: string; views: number }[]> {

@@ -177,6 +177,21 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/analytics/conversions", async (req, res) => {
+    const secret = process.env.ADMIN_SECRET;
+    const provided = req.headers["x-api-key"];
+    if (!secret || provided !== secret) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    try {
+      const data = await storage.getTopConvertingPages();
+      res.json(data);
+    } catch (err) {
+      console.error("Conversions error:", err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   app.get("/api/analytics", async (req, res) => {
     const secret = process.env.ADMIN_SECRET;
     const provided = req.headers["x-api-key"];

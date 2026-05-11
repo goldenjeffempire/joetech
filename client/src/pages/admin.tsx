@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LogOut, RefreshCw, Download, Copy, CheckCheck,
   Mail, Users, MessageSquare, TrendingUp, Eye, EyeOff,
-  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp, BarChart2, Globe2,
+  ShieldCheck, AlertCircle, Inbox, ChevronDown, ChevronUp, BarChart2, Globe2, Target,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -369,6 +369,97 @@ function AnalyticsPanel({ data, loading, refetching, refetch }: {
   );
 }
 
+type ConversionRow = { page: string; toContact: number; toQualify: number; total: number };
+
+function ConversionsPanel({ data, loading, refetching, refetch }: {
+  data?: ConversionRow[];
+  loading: boolean; refetching: boolean; refetch: () => void;
+}) {
+  const max = Math.max(...(data ?? []).map(d => d.total), 1);
+
+  return (
+    <TableWrapper
+      title="Conversion Pathways"
+      icon={Target}
+      accentColor="#00ff88"
+      count={data?.length}
+      loading={loading}
+      refetching={refetching}
+      onRefresh={refetch}
+      onExport={() => {}}
+    >
+      {loading ? (
+        <div className="p-5 space-y-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="h-9 bg-white/5 rounded animate-pulse" style={{ opacity: 1 - i * 0.15 }} />
+          ))}
+        </div>
+      ) : !data?.length ? (
+        <EmptyState label="conversion data" />
+      ) : (
+        <table className="w-full text-xs font-mono">
+          <thead>
+            <tr className="border-b" style={{ borderColor: "var(--joe-card-border)" }}>
+              <th className="px-4 py-2.5 text-left text-joe-text/40 font-normal">Page</th>
+              <th className="px-3 py-2.5 text-right text-[#48F2FB]/60 font-normal whitespace-nowrap">→ Contact</th>
+              <th className="px-3 py-2.5 text-right text-[#E867EA]/60 font-normal whitespace-nowrap">→ Qualify</th>
+              <th className="px-4 py-2.5 text-right text-joe-text/40 font-normal">Total</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y" style={{ borderColor: "var(--joe-card-border)" }}>
+            {data.map((row, i) => (
+              <tr key={row.page}
+                data-testid={`conversion-row-${i}`}
+                className="group hover:bg-white/[0.02] transition-colors">
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                      <span className="text-joe-text/80 truncate block">{row.page}</span>
+                      <div className="mt-1 h-0.5 rounded-full overflow-hidden"
+                        style={{ background: "var(--joe-card-border)" }}>
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{
+                            width: `${(row.total / max) * 100}%`,
+                            background: row.toContact >= row.toQualify
+                              ? "linear-gradient(90deg, #48F2FB, #E867EA)"
+                              : "linear-gradient(90deg, #E867EA, #48F2FB)",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-3 py-3 text-right">
+                  {row.toContact > 0 ? (
+                    <span className="px-2 py-0.5 rounded-full text-[#48F2FB] bg-[#48F2FB]/10">
+                      {row.toContact}
+                    </span>
+                  ) : (
+                    <span className="text-joe-text/20">—</span>
+                  )}
+                </td>
+                <td className="px-3 py-3 text-right">
+                  {row.toQualify > 0 ? (
+                    <span className="px-2 py-0.5 rounded-full text-[#E867EA] bg-[#E867EA]/10">
+                      {row.toQualify}
+                    </span>
+                  ) : (
+                    <span className="text-joe-text/20">—</span>
+                  )}
+                </td>
+                <td className="px-4 py-3 text-right text-joe-text/70">
+                  {row.total}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </TableWrapper>
+  );
+}
+
 const SOURCE_GRADIENTS = [
   "linear-gradient(90deg, #48F2FB, #E867EA)",
   "linear-gradient(90deg, #E867EA, #f59e0b)",
@@ -558,6 +649,14 @@ function AnalyticsTab({ adminKey, pageData, pageLoading, pageRefetching, pageRef
     refetchInterval: 60_000,
   });
 
+  const conversionsQ = useQuery<ConversionRow[]>({
+    queryKey: ["/api/analytics/conversions", adminKey],
+    queryFn: () => adminFetch("/api/analytics/conversions", adminKey),
+    enabled: true,
+    retry: false,
+    refetchInterval: 60_000,
+  });
+
   return (
     <div className="space-y-4">
       <TimelineChart
@@ -582,6 +681,12 @@ function AnalyticsTab({ adminKey, pageData, pageLoading, pageRefetching, pageRef
           refetch={() => referrerQ.refetch()}
         />
       </div>
+      <ConversionsPanel
+        data={conversionsQ.data}
+        loading={conversionsQ.isLoading}
+        refetching={conversionsQ.isFetching && !conversionsQ.isLoading}
+        refetch={() => conversionsQ.refetch()}
+      />
     </div>
   );
 }
