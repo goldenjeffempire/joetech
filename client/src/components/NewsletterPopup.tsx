@@ -4,18 +4,28 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { X, Mail, Sparkles, CheckCircle2, AlertCircle, WifiOff } from "lucide-react";
+import { X, Mail, Sparkles, CheckCircle2, AlertCircle, WifiOff, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLocation } from "wouter";
 
-const DELAY_MS = 4000;
+const DELAY_MS = 5000;
 const DISMISSED_KEY = "joe-newsletter-dismissed";
 const SUBSCRIBED_KEY = "joe-newsletter-subscribed";
 const DISMISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
+const SUPPRESSED_PATHS = new Set([
+  "/admin",
+  "/qualify",
+  "/privacy",
+  "/terms",
+  "/cookies",
+]);
+
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   consent: z.boolean().refine((v) => v === true, { message: "You must agree to continue" }),
+  website: z.string().max(0).optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -41,23 +51,27 @@ function parseError(err: unknown): { kind: ErrorKind; message: string } {
 }
 
 export default function NewsletterPopup() {
+  const [location] = useLocation();
   const [visible, setVisible] = useState(false);
   const [done, setDone] = useState(false);
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [errorKind, setErrorKind] = useState<ErrorKind>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const firstFocusRef = useRef<HTMLButtonElement>(null);
 
-  // Show after delay — respects localStorage dismissal (7-day cooldown) and permanent subscription flag
   useEffect(() => {
+    if (SUPPRESSED_PATHS.has(location)) return;
+
     try {
       if (localStorage.getItem(SUBSCRIBED_KEY)) return;
       const dismissed = localStorage.getItem(DISMISSED_KEY);
       if (dismissed && Date.now() - Number(dismissed) < DISMISS_TTL_MS) return;
     } catch { /* localStorage unavailable — show popup */ }
+
     const timer = setTimeout(() => setVisible(true), DELAY_MS);
     return () => clearTimeout(timer);
-  }, []);
+  }, [location]);
 
   const dismiss = useCallback(() => {
     try { localStorage.setItem(DISMISSED_KEY, String(Date.now())); } catch { /* ignore */ }
@@ -78,7 +92,6 @@ export default function NewsletterPopup() {
     }
   }, []);
 
-  // Body scroll lock
   useEffect(() => {
     if (visible) {
       const prev = document.body.style.overflow;
@@ -87,7 +100,6 @@ export default function NewsletterPopup() {
     }
   }, [visible]);
 
-  // Escape key dismiss + focus first element on open
   useEffect(() => {
     if (!visible) return;
     firstFocusRef.current?.focus();
@@ -101,7 +113,7 @@ export default function NewsletterPopup() {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: "", consent: false },
+    defaultValues: { email: "", consent: false, website: "" },
   });
 
   const mutation = useMutation({
@@ -109,21 +121,30 @@ export default function NewsletterPopup() {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.email, consentGiven: "yes", source: "popup" }),
+        body: JSON.stringify({
+          email: data.email,
+          consentGiven: "yes",
+          source: "popup",
+          website: data.website ?? "",
+        }),
         credentials: "include",
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) {
-        throw Object.assign(new Error(`${res.status}: ${json?.message ?? res.statusText}`), { status: res.status, body: json });
+        throw Object.assign(
+          new Error(`${res.status}: ${json?.message ?? res.statusText}`),
+          { status: res.status, body: json }
+        );
       }
       return json as { success: boolean; alreadyExists?: boolean };
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
       setSubmitError(null);
       setErrorKind(null);
+      setAlreadySubscribed(result.alreadyExists === true);
       setDone(true);
       try { localStorage.setItem(SUBSCRIBED_KEY, "true"); } catch { /* ignore */ }
-      setTimeout(() => setVisible(false), 3200);
+      setTimeout(() => setVisible(false), 3800);
     },
     onError: (err: unknown) => {
       const { kind, message } = parseError(err);
@@ -144,7 +165,6 @@ export default function NewsletterPopup() {
     <AnimatePresence>
       {visible && (
         <>
-          {/* Backdrop */}
           <motion.div
             key="nl-overlay"
             initial={{ opacity: 0 }}
@@ -157,7 +177,6 @@ export default function NewsletterPopup() {
             aria-hidden="true"
           />
 
-          {/* Modal */}
           <motion.div
             key="nl-modal"
             ref={modalRef}
@@ -180,16 +199,13 @@ export default function NewsletterPopup() {
                 boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 60px rgba(72,242,251,0.07), inset 0 1px 0 rgba(255,255,255,0.04)",
               }}
             >
-              {/* Top accent bar */}
               <div
                 className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent 0%, #48F2FB 35%, #E867EA 65%, transparent 100%)" }}
               />
-              {/* Glow orbs */}
               <div className="absolute top-0 right-0 w-64 h-48 pointer-events-none" style={{ background: "radial-gradient(ellipse at top right, rgba(72,242,251,0.07) 0%, transparent 70%)" }} />
               <div className="absolute bottom-0 left-0 w-48 h-40 pointer-events-none" style={{ background: "radial-gradient(ellipse at bottom left, rgba(232,103,234,0.06) 0%, transparent 70%)" }} />
 
-              {/* Close */}
               <button
                 ref={firstFocusRef}
                 onClick={dismiss}
@@ -204,7 +220,6 @@ export default function NewsletterPopup() {
               </button>
 
               <div className="relative z-10 p-6 sm:p-8">
-                {/* Success state */}
                 {done ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.94 }}
@@ -217,20 +232,28 @@ export default function NewsletterPopup() {
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 0.1, type: "spring", stiffness: 260, damping: 20 }}
                       className="w-16 h-16 rounded-full flex items-center justify-center"
-                      style={{ background: "rgba(72,242,251,0.1)", border: "1px solid rgba(72,242,251,0.3)" }}
+                      style={{
+                        background: alreadySubscribed ? "rgba(232,103,234,0.1)" : "rgba(72,242,251,0.1)",
+                        border: `1px solid ${alreadySubscribed ? "rgba(232,103,234,0.3)" : "rgba(72,242,251,0.3)"}`,
+                      }}
                     >
-                      <CheckCircle2 className="w-8 h-8 text-[#48F2FB]" />
+                      {alreadySubscribed
+                        ? <UserCheck className="w-8 h-8 text-[#E867EA]" />
+                        : <CheckCircle2 className="w-8 h-8 text-[#48F2FB]" />}
                     </motion.div>
                     <div>
-                      <h3 id="nl-title" className="font-heading font-bold text-white text-xl">You're in!</h3>
+                      <h3 id="nl-title" className="font-heading font-bold text-white text-xl">
+                        {alreadySubscribed ? "Already subscribed!" : "You're in!"}
+                      </h3>
                       <p id="nl-desc" className="text-white/45 text-sm mt-2 leading-relaxed max-w-xs mx-auto">
-                        Welcome to the JOE Technologies inner circle. Expect sharp insights, no fluff.
+                        {alreadySubscribed
+                          ? "You're already on our list — keep an eye on your inbox for updates from JOE Technologies."
+                          : "Welcome to the JOE Technologies inner circle. Expect sharp insights, no fluff."}
                       </p>
                     </div>
                   </motion.div>
                 ) : (
                   <>
-                    {/* Header */}
                     <div className="flex items-start gap-3.5 mb-5">
                       <div
                         className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
@@ -256,7 +279,16 @@ export default function NewsletterPopup() {
 
                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3.5" noValidate>
 
-                      {/* Email field */}
+                      {/* Honeypot — hidden from real users, catches bots */}
+                      <input
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+                        {...form.register("website")}
+                      />
+
                       <div>
                         <Input
                           id="nl-email"
@@ -283,7 +315,6 @@ export default function NewsletterPopup() {
                         )}
                       </div>
 
-                      {/* Consent checkbox */}
                       <div>
                         <label
                           className="flex items-start gap-2.5 cursor-pointer select-none"
@@ -324,7 +355,6 @@ export default function NewsletterPopup() {
                         )}
                       </div>
 
-                      {/* Server / network error banner */}
                       {submitError && !mutation.isPending && (
                         <motion.div
                           initial={{ opacity: 0, y: -4 }}
@@ -346,7 +376,6 @@ export default function NewsletterPopup() {
                         </motion.div>
                       )}
 
-                      {/* Submit */}
                       <Button
                         type="submit"
                         disabled={mutation.isPending}
@@ -370,7 +399,6 @@ export default function NewsletterPopup() {
                         )}
                       </Button>
 
-                      {/* Skip */}
                       <button
                         type="button"
                         onClick={dismiss}

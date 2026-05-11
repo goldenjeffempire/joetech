@@ -103,6 +103,11 @@ export async function registerRoutes(
 
   app.post("/api/newsletter", newsletterLimiter, async (req, res) => {
     try {
+      // Honeypot — bots fill this hidden field, real users never see it
+      if (req.body.website) {
+        return res.json({ success: true, id: "ok" });
+      }
+
       const data = insertNewsletterSchema.parse(req.body);
       const { subscriber, alreadyExists } = await storage.createNewsletterSubscriber(data);
       res.json({ success: true, id: subscriber.id, alreadyExists });
