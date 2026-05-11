@@ -18,7 +18,7 @@ export const WA_CONTACTS = [
       `https://wa.me/2348159088343?text=${encodeURIComponent(
         msg ?? "Hello JOE Technologies, I'd love to discuss a project."
       )}`,
-    tag: "Business line",
+    tag: "",
   },
 ];
 
