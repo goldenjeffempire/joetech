@@ -178,21 +178,28 @@ function Router() {
   );
 }
 
+function AppWithBoundary() {
+  const [location] = useLocation();
+  return (
+    <ErrorBoundary resetKey={location}>
+      <Layout>
+        <Router />
+      </Layout>
+    </ErrorBoundary>
+  );
+}
+
 function App() {
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <ScrollToTop />
-          <PageViewTracker />
-          <IdlePrefetcher />
-          <Layout>
-            <Router />
-          </Layout>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <ScrollToTop />
+        <PageViewTracker />
+        <IdlePrefetcher />
+        <AppWithBoundary />
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }
 

@@ -21,10 +21,30 @@ const CTABanner = lazy(() => import("@/components/home/CTABanner"));
 function SectionFallback() {
   return (
     <div
-      className="w-full py-20 sm:py-24 lg:py-32"
-      style={{ background: "var(--joe-bg-solid)" }}
+      className="w-full py-20 sm:py-24 lg:py-32 flex items-center justify-center"
+      style={{ background: "var(--joe-bg-solid)", minHeight: "320px" }}
       aria-hidden="true"
-    />
+    >
+      <div className="flex flex-col items-center gap-4">
+        <div
+          className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+          style={{ borderColor: "rgba(72,242,251,0.3)", borderTopColor: "#48F2FB" }}
+        />
+        <div className="flex gap-1">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="w-1.5 h-1.5 rounded-full animate-pulse"
+              style={{
+                background: "#48F2FB",
+                opacity: 0.4,
+                animationDelay: `${i * 0.2}s`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

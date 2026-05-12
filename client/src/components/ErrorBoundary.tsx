@@ -4,23 +4,34 @@ import { Button } from "@/components/ui/button";
 
 interface Props {
   children: ReactNode;
+  /** When this key changes, the error boundary resets (e.g. pass `location`) */
+  resetKey?: string;
 }
 
 interface State {
   hasError: boolean;
+  lastResetKey?: string;
 }
 
 export default class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, lastResetKey: props.resetKey };
   }
 
-  static getDerivedStateFromError(): State {
+  static getDerivedStateFromError(_error: unknown): Partial<State> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, info: { componentStack?: string | null }) {
+  static getDerivedStateFromProps(props: Props, state: State): Partial<State> | null {
+    // Reset when the navigation key changes (e.g. user navigated to a new page)
+    if (props.resetKey !== state.lastResetKey) {
+      return { hasError: false, lastResetKey: props.resetKey };
+    }
+    return null;
+  }
+
+  componentDidCatch(error: unknown, info: { componentStack?: string | null }) {
     console.error("ErrorBoundary caught:", error, info.componentStack);
   }
 

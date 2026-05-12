@@ -382,14 +382,24 @@ export default function HeroSection() {
 
   useEffect(() => {
     let i = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
+    let showcaseTimer: ReturnType<typeof setTimeout> | null = null;
+
     const delay = setTimeout(() => {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         if (i < codeLines.length) { setVisibleLines(i + 1); i++; }
-        else { clearInterval(interval); setTimeout(() => setShowShowcase(true), 400); }
+        else {
+          if (interval) { clearInterval(interval); interval = null; }
+          showcaseTimer = setTimeout(() => setShowShowcase(true), 400);
+        }
       }, 95);
-      return () => clearInterval(interval);
     }, 500);
-    return () => clearTimeout(delay);
+
+    return () => {
+      clearTimeout(delay);
+      if (interval) clearInterval(interval);
+      if (showcaseTimer) clearTimeout(showcaseTimer);
+    };
   }, []);
 
   useEffect(() => {

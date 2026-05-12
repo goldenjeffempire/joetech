@@ -34,10 +34,12 @@ export function prefetchRoute(path: string): void {
 const idleSchedule =
   typeof requestIdleCallback === "function"
     ? requestIdleCallback
-    : (fn: IdleRequestCallback) => setTimeout(fn, 150);
+    : (fn: IdleRequestCallback) => setTimeout(fn, 600);
 
 export function prefetchIdle(paths: string[]): void {
+  // Wait until after the first paint and idle period before loading chunks
+  // so we don't compete with the initial render and hero animations.
   idleSchedule(() => {
-    paths.forEach((p, i) => setTimeout(() => prefetchRoute(p), i * 80));
+    paths.forEach((p, i) => setTimeout(() => prefetchRoute(p), 300 + i * 120));
   });
 }

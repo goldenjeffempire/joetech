@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Globe, Brain, Database, Bell, CheckCircle2, Zap, ArrowRight,
   MessageSquare, Users, CreditCard, FileText, Workflow,
@@ -133,15 +133,22 @@ const WORKFLOWS: WorkflowConfig[] = [
 ];
 
 function PulsingConnector({ color, active }: { color: string; active: boolean }) {
+  const reducedMotion = useReducedMotion();
   return (
     <div className="flex items-center justify-center w-8 flex-shrink-0">
       <div className="relative w-full h-px" style={{ background: `${color}25` }}>
-        {active && (
+        {active && !reducedMotion && (
           <motion.div
             className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
             style={{ background: color, boxShadow: `0 0 6px ${color}` }}
             animate={{ x: ["-4px", "28px"] }}
-            transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 0.8, repeat: Infinity, ease: "linear", repeatType: "loop" }}
+          />
+        )}
+        {active && reducedMotion && (
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
+            style={{ background: color, boxShadow: `0 0 6px ${color}` }}
           />
         )}
         <ArrowRight

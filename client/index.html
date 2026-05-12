@@ -55,16 +55,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fonts: non-blocking preload — browser fetches in parallel with JS bundle.
-         Space Grotesk removed (unused). Oxanium = headings, Inter = body, JetBrains Mono = code. -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
+    <!-- Fonts: non-blocking load — avoids render-blocking while still loading fonts.
+         Oxanium = headings (font-heading), Inter = body text, JetBrains Mono = code. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
     <noscript>
-      <link type="text/css" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
     </noscript>
 
     <style>
@@ -220,13 +215,13 @@
 
     <div id="root"></div>
 
-    <!-- Watchdog: if the app-shell is still visible after 12 s, React failed
+    <!-- Watchdog: if the app-shell is still visible after 8 s, React failed
          to mount (script error, failed module import, etc.). Show a recovery UI
          instead of an infinite spinner. Clears itself when main.tsx removes the
          shell normally. -->
     <script>
       (function () {
-        var TIMEOUT = 12000;
+        var TIMEOUT = 8000;
         var t = setTimeout(function () {
           var shell = document.getElementById('app-shell');
           if (!shell) return; // already removed by React — all good
