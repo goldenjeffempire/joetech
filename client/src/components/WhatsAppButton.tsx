@@ -159,21 +159,7 @@ export default function WhatsAppButton() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-white/80 text-sm font-semibold leading-tight">{n.label}</p>
-                      <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                        <p className="text-white/30 text-xs font-mono">{n.number}</p>
-                        {n.tag && (
-                          <span
-                            className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full leading-none"
-                            style={{
-                              background: "rgba(0,255,136,0.1)",
-                              color: "#00ff88",
-                              border: "1px solid rgba(0,255,136,0.2)",
-                            }}
-                          >
-                            {n.tag}
-                          </span>
-                        )}
-                      </div>
+                      <p className="text-white/30 text-xs font-mono mt-0.5">{n.number}</p>
                     </div>
                     <ChevronRight className="w-3.5 h-3.5 text-[#25d366]/30 group-hover:text-[#25d366] group-hover:translate-x-0.5 transition-all flex-shrink-0" />
                   </a>

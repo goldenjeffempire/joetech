@@ -53,7 +53,7 @@ const contactInfo = [
     icon: SiWhatsapp,
     label: "WhatsApp",
     value: "09017048791  ·  08159088343",
-    href: "https://wa.me/2349017048791?text=Hello%20Jeffery%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
+    href: "https://wa.me/2349017048791?text=Hello%20JOE%20Technologies%2C%20I%20visited%20joetechnologies.io%20and%20I%27d%20love%20to%20discuss%20a%20project.",
     accent: "#00ff88",
   },
   {
