@@ -591,7 +591,7 @@ export default function QualifyPage() {
                           <FormItem>
                             <FormLabel className="text-joe-text/70 text-sm">Full Name *</FormLabel>
                             <FormControl>
-                              <Input placeholder="Alex Johnson" data-testid="input-name" {...field} />
+                              <Input placeholder="Your full name" data-testid="input-name" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -604,7 +604,7 @@ export default function QualifyPage() {
                           <FormItem>
                             <FormLabel className="text-joe-text/70 text-sm">Email Address *</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="alex@company.com" data-testid="input-email" {...field} />
+                              <Input type="email" placeholder="you@company.com" data-testid="input-email" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -632,7 +632,7 @@ export default function QualifyPage() {
                           <FormItem>
                             <FormLabel className="text-joe-text/70 text-sm">Phone</FormLabel>
                             <FormControl>
-                              <Input placeholder="+1 555 000 0000" data-testid="input-phone" {...field} />
+                              <Input placeholder="+234 800 000 0000" data-testid="input-phone" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

@@ -29,13 +29,20 @@ function formatDate(d: string) {
   } catch { return d; }
 }
 
+function sanitizeCsvField(value: string): string {
+  const escaped = value.replace(/"/g, '""');
+  // Prevent formula injection: Excel/Sheets treat cells starting with =, +, -, @, tab as formulas
+  const sanitized = /^[=+\-@\t]/.test(escaped) ? `\t${escaped}` : escaped;
+  return `"${sanitized}"`;
+}
+
 function exportCSV(rows: Record<string, unknown>[], name: string) {
   if (!rows.length) return;
   const keys = Object.keys(rows[0]);
   const csv = [
     keys.join(","),
     ...rows.map(r =>
-      keys.map(k => `"${String(r[k] ?? "").replace(/"/g, '""')}"`).join(",")
+      keys.map(k => sanitizeCsvField(String(r[k] ?? ""))).join(",")
     ),
   ].join("\n");
   const a = Object.assign(document.createElement("a"), {

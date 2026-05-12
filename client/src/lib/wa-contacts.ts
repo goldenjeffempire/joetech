@@ -1,20 +1,20 @@
 export const WA_CONTACTS = [
   {
-    label: "JOE Technologies",
-    number: "09017048791",
+    label: "Jeffery — Co-Founder",
+    number: "+234 901 704 8791",
     wa: (msg?: string) =>
       `https://wa.me/2349017048791?text=${encodeURIComponent(
         msg ?? "Hello JOE Technologies, I'd love to discuss a project."
       )}`,
-    tag: "",
+    tag: "Primary",
   },
   {
-    label: "JOE Technologies",
-    number: "08159088343",
+    label: "Dominion — Business Ops",
+    number: "+234 815 908 8343",
     wa: (msg?: string) =>
       `https://wa.me/2348159088343?text=${encodeURIComponent(
         msg ?? "Hello JOE Technologies, I'd love to discuss a project."
       )}`,
-    tag: "",
+    tag: "Operations",
   },
 ];

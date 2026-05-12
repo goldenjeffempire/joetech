@@ -80,6 +80,11 @@ export async function runMigrations(): Promise<void> {
       );
 
       CREATE INDEX IF NOT EXISTS page_views_path_idx ON page_views (path);
+      CREATE INDEX IF NOT EXISTS page_views_viewed_at_idx ON page_views (viewed_at);
+      CREATE INDEX IF NOT EXISTS page_views_referrer_idx ON page_views (referrer);
+      CREATE INDEX IF NOT EXISTS contact_submissions_created_at_idx ON contact_submissions (created_at);
+      CREATE INDEX IF NOT EXISTS lead_submissions_created_at_idx ON lead_submissions (created_at);
+      CREATE INDEX IF NOT EXISTS newsletter_subscribers_email_idx ON newsletter_subscribers (email);
     `);
     console.log("[db] Schema verified — all tables present");
   } catch (err) {

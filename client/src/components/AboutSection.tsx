@@ -65,9 +65,9 @@ const socialLinks = [
   {
     icon: SiGithub,
     label: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/joe-technologies",
     accent: "#48F2FB",
-    handle: "JOE Technologies",
+    handle: "joe-technologies",
   },
   {
     icon: ExternalLink,

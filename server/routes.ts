@@ -5,6 +5,15 @@ import { insertContactSchema, insertLeadSchema, insertNewsletterSchema } from "@
 import { z } from "zod";
 import rateLimit from "express-rate-limit";
 
+// Sanitize a CSV cell value: escape inner double-quotes and prevent formula
+// injection in Excel/Google Sheets (cells starting with =, +, -, @, or tab
+// are treated as formulas and can execute arbitrary commands).
+function sanitizeCsvField(value: string): string {
+  const escaped = value.replace(/"/g, '""');
+  const sanitized = /^[=+\-@\t]/.test(escaped) ? `\t${escaped}` : escaped;
+  return `"${sanitized}"`;
+}
+
 function requireAdmin(req: Request, res: Response, next: NextFunction) {
   const secret = process.env.ADMIN_SECRET;
   const provided = req.headers["x-api-key"];
@@ -141,10 +150,10 @@ export async function registerRoutes(
           hour: "2-digit", minute: "2-digit",
         });
         return [
-          `"${s.email}"`,
-          `"${date}"`,
-          `"${s.source}"`,
-          `"${s.consentGiven === "yes" ? "Yes" : s.consentGiven}"`,
+          sanitizeCsvField(s.email),
+          sanitizeCsvField(date),
+          sanitizeCsvField(s.source),
+          sanitizeCsvField(s.consentGiven === "yes" ? "Yes" : s.consentGiven),
         ].join(",");
       });
 
@@ -219,20 +228,24 @@ export async function registerRoutes(
 
   app.get("/robots.txt", (_req, res) => {
     res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Cache-Control", "public, max-age=86400");
     res.send(
 `User-agent: *
 Allow: /
 Disallow: /qualify
 Disallow: /admin
-Disallow: /privacy
-Disallow: /terms
-Disallow: /cookies
 Disallow: /api/
 
 User-agent: GPTBot
 Disallow: /
 
 User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
 Disallow: /
 
 Sitemap: https://joetechnologies.io/sitemap.xml
@@ -264,6 +277,9 @@ Sitemap: https://joetechnologies.io/sitemap.xml
       { path: "/tech-stack", priority: "0.6", freq: "monthly" },
       { path: "/faq", priority: "0.7", freq: "monthly" },
       { path: "/contact", priority: "0.8", freq: "monthly" },
+      { path: "/privacy", priority: "0.4", freq: "yearly" },
+      { path: "/terms", priority: "0.4", freq: "yearly" },
+      { path: "/cookies", priority: "0.4", freq: "yearly" },
     ];
 
     const urls = pages
