@@ -1,13 +1,14 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useRef, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { Mail, MapPin, Send, CheckCircle2, Globe } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Globe, ChevronUp, ChevronDown } from "lucide-react";
 import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
+import { WA_CONTACTS } from "@/lib/wa-contacts";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -105,6 +106,7 @@ function useScrollInView() {
 export default function ContactSection() {
   const { ref, isInView } = useScrollInView();
   const { toast } = useToast();
+  const [waOpen, setWaOpen] = useState(false);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -140,6 +142,18 @@ export default function ContactSection() {
   const onSubmit = (data: FormValues) => {
     mutation.mutate(data);
   };
+
+  const watchedName = useWatch({ control: form.control, name: "name" });
+  const watchedService = useWatch({ control: form.control, name: "service" });
+  const watchedMessage = useWatch({ control: form.control, name: "message" });
+
+  function buildWaMessage() {
+    const parts: string[] = ["Hi JOE Technologies! I came from your website and would love to discuss a project."];
+    if (watchedName?.trim()) parts.push(`Name: ${watchedName.trim()}`);
+    if (watchedService?.trim()) parts.push(`Service: ${watchedService.trim()}`);
+    if (watchedMessage?.trim()) parts.push(`\nDetails:\n${watchedMessage.trim()}`);
+    return parts.join("\n");
+  }
 
 
   return (
@@ -411,6 +425,88 @@ export default function ContactSection() {
                         </>
                       )}
                     </Button>
+
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1 h-px" style={{ background: "var(--joe-card-border)" }} />
+                      <span className="text-joe-text/25 text-xs font-mono">or</span>
+                      <div className="flex-1 h-px" style={{ background: "var(--joe-card-border)" }} />
+                    </div>
+
+                    <div className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setWaOpen((v) => !v)}
+                        className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25d366]/50"
+                        style={{
+                          background: waOpen ? "rgba(37,211,102,0.15)" : "rgba(37,211,102,0.08)",
+                          border: "1px solid rgba(37,211,102,0.25)",
+                          color: "#25d366",
+                        }}
+                        data-testid="button-whatsapp-quick"
+                        aria-expanded={waOpen}
+                        aria-controls="wa-quick-picker"
+                      >
+                        <SiWhatsapp className="w-4 h-4" />
+                        Send via WhatsApp
+                        {waOpen ? (
+                          <ChevronUp className="w-3.5 h-3.5 ml-auto opacity-60" />
+                        ) : (
+                          <ChevronDown className="w-3.5 h-3.5 ml-auto opacity-60" />
+                        )}
+                      </button>
+
+                      <AnimatePresence>
+                        {waOpen && (
+                          <motion.div
+                            id="wa-quick-picker"
+                            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                            transition={{ duration: 0.18 }}
+                            className="absolute left-0 right-0 mt-2 rounded-xl overflow-hidden z-20 shadow-2xl shadow-black/40"
+                            style={{
+                              background: "var(--joe-card)",
+                              border: "1px solid rgba(37,211,102,0.2)",
+                            }}
+                          >
+                            <p className="text-joe-text/35 text-[11px] font-mono uppercase tracking-widest px-4 pt-3 pb-2">
+                              Select a contact
+                            </p>
+                            {WA_CONTACTS.map((n, i) => (
+                              <a
+                                key={i}
+                                href={n.wa(buildWaMessage())}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setWaOpen(false)}
+                                className="flex items-center gap-3 px-4 py-3 hover:bg-[#25d366]/8 transition-colors group"
+                                data-testid={`button-wa-contact-${i}`}
+                              >
+                                <div
+                                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                                  style={{
+                                    background: "rgba(37,211,102,0.1)",
+                                    border: "1px solid rgba(37,211,102,0.2)",
+                                  }}
+                                >
+                                  <SiWhatsapp className="w-3.5 h-3.5 text-[#25d366]" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-joe-text/80 text-sm font-semibold leading-tight">{n.label}</p>
+                                  <p className="text-joe-text/35 text-xs font-mono mt-0.5">{n.number}</p>
+                                </div>
+                                <ChevronDown className="w-3.5 h-3.5 text-[#25d366]/30 group-hover:text-[#25d366] -rotate-90 transition-colors flex-shrink-0" />
+                              </a>
+                            ))}
+                            <div className="px-4 pb-3 pt-1">
+                              <p className="text-joe-text/25 text-[11px] text-center">
+                                Your form details will be pre-filled in the chat
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
 
                     <p className="text-joe-text/30 text-xs text-center">
                       We'll respond within 24 hours. Free strategy call included with every inquiry.
