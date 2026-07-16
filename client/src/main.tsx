@@ -5,6 +5,7 @@ import "./index.css";
 declare global {
   interface Window {
     __joeShellWatchdog?: ReturnType<typeof setTimeout>;
+    __joeShellWarmup?:   ReturnType<typeof setTimeout>;
   }
 }
 
@@ -12,6 +13,10 @@ function removeAppShell() {
   if (typeof window.__joeShellWatchdog !== "undefined") {
     clearTimeout(window.__joeShellWatchdog);
     delete window.__joeShellWatchdog;
+  }
+  if (typeof window.__joeShellWarmup !== "undefined") {
+    clearTimeout(window.__joeShellWarmup);
+    delete window.__joeShellWarmup;
   }
   const shell = document.getElementById("app-shell");
   if (!shell) return;

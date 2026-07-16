@@ -221,8 +221,21 @@
          shell normally. -->
     <script>
       (function () {
-        var TIMEOUT = 8000;
+        // Render free-tier services spin down after 15 min of inactivity.
+        // Cold starts can take 30–60 s. We show a "warming up" message after
+        // 10 s so users know to wait, then offer a reload after 50 s if the
+        // app still hasn't mounted.
+        var WARMUP_TIMEOUT = 10000;  // 10 s → show "server warming up" hint
+        var ERROR_TIMEOUT  = 50000;  // 50 s → show reload prompt
+
+        var tWarmup = setTimeout(function () {
+          var label = document.getElementById('app-shell-label');
+          if (!label) return; // already removed by React
+          label.textContent = 'Server warming up\u2026 this may take up to 30s';
+        }, WARMUP_TIMEOUT);
+
         var t = setTimeout(function () {
+          clearTimeout(tWarmup);
           var shell = document.getElementById('app-shell');
           if (!shell) return; // already removed by React — all good
           // React never mounted. Show a user-friendly recovery screen.
@@ -234,9 +247,10 @@
             '<button onclick="window.location.reload()" style="background:linear-gradient(135deg,#48F2FB,#E867EA);color:#060A10;border:none;padding:10px 28px;border-radius:8px;font-weight:700;cursor:pointer;font-size:0.9rem;margin-top:4px;">Reload Page</button>';
           var spinner = shell.querySelector('#app-shell-spinner');
           if (spinner) spinner.style.display = 'none';
-        }, TIMEOUT);
-        // Expose cancel handle so main.tsx can clear it when React mounts fine.
+        }, ERROR_TIMEOUT);
+        // Expose cancel handles so main.tsx can clear both timers when React mounts fine.
         window.__joeShellWatchdog = t;
+        window.__joeShellWarmup  = tWarmup;
 
         // Global error logger — catches parse/runtime errors in any script.
         window.addEventListener('error', function (e) {
