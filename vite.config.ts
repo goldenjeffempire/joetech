@@ -46,11 +46,22 @@ export default defineConfig({
           if (id.includes("@radix-ui") || id.includes("@floating-ui")) return "vendor-radix";
           if (id.includes("lucide-react") || id.includes("react-icons")) return "vendor-icons";
           if (id.includes("@tanstack")) return "vendor-query";
-          // Use a regex anchored to the package boundary so packages whose names
-          // merely contain "react" or "react-dom" as a substring (e.g.
-          // @floating-ui/react-dom) are never accidentally placed here.
-          if (/[/\\]node_modules[/\\](react|react-dom|scheduler)[/\\]/.test(id)) return "vendor-react";
           if (id.includes("zod") || id.includes("react-hook-form") || id.includes("@hookform")) return "vendor-forms";
+          // NOTE: react/react-dom/scheduler intentionally fall through to the
+          // catch-all "vendor" chunk below.
+          //
+          // When they were split into a dedicated "vendor-react" chunk, Rollup's
+          // CJS-to-ESM interop placed the getDefaultExportFromCjs helper in the
+          // catch-all vendor chunk (because another CJS lib there needed it first).
+          // vendor-react then imported that helper from vendor-ByBk1cpa, while
+          // vendor-ByBk1cpa imported React from vendor-react — a circular ESM
+          // dependency. ES module init order is not guaranteed for cycles; React's
+          // exports object was undefined when `exports.Children = …` ran, crashing
+          // the app with:
+          //   TypeError: Cannot set properties of undefined (setting 'Children')
+          //
+          // Keeping React in the same chunk as the helpers it needs eliminates
+          // the cycle entirely.
           return "vendor";
         },
       },
