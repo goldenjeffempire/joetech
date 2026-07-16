@@ -1,6 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
 import helmet from "helmet";
-import compression from "compression";
 import { createServer } from "http";
 import { serveStatic } from "./static";
 
@@ -40,7 +39,11 @@ app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
-app.use(compression());
+// NOTE: compression middleware intentionally removed.
+// Render uses Cloudflare CDN which handles Brotli/gzip automatically.
+// Running server-side compression alongside Cloudflare caused a
+// content-length: 1 bug — the browser received truncated JS bundles,
+// silently failing to load the app. Let Cloudflare own compression.
 
 app.use(
   express.json({
