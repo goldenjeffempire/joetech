@@ -1,0 +1,125 @@
+You are a senior React, Vite, and JavaScript engineer. My deployed application shows a blank black screen, and the browser console reports the following runtime error:
+
+Uncaught TypeError: Cannot set properties of undefined (setting 'Children')
+    at Kc (vendor-react-CoRtBsfJ.js:1:4345)
+    at Lo (vendor-react-CoRtBsfJ.js:1:7117)
+    at fn (vendor-DlLNcehT.js:1:682)
+    at dn (vendor-DlLNcehT.js:1:1454)
+    at vendor-DlLNcehT.js:1:1478
+
+Your task is to identify the root cause and completely fix the application, not just suppress the error.
+
+Investigation Requirements
+
+Perform a complete audit of the project and verify all of the following:
+
+1. React Installation
+Check for multiple React installations.
+Ensure only one version of react and react-dom exists.
+Verify react and react-dom versions match exactly.
+Remove duplicate React copies from dependencies.
+2. Dependency Audit
+Inspect package.json.
+Check for incompatible libraries.
+Verify peer dependencies.
+Upgrade or downgrade incompatible packages if necessary.
+Reinstall dependencies from scratch.
+3. Build Configuration
+Review Vite configuration.
+Check aliases.
+Ensure React is not bundled twice.
+Verify optimizeDeps settings.
+Verify build configuration.
+4. Application Entry
+
+Inspect:
+
+main.jsx
+main.tsx
+App.jsx
+App.tsx
+
+Ensure React mounts correctly using createRoot().
+
+5. Imports
+
+Search the project for:
+
+incorrect React imports
+duplicate imports
+CommonJS/ESM conflicts
+circular imports
+invalid exports
+6. React Internal Mutation
+
+Search the entire codebase for any code modifying:
+
+React.Children
+React.__SECRET_INTERNALS
+React prototype
+global React object
+
+Remove any invalid mutations.
+
+7. Runtime Errors
+
+Check:
+
+Browser Console
+Network tab
+Source maps
+Stack traces
+
+Trace the error back to the original source file rather than the minified bundle.
+
+8. Third-Party Libraries
+
+Inspect all UI and React libraries (such as React Router, Radix UI, Framer Motion, Shadcn, MUI, Headless UI, etc.) for version compatibility and duplicate React dependencies.
+
+9. Production Build
+
+Delete:
+
+node_modules
+lock file
+dist
+Vite cache
+
+Perform a clean installation and rebuild the application.
+
+10. Deployment
+
+Verify:
+
+Render build command
+Render start command
+Node version
+Environment variables
+Static asset paths
+SPA routing configuration
+11. Validation
+
+After applying fixes, verify:
+
+No console errors
+No runtime exceptions
+No duplicate React versions
+Successful production build
+Successful deployment
+Application renders normally
+No blank screen remains
+Deliverables
+
+Do not stop after identifying the issue.
+
+Provide:
+
+The exact root cause.
+Why Cannot set properties of undefined (setting 'Children') occurred.
+Every file modified.
+A diff or code changes for each file.
+Any package version changes.
+Any deployment configuration changes.
+Confirmation that the application builds successfully, deploys successfully, and renders correctly without runtime errors.
+
+If multiple issues are discovered, continue fixing them until the application is fully functional. Do not provide temporary workarounds or partial fixes.
