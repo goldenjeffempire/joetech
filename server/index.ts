@@ -226,13 +226,37 @@ process.on("uncaughtException", (err: Error) => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Async setup ──────────────────────────────────────────────────────────────
-// Structure: DB migrations and API routes are best-effort (errors logged but
-// do NOT prevent the site from serving). Static file / Vite setup runs in its
-// own block so a route-registration failure never takes the frontend down.
-// markReady() is called in the outer finally so the readiness gate is ALWAYS
-// released — preventing the infinite loading screen even on partial failures.
+// ORDER MATTERS:
+//   1. Static files / Vite first → markReady() immediately so the frontend
+//      loads without waiting for the database.  A slow or unreachable DB must
+//      NEVER block the browser from receiving the JS bundle.
+//   2. DB migrations (best-effort, non-blocking).
+//   3. API routes (best-effort, non-blocking).
+//
+// markReady() is called in the finally of Step 1 so the readiness gate is
+// released as soon as the frontend can be served, regardless of DB health.
 (async () => {
-  // ── Step 1: DB migrations (best-effort) ─────────────────────────────────
+  // ── Step 1: Static files / Vite — runs FIRST so the frontend is never ────
+  // blocked by a slow database.  The readiness gate is released here.
+  try {
+    if (isProduction) {
+      const { serveStatic } = await import("./static");
+      serveStatic(app);
+    } else {
+      const { setupVite } = await import("./vite");
+      await setupVite(httpServer, app);
+    }
+    log("static/vite ready — serving frontend", "express");
+  } catch (err) {
+    console.error("[startup] Static/Vite setup error:", err);
+  } finally {
+    // Release the readiness gate as soon as the frontend can be served.
+    // API routes register below; they may not be ready yet for a few hundred
+    // milliseconds, but that is fine — the browser is fetching JS, not APIs.
+    markReady();
+  }
+
+  // ── Step 2: DB migrations (best-effort) ─────────────────────────────────
   try {
     const { runMigrations } = await import("./db");
     await runMigrations();
@@ -240,7 +264,7 @@ process.on("uncaughtException", (err: Error) => {
     console.error("[startup] DB migration error (non-fatal):", err);
   }
 
-  // ── Step 2: API routes (best-effort) ────────────────────────────────────
+  // ── Step 3: API routes (best-effort) ────────────────────────────────────
   try {
     const { registerRoutes } = await import("./routes");
     await registerRoutes(httpServer, app);
@@ -259,28 +283,9 @@ process.on("uncaughtException", (err: Error) => {
 
       return res.status(status).json({ message });
     });
+
+    log("api routes ready — setup complete", "express");
   } catch (err) {
     console.error("[startup] Route registration error (non-fatal):", err);
-  }
-
-  // ── Step 3: Static files / Vite — ALWAYS runs so the frontend is served ──
-  // This step is isolated from Steps 1 & 2. Even if DB or routes failed,
-  // the SPA (index.html + assets) must be reachable so the user sees the app
-  // (or the error boundary) instead of the infinite loading screen.
-  try {
-    if (isProduction) {
-      const { serveStatic } = await import("./static");
-      serveStatic(app);
-    } else {
-      const { setupVite } = await import("./vite");
-      await setupVite(httpServer, app);
-    }
-    log("setup complete — serving requests", "express");
-  } catch (err) {
-    console.error("[startup] Static/Vite setup error:", err);
-  } finally {
-    // Release the readiness gate unconditionally — the site must never be
-    // stuck behind the queue regardless of what failed above.
-    markReady();
   }
 })();
