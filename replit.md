@@ -7,7 +7,7 @@ A premium, production-ready multi-page platform for **JOE Technologies** — an 
 
 ### Prerequisites
 - Replit's built-in PostgreSQL is automatically provisioned (`DATABASE_URL` is set by the environment)
-- `SESSION_SECRET` environment secret must be set
+- `SESSION_SECRET` environment secret must be set ✓ (configured in Replit Secrets)
 
 ### Setup steps
 ```bash
@@ -17,6 +17,14 @@ npm run dev          # start the dev server on port 5000
 ```
 
 The workflow "Start application" runs `npm run dev` automatically.
+
+### Setup status (last verified 2026-07-16)
+- ✅ `npm install` — 457 packages installed, Node v20.20.0
+- ✅ `npm run db:push` — schema pushed; tables `users`, `contactSubmissions`, `leadSubmissions` created
+- ✅ `SESSION_SECRET` secret configured in Replit environment
+- ✅ `DATABASE_URL` provisioned automatically by Replit PostgreSQL
+- ✅ Dev server starts on port 5000, Vite middleware ready, all routes served
+- ⚠️  16 npm vulnerabilities flagged (2 low, 5 moderate, 9 high) — tracked as a follow-up task
 
 ---
 
