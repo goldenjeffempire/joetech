@@ -165,6 +165,114 @@ export default function AboutSection() {
             </p>
           </motion.div>
 
+          {/* ── Founder cards — side by side ── */}
+          <div className="grid sm:grid-cols-2 gap-6 mb-16">
+            {[
+              {
+                src: "/jeffery.png",
+                alt: "Jeffery Onome Emuodafevware",
+                name: "Jeffery Onome Emuodafevware",
+                role: "Founder & CEO",
+                accent: "#48F2FB",
+                accentRgb: "72,242,251",
+                bio: "Full-stack software engineer and AI architect. He co-founded JOE Technologies to bridge the gap between great engineering and real business outcomes — building apps, automation systems, and AI infrastructure that scale.",
+                links: [
+                  { label: "Portfolio", href: "https://onome-portfolio-ten.vercel.app/?/projects", icon: ExternalLink, color: "#48F2FB" },
+                  { label: "joetech.com.ng", href: "https://joetech.com.ng", icon: Globe, color: "#E867EA" },
+                ],
+                delay: 0.1,
+                testId: "founder-jeffery",
+              },
+              {
+                src: "/dominion.png",
+                alt: "Dominion Chidiebere Nkwachukwu",
+                name: "Dominion Chidiebere Nkwachukwu",
+                role: "Co-Founder & COO",
+                accent: "#E867EA",
+                accentRgb: "232,103,234",
+                bio: "Strategic leader and operations chief at JOE Technologies. Dominion ensures every engagement is delivered on time and aligned with client goals — bridging technical execution with business outcomes.",
+                links: [],
+                delay: 0.2,
+                testId: "founder-dominion",
+              },
+            ].map((founder) => (
+              <motion.div
+                key={founder.testId}
+                data-testid={founder.testId}
+                initial={{ opacity: 0, y: 24 }}
+                animate={bioInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: founder.delay }}
+                whileHover={{ y: -6 }}
+                className="rounded-2xl overflow-hidden flex flex-col group"
+                style={{
+                  background: "var(--joe-card)",
+                  border: `1.5px solid rgba(${founder.accentRgb},0.2)`,
+                  boxShadow: `0 4px 40px rgba(${founder.accentRgb},0.07), 0 8px 32px rgba(0,0,0,0.35)`,
+                  transition: "box-shadow 0.3s, transform 0.3s",
+                }}
+              >
+                {/* Photo area */}
+                <div className="relative overflow-hidden" style={{ aspectRatio: "4/5" }}>
+                  <img
+                    src={founder.src}
+                    alt={founder.alt}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  {/* Subtle bottom vignette only — keeps photo clear */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+                    style={{ background: "linear-gradient(to top, var(--joe-card) 0%, transparent 100%)" }}
+                  />
+                  {/* Active pill */}
+                  <div
+                    className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold text-[#00ff88]"
+                    style={{ background: "rgba(0,255,136,0.12)", border: "1px solid rgba(0,255,136,0.28)", backdropFilter: "blur(10px)" }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse inline-block" />
+                    Active
+                  </div>
+                </div>
+
+                {/* Info area */}
+                <div className="flex flex-col gap-3 p-6 flex-1">
+                  {/* Accent rule */}
+                  <div className="h-px w-10 rounded-full" style={{ background: founder.accent }} />
+                  <div>
+                    <h3 className="font-heading font-bold text-xl text-joe-text leading-snug">{founder.name}</h3>
+                    <span
+                      className="inline-block mt-2 px-3 py-0.5 rounded-full text-xs font-semibold"
+                      style={{ background: `rgba(${founder.accentRgb},0.12)`, border: `1px solid rgba(${founder.accentRgb},0.3)`, color: founder.accent }}
+                    >
+                      {founder.role}
+                    </span>
+                  </div>
+                  <p className="text-joe-text/55 text-sm leading-relaxed">{founder.bio}</p>
+                  {founder.links.length > 0 && (
+                    <div className="flex items-center gap-4 mt-auto pt-2">
+                      {founder.links.map((link) => {
+                        const Icon = link.icon;
+                        return (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold transition-opacity hover:opacity-80"
+                            style={{ color: link.color }}
+                          >
+                            <Icon className="w-3 h-3" />
+                            {link.label}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* ── Bio + values ── */}
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -172,87 +280,6 @@ export default function AboutSection() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="flex flex-col gap-8"
             >
-              {/* Jeffery — founder card */}
-              <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ duration: 0.25 }}
-                className="rounded-2xl overflow-hidden relative group cursor-default"
-                style={{
-                  border: "1.5px solid rgba(72,242,251,0.25)",
-                  boxShadow: "0 0 32px rgba(72,242,251,0.08), 0 8px 32px rgba(0,0,0,0.4)",
-                }}
-              >
-                {/* Glow accent top bar */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 z-10" style={{ background: "linear-gradient(90deg, transparent, #48F2FB, transparent)" }} />
-
-                {/* Photo */}
-                <div className="relative">
-                  <img
-                    src="/jeffery.png"
-                    alt="Jeffery Onome Emuodafevware"
-                    className="w-full h-96 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-
-                  {/* Gradient overlay */}
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(to top, rgba(6,10,16,0.95) 0%, rgba(6,10,16,0.4) 45%, transparent 70%)" }}
-                  />
-
-                  {/* Online badge */}
-                  <div
-                    className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-semibold text-[#00ff88] z-10"
-                    style={{ background: "rgba(0,255,136,0.12)", border: "1px solid rgba(0,255,136,0.3)", backdropFilter: "blur(8px)" }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse inline-block" />
-                    Active
-                  </div>
-
-                  {/* Name / title overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                    <p className="text-[10px] font-mono tracking-widest text-[#48F2FB]/60 uppercase mb-1">Co-Founder</p>
-                    <h3 className="font-heading font-bold text-2xl text-white leading-tight">Jeffery Onome Emuodafevware</h3>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold"
-                        style={{ background: "rgba(72,242,251,0.15)", border: "1px solid rgba(72,242,251,0.3)", color: "#48F2FB" }}
-                      >
-                        Founder & CEO
-                      </span>
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-white/40"
-                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
-                      >
-                        JOE Technologies
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3 mt-3">
-                      <a
-                        href="https://onome-portfolio-ten.vercel.app/?/projects"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#48F2FB]/80 hover:text-[#48F2FB] transition-colors"
-                        data-testid="link-founder-portfolio"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        Portfolio
-                      </a>
-                      <span className="text-white/20">·</span>
-                      <a
-                        href="https://joetech.com.ng"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E867EA]/80 hover:text-[#E867EA] transition-colors"
-                        data-testid="link-website"
-                      >
-                        <Globe className="w-3 h-3" />
-                        joetech.com.ng
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
               <div className="space-y-4 text-joe-text/60 leading-relaxed">
                 <p>
                   Jeffery Onome Emuodafevware is a full-stack software engineer and AI architect focused on building
@@ -273,69 +300,6 @@ export default function AboutSection() {
                   infrastructure — all guided by a commitment to clarity, quality, and business impact.
                 </p>
               </div>
-
-              {/* Dominion — founder card */}
-              <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ duration: 0.25 }}
-                className="rounded-2xl overflow-hidden relative group cursor-default mt-2"
-                style={{
-                  border: "1.5px solid rgba(232,103,234,0.25)",
-                  boxShadow: "0 0 32px rgba(232,103,234,0.08), 0 8px 32px rgba(0,0,0,0.4)",
-                }}
-              >
-                {/* Glow accent top bar */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 z-10" style={{ background: "linear-gradient(90deg, transparent, #E867EA, transparent)" }} />
-
-                {/* Photo */}
-                <div className="relative">
-                  <img
-                    src="/dominion.png"
-                    alt="Dominion Chidiebere Nkwachukwu"
-                    className="w-full h-96 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-
-                  {/* Gradient overlay */}
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(to top, rgba(6,10,16,0.95) 0%, rgba(6,10,16,0.4) 45%, transparent 70%)" }}
-                  />
-
-                  {/* Online badge */}
-                  <div
-                    className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-semibold text-[#00ff88] z-10"
-                    style={{ background: "rgba(0,255,136,0.12)", border: "1px solid rgba(0,255,136,0.3)", backdropFilter: "blur(8px)" }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse inline-block" />
-                    Active
-                  </div>
-
-                  {/* Name / title overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                    <p className="text-[10px] font-mono tracking-widest text-[#E867EA]/60 uppercase mb-1">Co-Founder</p>
-                    <h3 className="font-heading font-bold text-2xl text-white leading-tight">Dominion Chidiebere Nkwachukwu</h3>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold"
-                        style={{ background: "rgba(232,103,234,0.15)", border: "1px solid rgba(232,103,234,0.3)", color: "#E867EA" }}
-                      >
-                        Co-Founder & COO
-                      </span>
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-white/40"
-                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
-                      >
-                        JOE Technologies
-                      </span>
-                    </div>
-                    <p className="text-white/50 text-sm mt-3 leading-relaxed">
-                      Dominion provides strategic leadership and operational oversight at JOE Technologies. With strong
-                      capabilities in business development, client engagement, and project execution, she ensures seamless
-                      delivery across all engagements.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
 
               <div className="grid grid-cols-1 gap-2">
                 {achievements.map((item, i) => (
