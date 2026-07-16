@@ -3,6 +3,23 @@
 ## Overview
 A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company co-founded by **Jeffery Onome Emuodafevware** and **Dominion Chidiebere Nkwachukwu**. The platform positions JOE Technologies around high-performance Apps, Websites, Automation Systems, UI/UX Design, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
 
+## Running on Replit
+
+### Prerequisites
+- Replit's built-in PostgreSQL is automatically provisioned (`DATABASE_URL` is set by the environment)
+- `SESSION_SECRET` environment secret must be set
+
+### Setup steps
+```bash
+npm install          # install dependencies
+npm run db:push      # push schema to the database (creates tables)
+npm run dev          # start the dev server on port 5000
+```
+
+The workflow "Start application" runs `npm run dev` automatically.
+
+---
+
 ## Architecture
 
 ### Tech Stack
