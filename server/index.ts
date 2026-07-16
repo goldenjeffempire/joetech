@@ -1,7 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import helmet from "helmet";
 import { createServer } from "http";
-import { serveStatic } from "./static";
+import { serveStaticFiles, serveSPAFallback } from "./static";
 
 const app = express();
 const httpServer = createServer(app);
@@ -101,10 +101,12 @@ app.get("/api/health", (_req, res) =>
 );
 
 // ── Static files (production) — synchronous, zero delay ─────────────────────
-// Must run before the server starts listening so every request is handled
-// immediately. No async import, no readiness gate, no queuing.
+// serveStaticFiles registers express.static only (no SPA wildcard) so that
+// hashed JS/CSS assets are available from the very first request with no
+// async gap. The SPA fallback wildcard is registered AFTER API routes in
+// the async block below to prevent it from swallowing /api/* requests.
 if (isProduction) {
-  serveStatic(app);
+  serveStaticFiles(app);
   log("static files ready", "express");
 }
 
@@ -254,5 +256,15 @@ process.on("uncaughtException", (err: Error) => {
     log("setup complete", "express");
   } catch (err) {
     console.error("[startup] Route registration error (non-fatal):", err);
+  }
+
+  // ── SPA fallback (production, registered LAST) ────────────────────────────
+  // Must come after API routes so the wildcard does not shadow /api/* paths.
+  // Express matches middleware in registration order; placing this before
+  // registerRoutes would return index.html for every API call.
+  if (isProduction) {
+    const { serveSPAFallback } = await import("./static");
+    serveSPAFallback(app);
+    log("SPA fallback registered", "express");
   }
 })();

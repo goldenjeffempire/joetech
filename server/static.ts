@@ -2,14 +2,21 @@ import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
 
-export function serveStatic(app: Express) {
-  // __dirname in the esbuild CJS bundle points to the dist/ directory.
-  // Check multiple candidate paths in priority order for maximum portability
-  // across Render native, Docker, Railway, Fly.io, and local production runs.
+// Resolve the dist/public directory from a given __dirname-equivalent.
+// __dirname in the esbuild CJS bundle points to the dist/ directory.
+// Multiple candidate paths are checked for maximum portability across
+// Render, Railway, Fly.io, local production runs, etc.
+//
+// IMPORTANT: this function is intentionally called lazily (inside the
+// exported functions below) and NOT at module scope. In dev mode, tsx
+// runs under Node ESM where __dirname is not defined; the exported
+// functions are only invoked when isProduction is true, so the lazy
+// call never runs in dev and the ReferenceError is avoided.
+function resolveDistPath(): { distPath: string | null; indexPath: string | null } {
   const candidates = [
-    path.resolve(__dirname, "public"),              // dist/public (CJS bundle __dirname = dist/)
-    path.resolve(process.cwd(), "dist", "public"),  // <cwd>/dist/public
-    path.resolve(process.cwd(), "public"),          // <cwd>/public (some platforms)
+    path.resolve(__dirname, "public"),             // dist/public (CJS bundle __dirname = dist/)
+    path.resolve(process.cwd(), "dist", "public"), // <cwd>/dist/public
+    path.resolve(process.cwd(), "public"),         // <cwd>/public (some platforms)
   ];
 
   console.log("[static] searching for build directory...");
@@ -18,12 +25,9 @@ export function serveStatic(app: Express) {
     console.log(`[static]   [${i}] ${c} — ${exists ? "FOUND ✓" : "not found"}`);
   });
 
-  const distPath = candidates.find(fs.existsSync);
+  const distPath = candidates.find(fs.existsSync) ?? null;
 
   if (!distPath) {
-    // Do NOT throw here — a thrown error in serveStatic propagates to the
-    // startup IIFE's catch block, which still calls markReady() via finally.
-    // However, the SPA fallback below won't work, so serve a diagnostic page.
     console.error(
       `[static] FATAL: Could not find build directory. Tried:\n` +
       candidates.map((c) => `  - ${c}`).join("\n") + "\n" +
@@ -31,10 +35,45 @@ export function serveStatic(app: Express) {
       `  process.cwd() = ${process.cwd()}\n` +
       `  __dirname     = ${__dirname}`
     );
+    return { distPath: null, indexPath: null };
+  }
 
-    // Serve a branded diagnostic page on all routes so the user sees something
-    // meaningful instead of a blank screen.
-    app.use("/{*path}", (_req, res) => {
+  console.log(`[static] serving from ${distPath}`);
+
+  const indexPath = path.resolve(distPath, "index.html");
+  if (!fs.existsSync(indexPath)) {
+    console.error(`[static] WARNING: index.html not found at ${indexPath}`);
+  } else {
+    console.log(`[static] index.html confirmed at ${indexPath}`);
+  }
+
+  return { distPath, indexPath };
+}
+
+// Cached result — both functions share the same path resolution so we only
+// scan the filesystem once even when both are called.
+let _resolved: { distPath: string | null; indexPath: string | null } | null = null;
+function getResolved() {
+  if (!_resolved) _resolved = resolveDistPath();
+  return _resolved;
+}
+
+/**
+ * Step 1 — Register express.static ONLY.
+ * Call this synchronously before httpServer.listen() so every static-file
+ * request (JS chunks, CSS, images, favicons) is handled immediately on
+ * first boot with no async gap.
+ *
+ * The SPA fallback wildcard is intentionally NOT registered here — it must
+ * come AFTER API routes in the middleware chain (see serveSPAFallback below).
+ */
+export function serveStaticFiles(app: Express): void {
+  const { distPath } = getResolved();
+
+  if (!distPath) {
+    // Serve a branded 503 diagnostic page on all routes so the user sees
+    // something meaningful instead of a blank screen.
+    app.use((_req, res) => {
       res.status(503).send(`
         <!DOCTYPE html>
         <html lang="en">
@@ -62,19 +101,9 @@ export function serveStatic(app: Express) {
     return;
   }
 
-  console.log(`[static] serving from ${distPath}`);
-
-  // Verify index.html exists before we start serving
-  const indexPath = path.resolve(distPath, "index.html");
-  if (!fs.existsSync(indexPath)) {
-    console.error(`[static] WARNING: index.html not found at ${indexPath}`);
-  } else {
-    console.log(`[static] index.html confirmed at ${indexPath}`);
-  }
-
   // Serve hashed assets (JS, CSS, images) with long-term immutable cache.
-  // HTML files are intentionally excluded — they must never be cached so that
-  // each new deployment delivers fresh HTML pointing to the correct asset hashes.
+  // HTML files are excluded — they must never be cached so each new
+  // deployment delivers fresh HTML pointing to the correct asset hashes.
   app.use(express.static(distPath, {
     setHeaders(res, filePath) {
       if (filePath.endsWith(".html")) {
@@ -87,9 +116,20 @@ export function serveStatic(app: Express) {
     },
     etag: true,
   }));
+}
 
-  // SPA fallback — always return index.html for unknown paths so client-side
-  // routing works. Also served with no-cache so updates are instant.
+/**
+ * Step 2 — Register the SPA fallback wildcard.
+ * Call this AFTER registerRoutes() in the async startup block so that API
+ * routes (/api/*) are earlier in the Express middleware chain than this
+ * wildcard. Express matches handlers in registration order — registering
+ * this wildcard before the API routes would swallow every /api/* request
+ * and return index.html instead of JSON.
+ */
+export function serveSPAFallback(app: Express): void {
+  const { distPath, indexPath } = getResolved();
+  if (!distPath || !indexPath) return;
+
   app.use("/{*path}", (_req, res) => {
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     res.setHeader("Pragma", "no-cache");

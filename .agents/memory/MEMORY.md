@@ -1,0 +1,2 @@
+- [API routing in production](api-routing-production.md) — SPA wildcard must be registered AFTER API routes; static files split into two exports for correct ordering.
+- [Domain not connected](domain-parking.md) — joetech.com.ng is parked at HOSTAFRICA; needs DNS configuration before the site is reachable.
