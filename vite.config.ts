@@ -58,6 +58,9 @@ export default defineConfig({
   },
   server: {
     allowedHosts: true,
+    headers: {
+      "Cache-Control": "no-store",
+    },
     fs: {
       strict: true,
       deny: ["**/.*"],
