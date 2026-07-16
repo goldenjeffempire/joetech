@@ -261,7 +261,7 @@ export default function AboutSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Dominion Chidiebere Nkwachukwu</h3>
-                  <p className="text-[#E867EA] text-sm font-medium mt-0.5">Co-Founder & Chief Marketing & Business Operations Lead</p>
+                  <p className="text-[#E867EA] text-sm font-medium mt-0.5">Co-Founder</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
                   <p className="text-joe-text/55 text-sm mt-3 leading-relaxed">
                     Dominion provides strategic leadership and operational oversight at JOE Technologies. With strong
