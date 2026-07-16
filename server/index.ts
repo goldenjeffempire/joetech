@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import helmet from "helmet";
 import compression from "compression";
 import { createServer } from "http";
+import { serveStatic } from "./static";
 
 const app = express();
 const httpServer = createServer(app);
@@ -96,30 +97,13 @@ app.get("/api/health", (_req, res) =>
   res.json({ status: "ok", timestamp: new Date().toISOString() })
 );
 
-// ── Readiness gate ──────────────────────────────────────────────────────────
-// The server starts listening before async setup (routes + Vite) completes so
-// the OS socket is open as fast as possible. Any request that arrives before
-// setup is done is held here and released the moment setup finishes.
-let _setupComplete = false;
-const _waitQueue: Array<() => void> = [];
-
-function markReady() {
-  _setupComplete = true;
-  _waitQueue.splice(0).forEach((fn) => fn());
+// ── Static files (production) — synchronous, zero delay ─────────────────────
+// Must run before the server starts listening so every request is handled
+// immediately. No async import, no readiness gate, no queuing.
+if (isProduction) {
+  serveStatic(app);
+  log("static files ready", "express");
 }
-
-// Queue all non-essential requests until setup is complete.
-// Without this middleware, requests arriving during startup (runMigrations +
-// registerRoutes + Vite setup) would fall through with no matching route and
-// return a 404 or hang — causing a blank page on first load.
-// /ping and /api/health are always exempt so Render/Replit health checks
-// never time out during the startup window.
-const ALWAYS_READY = new Set(["/ping", "/api/health"]);
-app.use((req, _res, next) => {
-  if (_setupComplete || ALWAYS_READY.has(req.path)) return next();
-  _waitQueue.push(next);
-});
-// ────────────────────────────────────────────────────────────────────────────
 
 // ALWAYS serve the app on the port specified in the environment variable PORT.
 // Other ports are firewalled. Default to 5000 if not specified.
@@ -225,38 +209,23 @@ process.on("uncaughtException", (err: Error) => {
 });
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ── Async setup ──────────────────────────────────────────────────────────────
-// ORDER MATTERS:
-//   1. Static files / Vite first → markReady() immediately so the frontend
-//      loads without waiting for the database.  A slow or unreachable DB must
-//      NEVER block the browser from receiving the JS bundle.
-//   2. DB migrations (best-effort, non-blocking).
-//   3. API routes (best-effort, non-blocking).
-//
-// markReady() is called in the finally of Step 1 so the readiness gate is
-// released as soon as the frontend can be served, regardless of DB health.
+// ── Async setup: dev Vite + DB migrations + API routes ───────────────────────
+// Static files are already served synchronously above (production).
+// This async block handles dev Vite middleware, DB, and API routes.
+// None of this blocks the frontend from loading.
 (async () => {
-  // ── Step 1: Static files / Vite — runs FIRST so the frontend is never ────
-  // blocked by a slow database.  The readiness gate is released here.
-  try {
-    if (isProduction) {
-      const { serveStatic } = await import("./static");
-      serveStatic(app);
-    } else {
+  // ── Dev only: Vite middleware (must be async) ────────────────────────────
+  if (!isProduction) {
+    try {
       const { setupVite } = await import("./vite");
       await setupVite(httpServer, app);
+      log("vite dev middleware ready", "express");
+    } catch (err) {
+      console.error("[startup] Vite setup error:", err);
     }
-    log("static/vite ready — serving frontend", "express");
-  } catch (err) {
-    console.error("[startup] Static/Vite setup error:", err);
-  } finally {
-    // Release the readiness gate as soon as the frontend can be served.
-    // API routes register below; they may not be ready yet for a few hundred
-    // milliseconds, but that is fine — the browser is fetching JS, not APIs.
-    markReady();
   }
 
-  // ── Step 2: DB migrations (best-effort) ─────────────────────────────────
+  // ── DB migrations (best-effort) ──────────────────────────────────────────
   try {
     const { runMigrations } = await import("./db");
     await runMigrations();
@@ -264,7 +233,7 @@ process.on("uncaughtException", (err: Error) => {
     console.error("[startup] DB migration error (non-fatal):", err);
   }
 
-  // ── Step 3: API routes (best-effort) ────────────────────────────────────
+  // ── API routes (best-effort) ─────────────────────────────────────────────
   try {
     const { registerRoutes } = await import("./routes");
     await registerRoutes(httpServer, app);
@@ -274,17 +243,12 @@ process.on("uncaughtException", (err: Error) => {
       const message = isProduction && status === 500
         ? "Internal Server Error"
         : err.message || "Internal Server Error";
-
       console.error("Internal Server Error:", err);
-
-      if (res.headersSent) {
-        return next(err);
-      }
-
+      if (res.headersSent) return next(err);
       return res.status(status).json({ message });
     });
 
-    log("api routes ready — setup complete", "express");
+    log("setup complete", "express");
   } catch (err) {
     console.error("[startup] Route registration error (non-fatal):", err);
   }
