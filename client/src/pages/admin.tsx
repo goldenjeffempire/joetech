@@ -1078,7 +1078,7 @@ export default function AdminPage() {
           <div className="flex items-center gap-3">
             <ShieldCheck size={16} className="text-[#48F2FB]" />
             <span className="font-mono text-sm text-joe-text/70">admin</span>
-            <span className="text-joe-text/20 font-mono text-xs hidden sm:inline">// joetechnologies.io</span>
+            <span className="text-joe-text/20 font-mono text-xs hidden sm:inline">// joetech.com.ng</span>
           </div>
           <Button
             variant="ghost" size="sm" onClick={handleLogout}

@@ -248,13 +248,13 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-Sitemap: https://joetechnologies.io/sitemap.xml
+Sitemap: https://joetech.com.ng/sitemap.xml
 `
     );
   });
 
   app.get("/sitemap.xml", (_req, res) => {
-    const BASE = "https://joetechnologies.io";
+    const BASE = "https://joetech.com.ng";
     const now = new Date().toISOString().split("T")[0];
 
     const pages = [

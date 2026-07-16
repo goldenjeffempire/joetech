@@ -12,7 +12,7 @@ export default function Portfolio() {
       "@type": "CollectionPage",
       "name": "JOE Technologies Portfolio",
       "description": "Case studies and project portfolio from JOE Technologies.",
-      "url": "https://joetechnologies.io/portfolio",
+      "url": "https://joetech.com.ng/portfolio",
     },
   });
 

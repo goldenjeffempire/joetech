@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const BASE_URL = "https://joetechnologies.io";
+const BASE_URL = "https://joetech.com.ng";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 const SITE_NAME = "JOE Technologies";
 

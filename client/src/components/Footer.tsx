@@ -49,8 +49,8 @@ const contactChannels = [
   {
     icon: Globe,
     label: "Website",
-    value: "joetechnologies.io",
-    href: "https://joetechnologies.io",
+    value: "joetech.com.ng",
+    href: "https://joetech.com.ng",
     accent: "#4EA3BA",
   },
   {

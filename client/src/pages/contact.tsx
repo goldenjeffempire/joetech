@@ -12,7 +12,7 @@ export default function Contact() {
       "@context": "https://schema.org",
       "@type": "ContactPage",
       "name": "Contact JOE Technologies",
-      "url": "https://joetechnologies.io/contact",
+      "url": "https://joetech.com.ng/contact",
       "description": "Contact JOE Technologies to start your digital project.",
     },
   });

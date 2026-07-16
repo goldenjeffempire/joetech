@@ -72,9 +72,9 @@ const socialLinks = [
   {
     icon: ExternalLink,
     label: "Website",
-    href: "https://joetechnologies.io",
+    href: "https://joetech.com.ng",
     accent: "#00ff88",
-    handle: "joetechnologies.io",
+    handle: "joetech.com.ng",
   },
 ];
 
@@ -207,14 +207,14 @@ export default function AboutSection() {
                     </a>
                     <span className="text-joe-text/20">·</span>
                     <a
-                      href="https://joetechnologies.io"
+                      href="https://joetech.com.ng"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E867EA] hover:text-[#48F2FB] transition-colors"
                       data-testid="link-website"
                     >
                       <Globe className="w-3 h-3" />
-                      joetechnologies.io
+                      joetech.com.ng
                     </a>
                   </div>
                 </div>

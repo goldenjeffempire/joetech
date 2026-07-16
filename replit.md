@@ -186,7 +186,7 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - **Animation utilities**: `animate-marquee`, `animate-orb-float`, `animate-glow-pulse`, `animate-scan`, `animate-blink`, `animate-shine`
 - **Default theme**: Dark mode (defaults to `dark` class on `documentElement`)
 - **Noise overlay**: `::before` pseudo-element on body for subtle texture
-- **Website URL**: joetechnologies.io (updated across all components)
+- **Website URL**: joetech.com.ng (updated across all components)
 
 ## Responsive Design System
 - **Breakpoints**: `xs:480px` (custom), `sm:640px`, `md:768px`, `lg:1024px`, `xl:1280px` in Tailwind config

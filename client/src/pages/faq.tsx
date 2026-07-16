@@ -136,7 +136,7 @@ export default function FAQPage() {
     schema: {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "url": "https://joetechnologies.io/faq",
+      "url": "https://joetech.com.ng/faq",
       "name": "JOE Technologies — FAQ",
       "mainEntity": faqCategories.flatMap((cat) =>
         cat.faqs.map((faq) => ({

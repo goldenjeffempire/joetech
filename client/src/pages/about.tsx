@@ -12,11 +12,11 @@ export default function About() {
     schema: {
       "@context": "https://schema.org",
       "@type": "AboutPage",
-      "@id": "https://joetechnologies.io/about",
-      "url": "https://joetechnologies.io/about",
+      "@id": "https://joetech.com.ng/about",
+      "url": "https://joetech.com.ng/about",
       "name": "About JOE Technologies",
       "description": "Enterprise digital product and AI solutions company co-founded by Jeffery Onome Emuodafevware and Dominion Chidiebere Nkwachukwu.",
-      "publisher": { "@id": "https://joetechnologies.io/#organization" },
+      "publisher": { "@id": "https://joetech.com.ng/#organization" },
     },
   });
 

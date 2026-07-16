@@ -37,7 +37,7 @@ const PAGE_MESSAGES: Record<string, string> = {
 };
 
 const DEFAULT_MESSAGE =
-  "Hello JOE Technologies! I visited joetechnologies.io and I'd love to discuss a project with your team.";
+  "Hello JOE Technologies! I visited joetech.com.ng and I'd love to discuss a project with your team.";
 
 function usePageMessage(): string {
   const [location] = useLocation();
@@ -172,7 +172,7 @@ export default function WhatsAppButton() {
               style={{ borderColor: "rgba(255,255,255,0.05)", background: "rgba(0,0,0,0.25)" }}
             >
               <p className="text-white/18 text-[10px] text-center font-mono">
-                JOE Technologies · joetechnologies.io
+                JOE Technologies · joetech.com.ng
               </p>
             </div>
           </motion.div>
