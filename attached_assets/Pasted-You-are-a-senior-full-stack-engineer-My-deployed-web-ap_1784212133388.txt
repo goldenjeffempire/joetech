@@ -1,0 +1,229 @@
+You are a senior full-stack engineer. My deployed web application loads a completely black/blank page with no visible UI. Your job is to fully diagnose, fix, and verify the application until it renders correctly.
+
+Goal
+
+Find the root cause instead of applying temporary fixes.
+
+The application should:
+
+Render successfully in production.
+Have zero runtime errors.
+Load without a blank screen.
+Work locally and after deployment.
+Fail gracefully if APIs are unavailable.
+Investigation Checklist
+
+Perform these steps in order.
+
+1. Check Build
+Run the project locally.
+Build for production.
+Fix every compilation warning and error.
+Ensure the production build succeeds.
+2. Browser Console
+
+Inspect for:
+
+JavaScript exceptions
+React errors
+Hydration errors
+Import errors
+Undefined variables
+Promise rejections
+Module resolution issues
+
+Fix every error.
+
+3. Network Requests
+
+Inspect all requests.
+
+Check for:
+
+404
+401
+403
+500
+CORS
+Missing API URLs
+Failed asset loading
+Incorrect environment variables
+
+Fix every issue.
+
+4. React Rendering
+
+Verify:
+
+ReactDOM.render/createRoot executes.
+Root element exists.
+App component mounts.
+No infinite render loops.
+Error boundaries aren't hiding errors.
+Suspense resolves correctly.
+5. Routing
+
+Check:
+
+React Router
+Next.js routes
+Vite routing
+BrowserRouter basename
+Route configuration
+
+Ensure the default route renders correctly.
+
+6. Environment Variables
+
+Validate:
+
+.env
+.env.production
+Render environment variables
+
+Ensure every required variable exists.
+
+Replace hardcoded values with proper environment variables.
+
+Provide defaults where appropriate.
+
+7. Backend Connection
+
+Verify:
+
+API URL
+Authentication
+Database connection
+Fetch requests
+Axios configuration
+
+If the backend is unavailable:
+
+Show an informative UI.
+Never render a blank screen.
+8. CSS
+
+Check for:
+
+Hidden body
+opacity:0
+visibility:hidden
+display:none
+z-index issues
+background covering content
+Tailwind purge problems
+
+Ensure the UI is actually visible.
+
+9. Entry Point
+
+Verify:
+
+index.html
+main.jsx
+main.tsx
+App.jsx
+
+Ensure:
+
+Root div exists.
+React mounts correctly.
+10. Assets
+
+Check:
+
+Images
+Fonts
+Icons
+CSS
+JS bundles
+
+Fix broken paths.
+
+11. Deployment
+
+Inspect deployment configuration.
+
+Verify:
+
+Render build command
+Start command
+Static directory
+SPA rewrite rules
+Environment variables
+Node version
+
+Correct any deployment issues.
+
+12. Error Handling
+
+Add proper:
+
+Error boundaries
+API error handling
+Loading states
+Empty states
+Retry UI
+
+The application should never display a blank screen.
+
+13. Logging
+
+Temporarily add logging to identify exactly where rendering stops.
+
+Log:
+
+App initialization
+Route loading
+API initialization
+Authentication
+Component mounting
+
+Remove unnecessary debug logs after fixing.
+
+14. Dependency Check
+
+Verify:
+
+package.json
+lockfile
+dependency versions
+peer dependency conflicts
+
+Update incompatible packages only if necessary.
+
+15. Final Verification
+
+Confirm:
+
+✅ No console errors
+
+✅ No network failures
+
+✅ No blank page
+
+✅ Production build succeeds
+
+✅ Development server works
+
+✅ Deployment works
+
+✅ All routes render
+
+✅ APIs connect correctly
+
+✅ Responsive UI renders
+
+Deliverables
+
+After fixing:
+
+Explain the root cause.
+List every file changed.
+Show the exact code changes.
+Explain why the issue happened.
+Explain how it was fixed.
+List any deployment changes required.
+Confirm that the application now loads successfully without a blank screen.
+
+Do not stop after identifying the issue. Continue until the application is fully functional and verified in both development and production. If multiple issues are found, fix all of them before concluding.
