@@ -246,12 +246,11 @@ export default function AboutSection() {
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
                 <div className="flex-shrink-0 relative">
-                  <div
-                    className="w-20 h-20 rounded-xl flex items-center justify-center font-heading font-bold text-2xl text-white"
-                    style={{ background: "linear-gradient(135deg, #E867EA 0%, #7b2ee0 100%)" }}
-                  >
-                    DCN
-                  </div>
+                  <img
+                    src="/dominion.png"
+                    alt="Dominion Chidiebere Nkwachukwu"
+                    className="w-20 h-20 rounded-xl object-cover object-top"
+                  />
                   <div
                     className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
                     style={{ border: "2px solid var(--joe-bg-solid)" }}
