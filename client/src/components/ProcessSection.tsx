@@ -7,6 +7,7 @@ const steps = [
   {
     number: "01",
     icon: Search,
+    image: "/process/step-discovery.jpg",
     title: "Discovery & Audit",
     description: "We start by deeply understanding your business, your data landscape, your current technical stack, and the specific outcomes you need AI to drive. No assumptions — only facts.",
     duration: "1–2 weeks",
@@ -15,6 +16,7 @@ const steps = [
   {
     number: "02",
     icon: PenTool,
+    image: "/process/step-strategy.jpg",
     title: "Strategy & Architecture",
     description: "We design the full system architecture — from data pipelines to model selection to API design — before writing a single line of production code. Aligned, documented, reviewed.",
     duration: "1–2 weeks",
@@ -23,6 +25,7 @@ const steps = [
   {
     number: "03",
     icon: Cpu,
+    image: "/process/step-development.jpg",
     title: "Development & Testing",
     description: "Iterative build cycles with constant testing. We develop in sprints, show progress weekly, and maintain rigorous quality standards for every component we ship.",
     duration: "4–16 weeks",
@@ -31,6 +34,7 @@ const steps = [
   {
     number: "04",
     icon: Rocket,
+    image: "/process/step-deployment.jpg",
     title: "Deployment & Launch",
     description: "Production deployment with CI/CD pipelines, monitoring dashboards, alerting, and runbooks. Your system launches with everything needed to operate confidently at scale.",
     duration: "1–2 weeks",
@@ -39,6 +43,7 @@ const steps = [
   {
     number: "05",
     icon: TrendingUp,
+    image: "/process/step-optimization.jpg",
     title: "Optimization & Growth",
     description: "Post-launch, we monitor model performance, track business metrics, and iterate continuously — retraining, fine-tuning, and improving as your usage grows.",
     duration: "Ongoing",
@@ -109,13 +114,23 @@ export default function ProcessSection() {
                 >
                   <div className="flex-shrink-0 flex flex-col items-center">
                     <div
-                      className="w-20 h-20 rounded-xl flex items-center justify-center border relative"
-                      style={{
-                        background: "rgba(72,242,251,0.08)",
-                        borderColor: "rgba(72,242,251,0.25)",
-                      }}
+                      className="w-20 h-20 rounded-xl overflow-hidden border relative"
+                      style={{ borderColor: "rgba(72,242,251,0.25)" }}
                     >
-                      <Icon className="w-7 h-7 text-[#48F2FB]" />
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* tint overlay */}
+                      <div
+                        className="absolute inset-0"
+                        style={{ background: "rgba(6,10,16,0.15)" }}
+                      />
+                      {/* icon centred on top of image */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-[#48F2FB] drop-shadow-lg" />
+                      </div>
                       <div
                         className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold text-white"
                         style={{ background: "linear-gradient(135deg, #48F2FB, #E867EA)" }}

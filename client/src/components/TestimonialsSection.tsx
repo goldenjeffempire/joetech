@@ -10,6 +10,7 @@ const testimonials = [
     company: "Nexus Financial",
     stars: 5,
     initials: "SC",
+    avatar: "/testimonials/sarah-chen.jpg",
     accentColor: "#48F2FB",
     result: "73% faster code reviews",
   },
@@ -20,6 +21,7 @@ const testimonials = [
     company: "HealthSense Network",
     stars: 5,
     initials: "MO",
+    avatar: "/testimonials/marcus-obi.jpg",
     accentColor: "#00ff88",
     result: "$4.6M annual savings",
   },
@@ -30,6 +32,7 @@ const testimonials = [
     company: "LegalEdge International",
     stars: 5,
     initials: "PS",
+    avatar: "/testimonials/priya-sharma.jpg",
     accentColor: "#E867EA",
     result: "91% accuracy rate",
   },
@@ -124,14 +127,28 @@ export default function TestimonialsSection() {
                 style={{ borderTop: "1px solid var(--joe-card-border)" }}
               >
                 <div
-                  className="w-11 h-11 rounded-full flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0"
+                  className="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden"
                   style={{
-                    background: `linear-gradient(135deg, ${t.accentColor}90, ${t.accentColor}40)`,
-                    border: `1px solid ${t.accentColor}35`,
+                    border: `2px solid ${t.accentColor}50`,
                     boxShadow: `0 0 20px ${t.accentColor}20`,
                   }}
                 >
-                  {t.initials}
+                  <img
+                    src={t.avatar}
+                    alt={t.author}
+                    className="w-full h-full object-cover object-top"
+                    onError={(e) => {
+                      // Fallback to initials if image fails
+                      const el = e.currentTarget;
+                      el.style.display = "none";
+                      const parent = el.parentElement!;
+                      parent.style.display = "flex";
+                      parent.style.alignItems = "center";
+                      parent.style.justifyContent = "center";
+                      parent.style.background = `linear-gradient(135deg, ${t.accentColor}90, ${t.accentColor}40)`;
+                      parent.innerHTML = `<span style="color:white;font-weight:700;font-size:14px">${t.initials}</span>`;
+                    }}
+                  />
                 </div>
                 <div>
                   <p className="text-joe-text font-semibold text-sm">{t.author}</p>

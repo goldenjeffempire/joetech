@@ -8,6 +8,7 @@ import { Link } from "wouter";
 const services = [
   {
     icon: Smartphone,
+    image: "/services/svc-app-dev.jpg",
     title: "App Development",
     description: "Custom web apps, mobile apps, SaaS products, client portals, and internal tools designed around speed, clarity, adoption, and measurable business outcomes.",
     tags: ["Mobile Apps", "Web Apps", "SaaS", "Portals"],
@@ -16,6 +17,7 @@ const services = [
   },
   {
     icon: MonitorSmartphone,
+    image: "/services/svc-website.jpg",
     title: "Website Design & Development",
     description: "Premium websites, landing pages, corporate platforms, and digital storefronts with polished UX, conversion-first messaging, technical SEO, and responsive performance.",
     tags: ["SEO", "Landing Pages", "Brand Sites", "Conversion"],
@@ -24,6 +26,7 @@ const services = [
   },
   {
     icon: Workflow,
+    image: "/services/svc-automation.jpg",
     title: "Automation Systems",
     description: "Business process optimization, workflow engines, reporting systems, integrations, and automated handoffs that reduce manual work and improve operational visibility.",
     tags: ["Workflows", "Ops", "Reporting", "Integrations"],
@@ -32,6 +35,7 @@ const services = [
   },
   {
     icon: Palette,
+    image: "/services/svc-uiux.jpg",
     title: "UI/UX Design",
     description: "Interface design, user experience engineering, product flows, design systems, and interaction patterns that make complex platforms intuitive and premium.",
     tags: ["Product UX", "UI Systems", "Prototypes", "Flows"],
@@ -40,6 +44,7 @@ const services = [
   },
   {
     icon: Brain,
+    image: "/services/svc-ai.jpg",
     title: "AI & Machine Learning Solutions",
     description: "AI agents, intelligent assistants, predictive analytics, document automation, semantic search, and custom AI integrations embedded into real workflows.",
     tags: ["AI Agents", "LLMs", "Analytics", "ML"],
@@ -48,6 +53,7 @@ const services = [
   },
   {
     icon: Building2,
+    image: "/services/svc-systems.jpg",
     title: "Digital Systems Engineering",
     description: "Secure portals, dashboards, databases, APIs, admin systems, and enterprise-grade product architecture that modernizes how organizations run.",
     tags: ["Dashboards", "APIs", "Databases", "Systems"],
@@ -105,23 +111,41 @@ export default function ServicesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="group flex flex-col gap-5 p-7 rounded-xl border hover-elevate cursor-default transition-all duration-300"
+                className="group flex flex-col rounded-xl border hover-elevate cursor-default transition-all duration-300 overflow-hidden"
                 style={{
                   background: "var(--joe-card)",
                   borderColor: "var(--joe-card-border)",
                 }}
                 data-testid={`service-card-${i}`}
               >
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-                  style={{
-                    background: `${service.accent}15`,
-                    border: `1px solid ${service.accent}30`,
-                  }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: service.accent }} />
+                {/* Visual banner */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* gradient overlay so card text area blends in */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `linear-gradient(to bottom, transparent 40%, var(--joe-card) 100%)`,
+                    }}
+                  />
+                  {/* accent-coloured icon badge */}
+                  <div
+                    className="absolute bottom-3 left-4 w-10 h-10 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    style={{
+                      background: `${service.accent}20`,
+                      border: `1px solid ${service.accent}50`,
+                      backdropFilter: "blur(8px)",
+                    }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: service.accent }} />
+                  </div>
                 </div>
 
+                <div className="flex flex-col gap-5 p-6 flex-1">
                 <div className="flex-1">
                   <h3 className="font-heading font-bold text-joe-text text-lg mb-2">{service.title}</h3>
                   <p className="text-joe-text/55 text-sm leading-relaxed">{service.description}</p>
@@ -152,6 +176,7 @@ export default function ServicesSection() {
                   Learn More
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
+                </div>
               </motion.div>
             );
           })}
