@@ -67,38 +67,8 @@
         --font-sans: 'Inter', sans-serif;
         --font-mono: 'JetBrains Mono', monospace;
       }
-      /* Critical: prevent flash of unstyled content */
       html { background: #0f172a; }
       html:not(.dark) { background: #f8faff; }
-
-      /* Inline loading shell — visible immediately, before any JS runs.
-         React's createRoot().render() replaces all children of #root, so
-         this disappears automatically the moment React mounts. */
-      #app-shell {
-        position: fixed; inset: 0;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center; gap: 20px;
-        background: #060A10;
-        z-index: 9999;
-        font-family: 'JetBrains Mono', 'Courier New', monospace;
-      }
-      #app-shell-logo {
-        font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
-        color: #48F2FB;
-      }
-      #app-shell-logo span { color: #E867EA; }
-      #app-shell-spinner {
-        width: 36px; height: 36px;
-        border: 2px solid rgba(72,242,251,0.2);
-        border-top-color: #48F2FB;
-        border-radius: 50%;
-        animation: shell-spin 0.8s linear infinite;
-      }
-      #app-shell-label {
-        font-size: 0.75rem; color: rgba(255,255,255,0.35);
-        letter-spacing: 0.1em; text-transform: uppercase;
-      }
-      @keyframes shell-spin { to { transform: rotate(360deg); } }
     </style>
 
     <!-- JSON-LD Structured Data: Site-level -->
@@ -204,64 +174,7 @@
       </div>
     </noscript>
 
-    <!-- App shell is OUTSIDE #root so React mounting/unmounting #root never
-         accidentally leaves the shell orphaned. main.tsx removes it explicitly
-         after the first React paint. -->
-    <div id="app-shell" aria-label="Loading JOE Technologies" aria-live="polite">
-      <div id="app-shell-logo">&lt;JOE<span>/&gt;</span></div>
-      <div id="app-shell-spinner" role="status"></div>
-      <div id="app-shell-label">Loading platform&hellip;</div>
-    </div>
-
     <div id="root"></div>
-
-    <!-- Watchdog: if the app-shell is still visible after 8 s, React failed
-         to mount (script error, failed module import, etc.). Show a recovery UI
-         instead of an infinite spinner. Clears itself when main.tsx removes the
-         shell normally. -->
-    <script>
-      (function () {
-        // Render free-tier services spin down after 15 min of inactivity.
-        // Cold starts can take 30–60 s. We show a "warming up" message after
-        // 10 s so users know to wait, then offer a reload after 50 s if the
-        // app still hasn't mounted.
-        var WARMUP_TIMEOUT = 10000;  // 10 s → show "server warming up" hint
-        var ERROR_TIMEOUT  = 50000;  // 50 s → show reload prompt
-
-        var tWarmup = setTimeout(function () {
-          var label = document.getElementById('app-shell-label');
-          if (!label) return; // already removed by React
-          label.textContent = 'Server warming up\u2026 this may take up to 30s';
-        }, WARMUP_TIMEOUT);
-
-        var t = setTimeout(function () {
-          clearTimeout(tWarmup);
-          var shell = document.getElementById('app-shell');
-          if (!shell) return; // already removed by React — all good
-          // React never mounted. Show a user-friendly recovery screen.
-          shell.innerHTML =
-            '<div id="app-shell-logo">\u003CJOE<span>/\u003E</span></div>' +
-            '<p style="color:rgba(255,255,255,0.55);max-width:320px;text-align:center;font-size:0.85rem;line-height:1.6;margin:0;">' +
-              'Having trouble loading the platform.<br>Please check your connection and try again.' +
-            '</p>' +
-            '<button onclick="window.location.reload()" style="background:linear-gradient(135deg,#48F2FB,#E867EA);color:#060A10;border:none;padding:10px 28px;border-radius:8px;font-weight:700;cursor:pointer;font-size:0.9rem;margin-top:4px;">Reload Page</button>';
-          var spinner = shell.querySelector('#app-shell-spinner');
-          if (spinner) spinner.style.display = 'none';
-        }, ERROR_TIMEOUT);
-        // Expose cancel handles so main.tsx can clear both timers when React mounts fine.
-        window.__joeShellWatchdog = t;
-        window.__joeShellWarmup  = tWarmup;
-
-        // Global error logger — catches parse/runtime errors in any script.
-        window.addEventListener('error', function (e) {
-          console.error('[JOE] Script error:', e.message, 'at', e.filename + ':' + e.lineno);
-        });
-        window.addEventListener('unhandledrejection', function (e) {
-          console.error('[JOE] Unhandled promise rejection:', e.reason);
-        });
-      })();
-    </script>
-
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
