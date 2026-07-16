@@ -192,7 +192,7 @@ export default function Footer() {
               >
                 <p className="text-joe-text/28 text-xs font-mono uppercase tracking-wider mb-1">Co-Founded by</p>
                 <p className="text-joe-text/70 text-sm font-semibold">Jeffery Onome Emuodafevware</p>
-                <p className="text-joe-text/45 text-xs">Co-Founder & Chief Engineer</p>
+                <p className="text-joe-text/45 text-xs">Founder & CEO</p>
                 <a
                   href="https://onome-portfolio-ten.vercel.app/?/projects"
                   target="_blank"

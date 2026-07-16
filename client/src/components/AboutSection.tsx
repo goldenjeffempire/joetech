@@ -192,7 +192,7 @@ export default function AboutSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
-                  <p className="text-[#48F2FB] text-sm font-medium mt-0.5">Co-Founder & Chief Engineer</p>
+                  <p className="text-[#48F2FB] text-sm font-medium mt-0.5">Founder & CEO</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
                   <div className="flex items-center gap-3 mt-3">
                     <a
@@ -370,7 +370,7 @@ export default function AboutSection() {
                   </div>
                   <div>
                     <p className="text-[#48F2FB] text-sm font-semibold font-mono">Jeffery Onome Emuodafevware</p>
-                    <p className="text-joe-text/35 text-xs">Co-Founder, JOE Technologies</p>
+                    <p className="text-joe-text/35 text-xs">Founder & CEO, JOE Technologies</p>
                   </div>
                 </div>
               </motion.div>
