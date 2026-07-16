@@ -55,9 +55,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fonts: non-blocking load — avoids render-blocking while still loading fonts.
-         Oxanium = headings (font-heading), Inter = body text, JetBrains Mono = code. -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+    <!-- Fonts: truly non-render-blocking load via media=print swap trick.
+         Oxanium = headings (font-heading), Inter = body text, JetBrains Mono = code.
+         media="print" is parsed immediately but doesn't block rendering; onload
+         switches it to "all" so fonts apply once the stylesheet is ready. -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
     </noscript>

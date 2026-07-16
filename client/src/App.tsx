@@ -71,9 +71,34 @@ function IdlePrefetcher() {
   return null;
 }
 
+function PageLoader() {
+  return (
+    <div
+      className="min-h-[60vh] flex items-center justify-center"
+      role="status"
+      aria-label="Loading page"
+    >
+      <div className="flex flex-col items-center gap-4">
+        <div className="relative w-12 h-12">
+          <div
+            className="absolute inset-0 rounded-full border-2 border-transparent animate-spin"
+            style={{ borderTopColor: "#48F2FB", borderRightColor: "#E867EA" }}
+          />
+        </div>
+        <span
+          className="font-heading text-sm tracking-widest uppercase"
+          style={{ color: "rgba(255,255,255,0.35)" }}
+        >
+          Loading…
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function Router() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<PageLoader />}>
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
