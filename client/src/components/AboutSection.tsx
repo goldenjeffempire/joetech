@@ -173,23 +173,23 @@ export default function AboutSection() {
               className="flex flex-col gap-8"
             >
               <div
-                className="flex items-start gap-5 p-6 rounded-xl border"
+                className="rounded-xl border overflow-hidden"
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
-                <div className="flex-shrink-0 relative">
+                <div className="relative">
                   <img
                     src="/jeffery.png"
                     alt="Jeffery Onome Emuodafevware"
-                    className="w-20 h-20 rounded-xl object-cover object-top"
+                    className="w-full h-80 object-cover object-top"
                   />
                   <div
-                    className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
+                    className="absolute bottom-3 right-3 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
                     style={{ border: "2px solid var(--joe-bg-solid)" }}
                   >
                     <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
                   </div>
                 </div>
-                <div className="flex-1">
+                <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Jeffery Onome Emuodafevware</h3>
                   <p className="text-[#48F2FB] text-sm font-medium mt-0.5">Founder & CEO</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
@@ -241,23 +241,23 @@ export default function AboutSection() {
               </div>
 
               <div
-                className="flex items-start gap-5 p-6 rounded-xl border mt-2"
+                className="rounded-xl border overflow-hidden mt-2"
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
-                <div className="flex-shrink-0 relative">
+                <div className="relative">
                   <img
                     src="/dominion.png"
                     alt="Dominion Chidiebere Nkwachukwu"
-                    className="w-20 h-20 rounded-xl object-cover object-top"
+                    className="w-full h-80 object-cover object-top"
                   />
                   <div
-                    className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
+                    className="absolute bottom-3 right-3 w-5 h-5 rounded-full bg-[#00ff88] flex items-center justify-center animate-pulse"
                     style={{ border: "2px solid var(--joe-bg-solid)" }}
                   >
                     <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
                   </div>
                 </div>
-                <div className="flex-1">
+                <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-joe-text">Dominion Chidiebere Nkwachukwu</h3>
                   <p className="text-[#E867EA] text-sm font-medium mt-0.5">Co-Founder</p>
                   <p className="text-joe-text/35 text-sm mt-0.5 font-mono">JOE Technologies</p>
