@@ -69,19 +69,31 @@ function useScrollInView() {
 
 export default function AIIntegrationPage() {
   useSeo({
-    title: "AI Integration & API Development",
+    title: "AI Integration & API Development | JOE Technologies",
     description: "AI integration and API development by JOE Technologies. Connect LLMs, ML models, and AI services to your existing systems via robust, scalable API layers.",
     canonical: "/services/ai-integration",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "AI Integration & APIs",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/ai-integration",
-      "description": "AI API integration, LLM connectivity, and ML model deployment APIs.",
-      "serviceType": "AI Integration",
-      "areaServed": "Worldwide",
-    },
+    keywords: "AI integration, API development, LLM integration, OpenAI API integration, REST API, GraphQL API, AI-powered applications, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "AI Integration & API Development",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/ai-integration",
+        "description": "Connect LLMs, ML models, and AI services to your existing systems via robust, production-grade REST and GraphQL API layers.",
+        "serviceType": "AI Integration",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "AI Integration & API Development", "item": "https://joetech.com.ng/services/ai-integration" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const overview = useScrollInView();

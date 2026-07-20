@@ -10,6 +10,7 @@ export interface SeoConfig {
   canonical?: string;
   ogImage?: string;
   noindex?: boolean;
+  keywords?: string;
   schema?: object | object[];
 }
 
@@ -50,10 +51,18 @@ function setPageSchema(schema: object | object[] | undefined) {
   el.textContent = JSON.stringify(schema, null, 0);
 }
 
-export function useSeo({ title, description, canonical, ogImage, noindex, schema }: SeoConfig) {
-  // Serialize to a stable string so React's dep comparison uses value equality
-  // rather than object identity.  Schema literals are recreated on every render,
-  // which would otherwise cause the effect (and DOM updates) to run every cycle.
+export function useSeo({
+  title,
+  description,
+  canonical,
+  ogImage,
+  noindex,
+  keywords,
+  schema,
+}: SeoConfig) {
+  // Serialize schema to a stable string so React's dep comparison uses value
+  // equality rather than object identity. Schema literals are recreated on
+  // every render which would otherwise cause the effect to run every cycle.
   const schemaJson = schema != null ? JSON.stringify(schema) : undefined;
 
   useEffect(() => {
@@ -69,25 +78,36 @@ export function useSeo({ title, description, canonical, ogImage, noindex, schema
     const ogImageUrl = ogImage ?? DEFAULT_OG_IMAGE;
 
     setMeta("description", description);
-    setMeta("robots", noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1");
+    setMeta(
+      "robots",
+      noindex
+        ? "noindex, nofollow"
+        : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    );
+    if (keywords) setMeta("keywords", keywords);
     setLink("canonical", canonicalUrl, "canonical");
 
-    setMeta("og:type", "website", "property");
-    setMeta("og:title", fullTitle, "property");
+    // Open Graph
+    setMeta("og:type",        "website",   "property");
+    setMeta("og:title",       fullTitle,   "property");
     setMeta("og:description", description, "property");
-    setMeta("og:url", canonicalUrl, "property");
-    setMeta("og:image", ogImageUrl, "property");
-    setMeta("og:image:width", "1200", "property");
-    setMeta("og:image:height", "630", "property");
-    setMeta("og:site_name", SITE_NAME, "property");
+    setMeta("og:url",         canonicalUrl,"property");
+    setMeta("og:image",       ogImageUrl,  "property");
+    setMeta("og:image:width",  "1200",     "property");
+    setMeta("og:image:height", "630",      "property");
+    setMeta("og:image:type",   "image/png","property");
+    setMeta("og:image:secure_url", ogImageUrl, "property");
+    setMeta("og:site_name", SITE_NAME,    "property");
 
-    setMeta("twitter:card", "summary_large_image");
-    setMeta("twitter:title", fullTitle);
+    // Twitter Card
+    setMeta("twitter:card",        "summary_large_image");
+    setMeta("twitter:title",       fullTitle);
     setMeta("twitter:description", description);
-    setMeta("twitter:image", ogImageUrl);
+    setMeta("twitter:image",       ogImageUrl);
+    setMeta("twitter:image:alt",   "JOE Technologies — Enterprise Digital Solutions");
 
     setPageSchema(schemaJson != null ? JSON.parse(schemaJson) : undefined);
   // schemaJson (string) is used instead of schema (object) for stable comparison
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, canonical, ogImage, noindex, schemaJson]);
+  }, [title, description, canonical, ogImage, noindex, keywords, schemaJson]);
 }

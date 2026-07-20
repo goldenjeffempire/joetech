@@ -84,9 +84,25 @@ const principles = [
 
 export default function ProcessPage() {
   useSeo({
-    title: "Our Engineering Process",
-    description: "Learn how JOE Technologies engineers your solution — from discovery and architecture through development, testing, and deployment. A proven 5-step process for quality delivery.",
+    title: "Our Engineering Process — Discovery to Deployment | JOE Technologies",
+    description: "How JOE Technologies engineers your solution — a proven 5-step process covering discovery, architecture, development, deployment, and continuous optimisation for quality delivery.",
     canonical: "/process",
+    keywords: "software development process, agile engineering, project delivery methodology, software development lifecycle, tech project management, JOE Technologies",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "JOE Technologies Engineering Process",
+      "description": "Our proven 5-step methodology for delivering high-quality digital products and AI systems.",
+      "url": "https://joetech.com.ng/process",
+      "totalTime": "PT8W",
+      "step": steps.map((s, i) => ({
+        "@type": "HowToStep",
+        "position": i + 1,
+        "name": s.title,
+        "text": s.description,
+        "url": `https://joetech.com.ng/process#step-${s.number}`,
+      })),
+    },
   });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });

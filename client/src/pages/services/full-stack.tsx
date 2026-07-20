@@ -66,19 +66,31 @@ function useScrollInView() {
 
 export default function FullStackDevelopment() {
   useSeo({
-    title: "Full-Stack Digital Systems Development",
+    title: "Full-Stack Digital Systems Development | JOE Technologies",
     description: "Full-stack development by JOE Technologies. End-to-end engineering from database to frontend, API design to cloud deployment. Complete digital systems built for scale.",
     canonical: "/services/full-stack",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Full-Stack Development",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/full-stack",
-      "description": "End-to-end full-stack digital systems engineering.",
-      "serviceType": "Full-Stack Development",
-      "areaServed": "Worldwide",
-    },
+    keywords: "full stack development, full stack engineer, React developer, Django developer, Node.js developer, PostgreSQL, cloud deployment, digital systems, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Full-Stack Digital Systems Development",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/full-stack",
+        "description": "End-to-end full-stack engineering from database design to polished UI — API development, cloud deployment, and complete digital systems built for scale.",
+        "serviceType": "Full-Stack Development",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "Full-Stack Development", "item": "https://joetech.com.ng/services/full-stack" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const included = useScrollInView();

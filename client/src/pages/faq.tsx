@@ -7,6 +7,54 @@ import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
+// Flat list used for the FAQPage JSON-LD schema (Google FAQ rich results)
+const allFaqs = [
+  {
+    q: "How do we get started?",
+    a: "Everything begins with a free 45-minute strategy call. We discuss your goals, current digital landscape, users, workflows, and the outcomes you want the platform to drive. From there, we'll propose a tailored engagement structure — whether that's a focused discovery sprint, website, app, automation build, AI integration, or ongoing advisory.",
+  },
+  {
+    q: "What's a typical project timeline?",
+    a: "It depends on scope. A focused website, automation, AI integration, or MVP typically takes 6–10 weeks. A full-scale production platform — with polished UI/UX, backend systems, integrations, analytics, and AI capabilities — usually runs 3–6 months. We always define clear milestones upfront so you know what to expect at every stage.",
+  },
+  {
+    q: "Do you work with non-technical founders?",
+    a: "Absolutely. Some of our best work has been with founders who have a clear vision but limited technical background. We translate complexity into plain language, involve you in every major decision, and ensure you understand what's being built and why. You'll never feel lost in your own project.",
+  },
+  {
+    q: "What engagement models do you offer?",
+    a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing product, automation, AI, or advisory work; (3) Embedded — a JOE Technologies co-founder or engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
+  },
+  {
+    q: "How is pricing structured?",
+    a: "Pricing depends on the engagement model and scope. Project-based work starts with a detailed proposal and fixed price. Retainer engagements are billed monthly based on hours committed. Embedded engagements are priced as a monthly rate. We're transparent about costs from the first conversation.",
+  },
+  {
+    q: "Do you offer a money-back guarantee?",
+    a: "We don't offer blanket money-back guarantees because custom engineering isn't a commodity product. However, we do structure every project with clear milestones and checkpoints. If we're not meeting agreed-upon benchmarks, we work together to course-correct or adjust scope.",
+  },
+  {
+    q: "What industries do you specialize in?",
+    a: "Our experience spans FinTech, Healthcare, Legal Tech, E-Commerce, logistics, education, SaaS, and service businesses — industries where strong UX, reliable systems, automation, and intelligent data flows create measurable advantage.",
+  },
+  {
+    q: "Can you work with our existing tech stack?",
+    a: "Yes. We integrate with your existing infrastructure rather than forcing a complete rewrite. Whether you're running on AWS, GCP, Azure, on-premise tools, spreadsheets, CRMs, or legacy databases, we adapt our approach to your constraints while still delivering modern digital capabilities.",
+  },
+  {
+    q: "How do you handle data privacy and security?",
+    a: "We take security extremely seriously. All code is written with security best practices, data handling follows least-privilege principles, and for regulated industries (healthcare, finance) we ensure compliance with relevant standards (HIPAA, SOC 2, GDPR). NDAs are signed before any sensitive information is shared.",
+  },
+  {
+    q: "Do you provide post-launch support?",
+    a: "Yes. Every project includes a 30-day post-launch support period at no extra cost. After that, we offer ongoing maintenance retainers that cover performance optimization, uptime monitoring, workflow improvements, AI model monitoring, and feature development. Most clients stay with us well beyond the initial build.",
+  },
+  {
+    q: "Can you work with our existing team?",
+    a: "Yes — this is actually one of our preferred modes. We collaborate effectively with internal engineering teams, providing specialized AI expertise while your team handles domain-specific and product work. We're also happy to do knowledge transfer and upskilling so your team can maintain the systems we build.",
+  },
+];
+
 const faqCategories = [
   {
     category: "Getting Started",
@@ -130,24 +178,23 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQPage() {
   useSeo({
-    title: "Frequently Asked Questions",
-    description: "Find answers to common questions about JOE Technologies' services, pricing, timelines, technology choices, and engagement process. Get clarity before you reach out.",
+    title: "Frequently Asked Questions — Working with JOE Technologies",
+    description: "Answers to common questions about working with JOE Technologies: how to get started, timelines, pricing, engagement models, technical capabilities, and post-launch support.",
     canonical: "/faq",
+    keywords: "JOE Technologies FAQ, software development FAQ, how to hire tech company, app development cost, project timeline, engagement models, JOE Technologies",
     schema: {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "url": "https://joetech.com.ng/faq",
-      "name": "JOE Technologies — FAQ",
-      "mainEntity": faqCategories.flatMap((cat) =>
-        cat.faqs.map((faq) => ({
-          "@type": "Question",
-          "name": faq.q,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.a,
-          },
-        }))
-      ),
+      "name": "Frequently Asked Questions — JOE Technologies",
+      "mainEntity": allFaqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a,
+        },
+      })),
     },
   });
   const ref = useRef(null);

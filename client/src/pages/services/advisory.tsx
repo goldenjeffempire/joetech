@@ -67,19 +67,31 @@ function useScrollInView() {
 
 export default function AdvisoryPage() {
   useSeo({
-    title: "Technology Advisory & Digital Strategy",
+    title: "Technology Advisory & Digital Strategy Consulting | JOE Technologies",
     description: "Technology advisory and digital strategy consulting by JOE Technologies. Expert guidance for digital transformation, technology selection, and AI adoption at every scale.",
     canonical: "/services/advisory",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Technology Advisory",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/advisory",
-      "description": "Digital strategy and technology advisory consulting.",
-      "serviceType": "Technology Advisory",
-      "areaServed": "Worldwide",
-    },
+    keywords: "technology advisory, digital strategy consulting, CTO advisory, technology consulting, digital transformation consulting, tech due diligence, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Technology Advisory & Digital Strategy",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/advisory",
+        "description": "Expert technology advisory and digital strategy consulting — fractional CTO services, technical due diligence, AI adoption roadmaps, and team building.",
+        "serviceType": "Technology Advisory",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "Technology Advisory", "item": "https://joetech.com.ng/services/advisory" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const includedSection = useScrollInView();

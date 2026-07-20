@@ -235,7 +235,15 @@ Allow: /
 Disallow: /qualify
 Disallow: /admin
 Disallow: /api/
+Disallow: /*.json$
 
+# Allow Googlebot to crawl all public JS/CSS for rendering
+User-agent: Googlebot
+Allow: /assets/
+Allow: /*.js$
+Allow: /*.css$
+
+# Block AI training bots — content is not licensed for model training
 User-agent: GPTBot
 Disallow: /
 
@@ -248,7 +256,38 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: AI2Bot
+Disallow: /
+
+User-agent: DuckAssistBot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
 Sitemap: https://joetech.com.ng/sitemap.xml
+Sitemap: https://joetech.com.ng/sitemap-images.xml
 `
     );
   });
@@ -258,40 +297,104 @@ Sitemap: https://joetech.com.ng/sitemap.xml
     const now = new Date().toISOString().split("T")[0];
 
     const pages = [
-      { path: "/", priority: "1.0", freq: "weekly" },
-      { path: "/about", priority: "0.8", freq: "monthly" },
-      { path: "/services", priority: "0.9", freq: "monthly" },
-      { path: "/services/app-development", priority: "0.9", freq: "monthly" },
-      { path: "/services/website-design", priority: "0.9", freq: "monthly" },
-      { path: "/services/uiux-design", priority: "0.8", freq: "monthly" },
-      { path: "/services/automation", priority: "0.8", freq: "monthly" },
-      { path: "/services/ai-strategy", priority: "0.9", freq: "monthly" },
-      { path: "/services/custom-ai", priority: "0.9", freq: "monthly" },
-      { path: "/services/mlops", priority: "0.8", freq: "monthly" },
-      { path: "/services/ai-integration", priority: "0.8", freq: "monthly" },
-      { path: "/services/full-stack", priority: "0.8", freq: "monthly" },
-      { path: "/services/advisory", priority: "0.7", freq: "monthly" },
-      { path: "/portfolio", priority: "0.8", freq: "monthly" },
-      { path: "/why-us", priority: "0.7", freq: "monthly" },
-      { path: "/process", priority: "0.7", freq: "monthly" },
-      { path: "/tech-stack", priority: "0.6", freq: "monthly" },
-      { path: "/faq", priority: "0.7", freq: "monthly" },
-      { path: "/contact", priority: "0.8", freq: "monthly" },
-      { path: "/privacy", priority: "0.4", freq: "yearly" },
-      { path: "/terms", priority: "0.4", freq: "yearly" },
-      { path: "/cookies", priority: "0.4", freq: "yearly" },
+      { path: "/",                          priority: "1.0", freq: "weekly"  },
+      { path: "/about",                     priority: "0.9", freq: "monthly" },
+      { path: "/services",                  priority: "0.9", freq: "monthly" },
+      { path: "/services/app-development",  priority: "0.9", freq: "monthly" },
+      { path: "/services/website-design",   priority: "0.9", freq: "monthly" },
+      { path: "/services/custom-ai",        priority: "0.9", freq: "monthly" },
+      { path: "/services/ai-strategy",      priority: "0.9", freq: "monthly" },
+      { path: "/services/uiux-design",      priority: "0.8", freq: "monthly" },
+      { path: "/services/automation",       priority: "0.8", freq: "monthly" },
+      { path: "/services/mlops",            priority: "0.8", freq: "monthly" },
+      { path: "/services/ai-integration",   priority: "0.8", freq: "monthly" },
+      { path: "/services/full-stack",       priority: "0.8", freq: "monthly" },
+      { path: "/services/advisory",         priority: "0.8", freq: "monthly" },
+      { path: "/portfolio",                 priority: "0.8", freq: "monthly" },
+      { path: "/contact",                   priority: "0.8", freq: "monthly" },
+      { path: "/faq",                       priority: "0.8", freq: "monthly" },
+      { path: "/why-us",                    priority: "0.7", freq: "monthly" },
+      { path: "/process",                   priority: "0.7", freq: "monthly" },
+      { path: "/tech-stack",                priority: "0.7", freq: "monthly" },
+      { path: "/privacy",                   priority: "0.3", freq: "yearly"  },
+      { path: "/terms",                     priority: "0.3", freq: "yearly"  },
+      { path: "/cookies",                   priority: "0.3", freq: "yearly"  },
     ];
 
     const urls = pages
-      .map(
-        ({ path, priority, freq }) =>
-          `  <url>\n    <loc>${BASE}${path}</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>${freq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+      .map(({ path, priority, freq }) =>
+        [
+          `  <url>`,
+          `    <loc>${BASE}${path}</loc>`,
+          `    <lastmod>${now}</lastmod>`,
+          `    <changefreq>${freq}</changefreq>`,
+          `    <priority>${priority}</priority>`,
+          `  </url>`,
+        ].join("\n")
       )
       .join("\n");
 
-    res.setHeader("Content-Type", "application/xml");
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
     res.send(
-      `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`
+      `<?xml version="1.0" encoding="UTF-8"?>\n` +
+      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
+      `        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n` +
+      `        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9\n` +
+      `          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n` +
+      `${urls}\n</urlset>`
+    );
+  });
+
+  // Image sitemap — helps Google Images discover and index key visuals
+  app.get("/sitemap-images.xml", (_req, res) => {
+    const BASE = "https://joetech.com.ng";
+    const now = new Date().toISOString().split("T")[0];
+
+    const imagePages = [
+      {
+        path: "/",
+        images: [
+          { loc: `${BASE}/og-image.png`, title: "JOE Technologies — Enterprise Digital Solutions" },
+        ],
+      },
+      {
+        path: "/about",
+        images: [
+          { loc: `${BASE}/og-image.png`, title: "About JOE Technologies Team" },
+        ],
+      },
+    ];
+
+    const urls = imagePages
+      .map(({ path, images }) => {
+        const imgTags = images
+          .map((img) =>
+            [
+              `    <image:image>`,
+              `      <image:loc>${img.loc}</image:loc>`,
+              `      <image:title>${img.title}</image:title>`,
+              `    </image:image>`,
+            ].join("\n")
+          )
+          .join("\n");
+        return [
+          `  <url>`,
+          `    <loc>${BASE}${path}</loc>`,
+          `    <lastmod>${now}</lastmod>`,
+          imgTags,
+          `  </url>`,
+        ].join("\n");
+      })
+      .join("\n");
+
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.send(
+      `<?xml version="1.0" encoding="UTF-8"?>\n` +
+      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
+      `        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
+      `${urls}\n</urlset>`
     );
   });
 

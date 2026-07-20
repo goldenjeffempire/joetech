@@ -69,19 +69,31 @@ function useScrollInView() {
 
 export default function MLOpsPage() {
   useSeo({
-    title: "MLOps & AI Infrastructure",
-    description: "MLOps and AI infrastructure engineering by JOE Technologies. Model serving, monitoring, CI/CD pipelines for ML, and production deployment of machine learning systems.",
+    title: "MLOps & AI Infrastructure Engineering | JOE Technologies",
+    description: "MLOps and AI infrastructure engineering by JOE Technologies. Model serving, monitoring, CI/CD for ML, and production deployment of machine learning systems at scale.",
     canonical: "/services/mlops",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "MLOps & AI Infrastructure",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/mlops",
-      "description": "MLOps infrastructure, model serving, monitoring, and production ML deployment.",
-      "serviceType": "MLOps & Infrastructure",
-      "areaServed": "Worldwide",
-    },
+    keywords: "MLOps, machine learning operations, model deployment, model monitoring, ML pipeline, AI infrastructure, Kubernetes ML, model serving, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "MLOps & AI Infrastructure",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/mlops",
+        "description": "MLOps infrastructure engineering — model serving, monitoring, CI/CD pipelines for ML, and production deployment of machine learning systems at scale.",
+        "serviceType": "MLOps & AI Infrastructure",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "MLOps & AI Infrastructure", "item": "https://joetech.com.ng/services/mlops" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const overview = useScrollInView();

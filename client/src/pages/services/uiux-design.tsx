@@ -101,19 +101,31 @@ const useCases = [
 
 export default function UIUXDesign() {
   useSeo({
-    title: "UI/UX Design Services",
+    title: "UI/UX Design — User-Centred & Conversion-Focused | JOE Technologies",
     description: "User-centred UI/UX design by JOE Technologies. Interface design, user research, prototyping, and experience engineering that converts visitors to customers.",
     canonical: "/services/uiux-design",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "UI/UX Design",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/uiux-design",
-      "description": "User-centred interface design, prototyping, and UX engineering.",
-      "serviceType": "UI/UX Design",
-      "areaServed": "Worldwide",
-    },
+    keywords: "UI UX design, user interface design, user experience design, product design, mobile UI design, web design system, UX research, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "UI/UX Design",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/uiux-design",
+        "description": "User-centred interface design, prototyping, UX research, and experience engineering that converts visitors into customers.",
+        "serviceType": "UI/UX Design",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "UI/UX Design", "item": "https://joetech.com.ng/services/uiux-design" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const caps = useScrollInView();

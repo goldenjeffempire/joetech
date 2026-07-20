@@ -70,9 +70,19 @@ const commitments = [
 
 export default function WhyUsPage() {
   useSeo({
-    title: "Why Choose JOE Technologies",
-    description: "Discover why businesses choose JOE Technologies: enterprise AI expertise, rapid delivery, full-stack capability, production-proven systems, and dedicated long-term partnership.",
+    title: "Why Choose JOE Technologies | Our Difference",
+    description: "Discover why businesses choose JOE Technologies: systems-first engineering, full-stack ownership, outcomes-focused delivery, and deep AI expertise. We build what others can't.",
     canonical: "/why-us",
+    keywords: "why choose JOE Technologies, best software company Nigeria, best AI company Nigeria, enterprise software partner, top tech company Africa, JOE Technologies",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Why Choose JOE Technologies",
+      "description": "What sets JOE Technologies apart: systems-first engineering, full-stack ownership, and outcomes-focused delivery.",
+      "url": "https://joetech.com.ng/why-us",
+      "publisher": { "@id": "https://joetech.com.ng/#organization" },
+      "isPartOf": { "@id": "https://joetech.com.ng/#website" },
+    },
   });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });

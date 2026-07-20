@@ -105,19 +105,31 @@ const useCases = [
 
 export default function AppDevelopment() {
   useSeo({
-    title: "App Development Services",
+    title: "App Development — iOS, Android & Web Apps | JOE Technologies",
     description: "JOE Technologies builds native mobile apps and web applications for iOS, Android, and browser platforms. Cross-platform, performant, and production-ready from day one.",
     canonical: "/services/app-development",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "App Development",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/app-development",
-      "description": "Native and cross-platform mobile app development for iOS and Android, plus web application engineering.",
-      "serviceType": "App Development",
-      "areaServed": "Worldwide",
-    },
+    keywords: "app development, mobile app development Nigeria, iOS app development, Android app development, React Native developer, web app development, SaaS development, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "App Development",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/app-development",
+        "description": "Native and cross-platform mobile app development for iOS and Android, plus web application engineering for SaaS platforms and customer portals.",
+        "serviceType": "App Development",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "App Development", "item": "https://joetech.com.ng/services/app-development" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const caps = useScrollInView();

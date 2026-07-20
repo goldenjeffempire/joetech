@@ -4,15 +4,18 @@ import PageHero from "@/components/PageHero";
 
 export default function Portfolio() {
   useSeo({
-    title: "Portfolio & Case Studies",
+    title: "Portfolio & Case Studies — Apps, AI & Automation | JOE Technologies",
     description: "View JOE Technologies' portfolio of delivered apps, websites, automation systems, AI solutions, and digital platforms for businesses worldwide. Real results, real impact.",
     canonical: "/portfolio",
+    keywords: "JOE Technologies portfolio, software case studies, app development portfolio, AI projects portfolio, digital products showcase, Nigeria tech portfolio, JOE Technologies",
     schema: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "name": "JOE Technologies Portfolio",
-      "description": "Case studies and project portfolio from JOE Technologies.",
+      "name": "JOE Technologies Portfolio & Case Studies",
+      "description": "Delivered apps, websites, automation systems, AI solutions, and digital platforms — real results from JOE Technologies.",
       "url": "https://joetech.com.ng/portfolio",
+      "publisher": { "@id": "https://joetech.com.ng/#organization" },
+      "isPartOf": { "@id": "https://joetech.com.ng/#website" },
     },
   });
 

@@ -103,19 +103,31 @@ const useCases = [
 
 export default function AutomationSystems() {
   useSeo({
-    title: "Business Process Automation Systems",
+    title: "Business Process Automation — Custom Workflows & Pipelines | JOE Technologies",
     description: "Business process automation by JOE Technologies. Eliminate manual workflows, integrate APIs, and scale operations automatically. Custom automation pipelines built for your business.",
     canonical: "/services/automation",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Process Automation Systems",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/automation",
-      "description": "Custom business process automation and workflow engineering.",
-      "serviceType": "Process Automation",
-      "areaServed": "Worldwide",
-    },
+    keywords: "business process automation, workflow automation, API integration, robotic process automation, RPA, automation systems, Zapier alternative, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Business Process Automation",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/automation",
+        "description": "Custom business process automation — eliminate manual workflows, integrate APIs, and scale operations with intelligent automation pipelines.",
+        "serviceType": "Process Automation",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "Business Process Automation", "item": "https://joetech.com.ng/services/automation" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const caps = useScrollInView();

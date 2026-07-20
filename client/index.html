@@ -26,6 +26,10 @@
     <!-- Geographic & Language -->
     <meta name="language" content="English" />
     <meta property="og:locale" content="en_US" />
+    <meta name="geo.region" content="NG" />
+    <meta name="geo.country" content="Nigeria" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="7 days" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://joetech.com.ng/" />
@@ -37,6 +41,8 @@
     <meta property="og:title" content="JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions" />
     <meta property="og:description" content="JOE Technologies builds high-performance apps, websites, automation systems, UI/UX experiences, and AI-powered solutions for businesses and organisations." />
     <meta property="og:image" content="https://joetech.com.ng/og-image.png" />
+    <meta property="og:image:secure_url" content="https://joetech.com.ng/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="JOE Technologies — Enterprise Digital Solutions" />
@@ -48,12 +54,16 @@
     <meta name="twitter:title" content="JOE Technologies — Apps, Websites, Automation, UI/UX & AI Solutions" />
     <meta name="twitter:description" content="JOE Technologies builds high-performance apps, websites, automation systems, UI/UX experiences, and AI-powered solutions for businesses and organisations." />
     <meta name="twitter:image" content="https://joetech.com.ng/og-image.png" />
+    <meta name="twitter:image:alt" content="JOE Technologies — Enterprise Digital Solutions" />
 
     <!-- Performance: DNS Prefetch & Preconnect -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Note: og-image.png is intentionally NOT preloaded — it is a social
+         sharing asset, never rendered as a visible DOM element, so preloading
+         it wastes bandwidth and triggers a browser warning. -->
 
     <!-- Fonts: truly non-render-blocking load via media=print swap trick.
          Oxanium = headings (font-heading), Inter = body text, JetBrains Mono = code.

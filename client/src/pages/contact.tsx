@@ -5,16 +5,45 @@ import PageHero from "@/components/PageHero";
 
 export default function Contact() {
   useSeo({
-    title: "Contact JOE Technologies",
+    title: "Contact JOE Technologies — Start Your Project Today",
     description: "Get in touch with JOE Technologies to discuss your project. Start your app, website, automation, or AI solution today. We respond within 24 hours.",
     canonical: "/contact",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Contact JOE Technologies",
-      "url": "https://joetech.com.ng/contact",
-      "description": "Contact JOE Technologies to start your digital project.",
-    },
+    keywords: "contact JOE Technologies, hire software engineers Nigeria, start a project, get a quote, tech company Nigeria, software engineers Nigeria, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact JOE Technologies",
+        "url": "https://joetech.com.ng/contact",
+        "description": "Contact JOE Technologies to start your digital project — apps, websites, automation, or AI solutions. We respond within 24 hours.",
+        "publisher": { "@id": "https://joetech.com.ng/#organization" },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://joetech.com.ng/#business",
+        "name": "JOE Technologies",
+        "url": "https://joetech.com.ng",
+        "image": "https://joetech.com.ng/og-image.png",
+        "logo": "https://joetech.com.ng/favicon.png",
+        "description": "Enterprise digital product and AI solutions company specialising in app development, website design, automation, UI/UX, and custom AI systems.",
+        "email": "jeffemuodafe124@gmail.com",
+        "telephone": "+2349017048791",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "NG",
+          "addressRegion": "Nigeria",
+        },
+        "areaServed": "Worldwide",
+        "priceRange": "$",
+        "openingHours": "Mo-Fr 09:00-18:00",
+        "sameAs": [
+          "https://linkedin.com/company/joe-technologies",
+          "https://github.com/joe-technologies",
+          "https://instagram.com/joetech.ai",
+        ],
+      },
+    ],
   });
 
   return (

@@ -88,9 +88,43 @@ const selectionCriteria = [
 
 export default function TechStackPage() {
   useSeo({
-    title: "Technology Stack",
-    description: "Explore the technologies JOE Technologies masters: React, Python, Node.js, TypeScript, TensorFlow, LangChain, Kubernetes, PostgreSQL, and more. Built for production at scale.",
+    title: "Technology Stack — AI, Backend, Frontend & Cloud | JOE Technologies",
+    description: "Explore the enterprise technology stack that powers JOE Technologies: Python, Django, React, TypeScript, PyTorch, TensorFlow, PostgreSQL, Docker, Kubernetes, and more.",
     canonical: "/tech-stack",
+    keywords: "technology stack, Python Django, React TypeScript, PyTorch TensorFlow, PostgreSQL Docker, Kubernetes AI, software engineering tools, JOE Technologies",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "JOE Technologies Technology Stack",
+      "description": "The enterprise-grade AI, backend, frontend, and cloud technologies used by JOE Technologies to build production digital systems.",
+      "url": "https://joetech.com.ng/tech-stack",
+      "publisher": { "@id": "https://joetech.com.ng/#organization" },
+      "isPartOf": { "@id": "https://joetech.com.ng/#website" },
+      "about": {
+        "@type": "ItemList",
+        "name": "Technology Stack",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1,  "name": "Python"       },
+          { "@type": "ListItem", "position": 2,  "name": "Django"       },
+          { "@type": "ListItem", "position": 3,  "name": "FastAPI"      },
+          { "@type": "ListItem", "position": 4,  "name": "React"        },
+          { "@type": "ListItem", "position": 5,  "name": "TypeScript"   },
+          { "@type": "ListItem", "position": 6,  "name": "Next.js"      },
+          { "@type": "ListItem", "position": 7,  "name": "Node.js"      },
+          { "@type": "ListItem", "position": 8,  "name": "PyTorch"      },
+          { "@type": "ListItem", "position": 9,  "name": "TensorFlow"   },
+          { "@type": "ListItem", "position": 10, "name": "LangChain"    },
+          { "@type": "ListItem", "position": 11, "name": "OpenAI API"   },
+          { "@type": "ListItem", "position": 12, "name": "HuggingFace"  },
+          { "@type": "ListItem", "position": 13, "name": "PostgreSQL"   },
+          { "@type": "ListItem", "position": 14, "name": "Redis"        },
+          { "@type": "ListItem", "position": 15, "name": "Docker"       },
+          { "@type": "ListItem", "position": 16, "name": "Kubernetes"   },
+          { "@type": "ListItem", "position": 17, "name": "Google Cloud" },
+          { "@type": "ListItem", "position": 18, "name": "AWS"          },
+        ],
+      },
+    },
   });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });

@@ -145,19 +145,31 @@ function useScrollInView() {
 
 export default function CustomAIPage() {
   useSeo({
-    title: "Custom AI & Machine Learning Development",
+    title: "Custom AI & Machine Learning Development | JOE Technologies",
     description: "Custom AI and machine learning development by JOE Technologies. NLP, computer vision, predictive analytics, LLMs, and production ML systems built for your specific use case.",
     canonical: "/services/custom-ai",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Custom AI & Machine Learning Solutions",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/custom-ai",
-      "description": "Custom AI and ML development including NLP, computer vision, and production ML systems.",
-      "serviceType": "AI & Machine Learning Development",
-      "areaServed": "Worldwide",
-    },
+    keywords: "custom AI development, machine learning development, NLP, computer vision, LLM development, GPT integration, predictive analytics, AI model training, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Custom AI & Machine Learning Development",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/custom-ai",
+        "description": "NLP, computer vision, predictive analytics, LLMs, and production ML systems — custom AI and machine learning development built for your specific use case.",
+        "serviceType": "AI & Machine Learning Development",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "Custom AI & Machine Learning", "item": "https://joetech.com.ng/services/custom-ai" },
+        ],
+      },
+    ],
   });
 
   const { ref: capRef, isInView: capInView } = useScrollInView();

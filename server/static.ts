@@ -1,6 +1,7 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
+import { getRouteMeta, injectSSRMeta } from "./seo-meta";
 
 // Resolve the dist/public directory from a given __dirname-equivalent.
 // __dirname in the esbuild CJS bundle points to the dist/ directory.
@@ -125,15 +126,52 @@ export function serveStaticFiles(app: Express): void {
  * wildcard. Express matches handlers in registration order — registering
  * this wildcard before the API routes would swallow every /api/* request
  * and return index.html instead of JSON.
+ *
+ * SSR META INJECTION
+ * ──────────────────
+ * Before sending index.html, this handler replaces the title, description,
+ * keywords, canonical, and OG/Twitter tags with route-specific values from
+ * seo-meta.ts. This ensures social crawlers (LinkedIn, WhatsApp, Facebook,
+ * Slack) and Googlebot see correct metadata in the raw HTML before any
+ * JavaScript runs. Results are cached per-route — the regex replacement
+ * only runs once per unique path for the lifetime of the process.
  */
+
+// Base HTML read once on first request, then cached. Never mutated directly.
+let _baseHtml: string | null = null;
+// Per-route injected HTML cache. Populated lazily.
+const _routeHtmlCache = new Map<string, string>();
+
+function getBaseHtml(indexPath: string): string {
+  if (_baseHtml === null) {
+    _baseHtml = fs.readFileSync(indexPath, "utf-8");
+  }
+  return _baseHtml;
+}
+
 export function serveSPAFallback(app: Express): void {
   const { distPath, indexPath } = getResolved();
   if (!distPath || !indexPath) return;
 
-  app.use("/{*path}", (_req, res) => {
+  app.use("/{*path}", (req, res) => {
     res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
-    res.sendFile(indexPath);
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+
+    // req.path in app.use("/{*path}") strips the leading slash in Express 5,
+    // so "/about" becomes "about". Use req.originalUrl (always the full path)
+    // and strip any query string. Fall back to "/" if somehow missing.
+    const rawPath = (req.originalUrl ?? req.path ?? "/").split("?")[0];
+    const pathname = rawPath.startsWith("/") ? rawPath : `/${rawPath}`;
+
+    if (!_routeHtmlCache.has(pathname)) {
+      const base = getBaseHtml(indexPath);
+      const meta = getRouteMeta(pathname);
+      const injected = injectSSRMeta(base, meta);
+      _routeHtmlCache.set(pathname, injected);
+    }
+
+    res.send(_routeHtmlCache.get(pathname));
   });
 }

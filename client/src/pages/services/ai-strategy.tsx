@@ -56,19 +56,31 @@ const techStack = ["LLMs", "MLOps", "TensorFlow", "PyTorch", "Architecture Desig
 
 export default function AIStrategyPage() {
   useSeo({
-    title: "AI Strategy & Architecture Consulting",
+    title: "AI Strategy & Architecture Consulting | JOE Technologies",
     description: "AI strategy and architecture consulting from JOE Technologies. Define your AI roadmap, choose the right models, architect your data pipelines, and deploy with confidence.",
     canonical: "/services/ai-strategy",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "AI Strategy & Architecture",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/ai-strategy",
-      "description": "AI strategy, roadmap planning, and architecture consulting.",
-      "serviceType": "AI Strategy Consulting",
-      "areaServed": "Worldwide",
-    },
+    keywords: "AI strategy consulting, AI roadmap, AI architecture, machine learning strategy, enterprise AI adoption, AI consulting Nigeria, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "AI Strategy & Architecture Consulting",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/ai-strategy",
+        "description": "Define your AI roadmap, choose the right models, architect your data pipelines, and deploy AI with confidence — expert AI strategy and architecture consulting.",
+        "serviceType": "AI Strategy Consulting",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "AI Strategy & Architecture", "item": "https://joetech.com.ng/services/ai-strategy" },
+        ],
+      },
+    ],
   });
 
   return (

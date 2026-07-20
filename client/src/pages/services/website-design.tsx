@@ -103,19 +103,31 @@ const useCases = [
 
 export default function WebsiteDesign() {
   useSeo({
-    title: "Website Design & Development",
-    description: "Premium website design and development by JOE Technologies. Fast, beautiful, conversion-optimised websites engineered for businesses and enterprises. Performance-first, built to rank.",
+    title: "Website Design & Development — Fast, SEO-Ready & Beautiful | JOE Technologies",
+    description: "Premium website design and development by JOE Technologies. Fast, beautiful, conversion-optimised websites engineered for businesses and enterprises. Performance-first and built to rank.",
     canonical: "/services/website-design",
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Website Design & Development",
-      "provider": { "@id": "https://joetech.com.ng/#organization" },
-      "url": "https://joetech.com.ng/services/website-design",
-      "description": "Premium website design and development for businesses and enterprises.",
-      "serviceType": "Website Design & Development",
-      "areaServed": "Worldwide",
-    },
+    keywords: "website design Nigeria, website development, business website design, landing page design, e-commerce website, SEO website, conversion optimised website, JOE Technologies",
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Website Design & Development",
+        "provider": { "@id": "https://joetech.com.ng/#organization" },
+        "url": "https://joetech.com.ng/services/website-design",
+        "description": "Premium, fast, and conversion-optimised website design and development for businesses and enterprises. Performance-first, SEO-ready, and built to rank.",
+        "serviceType": "Website Design & Development",
+        "areaServed": "Worldwide",
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://joetech.com.ng/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://joetech.com.ng/services" },
+          { "@type": "ListItem", "position": 3, "name": "Website Design & Development", "item": "https://joetech.com.ng/services/website-design" },
+        ],
+      },
+    ],
   });
   const hero = useScrollInView();
   const caps = useScrollInView();
