@@ -169,7 +169,7 @@ export default function AboutSection() {
           <div className="max-w-xl mx-auto mb-16">
             {[
               {
-                src: "/jeffery.png",
+                src: "/jeffery.jpg",
                 alt: "Jeffery Onome Emuodafevware",
                 name: "Jeffery Onome Emuodafevware",
                 role: "Founder & CEO",
