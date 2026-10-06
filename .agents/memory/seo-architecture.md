@@ -31,7 +31,7 @@ Service + BreadcrumbList for service pages, AboutPage + Person[] for the about p
 | Page | Schema type(s) |
 |---|---|
 | Home | WebPage |
-| About | AboutPage + Person (Jeffery) + Person (Dominion) |
+| About | AboutPage + Person |
 | Services index | ItemList (10 services) |
 | Each service page | [Service, BreadcrumbList] |
 | Portfolio | CollectionPage |
