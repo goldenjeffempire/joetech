@@ -32,25 +32,11 @@ const WhyUsPage = lazy(() => import("@/pages/why-us"));
 const ProcessPage = lazy(() => import("@/pages/process"));
 const TechStackPage = lazy(() => import("@/pages/tech-stack"));
 const FAQPage = lazy(() => import("@/pages/faq"));
-const QualifyPage = lazy(() => import("@/pages/qualify"));
-const AdminPage = lazy(() => import("@/pages/admin"));
 
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [location]);
-  return null;
-}
-
-function PageViewTracker() {
-  const [location] = useLocation();
-  useEffect(() => {
-    fetch("/api/analytics/pageview", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ path: location, referrer: document.referrer || null }),
-    }).catch(() => {});
   }, [location]);
   return null;
 }
@@ -119,8 +105,7 @@ function Router() {
         <Route path="/tech-stack" component={TechStackPage} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/contact" component={Contact} />
-        <Route path="/qualify" component={QualifyPage} />
-        <Route path="/admin" component={AdminPage} />
+        <Route path="/qualify" component={Contact} />
         <Route path="/privacy" component={PrivacyPolicy} />
         <Route path="/terms" component={TermsOfService} />
         <Route path="/cookies" component={CookiePolicy} />
@@ -147,7 +132,6 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <ScrollToTop />
-        <PageViewTracker />
         <IdlePrefetcher />
         <AppWithBoundary />
       </TooltipProvider>

@@ -8,7 +8,6 @@ const ROUTE_CHUNKS: Record<string, () => Promise<unknown>> = {
   "/process":                     () => import("@/pages/process"),
   "/tech-stack":                  () => import("@/pages/tech-stack"),
   "/faq":                         () => import("@/pages/faq"),
-  "/qualify":                     () => import("@/pages/qualify"),
   "/services/app-development":    () => import("@/pages/services/app-development"),
   "/services/website-design":     () => import("@/pages/services/website-design"),
   "/services/uiux-design":        () => import("@/pages/services/uiux-design"),

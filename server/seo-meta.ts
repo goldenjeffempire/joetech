@@ -214,6 +214,11 @@ export function getRouteMeta(pathname: string): RouteMeta {
   return META[normalized] ?? META["/"]!;
 }
 
+/** Public routes included in the backend-free Render static build. */
+export function getPublicRoutePaths(): string[] {
+  return Object.keys(META).filter((route) => route !== "/qualify");
+}
+
 /**
  * Replace title, description, keywords, canonical, OG, and Twitter tags in
  * the index.html string with the route-specific values.

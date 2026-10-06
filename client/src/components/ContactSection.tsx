@@ -3,7 +3,6 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { Mail, MapPin, Send, CheckCircle2, Globe, ChevronUp, ChevronDown } from "lucide-react";
 import { SiInstagram, SiWhatsapp, SiFacebook } from "react-icons/si";
@@ -27,8 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -37,7 +34,6 @@ const formSchema = z.object({
   phone: z.string().optional(),
   service: z.string().optional(),
   message: z.string().min(20, "Please provide a bit more detail (min 20 chars)"),
-  website: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -105,8 +101,8 @@ function useScrollInView() {
 
 export default function ContactSection() {
   const { ref, isInView } = useScrollInView();
-  const { toast } = useToast();
   const [waOpen, setWaOpen] = useState(false);
+  const [emailDraft, setEmailDraft] = useState<string | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -117,30 +113,23 @@ export default function ContactSection() {
       phone: "",
       service: "",
       message: "",
-      website: "",
-    },
-  });
-
-  const mutation = useMutation({
-    mutationFn: (data: FormValues) => apiRequest("POST", "/api/contact", data),
-    onSuccess: () => {
-      toast({
-        title: "Message received!",
-        description: "Thank you for reaching out. Our team will get back to you within 24 hours.",
-      });
-      form.reset();
-    },
-    onError: () => {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again or reach out via WhatsApp.",
-        variant: "destructive",
-      });
     },
   });
 
   const onSubmit = (data: FormValues) => {
-    mutation.mutate(data);
+    const subject = `Project inquiry${data.service ? ` — ${data.service}` : ""}`;
+    const body = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      data.company ? `Company: ${data.company}` : "",
+      data.phone ? `Phone: ${data.phone}` : "",
+      data.service ? `Service: ${data.service}` : "",
+      "",
+      data.message,
+    ].filter((line) => line !== "").join("\n");
+    const draft = `mailto:info@joetech.com.ng?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setEmailDraft(draft);
+    window.location.href = draft;
   };
 
   const watchedName = useWatch({ control: form.control, name: "name" });
@@ -254,31 +243,37 @@ export default function ContactSection() {
                 borderColor: "var(--joe-card-border)",
               }}
             >
-              {mutation.isSuccess ? (
+              {emailDraft ? (
                 <div className="flex flex-col items-center justify-center gap-5 py-12 text-center">
                   <div className="w-16 h-16 rounded-full bg-[#48F2FB]/10 border border-[#48F2FB]/20 flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8 text-[#48F2FB]" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-joe-text text-xl mb-2">Message Sent!</h3>
+                    <h3 className="font-heading font-bold text-joe-text text-xl mb-2">Your Email Draft Is Ready</h3>
                     <p className="text-joe-text/55 text-sm leading-relaxed max-w-sm">
-                      Thank you for reaching out. Our team will review your message and respond within 24 hours.
+                      Your brief has not been sent yet. Send it from your email app to finish.
+                      If your email app did not open, use the link below or contact us on WhatsApp.
                     </p>
                   </div>
+                  <Button asChild className="bg-[#48F2FB] text-[#060A10]" data-testid="button-open-email">
+                    <a href={emailDraft}>Open Email Draft</a>
+                  </Button>
                   <Button
-                    onClick={() => mutation.reset()}
+                    onClick={() => setEmailDraft(null)}
                     variant="outline"
                     className="border-joe-text/20 text-joe-text/70"
                     data-testid="button-send-another"
                   >
-                    Send Another Message
+                    Edit Project Brief
                   </Button>
                 </div>
               ) : (
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-                    <input type="text" className="hidden" aria-hidden="true" tabIndex={-1}
-                      {...form.register("website")} />
+                    <p className="text-joe-text/55 text-sm leading-relaxed">
+                      Prepare your brief below, then send it using your email app or WhatsApp.
+                      This website does not submit or store form entries.
+                    </p>
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <FormField
@@ -409,21 +404,11 @@ export default function ContactSection() {
                     <Button
                       type="submit"
                       size="lg"
-                      disabled={mutation.isPending}
                       className="w-full bg-gradient-to-r from-[#48F2FB] to-[#E867EA] text-[#060A10] border-0 font-semibold gap-2 shadow-xl shadow-[#48F2FB]/15 hover:shadow-[#48F2FB]/25 transition-shadow"
                       data-testid="button-submit"
                     >
-                      {mutation.isPending ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          Send Project Brief
-                        </>
-                      )}
+                      <Send className="w-4 h-4" />
+                      Prepare Email Brief
                     </Button>
 
                     <div className="flex items-center gap-3">

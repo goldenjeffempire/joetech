@@ -104,6 +104,9 @@ export default {
         },
         joe: {
           text: "rgb(var(--joe-text) / <alpha-value>)",
+          overlay: "var(--joe-overlay)",
+          card: "var(--joe-card)",
+          "card-border": "var(--joe-card-border)",
         },
       },
       fontFamily: {

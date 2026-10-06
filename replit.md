@@ -3,7 +3,30 @@
 ## Overview
 A premium, production-ready multi-page platform for **JOE Technologies** — an enterprise digital product and AI solutions company. The platform positions JOE Technologies around high-performance Apps, Websites, Automation Systems, UI/UX Design, Digital Systems, and AI-powered Solutions for businesses and organizations. Built with React/TypeScript on the frontend and Express/Node.js on the backend.
 
-## Running on Replit
+## Render Static Site Deployment
+
+The user selected a **static-only Render deployment** to avoid the idle-sleep behavior of free web services. `render.yaml` now defines `joetech-static` with `runtime: static`. Render's Blueprint format still uses `type: web` for Static Sites; the runtime is what selects static hosting.
+
+- Build command: `npm ci --include=dev && npm run build:static`
+- Publish directory: `dist/public`
+- No start command, backend service, database, or secrets are required by the Render static site.
+- Contact briefs prepare an email draft for `info@joetech.com.ng`, or open WhatsApp. Visitors must send the message in their email/WhatsApp app; the website does not submit or store it.
+- Newsletter signups, page-view tracking, lead submission, and the admin route are not included in the public site. Legacy backend source and existing database data are retained, not deleted.
+- `/qualify` redirects to `/contact`. Public deep links have explicit rewrites and route-specific HTML metadata.
+- `robots.txt`, `sitemap.xml`, and `sitemap-images.xml` are included in the static output.
+- Use `npm run preview:static` after building to preview the production files on port 5000. The existing `npm run dev` workflow remains available for local development.
+
+### Applying this configuration on Render
+
+Push these changes to the connected GitHub repository, then create a **new Static Site** in Render (or create a new Blueprint using this `render.yaml`). Use the build command and publish directory above. A Static Site does not use the old `node dist/index.cjs` start command.
+
+Do not remove the existing service or database until the new static site's pages and contact links have been checked. If using a custom domain, move its Render domain association and follow Render's DNS instructions after verifying the new site. No production database deletion or domain change was performed by this code update.
+
+Static hosting avoids idle sleep but is not an absolute uptime guarantee; provider outages and bandwidth/account limits can still affect availability.
+
+## Running on Replit (Legacy Development)
+
+### Prerequisites
 
 ### Prerequisites
 - Replit's built-in PostgreSQL is automatically provisioned (`DATABASE_URL` is set by the environment)
@@ -168,7 +191,7 @@ All sections use CSS custom properties defined in `client/src/index.css` for bot
 - **Fully responsive**: Mobile-first with hamburger nav, responsive grids
 - **Per-page SEO**: Unique document title for each page via `usePageTitle` hook
 - **Animated counters**: Hero stats count up from 0 when in view; impact metrics section
-- **Contact form**: Validated with Zod, posts to `/api/contact`, success/error states
+- **Contact brief**: Validated with Zod, prepares an email draft or WhatsApp message; never claims a server submission was sent
 - **WhatsApp integration**: Floating button + form button linking to WhatsApp chat
 - **Framer Motion animations**: Scroll-triggered section reveals, hero type animation, page transitions
 - **SEO optimized**: Title, meta description, OG tags, canonical URL, skip link, JSON-LD structured data
