@@ -47,7 +47,7 @@
     "drizzle-orm": "^0.39.3",
     "drizzle-zod": "^0.7.0",
     "embla-carousel-react": "^8.6.0",
-    "express": "^5.0.1",
+    "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "framer-motion": "^11.13.1",
     "helmet": "^8.1.0",
@@ -94,6 +94,7 @@
     "vite": "^7.3.0"
   },
   "overrides": {
+    "proxy-addr": "^2.0.8",
     "drizzle-kit": {
       "@esbuild-kit/esm-loader": "npm:tsx@^4.20.4"
     }

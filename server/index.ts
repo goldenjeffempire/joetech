@@ -219,17 +219,6 @@ process.on("uncaughtException", (err: Error) => {
 // This async block handles dev Vite middleware, DB, and API routes.
 // None of this blocks the frontend from loading.
 (async () => {
-  // ── Dev only: Vite middleware (must be async) ────────────────────────────
-  if (!isProduction) {
-    try {
-      const { setupVite } = await import("./vite");
-      await setupVite(httpServer, app);
-      log("vite dev middleware ready", "express");
-    } catch (err) {
-      console.error("[startup] Vite setup error:", err);
-    }
-  }
-
   // ── DB migrations (best-effort) ──────────────────────────────────────────
   try {
     const { runMigrations } = await import("./db");
@@ -256,6 +245,17 @@ process.on("uncaughtException", (err: Error) => {
     log("setup complete", "express");
   } catch (err) {
     console.error("[startup] Route registration error (non-fatal):", err);
+  }
+
+  // Register Vite's SPA fallback after API routes, just like production.
+  if (!isProduction) {
+    try {
+      const { setupVite } = await import("./vite");
+      await setupVite(httpServer, app);
+      log("vite dev middleware ready", "express");
+    } catch (err) {
+      console.error("[startup] Vite setup error:", err);
+    }
   }
 
   // ── SPA fallback (production, registered LAST) ────────────────────────────

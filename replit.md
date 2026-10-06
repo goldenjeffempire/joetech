@@ -8,23 +8,25 @@ A premium, production-ready multi-page platform for **JOE Technologies** — an 
 ### Prerequisites
 - Replit's built-in PostgreSQL is automatically provisioned (`DATABASE_URL` is set by the environment)
 - `SESSION_SECRET` environment secret must be set ✓ (configured in Replit Secrets)
+- Optional admin access requires `ADMIN_SECRET` in Replit Secrets. Until configured, admin API routes return 403; public pages and forms do not require it.
 
 ### Setup steps
 ```bash
 npm install          # install dependencies
-npm run db:push      # push schema to the database (creates tables)
 npm run dev          # start the dev server on port 5000
 ```
 
+The existing development startup creates missing tables automatically. Use `npm run db:push` only when intentionally applying schema changes. Use `npm run check` for TypeScript checks and `npm run build` to generate the production bundle.
+
 The workflow "Start application" runs `npm run dev` automatically.
 
-### Setup status (last verified 2026-07-16)
-- ✅ `npm install` — 457 packages installed, Node v20.20.0
-- ✅ `npm run db:push` — schema pushed; tables `users`, `contactSubmissions`, `leadSubmissions` created
-- ✅ `SESSION_SECRET` secret configured in Replit environment
-- ✅ `DATABASE_URL` provisioned automatically by Replit PostgreSQL
-- ✅ Dev server starts on port 5000, Vite middleware ready, all routes served
-- ⚠️  16 npm vulnerabilities flagged (2 low, 5 moderate, 9 high) — tracked as a follow-up task
+### Setup status (last verified 2026-10-06)
+- Dependencies installed on Node v20.20.0; Express updated within version 5.
+- `proxy-addr` override selects version 2.0.8 or newer because the imported lockfile's 2.0.7 is blocked by the package security policy.
+- Managed PostgreSQL connected; startup verified the application's tables.
+- `SESSION_SECRET` configured; `ADMIN_SECRET` not configured.
+- Development workflow serves port 5000. API routes are registered before the Vite SPA fallback.
+- Homepage preview, health endpoint, TypeScript checks, and production build verified.
 
 ---
 
