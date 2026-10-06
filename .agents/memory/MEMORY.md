@@ -1,6 +1,6 @@
 - [API routing in production](api-routing-production.md) — SPA wildcard must be registered AFTER API routes; static files split into two exports for correct ordering.
 - [Domain not connected](domain-parking.md) — joetech.com.ng is parked at HOSTAFRICA; needs DNS configuration before the site is reachable.
 - [SEO architecture](seo-architecture.md) — SSR meta injection, JSON-LD schema map, sitemap/robots setup, useSeo hook, and critical vite chunk-split fix for @floating-ui.
-- [Dependency firewall](dependency-firewall.md) — updating a parent may retain blocked transitive pins; use a compatible safe override when the latest parent still permits them.
+- [Dependency firewall](dependency-firewall.md) — safe transitive overrides and portable lockfile URLs for external builds; never bypass Replit's security registry.
 - [Site content scope](site-content-scope.md) — exclude co-founder profiles and co-founding claims; preserve remaining leadership and company information.
 - [Render static hosting](render-static-hosting.md) — user chose static-only hosting; use email/WhatsApp handoff, no server-dependent public features, and preserve existing data.

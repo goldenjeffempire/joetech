@@ -1,0 +1,23 @@
+2026-10-06T10:54:11.684067331Z ==> It looks like we don't have access to your repo, but we'll try to clone it anyway.
+2026-10-06T10:54:11.684073129Z ==> Cloning from https://github.com/goldenjeffempire/joetech
+2026-10-06T10:54:18.683682528Z ==> Checking out commit 7dff2c9ca097b95973935561e7b062d180d306e7 in branch main
+2026-10-06T10:54:19.419503251Z ==> Running build command 'npm ci --include=dev && npm run build:static'...
+2026-10-06T10:54:19.474131596Z ==> Requesting Node.js version 20
+2026-10-06T10:54:19.613393528Z ==> Using Node.js version 20.20.2 via /opt/render/project/src/.node-version
+2026-10-06T10:54:19.613406835Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+2026-10-06T10:54:19.613408363Z ==> Installing Node.js version 20.20.2...
+2026-10-06T10:55:31.844591099Z npm error code ENOTFOUND
+2026-10-06T10:55:31.844605977Z npm error syscall getaddrinfo
+2026-10-06T10:55:31.844613223Z npm error errno ENOTFOUND
+2026-10-06T10:55:31.844614677Z npm error network request to http://package-firewall.replit.internal/npm/proxy-addr/-/proxy-addr-2.0.8.tgz failed, reason: getaddrinfo ENOTFOUND package-firewall.replit.internal
+2026-10-06T10:55:31.844618314Z npm error network This is a problem related to network connectivity.
+2026-10-06T10:55:31.844619274Z npm error network In most cases you are behind a proxy or have bad network settings.
+2026-10-06T10:55:31.844620029Z npm error network
+2026-10-06T10:55:31.84462082Z npm error network If you are behind a proxy, please make sure that the
+2026-10-06T10:55:31.844621626Z npm error network 'proxy' config is set properly.  See: 'npm help config'
+2026-10-06T10:55:31.845394831Z npm error A complete log of this run can be found in: /opt/render/.cache/_logs/2026-10-06T10_54_20_319Z-debug-0.log
+2026-10-06T10:55:31.884662261Z ==> Build failed 😞
+2026-10-06T10:55:31.884676262Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2026-10-06T10:55:31.942961411Z ==> Requesting Node.js version 20
+2026-10-06T10:55:32.014104974Z ==> Using Node.js version 20.20.2 via /opt/render/project/src/.node-version
+2026-10-06T10:55:32.014114284Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
