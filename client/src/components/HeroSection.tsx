@@ -481,11 +481,9 @@ export default function HeroSection() {
             >
               JOE Technologies builds high-performance apps, websites, digital systems,
               and AI-powered solutions for businesses and organizations that need real-world
-              production outcomes. Co-founded by{" "}
-              <span className="font-semibold" style={{ color: "#48F2FB" }}>Jeffery Onome Emuodafevware</span>{" "}
-              &amp;{" "}
-              <span className="font-semibold" style={{ color: "#E867EA" }}>Dominion Chidiebere Nkwachukwu</span>{" "}
-              — we turn complex ideas into premium digital products that convert, automate, and scale.
+              production outcomes. Led by{" "}
+              <span className="font-semibold" style={{ color: "#48F2FB" }}>Jeffery Onome Emuodafevware</span>
+              {" "}— we turn complex ideas into premium digital products that convert, automate, and scale.
             </motion.p>
 
             <motion.div

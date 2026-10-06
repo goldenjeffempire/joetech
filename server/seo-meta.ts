@@ -50,11 +50,11 @@ const META: Record<string, RouteMeta> = {
     keywords: `app development, website development, automation systems, UI/UX design, AI solutions, machine learning, software engineering, full-stack development, MLOps, AI integration, ${SHARED}`,
   },
   "/about": {
-    title: "About JOE Technologies | Co-Founders & Vision",
+    title: "About JOE Technologies | Our Vision",
     description:
-      "Learn about JOE Technologies and our co-founders Jeffery Onome Emuodafevware and Dominion Chidiebere Nkwachukwu. An enterprise digital product and AI solutions company delivering cutting-edge apps, automation, and AI-powered platforms.",
+      "Learn about JOE Technologies, an enterprise digital product and AI solutions company delivering apps, automation, and AI-powered platforms.",
     canonical: `${BASE}/about`,
-    keywords: `about JOE Technologies, Jeffery Onome Emuodafevware, Dominion Chidiebere Nkwachukwu, AI company founders, digital product company, ${SHARED}`,
+    keywords: `about JOE Technologies, Jeffery Onome Emuodafevware, AI company, digital product company, ${SHARED}`,
   },
   "/services": {
     title: "Our Services | App Development, AI, Automation & More — JOE Technologies",

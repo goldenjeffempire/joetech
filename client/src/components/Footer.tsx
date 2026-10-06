@@ -190,7 +190,7 @@ export default function Footer() {
                 className="flex flex-col gap-2 p-4 rounded-xl border"
                 style={{ background: "var(--joe-card)", borderColor: "var(--joe-card-border)" }}
               >
-                <p className="text-joe-text/28 text-xs font-mono uppercase tracking-wider mb-1">Co-Founded by</p>
+                <p className="text-joe-text/28 text-xs font-mono uppercase tracking-wider mb-1">Leadership</p>
                 <p className="text-joe-text/70 text-sm font-semibold">Jeffery Onome Emuodafevware</p>
                 <p className="text-joe-text/45 text-xs">Founder & CEO</p>
                 <a
@@ -204,10 +204,6 @@ export default function Footer() {
                   <ExternalLink className="w-3 h-3" />
                   Personal Portfolio
                 </a>
-                <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--joe-card-border)" }}>
-                  <p className="text-joe-text/70 text-sm font-semibold">Dominion Chidiebere Nkwachukwu</p>
-                  <p className="text-joe-text/45 text-xs">Co-Founder</p>
-                </div>
               </div>
 
               <div className="flex flex-col gap-3">

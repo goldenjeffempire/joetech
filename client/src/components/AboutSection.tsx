@@ -155,18 +155,18 @@ export default function AboutSection() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">About the Co-Founders</span>
+            <span className="text-[#48F2FB] font-mono text-sm uppercase tracking-widest">Company Leadership</span>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-joe-text mt-3">
               Built by Engineers Who{" "}
               <span className="text-gradient-cyber">Build Products</span>
             </h2>
             <p className="text-joe-text/50 mt-4 text-lg max-w-2xl mx-auto">
-              JOE Technologies is a two-founder, highly specialized studio delivering enterprise-grade digital products — apps, websites, automation systems, UI/UX, and AI.
+              JOE Technologies is a specialized studio delivering enterprise-grade digital products — apps, websites, automation systems, UI/UX, and AI.
             </p>
           </motion.div>
 
-          {/* ── Founder cards — side by side ── */}
-          <div className="grid sm:grid-cols-2 gap-6 mb-16">
+          {/* ── Company leadership profile ── */}
+          <div className="max-w-xl mx-auto mb-16">
             {[
               {
                 src: "/jeffery.png",
@@ -175,7 +175,7 @@ export default function AboutSection() {
                 role: "Founder & CEO",
                 accent: "#48F2FB",
                 accentRgb: "72,242,251",
-                bio: "Full-stack software engineer and AI architect. He co-founded JOE Technologies to bridge the gap between great engineering and real business outcomes — building apps, automation systems, and AI infrastructure that scale.",
+                bio: "Full-stack software engineer and AI architect focused on bridging great engineering and real business outcomes — building apps, automation systems, and AI infrastructure that scale.",
                 links: [
                   { label: "Portfolio", href: "https://onome-portfolio-ten.vercel.app/?/projects", icon: ExternalLink, color: "#48F2FB" },
                   { label: "joetech.com.ng", href: "https://joetech.com.ng", icon: Globe, color: "#E867EA" },
@@ -183,39 +183,27 @@ export default function AboutSection() {
                 delay: 0.1,
                 testId: "founder-jeffery",
               },
-              {
-                src: "/dominion.png",
-                alt: "Dominion Chidiebere Nkwachukwu",
-                name: "Dominion Chidiebere Nkwachukwu",
-                role: "Co-Founder & COO",
-                accent: "#E867EA",
-                accentRgb: "232,103,234",
-                bio: "Strategic leader and operations chief at JOE Technologies. Dominion ensures every engagement is delivered on time and aligned with client goals — bridging technical execution with business outcomes.",
-                links: [],
-                delay: 0.2,
-                testId: "founder-dominion",
-              },
-            ].map((founder) => (
+            ].map((profile) => (
               <motion.div
-                key={founder.testId}
-                data-testid={founder.testId}
+                key={profile.testId}
+                data-testid={profile.testId}
                 initial={{ opacity: 0, y: 24 }}
                 animate={bioInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: founder.delay }}
+                transition={{ duration: 0.6, delay: profile.delay }}
                 whileHover={{ y: -6 }}
                 className="rounded-2xl overflow-hidden flex flex-col group"
                 style={{
                   background: "var(--joe-card)",
-                  border: `1.5px solid rgba(${founder.accentRgb},0.2)`,
-                  boxShadow: `0 4px 40px rgba(${founder.accentRgb},0.07), 0 8px 32px rgba(0,0,0,0.35)`,
+                  border: `1.5px solid rgba(${profile.accentRgb},0.2)`,
+                  boxShadow: `0 4px 40px rgba(${profile.accentRgb},0.07), 0 8px 32px rgba(0,0,0,0.35)`,
                   transition: "box-shadow 0.3s, transform 0.3s",
                 }}
               >
                 {/* Photo area */}
                 <div className="relative overflow-hidden" style={{ aspectRatio: "4/5" }}>
                   <img
-                    src={founder.src}
-                    alt={founder.alt}
+                    src={profile.src}
+                    alt={profile.alt}
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   {/* Subtle bottom vignette only — keeps photo clear */}
@@ -236,20 +224,20 @@ export default function AboutSection() {
                 {/* Info area */}
                 <div className="flex flex-col gap-3 p-6 flex-1">
                   {/* Accent rule */}
-                  <div className="h-px w-10 rounded-full" style={{ background: founder.accent }} />
+                    <div className="h-px w-10 rounded-full" style={{ background: profile.accent }} />
                   <div>
-                    <h3 className="font-heading font-bold text-xl text-joe-text leading-snug">{founder.name}</h3>
+                    <h3 className="font-heading font-bold text-xl text-joe-text leading-snug">{profile.name}</h3>
                     <span
                       className="inline-block mt-2 px-3 py-0.5 rounded-full text-xs font-semibold"
-                      style={{ background: `rgba(${founder.accentRgb},0.12)`, border: `1px solid rgba(${founder.accentRgb},0.3)`, color: founder.accent }}
+                      style={{ background: `rgba(${profile.accentRgb},0.12)`, border: `1px solid rgba(${profile.accentRgb},0.3)`, color: profile.accent }}
                     >
-                      {founder.role}
+                      {profile.role}
                     </span>
                   </div>
-                  <p className="text-joe-text/55 text-sm leading-relaxed">{founder.bio}</p>
-                  {founder.links.length > 0 && (
+                  <p className="text-joe-text/55 text-sm leading-relaxed">{profile.bio}</p>
+                  {profile.links.length > 0 && (
                     <div className="flex items-center gap-4 mt-auto pt-2">
-                      {founder.links.map((link) => {
+                      {profile.links.map((link) => {
                         const Icon = link.icon;
                         return (
                           <a
@@ -288,8 +276,7 @@ export default function AboutSection() {
                   strong business pragmatism to deliver production-grade solutions that perform in the real world.
                 </p>
                 <p>
-                  He is the Co-Founder of <span className="text-joe-text font-semibold">JOE Technologies</span> — a
-                  company name derived from his initials — established in response to a clear market gap: businesses
+                  At <span className="text-joe-text font-semibold">JOE Technologies</span>, he focuses on a clear market gap: businesses
                   don't just need consultants or freelancers; they need a reliable engineering partner capable of
                   designing, building, and deploying end-to-end systems including applications, websites, automation
                   pipelines, and AI-powered infrastructure that drive measurable results.

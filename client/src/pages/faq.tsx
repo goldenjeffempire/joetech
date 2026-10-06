@@ -23,7 +23,7 @@ const allFaqs = [
   },
   {
     q: "What engagement models do you offer?",
-    a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing product, automation, AI, or advisory work; (3) Embedded — a JOE Technologies co-founder or engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
+    a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing product, automation, AI, or advisory work; (3) Embedded — a JOE Technologies engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
   },
   {
     q: "How is pricing structured?",
@@ -80,7 +80,7 @@ const faqCategories = [
     faqs: [
       {
         q: "What engagement models do you offer?",
-        a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing product, automation, AI, or advisory work; (3) Embedded — a JOE Technologies co-founder or engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
+        a: "We offer three primary models: (1) Project-based — fixed scope, fixed timeline, fixed price; (2) Retainer — dedicated capacity each month for ongoing product, automation, AI, or advisory work; (3) Embedded — a JOE Technologies engineer works as part of your internal team. We'll recommend the best fit based on your situation.",
       },
       {
         q: "How is pricing structured?",

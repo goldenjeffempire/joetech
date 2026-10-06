@@ -6,10 +6,10 @@ import PageHero from "@/components/PageHero";
 
 export default function About() {
   useSeo({
-    title: "About JOE Technologies | Co-Founders & Vision",
-    description: "Learn about JOE Technologies and our co-founders Jeffery Onome Emuodafevware and Dominion Chidiebere Nkwachukwu. An enterprise digital product and AI solutions company delivering cutting-edge apps, automation, and AI-powered platforms.",
+    title: "About JOE Technologies | Our Vision",
+    description: "Learn about JOE Technologies, an enterprise digital product and AI solutions company delivering apps, automation, and AI-powered platforms.",
     canonical: "/about",
-    keywords: "about JOE Technologies, Jeffery Onome Emuodafevware, Dominion Chidiebere Nkwachukwu, AI company founders, digital product company, Nigeria tech company",
+    keywords: "about JOE Technologies, Jeffery Onome Emuodafevware, AI company, digital product company, Nigeria tech company",
     schema: [
       {
         "@context": "https://schema.org",
@@ -17,7 +17,7 @@ export default function About() {
         "@id": "https://joetech.com.ng/about",
         "url": "https://joetech.com.ng/about",
         "name": "About JOE Technologies",
-        "description": "Enterprise digital product and AI solutions company co-founded by Jeffery Onome Emuodafevware and Dominion Chidiebere Nkwachukwu.",
+        "description": "Enterprise digital product and AI solutions company delivering apps, automation, and AI-powered platforms.",
         "publisher": { "@id": "https://joetech.com.ng/#organization" },
       },
       {
@@ -44,21 +44,6 @@ export default function About() {
           "https://github.com/jeff-onome"
         ],
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "@id": "https://joetech.com.ng/#dominion",
-        "name": "Dominion Chidiebere Nkwachukwu",
-        "givenName": "Dominion",
-        "familyName": "Nkwachukwu",
-        "jobTitle": "Co-Founder",
-        "description": "Co-Founder of JOE Technologies. Business development leader and operations strategist ensuring seamless project delivery and strong client relationships.",
-        "worksFor": { "@id": "https://joetech.com.ng/#organization" },
-        "knowsAbout": [
-          "Business Development", "Client Engagement",
-          "Project Management", "Operations", "Digital Strategy"
-        ],
-      },
     ],
   });
 
@@ -68,7 +53,7 @@ export default function About() {
         label="Our Story"
         title="About"
         highlightedTitle="JOE Technologies"
-        subtitle="Co-founded by engineers who build AI — delivering intelligent systems that solve real problems at real scale."
+        subtitle="Building intelligent systems that solve real problems at real scale."
         accentColor="#48F2FB"
         data-testid-label="text-page-label"
         data-testid-title="text-page-title"
